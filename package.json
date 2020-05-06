@@ -6,7 +6,7 @@
   "author": "trungnq <nquangtrung@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc -p ./tsconfig.json",
+    "build": "tsc",
     "prepare": "npm run build"
   },
   "dependencies": {
