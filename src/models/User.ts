@@ -1,4 +1,4 @@
-import { Model } from "./model";
+import { Model } from "./Model";
 import Joi from '@hapi/joi';
 import { Photo } from "./Photo";
 

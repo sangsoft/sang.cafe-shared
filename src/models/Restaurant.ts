@@ -1,6 +1,6 @@
-import { RESTAURANT_TYPES, SUPPORTED_TYPES } from "./enums";
+import { RESTAURANT_TYPES, SUPPORTED_TYPES } from "./Enums";
 import Joi from '@hapi/joi';
-import { Model } from "./model";
+import { Model } from "./Model";
 import { Photo } from "./Photo";
 
 export interface IRestaurant {
