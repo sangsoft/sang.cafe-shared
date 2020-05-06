@@ -6,8 +6,7 @@
   "author": "trungnq <nquangtrung@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "install": "npx tsc"
+    "build": "tsc"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1"
