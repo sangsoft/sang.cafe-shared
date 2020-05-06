@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc -p ./tsconfig.json",
-    "install": "yarn build"
+    "prepare": "npm run build"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1"
