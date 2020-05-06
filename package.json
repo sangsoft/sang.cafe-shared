@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "install": "npx tsc"
+    "install": "yarn tsc"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1"
