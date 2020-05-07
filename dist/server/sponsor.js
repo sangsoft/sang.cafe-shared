@@ -8,14 +8,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const data_1 = require("./data");
 const firebase_1 = require("./firebase");
-const firebase_admin_1 = __importDefault(require("firebase-admin"));
-const constants_1 = require("./constants");
+const admin = __importStar(require("firebase-admin"));
+const constants_1 = require("../constants");
 const restaurant_1 = require("./restaurant");
 function provideSponsorsWithRestaurantData({ sponsors }) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -29,10 +33,10 @@ exports.provideSponsorsWithRestaurantData = provideSponsorsWithRestaurantData;
 function getSponsors({ plans, limit }) {
     return __awaiter(this, void 0, void 0, function* () {
         const random = require('random');
-        const increment = firebase_admin_1.default.firestore.FieldValue.increment(1);
+        const increment = admin.firestore.FieldValue.increment(1);
         let sponsors = yield firebase_1.firestore()
             .collection('SPONSORS')
-            .where('expiredAt', '>', firebase_admin_1.default.firestore.Timestamp.now())
+            .where('expiredAt', '>', admin.firestore.Timestamp.now())
             .where('planId', 'in', plans)
             .orderBy('expiredAt', 'desc')
             .get()
