@@ -4,7 +4,7 @@ function objFromSnap(snap) {
     if (!snap || !snap.exists) {
         return null;
     }
-    return Object.assign({}, snap.data(), { path: snap.ref.path, uid: snap.id });
+    return Object.assign(Object.assign({}, snap.data()), { path: snap.ref.path, uid: snap.id });
 }
 exports.objFromSnap = objFromSnap;
 function randomShortCode(size) {

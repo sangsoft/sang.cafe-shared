@@ -10,5 +10,7 @@ export declare abstract class Model {
     toDataWithTimestamp(firebase: any, ownerId: string): any;
     errorPath(error: any): any;
     errorMessage(error: any): string;
-    validate(): {};
+    validate(): {
+        [x: number]: Error;
+    };
 }
