@@ -130,7 +130,7 @@ export const SUPPORTED_TYPES: { [key: string]: { text: string, value: string, to
     topPage: true
   },
   [RESTAURANT_TYPES.hair_care]: {
-    text: 'Tiệm làm tóc',
+    text: 'Tiệm làm đầu',
     value: RESTAURANT_TYPES.hair_care,
     topPage: true
   },
