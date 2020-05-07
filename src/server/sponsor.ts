@@ -1,7 +1,7 @@
 import { objFromSnap } from './data';
 import { firestore } from './firebase';
-import admin from 'firebase-admin';
-import { ITEM_PER_PAGE } from './constants';
+import * as admin from 'firebase-admin';
+import { ITEM_PER_PAGE } from '../constants';
 import { getRestaurantsInList } from './restaurant';
 
 export async function provideSponsorsWithRestaurantData({ sponsors }) {
