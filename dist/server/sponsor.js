@@ -79,4 +79,14 @@ function getBannerSponsors(options, ctx) {
     });
 }
 exports.getBannerSponsors = getBannerSponsors;
+function getRightColSponsors(_, ctx) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const sponsors = yield getSponsors({
+            plans: ['sponsor_right_bar', 'sponsor_advance'],
+            limit: constants_1.RIGHT_COL_SPONSOR_LIMIT
+        }, ctx);
+        return provideSponsorsWithRestaurantData({ sponsors }, ctx);
+    });
+}
+exports.getRightColSponsors = getRightColSponsors;
 //# sourceMappingURL=sponsor.js.map

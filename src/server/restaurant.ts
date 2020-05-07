@@ -6,6 +6,7 @@ import { timestampFromObj } from '../helpers/times';
 import * as admin from 'firebase-admin';
 import { ServerContext } from '../models/ServerContext';
 import { Restaurant } from '../models/Restaurant';
+import { getRightColSponsors } from './sponsor';
 
 function restaurantFromSnap(doc): Restaurant {
   let data = objFromSnap(doc);
@@ -16,6 +17,40 @@ function restaurantFromSnap(doc): Restaurant {
     };
   }
   return new Restaurant(data);
+}
+
+export async function mergeWithSponsor({ sponsors, restaurants, user }: any, ctx: ServerContext) {
+  if (!restaurants || restaurants.length === 0) {
+    return restaurants;
+  }
+  const ownerId = user ? user.uid : null;
+  let sponsoredRestaurants = sponsors.map((sponsor: any) => removeLevelSpecificData({
+    user,
+    restaurant: sponsor.restaurant
+  }));
+  if (ownerId) {
+    sponsoredRestaurants = await provideSavedStatus({
+      ownerId,
+      restaurants: sponsoredRestaurants
+    }, ctx);
+  }
+
+  const newRestaurants = restaurants
+    .reduce((result: any[], restaurant: any, index: number) => {
+      const c = [restaurant];
+      if (index % 5 == 0) {
+        const sponsoredRestaurant = sponsoredRestaurants[index / 5];
+        if (sponsoredRestaurant) {
+          c.push({
+            ...sponsoredRestaurant,
+            ad: true
+          });
+        }
+      }
+      return result.concat(c);
+    }, [])
+    .filter((_: any) => !!_);
+  return newRestaurants;
 }
 
 export async function getRestaurant({ id }, ctx: ServerContext) {
@@ -96,4 +131,14 @@ export async function getRestaurantsInList({ ids }, ctx: ServerContext) {
       })
       return restaurants;
     });
+}
+
+export async function getRestaurants(options: any, ctx: any) {
+  const { user } = ctx;
+  const [sponsors, restaurants] = await Promise.all([
+    getRightColSponsors(null, ctx),
+    getListing({ options, user }, ctx)
+  ]);
+
+  return mergeWithSponsor({ sponsors, restaurants, user }, ctx);
 }

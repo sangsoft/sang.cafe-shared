@@ -7,3 +7,4 @@ export declare function getSponsors({ plans, limit }: {
     limit: any;
 }, ctx: ServerContext): Promise<any[]>;
 export declare function getBannerSponsors(options: any, ctx: ServerContext): Promise<any>;
+export declare function getRightColSponsors(_: any, ctx: any): Promise<any>;

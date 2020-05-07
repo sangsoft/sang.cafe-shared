@@ -1,7 +1,7 @@
 import { objFromSnap } from './data';
 import { firestore } from './firebase';
 import * as admin from 'firebase-admin';
-import { ITEM_PER_PAGE } from '../constants';
+import { ITEM_PER_PAGE, RIGHT_COL_SPONSOR_LIMIT } from '../constants';
 import { getRestaurantsInList } from './restaurant';
 import { ServerContext } from '../models/ServerContext';
 
@@ -59,6 +59,14 @@ export async function getBannerSponsors(options: any, ctx: ServerContext) {
   let sponsors = await getSponsors({
     plans: ['sponsor_top_banner', 'sponsor_advance'],
     limit: ITEM_PER_PAGE
+  }, ctx);
+  return provideSponsorsWithRestaurantData({ sponsors }, ctx);
+}
+
+export async function getRightColSponsors(_: any, ctx: any) {
+  const sponsors = await getSponsors({
+    plans: ['sponsor_right_bar', 'sponsor_advance'],
+    limit: RIGHT_COL_SPONSOR_LIMIT
   }, ctx);
   return provideSponsorsWithRestaurantData({ sponsors }, ctx);
 }

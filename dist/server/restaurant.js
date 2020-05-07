@@ -23,6 +23,7 @@ const constants_1 = require("../constants");
 const times_1 = require("../helpers/times");
 const admin = __importStar(require("firebase-admin"));
 const Restaurant_1 = require("../models/Restaurant");
+const sponsor_1 = require("./sponsor");
 function restaurantFromSnap(doc) {
     let data = data_1.objFromSnap(doc);
     if (data && data.place) {
@@ -33,6 +34,38 @@ function restaurantFromSnap(doc) {
     }
     return new Restaurant_1.Restaurant(data);
 }
+function mergeWithSponsor({ sponsors, restaurants, user }, ctx) {
+    return __awaiter(this, void 0, void 0, function* () {
+        if (!restaurants || restaurants.length === 0) {
+            return restaurants;
+        }
+        const ownerId = user ? user.uid : null;
+        let sponsoredRestaurants = sponsors.map((sponsor) => view_level_1.removeLevelSpecificData({
+            user,
+            restaurant: sponsor.restaurant
+        }));
+        if (ownerId) {
+            sponsoredRestaurants = yield provideSavedStatus({
+                ownerId,
+                restaurants: sponsoredRestaurants
+            }, ctx);
+        }
+        const newRestaurants = restaurants
+            .reduce((result, restaurant, index) => {
+            const c = [restaurant];
+            if (index % 5 == 0) {
+                const sponsoredRestaurant = sponsoredRestaurants[index / 5];
+                if (sponsoredRestaurant) {
+                    c.push(Object.assign(Object.assign({}, sponsoredRestaurant), { ad: true }));
+                }
+            }
+            return result.concat(c);
+        }, [])
+            .filter((_) => !!_);
+        return newRestaurants;
+    });
+}
+exports.mergeWithSponsor = mergeWithSponsor;
 function getRestaurant({ id }, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
         const user = null;
@@ -115,4 +148,15 @@ function getRestaurantsInList({ ids }, ctx) {
     });
 }
 exports.getRestaurantsInList = getRestaurantsInList;
+function getRestaurants(options, ctx) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const { user } = ctx;
+        const [sponsors, restaurants] = yield Promise.all([
+            sponsor_1.getRightColSponsors(null, ctx),
+            getListing({ options, user }, ctx)
+        ]);
+        return mergeWithSponsor({ sponsors, restaurants, user }, ctx);
+    });
+}
+exports.getRestaurants = getRestaurants;
 //# sourceMappingURL=restaurant.js.map
