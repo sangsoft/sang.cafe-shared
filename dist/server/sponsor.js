@@ -21,16 +21,15 @@ const firebase_1 = require("./firebase");
 const admin = __importStar(require("firebase-admin"));
 const constants_1 = require("../constants");
 const restaurant_1 = require("./restaurant");
-function provideSponsorsWithRestaurantData({ sponsors }) {
+function provideSponsorsWithRestaurantData({ sponsors }, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
         let restaurantIds = sponsors.map((sponsor) => sponsor.restaurantId);
-        let restaurants = yield restaurant_1.getRestaurantsInList({ ids: restaurantIds });
-        // console.log(sponsors.length, restaurants.length, restaurantIds);
+        let restaurants = yield restaurant_1.getRestaurantsInList({ ids: restaurantIds }, ctx);
         return (sponsors || []).map((sponsor, index) => (Object.assign(Object.assign({}, sponsor), { restaurant: restaurants[index] })));
     });
 }
 exports.provideSponsorsWithRestaurantData = provideSponsorsWithRestaurantData;
-function getSponsors({ plans, limit }) {
+function getSponsors({ plans, limit }, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
         const random = require('random');
         const increment = admin.firestore.FieldValue.increment(1);
@@ -48,7 +47,6 @@ function getSponsors({ plans, limit }) {
             });
             return newSponsors;
         });
-        // console.log(sponsors.map(s => s.get('restaurantId')));
         sponsors = sponsors.reduce((result, sponsor) => {
             if (result.find(s => s.get('restaurantId') === sponsor.get('restaurantId'))) {
                 return result;
@@ -71,13 +69,13 @@ function getSponsors({ plans, limit }) {
     });
 }
 exports.getSponsors = getSponsors;
-function getBannerSponsors() {
+function getBannerSponsors(options, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
         let sponsors = yield getSponsors({
             plans: ['sponsor_top_banner', 'sponsor_advance'],
             limit: constants_1.ITEM_PER_PAGE
-        });
-        return provideSponsorsWithRestaurantData({ sponsors });
+        }, ctx);
+        return provideSponsorsWithRestaurantData({ sponsors }, ctx);
     });
 }
 exports.getBannerSponsors = getBannerSponsors;

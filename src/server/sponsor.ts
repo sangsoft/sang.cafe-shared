@@ -3,18 +3,18 @@ import { firestore } from './firebase';
 import * as admin from 'firebase-admin';
 import { ITEM_PER_PAGE } from '../constants';
 import { getRestaurantsInList } from './restaurant';
+import { ServerContext } from '../models/ServerContext';
 
-export async function provideSponsorsWithRestaurantData({ sponsors }) {
+export async function provideSponsorsWithRestaurantData({ sponsors }, ctx: ServerContext) {
   let restaurantIds = sponsors.map((sponsor) => sponsor.restaurantId);
-  let restaurants = await getRestaurantsInList({ ids: restaurantIds });
-  // console.log(sponsors.length, restaurants.length, restaurantIds);
+  let restaurants = await getRestaurantsInList({ ids: restaurantIds }, ctx);
   return (sponsors || []).map((sponsor, index) => ({
     ...sponsor,
     restaurant: restaurants[index]
   }));
 }
 
-export async function getSponsors({ plans, limit }) {
+export async function getSponsors({ plans, limit }, ctx: ServerContext) {
   const random = require('random');
   const increment = admin.firestore.FieldValue.increment(1);
 
@@ -32,7 +32,6 @@ export async function getSponsors({ plans, limit }) {
       })
       return newSponsors;
     });
-  // console.log(sponsors.map(s => s.get('restaurantId')));
   sponsors = sponsors.reduce((result, sponsor) => {
     if (result.find(s => s.get('restaurantId') === sponsor.get('restaurantId'))) {
       return result;
@@ -56,10 +55,10 @@ export async function getSponsors({ plans, limit }) {
     });
 }
 
-export async function getBannerSponsors() {
+export async function getBannerSponsors(options: any, ctx: ServerContext) {
   let sponsors = await getSponsors({
     plans: ['sponsor_top_banner', 'sponsor_advance'],
     limit: ITEM_PER_PAGE
-  });
-  return provideSponsorsWithRestaurantData({ sponsors });
+  }, ctx);
+  return provideSponsorsWithRestaurantData({ sponsors }, ctx);
 }

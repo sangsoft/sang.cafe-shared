@@ -8,14 +8,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const firebase_1 = require("./firebase");
 const data_1 = require("./data");
 const view_level_1 = require("./view-level");
-const firebase_admin_1 = __importDefault(require("firebase-admin"));
+const constants_1 = require("../constants");
+const times_1 = require("../helpers/times");
+const admin = __importStar(require("firebase-admin"));
+const Restaurant_1 = require("../models/Restaurant");
 function restaurantFromSnap(doc) {
     let data = data_1.objFromSnap(doc);
     if (data && data.place) {
@@ -24,9 +31,9 @@ function restaurantFromSnap(doc) {
             url: data.place.url
         };
     }
-    return data;
+    return new Restaurant_1.Restaurant(data);
 }
-function getRestaurant({ id }) {
+function getRestaurant({ id }, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
         const user = null;
         return firebase_1.firestore()
@@ -46,14 +53,57 @@ function getRestaurant({ id }) {
     });
 }
 exports.getRestaurant = getRestaurant;
-function getRestaurantsInList({ ids }) {
+function provideSavedStatus({ ownerId, restaurants }, ctx) {
+    return __awaiter(this, void 0, void 0, function* () {
+        if (!restaurants || restaurants.length == 0) {
+            return restaurants;
+        }
+        const ids = restaurants.map((restaurant) => restaurant.uid);
+        return firebase_1.firestore()
+            .collection('USERS')
+            .doc(ownerId)
+            .collection('SAVED_RESTAURANTS')
+            .where('restaurantId', 'in', ids)
+            .where('status', '==', true)
+            .get()
+            .then((snap) => {
+            const saved = snap.docs.map(doc => doc.data().restaurantId);
+            return restaurants.map((restaurant) => {
+                return Object.assign(Object.assign({}, restaurant), { saved: saved.includes(restaurant.uid) });
+            });
+        });
+    });
+}
+exports.provideSavedStatus = provideSavedStatus;
+function getListing({ options, user }, ctx) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const ownerId = user ? user.uid : null;
+        let query = firebase_1.firestore()
+            .collection('RESTAURANTS')
+            .where('show', '==', true)
+            .orderBy('createdAt', 'desc')
+            .limit(constants_1.ITEM_PER_PAGE);
+        if (options && options.startAfter) {
+            const startAfter = options.startAfter;
+            query = query.startAfter(times_1.timestampFromObj(startAfter));
+        }
+        return query
+            .get()
+            .then((snap) => {
+            return snap.docs.map(doc => restaurantFromSnap(doc));
+        })
+            .then((restaurants) => ownerId ? provideSavedStatus({ ownerId, restaurants }, ctx) : restaurants);
+    });
+}
+exports.getListing = getListing;
+function getRestaurantsInList({ ids }, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
         if (!ids || ids.length === 0) {
             return [];
         }
         return firebase_1.firestore()
             .collection('RESTAURANTS')
-            .where(firebase_admin_1.default.firestore.FieldPath.documentId(), 'in', ids)
+            .where(admin.firestore.FieldPath.documentId(), 'in', ids)
             .get()
             .then((snap) => {
             let restaurants = [];

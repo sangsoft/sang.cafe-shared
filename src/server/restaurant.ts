@@ -1,9 +1,13 @@
 import { firestore } from './firebase';
 import { objFromSnap } from './data';
 import { removeLevelSpecificData } from './view-level';
-import admin from 'firebase-admin';
+import { ITEM_PER_PAGE } from '../constants';
+import { timestampFromObj } from '../helpers/times';
+import * as admin from 'firebase-admin';
+import { ServerContext } from '../models/ServerContext';
+import { Restaurant } from '../models/Restaurant';
 
-function restaurantFromSnap(doc) {
+function restaurantFromSnap(doc): Restaurant {
   let data = objFromSnap(doc);
   if (data && data.place) {
     data.place = {
@@ -11,10 +15,10 @@ function restaurantFromSnap(doc) {
       url: data.place.url
     };
   }
-  return data;
+  return new Restaurant(data);
 }
 
-export async function getRestaurant({ id }) {
+export async function getRestaurant({ id }, ctx: ServerContext) {
   const user = null;
   return firestore()
     .collection('RESTAURANTS')
@@ -32,7 +36,52 @@ export async function getRestaurant({ id }) {
     });
 }
 
-export async function getRestaurantsInList({ ids }) {
+export async function provideSavedStatus({ ownerId, restaurants }: any, ctx: ServerContext) {
+  if (!restaurants || restaurants.length == 0) {
+    return restaurants;
+  }
+  const ids = restaurants.map((restaurant: any) => restaurant.uid);
+
+  return firestore()
+    .collection('USERS')
+    .doc(ownerId)
+    .collection('SAVED_RESTAURANTS')
+    .where('restaurantId', 'in', ids)
+    .where('status', '==', true)
+    .get()
+    .then((snap: admin.firestore.QuerySnapshot) => {
+      const saved: any[] = snap.docs.map(doc => doc.data().restaurantId);
+      return restaurants.map((restaurant: any) => {
+        return {
+          ...restaurant,
+          saved: saved.includes(restaurant.uid)
+        };
+      });
+    });
+}
+
+export async function getListing({ options, user }: any, ctx: ServerContext) {
+  const ownerId = user ? user.uid : null;
+  let query = firestore()
+    .collection('RESTAURANTS')
+    .where('show', '==', true)
+    .orderBy('createdAt', 'desc')
+    .limit(ITEM_PER_PAGE);
+
+  if (options && options.startAfter) {
+    const startAfter = options.startAfter;
+    query = query.startAfter(timestampFromObj(startAfter));
+  }
+
+  return query
+    .get()
+    .then((snap: admin.firestore.QuerySnapshot) => {
+      return snap.docs.map(doc => restaurantFromSnap(doc));
+    })
+    .then((restaurants: any) => ownerId ? provideSavedStatus({ ownerId, restaurants }, ctx) : restaurants);
+}
+
+export async function getRestaurantsInList({ ids }, ctx: ServerContext) {
   if (!ids || ids.length === 0) {
     return [];
   }
@@ -40,9 +89,9 @@ export async function getRestaurantsInList({ ids }) {
     .collection('RESTAURANTS')
     .where(admin.firestore.FieldPath.documentId(), 'in', ids)
     .get()
-    .then((snap) => {
+    .then((snap: admin.firestore.QuerySnapshot) => {
       let restaurants = [];
-      snap.forEach((doc) => {
+      snap.forEach((doc: admin.firestore.DocumentSnapshot) => {
         restaurants.push(restaurantFromSnap(doc));
       })
       return restaurants;
