@@ -1,0 +1,1 @@
+{"version":3,"file":"SponsorDataProvider.js","sourceRoot":"","sources":["../../../src/server/providers/SponsorDataProvider.ts"],"names":[],"mappings":";;;;;;;;;;;AAAA,6DAA0D;AAC1D,wCAA+C;AAE/C,MAAa,mBAAoB,SAAQ,uCAAkB;IACzD,iBAAiB,CAAC,GAAG;QACnB,OAAO,IAAI,CAAC;IACd,CAAC;IAEK,aAAa,CAAC,GAAG;;YACrB,OAAO;gBACL,QAAQ,EAAE,MAAM,2BAAiB,EAAE;aACpC,CAAC;QACJ,CAAC;KAAA;CACF;AAVD,kDAUC"}

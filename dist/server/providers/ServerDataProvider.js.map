@@ -1,0 +1,1 @@
+{"version":3,"file":"ServerDataProvider.js","sourceRoot":"","sources":["../../../src/server/providers/ServerDataProvider.ts"],"names":[],"mappings":";;;;;;;;;;;;;;AAAA,8EAA4C;AAE5C,MAAsB,kBAAkB;IAIhC,OAAO,CAAC,GAAG;;YACf,OAAO,IAAI,CAAC,KAAK,CAAC,6BAAS,CAAC,MAAM,IAAI,CAAC,aAAa,CAAC,GAAG,CAAC,CAAC,CAAC,CAAC;QAC9D,CAAC;KAAA;CACF;AAPD,gDAOC"}
