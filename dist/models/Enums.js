@@ -130,6 +130,11 @@ exports.SUPPORTED_TYPES = {
         value: exports.RESTAURANT_TYPES.beauty_salon,
         topPage: true
     },
+    [exports.RESTAURANT_TYPES.hair_care]: {
+        text: 'Tiệm làm đầu',
+        value: exports.RESTAURANT_TYPES.hair_care,
+        topPage: true
+    },
     ['other']: {
         text: 'Khác',
         value: 'other',

@@ -136,7 +136,7 @@ class Restaurant extends Model_1.Model {
         });
     }
     onPrepareData() {
-        let obj = Object.assign(Object.assign({}, this), { photos: this.photos || [] });
+        let obj = Object.assign({}, this, { photos: this.photos || [] });
         delete obj.saved;
         // delete obj.uid;
         delete obj.approved;

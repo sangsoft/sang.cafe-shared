@@ -23,7 +23,7 @@ class Model {
     }
     toDataWithTimestamp(firebase, ownerId) {
         let obj = this.toData();
-        return Object.assign(Object.assign({}, obj), { createdAt: this.createdAt || firebase.firestore.Timestamp.now(), updatedAt: firebase.firestore.Timestamp.now(), ownerId });
+        return Object.assign({}, obj, { createdAt: this.createdAt || firebase.firestore.Timestamp.now(), updatedAt: firebase.firestore.Timestamp.now(), ownerId });
     }
     errorPath(error) {
         return error.details[0].path[0];

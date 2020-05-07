@@ -1,10 +1,9 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -56,7 +55,7 @@ function mergeWithSponsor({ sponsors, restaurants, user }, ctx) {
             if (index % 5 == 0) {
                 const sponsoredRestaurant = sponsoredRestaurants[index / 5];
                 if (sponsoredRestaurant) {
-                    c.push(Object.assign(Object.assign({}, sponsoredRestaurant), { ad: true }));
+                    c.push(Object.assign({}, sponsoredRestaurant, { ad: true }));
                 }
             }
             return result.concat(c);
@@ -102,7 +101,7 @@ function provideSavedStatus({ ownerId, restaurants }, ctx) {
             .then((snap) => {
             const saved = snap.docs.map(doc => doc.data().restaurantId);
             return restaurants.map((restaurant) => {
-                return Object.assign(Object.assign({}, restaurant), { saved: saved.includes(restaurant.uid) });
+                return Object.assign({}, restaurant, { saved: saved.includes(restaurant.uid) });
             });
         });
     });
