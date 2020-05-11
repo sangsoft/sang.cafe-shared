@@ -8,8 +8,8 @@ import { ServerContext } from '../models/ServerContext';
 import { Restaurant } from '../models/Restaurant';
 import { getRightColSponsors } from './sponsor';
 
-function restaurantFromSnap(doc): Restaurant {
-  let data = objFromSnap(doc);
+function restaurantFromSnap(doc: admin.firestore.DocumentSnapshot): Restaurant {
+  let data: any = objFromSnap(doc);
   if (data && data.place) {
     data.place = {
       geometry: data.place.geometry,
@@ -141,4 +141,15 @@ export async function getRestaurants(options: any, ctx: any) {
   ]);
 
   return mergeWithSponsor({ sponsors, restaurants, user }, ctx);
+}
+
+export async function getAllRestaurants(options: any, ctx: ServerContext) {
+  return firestore()
+    .collection('RESTAURANTS')
+    .get()
+    .then((snap: admin.firestore.QuerySnapshot) => {
+      return snap.docs.map((doc: admin.firestore.DocumentSnapshot) => {
+        return restaurantFromSnap(doc);
+      })
+    });
 }

@@ -1,4 +1,6 @@
-export function objFromSnap(snap) {
+import * as admin from 'firebase-admin';
+
+export function objFromSnap(snap: admin.firestore.DocumentSnapshot): any {
   if (!snap || !snap.exists) {
     return null;
   }

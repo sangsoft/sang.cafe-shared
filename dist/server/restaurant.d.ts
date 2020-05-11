@@ -9,3 +9,4 @@ export declare function getRestaurantsInList({ ids }: {
     ids: any;
 }, ctx: ServerContext): Promise<any>;
 export declare function getRestaurants(options: any, ctx: any): Promise<any>;
+export declare function getAllRestaurants(options: any, ctx: ServerContext): Promise<any>;

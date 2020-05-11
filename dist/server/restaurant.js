@@ -159,4 +159,17 @@ function getRestaurants(options, ctx) {
     });
 }
 exports.getRestaurants = getRestaurants;
+function getAllRestaurants(options, ctx) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return firebase_1.firestore()
+            .collection('RESTAURANTS')
+            .get()
+            .then((snap) => {
+            return snap.docs.map((doc) => {
+                return restaurantFromSnap(doc);
+            });
+        });
+    });
+}
+exports.getAllRestaurants = getAllRestaurants;
 //# sourceMappingURL=restaurant.js.map
