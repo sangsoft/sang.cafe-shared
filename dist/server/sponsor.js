@@ -75,21 +75,21 @@ function getSponsors({ plans, limit }, ctx) {
 exports.getSponsors = getSponsors;
 function getBannerSponsors(options, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
-        let sponsors = yield getSponsors({
+        let sponsors = shuffle_array_1.default(yield getSponsors({
             plans: ['sponsor_top_banner', 'sponsor_advance'],
             limit: constants_1.ITEM_PER_PAGE
-        }, ctx);
-        return shuffle_array_1.default(provideSponsorsWithRestaurantData({ sponsors }, ctx));
+        }, ctx));
+        return provideSponsorsWithRestaurantData({ sponsors }, ctx);
     });
 }
 exports.getBannerSponsors = getBannerSponsors;
 function getRightColSponsors(_, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
-        const sponsors = yield getSponsors({
+        const sponsors = shuffle_array_1.default(yield getSponsors({
             plans: ['sponsor_right_bar', 'sponsor_advance'],
             limit: constants_1.RIGHT_COL_SPONSOR_LIMIT
-        }, ctx);
-        return shuffle_array_1.default(provideSponsorsWithRestaurantData({ sponsors }, ctx));
+        }, ctx));
+        return provideSponsorsWithRestaurantData({ sponsors }, ctx);
     });
 }
 exports.getRightColSponsors = getRightColSponsors;

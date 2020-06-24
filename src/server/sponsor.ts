@@ -57,17 +57,17 @@ export async function getSponsors({ plans, limit }, ctx: ServerContext) {
 }
 
 export async function getBannerSponsors(options: any, ctx: ServerContext) {
-  let sponsors = await getSponsors({
+  let sponsors = shuffle(await getSponsors({
     plans: ['sponsor_top_banner', 'sponsor_advance'],
     limit: ITEM_PER_PAGE
-  }, ctx);
-  return shuffle(provideSponsorsWithRestaurantData({ sponsors }, ctx));
+  }, ctx));
+  return provideSponsorsWithRestaurantData({ sponsors }, ctx);
 }
 
 export async function getRightColSponsors(_: any, ctx: any) {
-  const sponsors = await getSponsors({
+  const sponsors = shuffle(await getSponsors({
     plans: ['sponsor_right_bar', 'sponsor_advance'],
     limit: RIGHT_COL_SPONSOR_LIMIT
-  }, ctx);
-  return shuffle(provideSponsorsWithRestaurantData({ sponsors }, ctx));
+  }, ctx));
+  return provideSponsorsWithRestaurantData({ sponsors }, ctx);
 }
