@@ -9,10 +9,10 @@ import shuffle from 'shuffle-array';
 export async function provideSponsorsWithRestaurantData({ sponsors }, ctx: ServerContext) {
   let restaurantIds = sponsors.map((sponsor) => sponsor.restaurantId);
   let restaurants = await getRestaurantsInList({ ids: restaurantIds }, ctx);
-  return (sponsors || []).map((sponsor, index) => ({
+  return shuffle((sponsors || []).map((sponsor, index) => ({
     ...sponsor,
     restaurant: restaurants[index]
-  }));
+  })));
 }
 
 export async function getSponsors({ plans, limit }, ctx: ServerContext) {
@@ -57,17 +57,17 @@ export async function getSponsors({ plans, limit }, ctx: ServerContext) {
 }
 
 export async function getBannerSponsors(options: any, ctx: ServerContext) {
-  let sponsors = shuffle(await getSponsors({
+  let sponsors = await getSponsors({
     plans: ['sponsor_top_banner', 'sponsor_advance'],
     limit: ITEM_PER_PAGE
-  }, ctx));
+  }, ctx);
   return provideSponsorsWithRestaurantData({ sponsors }, ctx);
 }
 
 export async function getRightColSponsors(_: any, ctx: any) {
-  const sponsors = shuffle(await getSponsors({
+  const sponsors = await getSponsors({
     plans: ['sponsor_right_bar', 'sponsor_advance'],
     limit: RIGHT_COL_SPONSOR_LIMIT
-  }, ctx));
+  }, ctx);
   return provideSponsorsWithRestaurantData({ sponsors }, ctx);
 }
