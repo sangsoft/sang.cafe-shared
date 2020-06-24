@@ -15,12 +15,16 @@ var __importStar = (this && this.__importStar) || function (mod) {
     result["default"] = mod;
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const data_1 = require("./data");
 const firebase_1 = require("./firebase");
 const admin = __importStar(require("firebase-admin"));
 const constants_1 = require("../constants");
 const restaurant_1 = require("./restaurant");
+const shuffle_array_1 = __importDefault(require("shuffle-array"));
 function provideSponsorsWithRestaurantData({ sponsors }, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
         let restaurantIds = sponsors.map((sponsor) => sponsor.restaurantId);
@@ -75,7 +79,7 @@ function getBannerSponsors(options, ctx) {
             plans: ['sponsor_top_banner', 'sponsor_advance'],
             limit: constants_1.ITEM_PER_PAGE
         }, ctx);
-        return provideSponsorsWithRestaurantData({ sponsors }, ctx);
+        return shuffle_array_1.default(provideSponsorsWithRestaurantData({ sponsors }, ctx));
     });
 }
 exports.getBannerSponsors = getBannerSponsors;
@@ -85,7 +89,7 @@ function getRightColSponsors(_, ctx) {
             plans: ['sponsor_right_bar', 'sponsor_advance'],
             limit: constants_1.RIGHT_COL_SPONSOR_LIMIT
         }, ctx);
-        return provideSponsorsWithRestaurantData({ sponsors }, ctx);
+        return shuffle_array_1.default(provideSponsorsWithRestaurantData({ sponsors }, ctx));
     });
 }
 exports.getRightColSponsors = getRightColSponsors;
