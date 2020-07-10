@@ -85,7 +85,7 @@ export class Restaurant extends Model {
 
   getThumpObj(photo: string | Photo): string | Photo {
     if (!photo) {
-      return null;
+      return '';
     }
     if (typeof photo === 'string') {
       return photo;
@@ -104,7 +104,7 @@ export class Restaurant extends Model {
 
   getMainPhotoObj(): string | Photo {
     if (!this.photos) {
-      return null;
+      return '';
     }
 
     let photo = this.photos.find(photo => {
@@ -120,7 +120,7 @@ export class Restaurant extends Model {
     }
 
     if (!photo) {
-      return null;
+      return '';
     }
 
     return photo;

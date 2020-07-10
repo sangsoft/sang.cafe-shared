@@ -24,7 +24,7 @@ export abstract class Model {
     } else if (photo) {
       return photo.url;
     } else {
-      return null;
+      return '';
     }
   }
 
