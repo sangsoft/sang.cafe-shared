@@ -73,6 +73,7 @@ export class Restaurant extends Model {
   public area: number;
   public frontWidth: number;
   public imageResized?: boolean;
+  public bannerPhotoUrl?: string | Photo;
 
   constructor(obj?: IRestaurant) {
     super();
@@ -156,6 +157,14 @@ export class Restaurant extends Model {
     return thumb.dimensions.height;
   }
 
+  getBannerPhotoUrl(): string {
+    if (this.bannerPhotoUrl) {
+      return this.getUrl(this.bannerPhotoUrl);
+    } else {
+      return this.getMainPhotoUrl();
+    }
+  }
+
   createSchema() {
     const requiredString = Joi.string()
       .required()
@@ -195,6 +204,7 @@ export class Restaurant extends Model {
       'frontWidth': requiredNumber,
       'grossProfit': requiredNumber,
       'menuPhotoUrl': photo.required(),
+      'bannerPhotoUrl': photo,
       'businessLicensePhotoUrl': photo.required(),
       'name': Joi.string()
         .min(3)

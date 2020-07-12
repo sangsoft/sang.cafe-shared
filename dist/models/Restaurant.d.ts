@@ -63,6 +63,7 @@ export declare class Restaurant extends Model {
     area: number;
     frontWidth: number;
     imageResized?: boolean;
+    bannerPhotoUrl?: string | Photo;
     constructor(obj?: IRestaurant);
     getThumpObj(photo: string | Photo): string | Photo;
     getMainPhotoObj(): string | Photo;
@@ -70,6 +71,7 @@ export declare class Restaurant extends Model {
     getMainPhotoThumbUrl(): string;
     getThumbUrl(photo: string | Photo): string;
     getMainThumbHeight(): number;
+    getBannerPhotoUrl(): string;
     createSchema(): any;
     onPrepareData(): any;
 }

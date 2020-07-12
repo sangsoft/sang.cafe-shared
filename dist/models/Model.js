@@ -18,7 +18,7 @@ class Model {
             return photo.url;
         }
         else {
-            return null;
+            return '';
         }
     }
     toDataWithTimestamp(firebase, ownerId) {

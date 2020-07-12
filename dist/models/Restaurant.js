@@ -23,7 +23,7 @@ class Restaurant extends Model_1.Model {
     }
     getThumpObj(photo) {
         if (!photo) {
-            return null;
+            return '';
         }
         if (typeof photo === 'string') {
             return photo;
@@ -38,7 +38,7 @@ class Restaurant extends Model_1.Model {
     }
     getMainPhotoObj() {
         if (!this.photos) {
-            return null;
+            return '';
         }
         let photo = this.photos.find(photo => {
             if (typeof photo === 'string') {
@@ -50,7 +50,7 @@ class Restaurant extends Model_1.Model {
             photo = this.photos[0];
         }
         if (!photo) {
-            return null;
+            return '';
         }
         return photo;
     }
@@ -76,6 +76,14 @@ class Restaurant extends Model_1.Model {
             return -1;
         }
         return thumb.dimensions.height;
+    }
+    getBannerPhotoUrl() {
+        if (this.bannerPhotoUrl) {
+            return this.getUrl(this.bannerPhotoUrl);
+        }
+        else {
+            return this.getMainPhotoUrl();
+        }
     }
     createSchema() {
         const requiredString = joi_1.default.string()
@@ -112,6 +120,7 @@ class Restaurant extends Model_1.Model {
             'frontWidth': requiredNumber,
             'grossProfit': requiredNumber,
             'menuPhotoUrl': photo.required(),
+            'bannerPhotoUrl': photo,
             'businessLicensePhotoUrl': photo.required(),
             'name': joi_1.default.string()
                 .min(3)
