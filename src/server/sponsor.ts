@@ -11,7 +11,7 @@ export async function provideSponsorsWithRestaurantData({ sponsors }, ctx: Serve
   let restaurants = await getRestaurantsInList({ ids: restaurantIds }, ctx);
   return shuffle((sponsors || []).map((sponsor, index) => ({
     ...sponsor,
-    restaurant: restaurants[index]
+    restaurant: restaurants.find(restaurant => restaurant.uid === sponsor.restaurantId)
   })));
 }
 
