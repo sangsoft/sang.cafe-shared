@@ -29,7 +29,7 @@ function provideSponsorsWithRestaurantData({ sponsors }, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
         let restaurantIds = sponsors.map((sponsor) => sponsor.restaurantId);
         let restaurants = yield restaurant_1.getRestaurantsInList({ ids: restaurantIds }, ctx);
-        return shuffle_array_1.default((sponsors || []).map((sponsor, index) => (Object.assign(Object.assign({}, sponsor), { restaurant: restaurants[index] }))));
+        return shuffle_array_1.default((sponsors || []).map((sponsor, index) => (Object.assign(Object.assign({}, sponsor), { restaurant: restaurants.find(restaurant => restaurant.uid === sponsor.restaurantId) }))));
     });
 }
 exports.provideSponsorsWithRestaurantData = provideSponsorsWithRestaurantData;
