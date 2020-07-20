@@ -6,15 +6,19 @@
   "author": "trungnq <nquangtrung@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test:watch": "jest -o --watch --runInBand"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
+    "@types/jest": "^26.0.5",
     "fast-safe-stringify": "^2.0.7",
     "firebase-admin": "^8.12.0",
+    "jest": "^26.1.0",
     "node-fetch": "^2.6.0",
     "random": "^2.2.0",
-    "shuffle-array": "^1.0.1"
+    "shuffle-array": "^1.0.1",
+    "ts-jest": "^26.1.3"
   },
   "devDependencies": {
     "@types/node": "^13.13.5",
