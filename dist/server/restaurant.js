@@ -75,17 +75,45 @@ function getRestaurant({ id }, ctx) {
             .get()
             .then((snap) => {
             const restaurant = restaurantFromSnap(snap);
-            if (!restaurant) {
-                return null;
-            }
-            if (!restaurant.show && (!user || restaurant.ownerId !== user.uid)) {
-                return null;
+            if (!restaurant.show) {
+                if (!user) {
+                    return null;
+                }
+                if (restaurant.ownerId !== user.uid && !user.admin) {
+                    return null;
+                }
             }
             return view_level_1.removeLevelSpecificData({ user, restaurant });
         });
     });
 }
 exports.getRestaurant = getRestaurant;
+function getRestaurantBySlug({ slug }, ctx) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const user = null;
+        return firebase_1.firestore()
+            .collection('RESTAURANTS')
+            .where('slug', '==', slug)
+            .limit(1)
+            .get()
+            .then((snap) => {
+            if (snap.empty) {
+                return null;
+            }
+            const restaurant = restaurantFromSnap(snap.docs[0]);
+            if (!restaurant.show) {
+                if (!user) {
+                    return null;
+                }
+                if (restaurant.ownerId !== user.uid && !user.admin) {
+                    return null;
+                }
+            }
+            return view_level_1.removeLevelSpecificData({ user, restaurant });
+        });
+    });
+}
+exports.getRestaurantBySlug = getRestaurantBySlug;
 function provideSavedStatus({ ownerId, restaurants }, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
         if (!restaurants || restaurants.length == 0) {

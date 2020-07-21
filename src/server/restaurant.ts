@@ -61,15 +61,41 @@ export async function getRestaurant({ id }, ctx: ServerContext) {
     .get()
     .then((snap) => {
       const restaurant = restaurantFromSnap(snap);
-      if (!restaurant) {
-        return null;
-      }
-      if (!restaurant.show && (!user || restaurant.ownerId !== user.uid)) {
-        return null;
+      if (!restaurant.show) {
+        if (!user) {
+          return null;
+        }
+        if (restaurant.ownerId !== user.uid && !user.admin) {
+          return null;
+        }
       }
       return removeLevelSpecificData({ user, restaurant });
     });
 }
+export async function getRestaurantBySlug({ slug }, ctx: ServerContext) {
+  const user = null;
+  return firestore()
+    .collection('RESTAURANTS')
+    .where('slug', '==', slug)
+    .limit(1)
+    .get()
+    .then((snap) => {
+      if (snap.empty) {
+        return null;
+      }
+      const restaurant = restaurantFromSnap(snap.docs[0]);
+      if (!restaurant.show) {
+        if (!user) {
+          return null;
+        }
+        if (restaurant.ownerId !== user.uid && !user.admin) {
+          return null;
+        }
+      }
+      return removeLevelSpecificData({ user, restaurant });
+    });
+}
+
 
 export async function provideSavedStatus({ ownerId, restaurants }: any, ctx: ServerContext) {
   if (!restaurants || restaurants.length == 0) {
