@@ -127,6 +127,7 @@ class Restaurant extends Model_1.Model {
                 .max(256)
                 .required(),
             'ownerId': joi_1.default.string(),
+            'slug': joi_1.default.string(),
             'place': joi_1.default.object(),
             'address': requiredString,
             'price': requiredNumber,

@@ -13,6 +13,7 @@ export interface IRestaurant {
   sold?: boolean;
   doc?: any;
   ad?: boolean;
+  slug?: string;
 
   // Level -1
   photos: (string | Photo)[];
@@ -74,6 +75,7 @@ export class Restaurant extends Model {
   public frontWidth: number;
   public imageResized?: boolean;
   public bannerPhotoUrl?: string | Photo;
+  public slug?: string;
 
   constructor(obj?: IRestaurant) {
     super();
@@ -211,6 +213,7 @@ export class Restaurant extends Model {
         .max(256)
         .required(),
       'ownerId': Joi.string(),
+      'slug': Joi.string(),
       'place': Joi.object(),
       'address': requiredString,
       'price': requiredNumber,

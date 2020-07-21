@@ -10,6 +10,7 @@ export interface IRestaurant {
     sold?: boolean;
     doc?: any;
     ad?: boolean;
+    slug?: string;
     photos: (string | Photo)[];
     name: string;
     description: string;
@@ -64,6 +65,7 @@ export declare class Restaurant extends Model {
     frontWidth: number;
     imageResized?: boolean;
     bannerPhotoUrl?: string | Photo;
+    slug?: string;
     constructor(obj?: IRestaurant);
     getThumpObj(photo: string | Photo): string | Photo;
     getMainPhotoObj(): string | Photo;
