@@ -20,8 +20,8 @@ export function removeLevelSpecificData({ user, restaurant }) {
     }
 
     const properties = LEVELED_DATA[key];
+    console.log('Deleting', properties);
     properties.forEach((keyName) => {
-      console.log('Deleting', keyName);
       delete newRestaurant[keyName]
     });
   });
