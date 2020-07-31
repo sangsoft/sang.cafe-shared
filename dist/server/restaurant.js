@@ -24,6 +24,7 @@ const times_1 = require("../helpers/times");
 const admin = __importStar(require("firebase-admin"));
 const Restaurant_1 = require("../models/Restaurant");
 const sponsor_1 = require("./sponsor");
+const algolia_1 = require("../helpers/algolia");
 function restaurantFromSnap(doc) {
     let data = data_1.objFromSnap(doc);
     if (data && data.place) {
@@ -178,25 +179,7 @@ function getRestaurantsInList({ ids }, ctx) {
 exports.getRestaurantsInList = getRestaurantsInList;
 function getRestaurantsByPage(options, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
-        const { user } = ctx;
-        const { page } = options;
-        const ownerId = user ? user.uid : null;
-        let query = firebase_1.firestore()
-            .collection('RESTAURANTS')
-            .where('show', '==', true)
-            .orderBy('createdAt', 'desc')
-            .offset((page || 0) * constants_1.ITEM_PER_PAGE)
-            .limit(constants_1.ITEM_PER_PAGE);
-        if (options && options.startAfter) {
-            const startAfter = options.startAfter;
-            query = query.startAfter(times_1.timestampFromObj(startAfter));
-        }
-        return query
-            .get()
-            .then((snap) => {
-            return snap.docs.map(doc => restaurantFromSnap(doc));
-        })
-            .then((restaurants) => ownerId ? provideSavedStatus({ ownerId, restaurants }, ctx) : restaurants);
+        return algolia_1.searchRestaurant({ page: options.page }, ctx);
     });
 }
 exports.getRestaurantsByPage = getRestaurantsByPage;
