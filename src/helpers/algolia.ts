@@ -38,7 +38,7 @@ export async function searchRestaurant({
 
   lazyInitializeClient();
   const { hits, nbPages, nbHits, exhaustiveNbHits } = await indexes['restaurants']
-    .search(name || null, {
+    .search(name || '', {
       page: page || 0,
       hitsPerPage: ITEM_PER_PAGE,
       facetFilters: [
