@@ -38,7 +38,7 @@ function searchRestaurant({ name, district, city, type, page, }, ctx) {
         const { user } = ctx;
         lazyInitializeClient();
         const { hits, nbPages, nbHits, exhaustiveNbHits } = yield exports.indexes['restaurants']
-            .search(name || '', {
+            .search(name || null, {
             page: page || 0,
             hitsPerPage: constants_1.ITEM_PER_PAGE,
             facetFilters: [
