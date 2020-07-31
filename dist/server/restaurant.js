@@ -168,11 +168,8 @@ function getRestaurantsInList({ ids }, ctx) {
             .where(admin.firestore.FieldPath.documentId(), 'in', ids)
             .get()
             .then((snap) => {
-            let restaurants = [];
-            snap.forEach((doc) => {
-                restaurants.push(restaurantFromSnap(doc));
-            });
-            return restaurants;
+            const data = snap.docs.map(doc => restaurantFromSnap(doc));
+            return ids.map(id => data.find((restaurant) => restaurant.uid === id));
         });
     });
 }
