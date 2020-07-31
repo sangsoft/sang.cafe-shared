@@ -159,6 +159,32 @@ export async function getRestaurantsInList({ ids }, ctx: ServerContext) {
     });
 }
 
+export async function getRestaurantsByPage(options: any, ctx: any) {
+  const { user } = ctx;
+  const { page } = options;
+
+  const ownerId = user ? user.uid : null;
+  let query = firestore()
+    .collection('RESTAURANTS')
+    .where('show', '==', true)
+    .orderBy('createdAt', 'desc')
+    .offset((page || 0) * ITEM_PER_PAGE)
+    .limit(ITEM_PER_PAGE);
+
+  if (options && options.startAfter) {
+    const startAfter = options.startAfter;
+    query = query.startAfter(timestampFromObj(startAfter));
+  }
+
+  return query
+    .get()
+    .then((snap: admin.firestore.QuerySnapshot) => {
+      return snap.docs.map(doc => restaurantFromSnap(doc));
+    })
+    .then((restaurants: any) => ownerId ? provideSavedStatus({ ownerId, restaurants }, ctx) : restaurants);
+
+}
+
 export async function getRestaurants(options: any, ctx: any) {
   const { user } = ctx;
   const [sponsors, restaurants] = await Promise.all([
