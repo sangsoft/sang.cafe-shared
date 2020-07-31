@@ -10,6 +10,12 @@ class Model {
         delete obj.path;
         return obj;
     }
+    flatten() {
+        const obj = Object.assign({}, this);
+        delete obj.schema;
+        delete obj.path;
+        return obj;
+    }
     getUrl(photo) {
         if (typeof photo === 'string') {
             return photo;

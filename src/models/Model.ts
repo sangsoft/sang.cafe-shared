@@ -15,7 +15,17 @@ export abstract class Model {
     let obj = this.onPrepareData();
     delete obj.schema;
     delete obj.path;
-    return obj
+    return obj;
+  }
+
+  flatten(): any {
+    const obj = {
+      ...this,
+    }
+    delete obj.schema;
+    delete obj.path;
+    return obj;
+
   }
 
   getUrl(photo: string | Photo): string {
