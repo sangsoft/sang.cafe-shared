@@ -1,4 +1,3 @@
-import * as functions from 'firebase-functions';
 import { ITEM_PER_PAGE } from '../constants';
 import { getRestaurantsInList, mergeWithSponsor } from '../server/restaurant';
 import { removeLevelSpecificData } from '../server/view-level';
@@ -13,10 +12,6 @@ function lazyInitializeClient() {
 
     let ALGOLIA_ID = process.env.ALGOLIA_ID;
     let ALGOLIA_SEARCH_KEY = process.env.ALGOLIA_SEARCH_KEY;
-    if (functions.config().algolia) {
-      ALGOLIA_ID = functions.config().algolia.app_id;
-      ALGOLIA_SEARCH_KEY = functions.config().algolia.search_key;
-    }
 
     console.log('ALGOLIA', ALGOLIA_ID, ALGOLIA_SEARCH_KEY)
     client = algoliasearch(ALGOLIA_ID, ALGOLIA_SEARCH_KEY);

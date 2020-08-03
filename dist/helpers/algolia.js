@@ -8,15 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const functions = __importStar(require("firebase-functions"));
 const constants_1 = require("../constants");
 const restaurant_1 = require("../server/restaurant");
 const view_level_1 = require("../server/view-level");
@@ -27,10 +19,6 @@ function lazyInitializeClient() {
         const algoliasearch = require('algoliasearch');
         let ALGOLIA_ID = process.env.ALGOLIA_ID;
         let ALGOLIA_SEARCH_KEY = process.env.ALGOLIA_SEARCH_KEY;
-        if (functions.config().algolia) {
-            ALGOLIA_ID = functions.config().algolia.app_id;
-            ALGOLIA_SEARCH_KEY = functions.config().algolia.search_key;
-        }
         console.log('ALGOLIA', ALGOLIA_ID, ALGOLIA_SEARCH_KEY);
         exports.client = algoliasearch(ALGOLIA_ID, ALGOLIA_SEARCH_KEY);
         exports.indexes['restaurants'] = exports.client.initIndex('restaurants');
