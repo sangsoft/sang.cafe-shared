@@ -25,8 +25,12 @@ exports.indexes = {};
 function lazyInitializeClient() {
     if (!exports.client) {
         const algoliasearch = require('algoliasearch');
-        const ALGOLIA_ID = functions.config().algolia.app_id;
-        const ALGOLIA_SEARCH_KEY = functions.config().algolia.search_key;
+        let ALGOLIA_ID = process.env.ALGOLIA_ID;
+        let ALGOLIA_SEARCH_KEY = process.env.ALGOLIA_SEARCH_KEY;
+        if (functions.config().algolia) {
+            ALGOLIA_ID = functions.config().algolia.app_id;
+            ALGOLIA_SEARCH_KEY = functions.config().algolia.search_key;
+        }
         console.log('ALGOLIA', ALGOLIA_ID, ALGOLIA_SEARCH_KEY);
         exports.client = algoliasearch(ALGOLIA_ID, ALGOLIA_SEARCH_KEY);
         exports.indexes['restaurants'] = exports.client.initIndex('restaurants');
