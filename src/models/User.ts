@@ -17,6 +17,10 @@ export interface IUser {
   doc?: any;
   buyer?: IUserStatus;
   seller?: IUserStatus;
+  signInMetaData?: {
+    reason?: 'post' | 'view-contact';
+    path?: string
+  }
 }
 
 export class User extends Model {
@@ -32,6 +36,10 @@ export class User extends Model {
   doc?: any;
   buyer?: IUserStatus = null;
   seller?: IUserStatus = null;
+  signInMetaData?: {
+    reason?: 'post' | 'view-contact';
+    path?: string
+  }
 
   constructor(obj: IUser) {
     super();

@@ -14,6 +14,10 @@ export interface IUser {
     doc?: any;
     buyer?: IUserStatus;
     seller?: IUserStatus;
+    signInMetaData?: {
+        reason?: 'post' | 'view-contact';
+        path?: string;
+    };
 }
 export declare class User extends Model {
     uid?: string;
@@ -28,6 +32,10 @@ export declare class User extends Model {
     doc?: any;
     buyer?: IUserStatus;
     seller?: IUserStatus;
+    signInMetaData?: {
+        reason?: 'post' | 'view-contact';
+        path?: string;
+    };
     constructor(obj: IUser);
     getPhotoUrl(): string;
     createSchema(): any;
