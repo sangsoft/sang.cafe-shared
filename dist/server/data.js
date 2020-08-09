@@ -18,4 +18,12 @@ function randomShortCode(size) {
     return code;
 }
 exports.randomShortCode = randomShortCode;
+function divideIntoLessThan10(arr) {
+    const result = [];
+    while (arr.length > 0) {
+        result.push(arr.splice(0, 10));
+    }
+    return result;
+}
+exports.divideIntoLessThan10 = divideIntoLessThan10;
 //# sourceMappingURL=data.js.map

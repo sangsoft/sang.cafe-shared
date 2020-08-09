@@ -1,5 +1,5 @@
 import { firestore } from './firebase';
-import { objFromSnap } from './data';
+import { objFromSnap, divideIntoLessThan10 } from './data';
 import { removeLevelSpecificData } from './view-level';
 import { ITEM_PER_PAGE } from '../constants';
 import { timestampFromObj } from '../helpers/times';
@@ -148,21 +148,22 @@ export async function getRestaurantsInList({ ids }, ctx: ServerContext) {
     return [];
   }
 
-  let result = [];
-  while (ids.length > 0) {
-    const part = ids.splice(0, 10);
-    const restaurants = await firestore()
-      .collection('RESTAURANTS')
-      .where(admin.firestore.FieldPath.documentId(), 'in', part)
-      .get()
-      .then((snap: admin.firestore.QuerySnapshot) => {
-        const data = snap.docs.map(doc => restaurantFromSnap(doc));
-        return part.map(id => data.find((restaurant) => restaurant.uid === id));
-      });
-    result = result.concat(restaurants);
-  }
+  let results = await Promise.all(
+    divideIntoLessThan10<string>(ids)
+      .map((part: string[]) => {
+        return firestore()
+          .collection('RESTAURANTS')
+          .where(admin.firestore.FieldPath.documentId(), 'in', part)
+          .get()
+          .then((snap: admin.firestore.QuerySnapshot) => {
+            const data = snap.docs.map(doc => restaurantFromSnap(doc));
+            return part.map(id => data.find((restaurant) => restaurant.uid === id));
+          });
+      })
+  );
 
-  return result;
+  return results
+    .reduce((result, part) => result.concat(part), []);
 }
 
 export async function getRestaurantsByPage(options: any, ctx: any) {

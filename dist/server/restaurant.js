@@ -163,10 +163,9 @@ function getRestaurantsInList({ ids }, ctx) {
         if (!ids || ids.length === 0) {
             return [];
         }
-        let result = [];
-        while (ids.length > 0) {
-            const part = ids.splice(0, 10);
-            const restaurants = yield firebase_1.firestore()
+        let results = yield Promise.all(data_1.divideIntoLessThan10(ids)
+            .map((part) => {
+            return firebase_1.firestore()
                 .collection('RESTAURANTS')
                 .where(admin.firestore.FieldPath.documentId(), 'in', part)
                 .get()
@@ -174,9 +173,9 @@ function getRestaurantsInList({ ids }, ctx) {
                 const data = snap.docs.map(doc => restaurantFromSnap(doc));
                 return part.map(id => data.find((restaurant) => restaurant.uid === id));
             });
-            result = result.concat(restaurants);
-        }
-        return result;
+        }));
+        return results
+            .reduce((result, part) => result.concat(part), []);
     });
 }
 exports.getRestaurantsInList = getRestaurantsInList;

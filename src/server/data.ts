@@ -22,3 +22,11 @@ export function randomShortCode(size) {
 
   return code;
 }
+
+export function divideIntoLessThan10<T>(arr: T[]): T[][] {
+  const result: T[][] = [];
+  while (arr.length > 0) {
+    result.push(arr.splice(0, 10));
+  }
+  return result;
+}
