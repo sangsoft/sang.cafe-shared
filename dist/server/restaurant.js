@@ -165,7 +165,7 @@ function getRestaurantsInList({ ids }, ctx) {
         }
         let result = [];
         while (ids.length > 0) {
-            const part = ids.splice(10);
+            const part = ids.splice(0, 10);
             const restaurants = yield firebase_1.firestore()
                 .collection('RESTAURANTS')
                 .where(admin.firestore.FieldPath.documentId(), 'in', part)
