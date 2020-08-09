@@ -10,7 +10,7 @@ export declare function provideSavedStatus({ ownerId, restaurants }: any, ctx: S
 export declare function getListing({ options, user }: any, ctx: ServerContext): Promise<any>;
 export declare function getRestaurantsInList({ ids }: {
     ids: any;
-}, ctx: ServerContext): Promise<any>;
+}, ctx: ServerContext): Promise<any[]>;
 export declare function getRestaurantsByPage(options: any, ctx: any): Promise<{
     restaurants: any;
     nbHits: any;

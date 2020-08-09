@@ -9,7 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const constants_1 = require("../constants");
 const restaurant_1 = require("../server/restaurant");
 const view_level_1 = require("../server/view-level");
 const sponsor_1 = require("../server/sponsor");
@@ -32,7 +31,7 @@ function searchRestaurant({ name, district, city, type, page, }, ctx) {
         const { hits, nbPages, nbHits, exhaustiveNbHits } = yield exports.indexes['restaurants']
             .search(name || '', {
             page: page || 0,
-            hitsPerPage: constants_1.ITEM_PER_PAGE,
+            hitsPerPage: 24,
             facetFilters: [
                 district ? `district:${district}` : null,
                 city ? `city:${city}` : null,

@@ -147,14 +147,22 @@ export async function getRestaurantsInList({ ids }, ctx: ServerContext) {
   if (!ids || ids.length === 0) {
     return [];
   }
-  return firestore()
-    .collection('RESTAURANTS')
-    .where(admin.firestore.FieldPath.documentId(), 'in', ids)
-    .get()
-    .then((snap: admin.firestore.QuerySnapshot) => {
-      const data = snap.docs.map(doc => restaurantFromSnap(doc));
-      return ids.map(id => data.find((restaurant) => restaurant.uid === id));
-    });
+
+  let result = [];
+  while (ids.length > 0) {
+    const part = ids.splice(10);
+    const restaurants = await firestore()
+      .collection('RESTAURANTS')
+      .where(admin.firestore.FieldPath.documentId(), 'in', part)
+      .get()
+      .then((snap: admin.firestore.QuerySnapshot) => {
+        const data = snap.docs.map(doc => restaurantFromSnap(doc));
+        return part.map(id => data.find((restaurant) => restaurant.uid === id));
+      });
+    result = result.concat(restaurants);
+  }
+
+  return result;
 }
 
 export async function getRestaurantsByPage(options: any, ctx: any) {

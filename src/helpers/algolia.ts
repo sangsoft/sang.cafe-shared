@@ -40,7 +40,7 @@ export async function searchRestaurant({
   const { hits, nbPages, nbHits, exhaustiveNbHits } = await indexes['restaurants']
     .search(name || '', {
       page: page || 0,
-      hitsPerPage: ITEM_PER_PAGE,
+      hitsPerPage: 24,
       facetFilters: [
         district ? `district:${district}` : null,
         city ? `city:${city}` : null,
