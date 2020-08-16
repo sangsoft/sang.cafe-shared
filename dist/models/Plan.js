@@ -55,7 +55,7 @@ class Plan {
                 switch (data.type) {
                     case 'cheap_sale_off':
                     default:
-                        return new CheapRestaurantSaleOff(data, applicationFnCreator(percent));
+                        return new CheapRestaurantSaleOff(Object.assign(Object.assign({}, data), { from: new Date(data.from), to: new Date(data.to) }), applicationFnCreator(percent));
                 }
             });
         }
