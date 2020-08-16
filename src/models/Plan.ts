@@ -7,14 +7,16 @@ type SaleOffApplicationFn = (ctx: SaleOffContext, plan: Plan) => Plan;
 export const FreeApplicationFn = (): SaleOffApplicationFn => (ctx: SaleOffContext, plan: Plan): Plan => {
   return new Plan({
     ...plan,
-    price: 0
+    price: 0,
+    isSaleOff: true
   })
 };
 
 export const PercentDiscountApplicationFn = (percent: number): SaleOffApplicationFn => (ctx: SaleOffContext, plan: Plan): Plan => {
   return new Plan({
     ...plan,
-    price: (100 - percent) * plan.price
+    price: (100 - percent) * plan.price,
+    isSaleOff: true
   })
 };
 
@@ -33,6 +35,7 @@ export interface IPlan {
   uid?: string;
   period: number;
   saleOffs?: SaleOff[];
+  isSaleOff?: boolean;
 }
 
 export interface ISaleOff {
@@ -118,12 +121,18 @@ export class Plan {
     text: string;
     available: boolean;
   }[];
+  public isSaleOff: boolean = false;
 
   constructor(obj: IPlan) {
     Object.assign(this, obj);
   }
 
   findSaleOff(ctx: SaleOffContext): Plan {
+    if (this.isSaleOff) {
+      // This is already a saleoff brand, no more saleoff can be applied upon
+      return this;
+    }
+
     let saleOff = this.saleOffs.find((saleOff) => saleOff.isViableForSaleOff(ctx));
     if (!saleOff) {
       return this;
