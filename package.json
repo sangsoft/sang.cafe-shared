@@ -1,6 +1,6 @@
 {
   "name": "@sangcafe/shared",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "main": "dist/index.js",
   "repository": "git@github.com:nquangtrung/sang.cafe-shared.git",
   "author": "trungnq <nquangtrung@gmail.com>",
@@ -12,6 +12,7 @@
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "@types/jest": "^26.0.5",
+    "date-fns": "^2.15.0",
     "fast-safe-stringify": "^2.0.7",
     "firebase-admin": "^8.12.0",
     "jest": "^26.1.0",
