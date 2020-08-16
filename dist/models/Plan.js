@@ -50,6 +50,9 @@ class Plan {
         Object.assign(this, obj);
     }
     findSaleOff(ctx) {
+        if (!this.saleOffs || this.saleOffs.length === 0) {
+            return this;
+        }
         if (this.isSaleOff) {
             // This is already a saleoff brand, no more saleoff can be applied upon
             return this;
