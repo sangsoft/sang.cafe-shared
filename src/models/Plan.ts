@@ -89,7 +89,7 @@ export abstract class SaleOff implements ISaleOff {
   }
 }
 
-export interface ICheapRestaurantSaleOff extends SaleOff {
+export interface ICheapRestaurantSaleOff extends ISaleOff {
   threshold: number;
 }
 

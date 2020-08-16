@@ -18,6 +18,7 @@ export interface IPlan {
     uid?: string;
     period: number;
     saleOffs?: SaleOff[];
+    isSaleOff?: boolean;
 }
 export interface ISaleOff {
     from: Date;
@@ -40,7 +41,7 @@ export declare abstract class SaleOff implements ISaleOff {
     applyOnly(ctx: SaleOffContext, plan: Plan): Plan;
     apply(ctx: SaleOffContext, plan: Plan): Plan;
 }
-export interface ICheapRestaurantSaleOff extends SaleOff {
+export interface ICheapRestaurantSaleOff extends ISaleOff {
     threshold: number;
 }
 export declare class CheapRestaurantSaleOff extends SaleOff {
@@ -63,6 +64,7 @@ export declare class Plan {
         text: string;
         available: boolean;
     }[];
+    isSaleOff: boolean;
     constructor(obj: IPlan);
     findSaleOff(ctx: SaleOffContext): Plan;
 }

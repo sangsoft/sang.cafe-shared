@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const date_fns_1 = require("date-fns");
 exports.FreeApplicationFn = () => (ctx, plan) => {
-    return new Plan(Object.assign(Object.assign({}, plan), { price: 0 }));
+    return new Plan(Object.assign(Object.assign({}, plan), { price: 0, isSaleOff: true }));
 };
 exports.PercentDiscountApplicationFn = (percent) => (ctx, plan) => {
-    return new Plan(Object.assign(Object.assign({}, plan), { price: (100 - percent) * plan.price }));
+    return new Plan(Object.assign(Object.assign({}, plan), { price: (100 - percent) * plan.price, isSaleOff: true }));
 };
 class SaleOff {
     constructor(obj, applicationFn) {
@@ -46,9 +46,14 @@ class CheapRestaurantSaleOff extends SaleOff {
 exports.CheapRestaurantSaleOff = CheapRestaurantSaleOff;
 class Plan {
     constructor(obj) {
+        this.isSaleOff = false;
         Object.assign(this, obj);
     }
     findSaleOff(ctx) {
+        if (this.isSaleOff) {
+            // This is already a saleoff brand, no more saleoff can be applied upon
+            return this;
+        }
         let saleOff = this.saleOffs.find((saleOff) => saleOff.isViableForSaleOff(ctx));
         if (!saleOff) {
             return this;
