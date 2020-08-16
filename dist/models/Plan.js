@@ -48,6 +48,17 @@ class Plan {
     constructor(obj) {
         this.isSaleOff = false;
         Object.assign(this, obj);
+        if (obj.saleOffs) {
+            this.saleOffs = obj.saleOffs.map((data) => {
+                let applicationFnCreator = data.application === 'free' ? exports.FreeApplicationFn : exports.PercentDiscountApplicationFn;
+                let percent = data.percent;
+                switch (data.type) {
+                    case 'cheap_sale_off':
+                    default:
+                        return new CheapRestaurantSaleOff(data, applicationFnCreator(percent));
+                }
+            });
+        }
     }
     findSaleOff(ctx) {
         if (!this.saleOffs || this.saleOffs.length === 0) {

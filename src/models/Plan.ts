@@ -125,6 +125,17 @@ export class Plan {
 
   constructor(obj: IPlan) {
     Object.assign(this, obj);
+    if (obj.saleOffs) {
+      this.saleOffs = obj.saleOffs.map((data: any) => {
+        let applicationFnCreator = data.application === 'free' ? FreeApplicationFn : PercentDiscountApplicationFn;
+        let percent = data.percent;
+        switch (data.type) {
+          case 'cheap_sale_off':
+          default:
+            return new CheapRestaurantSaleOff(data, applicationFnCreator(percent));
+        }
+      })
+    }
   }
 
   findSaleOff(ctx: SaleOffContext): Plan {
