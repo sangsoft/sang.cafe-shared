@@ -30,6 +30,7 @@ export interface IRestaurant {
   // Level 0
   contact: string;
   contactPerson: string;
+  landOwnerPhoneNumber?: string;
 
   // Level 1
   since: number;
@@ -76,6 +77,7 @@ export class Restaurant extends Model {
   public imageResized?: boolean;
   public bannerPhotoUrl?: string | Photo;
   public slug?: string;
+  public landOwnerPhoneNumber?: string
 
   constructor(obj?: IRestaurant) {
     super();
@@ -207,7 +209,7 @@ export class Restaurant extends Model {
       'grossProfit': requiredNumber,
       'menuPhotoUrl': photo.required(),
       'bannerPhotoUrl': photo,
-      'businessLicensePhotoUrl': photo.required(),
+      'businessLicensePhotoUrl': photo,
       'name': Joi.string()
         .min(3)
         .max(256)
@@ -217,6 +219,7 @@ export class Restaurant extends Model {
       'place': Joi.object(),
       'address': requiredString,
       'price': requiredNumber,
+      'landOwnerPhoneNumber': Joi.string(),
       'contact': requiredString,
       'contactPerson': requiredString,
       'description': requiredString,

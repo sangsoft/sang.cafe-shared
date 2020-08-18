@@ -23,6 +23,7 @@ export interface IRestaurant {
     frontWidth: number;
     contact: string;
     contactPerson: string;
+    landOwnerPhoneNumber?: string;
     since: number;
     revenue: number;
     grossProfit: number;
@@ -66,6 +67,7 @@ export declare class Restaurant extends Model {
     imageResized?: boolean;
     bannerPhotoUrl?: string | Photo;
     slug?: string;
+    landOwnerPhoneNumber?: string;
     constructor(obj?: IRestaurant);
     getThumpObj(photo: string | Photo): string | Photo;
     getMainPhotoObj(): string | Photo;

@@ -121,7 +121,7 @@ class Restaurant extends Model_1.Model {
             'grossProfit': requiredNumber,
             'menuPhotoUrl': photo.required(),
             'bannerPhotoUrl': photo,
-            'businessLicensePhotoUrl': photo.required(),
+            'businessLicensePhotoUrl': photo,
             'name': joi_1.default.string()
                 .min(3)
                 .max(256)
@@ -131,6 +131,7 @@ class Restaurant extends Model_1.Model {
             'place': joi_1.default.object(),
             'address': requiredString,
             'price': requiredNumber,
+            'landOwnerPhoneNumber': joi_1.default.string(),
             'contact': requiredString,
             'contactPerson': requiredString,
             'description': requiredString,
