@@ -106,47 +106,47 @@ class Restaurant extends Model_1.Model {
         })
             .required();
         return joi_1.default.object({
-            'uid': joi_1.default.string(),
-            'createdAt': joi_1.default.object(),
-            'updatedAt': joi_1.default.object(),
-            'approved': joi_1.default.boolean(),
-            'hasPos': joi_1.default.boolean()
-                .required(),
-            'sold': joi_1.default.boolean(),
-            'employeeCount': requiredNumber,
-            'since': requiredNumber,
-            'revenue': requiredNumber,
-            'area': requiredNumber,
-            'frontWidth': requiredNumber,
-            'grossProfit': requiredNumber,
-            'menuPhotoUrl': photo.required(),
-            'bannerPhotoUrl': photo,
-            'businessLicensePhotoUrl': photo,
-            'name': joi_1.default.string()
-                .min(3)
-                .max(256)
-                .required(),
-            'ownerId': joi_1.default.string(),
-            'slug': joi_1.default.string(),
-            'place': joi_1.default.object(),
-            'address': requiredString,
-            'price': requiredNumber,
-            'landOwnerPhoneNumber': joi_1.default.string(),
-            'contact': requiredString,
-            'contactPerson': requiredString,
-            'description': requiredString,
-            'city': requiredString,
-            'district': requiredString,
             'photos': joi_1.default.array()
                 .items(photo)
                 .max(10)
                 .required(),
+            'name': joi_1.default.string()
+                .min(3)
+                .max(256)
+                .required(),
             'type': joi_1.default.string()
                 .valid(...Object.keys(Enums_1.SUPPORTED_TYPES))
                 .required(),
+            'since': requiredNumber,
+            'employeeCount': requiredNumber,
+            'hasPos': joi_1.default.boolean()
+                .required(),
+            'description': requiredString,
+            'contactPerson': requiredString,
+            'contact': requiredString,
+            'area': requiredNumber,
+            'frontWidth': requiredNumber,
+            'levels': joi_1.default.number(),
             'monthlyRent': joi_1.default.number(),
             'contractTimeLeft': joi_1.default.number(),
-            'levels': joi_1.default.number(),
+            'landOwnerPhoneNumber': joi_1.default.string(),
+            'address': requiredString,
+            'city': requiredString,
+            'district': requiredString,
+            'grossProfit': requiredNumber,
+            'revenue': requiredNumber,
+            'price': requiredNumber,
+            'menuPhotoUrl': photo.required(),
+            'businessLicensePhotoUrl': photo,
+            'bannerPhotoUrl': photo,
+            'ownerId': joi_1.default.string(),
+            'slug': joi_1.default.string(),
+            'place': joi_1.default.object(),
+            'uid': joi_1.default.string(),
+            'createdAt': joi_1.default.object(),
+            'updatedAt': joi_1.default.object(),
+            'approved': joi_1.default.boolean(),
+            'sold': joi_1.default.boolean(),
         });
     }
     onPrepareData() {
