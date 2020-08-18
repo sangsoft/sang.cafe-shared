@@ -202,47 +202,48 @@ export class Restaurant extends Model {
       .required();
 
     return Joi.object({
-      'uid': Joi.string(),
-      'createdAt': Joi.object(),
-      'updatedAt': Joi.object(),
-      'approved': Joi.boolean(),
-      'hasPos': Joi.boolean()
-        .required(),
-      'sold': Joi.boolean(),
-      'employeeCount': requiredNumber,
-      'since': requiredNumber,
-      'revenue': requiredNumber,
-      'area': requiredNumber,
-      'frontWidth': requiredNumber,
-      'grossProfit': requiredNumber,
-      'menuPhotoUrl': photo.required(),
-      'bannerPhotoUrl': photo,
-      'businessLicensePhotoUrl': photo,
-      'name': Joi.string()
-        .min(3)
-        .max(256)
-        .required(),
-      'ownerId': Joi.string(),
-      'slug': Joi.string(),
-      'place': Joi.object(),
-      'address': requiredString,
-      'price': requiredNumber,
-      'landOwnerPhoneNumber': Joi.string(),
-      'contact': requiredString,
-      'contactPerson': requiredString,
-      'description': requiredString,
-      'city': requiredString,
-      'district': requiredString,
       'photos': Joi.array()
         .items(photo)
         .max(10)
         .required(),
+      'name': Joi.string()
+        .min(3)
+        .max(256)
+        .required(),
       'type': Joi.string()
         .valid(...Object.keys(SUPPORTED_TYPES))
         .required(),
+      'since': requiredNumber,
+      'employeeCount': requiredNumber,
+      'hasPos': Joi.boolean()
+        .required(),
+      'description': requiredString,
+      'contactPerson': requiredString,
+      'contact': requiredString,
+      'area': requiredNumber,
+      'frontWidth': requiredNumber,
+      'levels': Joi.number(),
       'monthlyRent': Joi.number(),
       'contractTimeLeft': Joi.number(),
-      'levels': Joi.number(),
+      'landOwnerPhoneNumber': Joi.string(),
+      'address': requiredString,
+      'city': requiredString,
+      'district': requiredString,
+      'grossProfit': requiredNumber,
+      'revenue': requiredNumber,
+      'price': requiredNumber,
+      'menuPhotoUrl': photo.required(),
+      'businessLicensePhotoUrl': photo,
+      'bannerPhotoUrl': photo,
+
+      'ownerId': Joi.string(),
+      'slug': Joi.string(),
+      'place': Joi.object(),
+      'uid': Joi.string(),
+      'createdAt': Joi.object(),
+      'updatedAt': Joi.object(),
+      'approved': Joi.boolean(),
+      'sold': Joi.boolean(),
     })
   }
 
