@@ -144,6 +144,9 @@ class Restaurant extends Model_1.Model {
             'type': joi_1.default.string()
                 .valid(...Object.keys(Enums_1.SUPPORTED_TYPES))
                 .required(),
+            'monthlyRent': joi_1.default.number(),
+            'contractTimeLeft': joi_1.default.number(),
+            'levels': joi_1.default.number(),
         });
     }
     onPrepareData() {

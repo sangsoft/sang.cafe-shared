@@ -21,6 +21,9 @@ export interface IRestaurant {
     district: string;
     area: number;
     frontWidth: number;
+    monthlyRent?: number;
+    contractTimeLeft?: number;
+    levels?: number;
     contact: string;
     contactPerson: string;
     landOwnerPhoneNumber?: string;
@@ -68,6 +71,9 @@ export declare class Restaurant extends Model {
     bannerPhotoUrl?: string | Photo;
     slug?: string;
     landOwnerPhoneNumber?: string;
+    monthlyRent?: number;
+    contractTimeLeft?: number;
+    levels?: number;
     constructor(obj?: IRestaurant);
     getThumpObj(photo: string | Photo): string | Photo;
     getMainPhotoObj(): string | Photo;

@@ -26,6 +26,10 @@ export interface IRestaurant {
   district: string;
   area: number;
   frontWidth: number;
+  // Renting
+  monthlyRent?: number;
+  contractTimeLeft?: number;
+  levels?: number;
 
   // Level 0
   contact: string;
@@ -77,7 +81,11 @@ export class Restaurant extends Model {
   public imageResized?: boolean;
   public bannerPhotoUrl?: string | Photo;
   public slug?: string;
+
   public landOwnerPhoneNumber?: string
+  public monthlyRent?: number;
+  public contractTimeLeft?: number;
+  public levels?: number;
 
   constructor(obj?: IRestaurant) {
     super();
@@ -232,6 +240,9 @@ export class Restaurant extends Model {
       'type': Joi.string()
         .valid(...Object.keys(SUPPORTED_TYPES))
         .required(),
+      'monthlyRent': Joi.number(),
+      'contractTimeLeft': Joi.number(),
+      'levels': Joi.number(),
     })
   }
 
