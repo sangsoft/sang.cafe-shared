@@ -1,7 +1,7 @@
 import { firestore } from './firebase';
 import { objFromSnap, divideIntoLessThan10 } from './data';
 import { removeLevelSpecificData } from './view-level';
-import { ITEM_PER_PAGE } from '../constants';
+import { ITEM_PER_PAGE, ITEM_PER_PAGE_FULL } from '../constants';
 import { timestampFromObj } from '../helpers/times';
 import * as admin from 'firebase-admin';
 import { ServerContext } from '../models/ServerContext';
@@ -168,6 +168,35 @@ export async function getRestaurantsInList({ ids }, ctx: ServerContext) {
 
 export async function getRestaurantsByPage(options: any, ctx: any) {
   return searchRestaurant({ page: options.page }, ctx);
+}
+
+export async function getRestaurantsByCursor(options: any, ctx: any) {
+  let query = firestore()
+    .collection('RESTAURANTS')
+    .where('show', '==', true)
+    .orderBy('createdAt', 'desc');
+
+  if (!options) {
+    query = query.limit(ITEM_PER_PAGE_FULL);
+  } else if (options.after) {
+    console.log('Getting restaurants after', new Date(options.after))
+    query = query
+      .startAfter(admin.firestore.Timestamp.fromDate(new Date(options.after)))
+      .limit(ITEM_PER_PAGE_FULL);
+  } else if (options.before) {
+    console.log('Getting restaurants before', new Date(options.before))
+    query = query
+      .endBefore(admin.firestore.Timestamp.fromDate(new Date(options.before)))
+      .limitToLast(ITEM_PER_PAGE_FULL);
+  } else {
+    query = query.limit(ITEM_PER_PAGE_FULL);
+  }
+
+  return query
+    .get()
+    .then((snap: admin.firestore.QuerySnapshot) => {
+      return snap.docs.map(doc => restaurantFromSnap(doc));
+    });
 }
 
 export async function getRestaurants(options: any, ctx: any) {

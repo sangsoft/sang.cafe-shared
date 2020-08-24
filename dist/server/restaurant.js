@@ -185,6 +185,38 @@ function getRestaurantsByPage(options, ctx) {
     });
 }
 exports.getRestaurantsByPage = getRestaurantsByPage;
+function getRestaurantsByCursor(options, ctx) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let query = firebase_1.firestore()
+            .collection('RESTAURANTS')
+            .where('show', '==', true)
+            .orderBy('createdAt', 'desc');
+        if (!options) {
+            query = query.limit(constants_1.ITEM_PER_PAGE_FULL);
+        }
+        else if (options.after) {
+            console.log('Getting restaurants after', new Date(options.after));
+            query = query
+                .startAfter(admin.firestore.Timestamp.fromDate(new Date(options.after)))
+                .limit(constants_1.ITEM_PER_PAGE_FULL);
+        }
+        else if (options.before) {
+            console.log('Getting restaurants before', new Date(options.before));
+            query = query
+                .endBefore(admin.firestore.Timestamp.fromDate(new Date(options.before)))
+                .limitToLast(constants_1.ITEM_PER_PAGE_FULL);
+        }
+        else {
+            query = query.limit(constants_1.ITEM_PER_PAGE_FULL);
+        }
+        return query
+            .get()
+            .then((snap) => {
+            return snap.docs.map(doc => restaurantFromSnap(doc));
+        });
+    });
+}
+exports.getRestaurantsByCursor = getRestaurantsByCursor;
 function getRestaurants(options, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
         const { user } = ctx;
