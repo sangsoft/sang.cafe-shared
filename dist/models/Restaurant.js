@@ -58,7 +58,7 @@ class Restaurant extends Model_1.Model {
         return this.getUrl(this.getMainPhotoObj());
     }
     getMainPhotoThumbUrl() {
-        return this.getThumbUrl(this.getMainPhotoObj());
+        return this.getThumbUrl(this.getMainPhotoObj()) || this.getThumbUrl(this.menuPhotoUrl);
     }
     getThumbUrl(photo) {
         return this.getUrl(this.getThumpObj(photo));
@@ -82,7 +82,7 @@ class Restaurant extends Model_1.Model {
             return this.getUrl(this.bannerPhotoUrl);
         }
         else {
-            return this.getMainPhotoUrl();
+            return this.getMainPhotoThumbUrl();
         }
     }
     createSchema() {
@@ -108,6 +108,7 @@ class Restaurant extends Model_1.Model {
         return joi_1.default.object({
             'photos': joi_1.default.array()
                 .items(photo)
+                .min(1)
                 .max(10)
                 .required(),
             'name': joi_1.default.string()

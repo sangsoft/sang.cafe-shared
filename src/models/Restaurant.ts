@@ -144,7 +144,7 @@ export class Restaurant extends Model {
   }
 
   getMainPhotoThumbUrl(): string {
-    return this.getThumbUrl(this.getMainPhotoObj());
+    return this.getThumbUrl(this.getMainPhotoObj()) || this.getThumbUrl(this.menuPhotoUrl);
   }
 
   getThumbUrl(photo: string | Photo): string {
@@ -173,7 +173,7 @@ export class Restaurant extends Model {
     if (this.bannerPhotoUrl) {
       return this.getUrl(this.bannerPhotoUrl);
     } else {
-      return this.getMainPhotoUrl();
+      return this.getMainPhotoThumbUrl();
     }
   }
 
@@ -204,6 +204,7 @@ export class Restaurant extends Model {
     return Joi.object({
       'photos': Joi.array()
         .items(photo)
+        .min(1)
         .max(10)
         .required(),
       'name': Joi.string()
