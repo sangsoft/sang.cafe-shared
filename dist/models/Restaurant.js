@@ -58,7 +58,7 @@ class Restaurant extends Model_1.Model {
         return this.getUrl(this.getMainPhotoObj());
     }
     getMainPhotoThumbUrl() {
-        return this.getThumbUrl(this.getMainPhotoObj()) || this.getThumbUrl(this.menuPhotoUrl);
+        return this.getThumbUrl(this.getMainPhotoObj()) || this.getThumbUrl(this.menuPhotoUrl) || this.getUrl(this.menuPhotoUrl);
     }
     getThumbUrl(photo) {
         return this.getUrl(this.getThumpObj(photo));

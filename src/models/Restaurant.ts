@@ -144,7 +144,7 @@ export class Restaurant extends Model {
   }
 
   getMainPhotoThumbUrl(): string {
-    return this.getThumbUrl(this.getMainPhotoObj()) || this.getThumbUrl(this.menuPhotoUrl);
+    return this.getThumbUrl(this.getMainPhotoObj()) || this.getThumbUrl(this.menuPhotoUrl) || this.getUrl(this.menuPhotoUrl);
   }
 
   getThumbUrl(photo: string | Photo): string {
