@@ -204,7 +204,6 @@ export class Restaurant extends Model {
     return Joi.object({
       'photos': Joi.array()
         .items(photo)
-        .min(1)
         .max(10)
         .required(),
       'name': Joi.string()
