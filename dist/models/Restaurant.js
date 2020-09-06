@@ -97,7 +97,8 @@ class Restaurant extends Model_1.Model {
             scheme: [
                 'https'
             ]
-        }), joi_1.default.object());
+        })
+            .allow(null), joi_1.default.object());
         const requiredUrl = joi_1.default.string()
             .uri({
             scheme: [
@@ -129,7 +130,9 @@ class Restaurant extends Model_1.Model {
             'levels': joi_1.default.number(),
             'monthlyRent': joi_1.default.number(),
             'contractTimeLeft': joi_1.default.number(),
-            'landOwnerPhoneNumber': joi_1.default.string(),
+            'landOwnerPhoneNumber': joi_1.default
+                .string()
+                .allow(''),
             'address': requiredString,
             'city': requiredString,
             'district': requiredString,

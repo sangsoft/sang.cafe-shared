@@ -190,8 +190,9 @@ export class Restaurant extends Model {
             scheme: [
               'https'
             ]
-          }),
-        Joi.object()
+          })
+          .allow(null),
+        Joi.object(),
       )
     const requiredUrl = Joi.string()
       .uri({
@@ -225,7 +226,9 @@ export class Restaurant extends Model {
       'levels': Joi.number(),
       'monthlyRent': Joi.number(),
       'contractTimeLeft': Joi.number(),
-      'landOwnerPhoneNumber': Joi.string(),
+      'landOwnerPhoneNumber': Joi
+        .string()
+        .allow(''),
       'address': requiredString,
       'city': requiredString,
       'district': requiredString,
