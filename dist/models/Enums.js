@@ -111,13 +111,28 @@ exports.SUPPORTED_TYPES = {
         topPage: true
     },
     ['boba_tea']: {
-        text: 'Trà sữa',
+        text: 'Trà sữa/Kem',
         value: 'boba_tea',
         topPage: false
     },
-    ['bakery']: {
+    ['for_rent']: {
+        text: 'Mặt bằng',
+        value: 'for_rent',
+        topPage: false
+    },
+    [exports.RESTAURANT_TYPES.convenience_store]: {
+        text: 'Tiệm tạp hóa',
+        value: exports.RESTAURANT_TYPES.convenience_store,
+        topPage: false
+    },
+    [exports.RESTAURANT_TYPES.clothing_store]: {
+        text: 'Shop quần áo',
+        value: exports.RESTAURANT_TYPES.clothing_store,
+        topPage: false
+    },
+    [exports.RESTAURANT_TYPES.bakery]: {
         text: 'Tiệm bánh',
-        value: 'bakery',
+        value: exports.RESTAURANT_TYPES.bakery,
         topPage: false
     },
     ['snack']: {
