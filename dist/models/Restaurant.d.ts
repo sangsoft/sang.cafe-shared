@@ -1,5 +1,6 @@
 import { Model } from "./Model";
 import { Photo } from "./Photo";
+import { SearchRecord } from "./SearchRecord";
 export interface IRestaurant {
     uid?: string;
     place?: any;
@@ -36,6 +37,11 @@ export interface IRestaurant {
     hasPos: boolean;
     show?: boolean;
     imageResized?: boolean;
+    matches?: {
+        fieldMatchingCount: number;
+        fields: string[];
+        searches: SearchRecord;
+    }[];
 }
 export declare class Restaurant extends Model {
     name: string;
@@ -74,6 +80,11 @@ export declare class Restaurant extends Model {
     monthlyRent?: number;
     contractTimeLeft?: number;
     levels?: number;
+    matches?: {
+        fieldMatchingCount: number;
+        fields: string[];
+        searches: SearchRecord;
+    }[];
     constructor(obj?: IRestaurant);
     getThumpObj(photo: string | Photo): string | Photo;
     getMainPhotoObj(): string | Photo;

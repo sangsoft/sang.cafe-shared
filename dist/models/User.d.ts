@@ -1,5 +1,6 @@
 import { Model } from "./Model";
 import { Photo } from "./Photo";
+import { SearchRecord } from "./SearchRecord";
 export interface IUserStatus {
     level: number;
 }
@@ -18,6 +19,7 @@ export interface IUser {
         reason?: 'post' | 'view-contact';
         path?: string;
     };
+    searches?: SearchRecord[];
 }
 export declare class User extends Model {
     uid?: string;
@@ -36,6 +38,7 @@ export declare class User extends Model {
         reason?: 'post' | 'view-contact';
         path?: string;
     };
+    searches?: any[];
     constructor(obj: IUser);
     getPhotoUrl(): string;
     createSchema(): any;

@@ -2,6 +2,8 @@ import { RESTAURANT_TYPES, SUPPORTED_TYPES } from "./Enums";
 import Joi from '@hapi/joi';
 import { Model } from "./Model";
 import { Photo } from "./Photo";
+import { IUser } from "./User";
+import { SearchRecord } from "./SearchRecord";
 
 export interface IRestaurant {
   uid?: string;
@@ -46,6 +48,11 @@ export interface IRestaurant {
   hasPos: boolean;
   show?: boolean;
   imageResized?: boolean;
+  matches?: {
+    fieldMatchingCount: number;
+    fields: string[];
+    searches: SearchRecord;
+  }[];
 }
 
 export class Restaurant extends Model {
@@ -86,6 +93,11 @@ export class Restaurant extends Model {
   public monthlyRent?: number;
   public contractTimeLeft?: number;
   public levels?: number;
+  public matches?: {
+    fieldMatchingCount: number;
+    fields: string[];
+    searches: SearchRecord;
+  }[];
 
   constructor(obj?: IRestaurant) {
     super();

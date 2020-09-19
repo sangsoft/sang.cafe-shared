@@ -1,6 +1,7 @@
 import { Model } from "./Model";
 import Joi from '@hapi/joi';
 import { Photo } from "./Photo";
+import { SearchRecord } from "./SearchRecord";
 
 export interface IUserStatus {
   level: number;
@@ -20,7 +21,8 @@ export interface IUser {
   signInMetaData?: {
     reason?: 'post' | 'view-contact';
     path?: string
-  }
+  },
+  searches?: SearchRecord[];
 }
 
 export class User extends Model {
@@ -40,6 +42,7 @@ export class User extends Model {
     reason?: 'post' | 'view-contact';
     path?: string
   }
+  searches?: any[];
 
   constructor(obj: IUser) {
     super();
