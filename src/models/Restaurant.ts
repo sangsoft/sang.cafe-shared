@@ -43,6 +43,7 @@ export interface IRestaurant {
   revenue: number;
   grossProfit: number;
   menuPhotoUrl: string | Photo;
+  bannerPhotoUrl?: string | Photo;
   businessLicensePhotoUrl: string | Photo;
   employeeCount: number;
   hasPos: boolean;
