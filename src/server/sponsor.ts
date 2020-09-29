@@ -58,7 +58,7 @@ export async function getSponsors({ plans, limit }, ctx: ServerContext) {
 
 export async function getBannerSponsors(options: any, ctx: ServerContext) {
   let sponsors = await getSponsors({
-    plans: ['sponsor_top_banner', 'sponsor_advance'],
+    plans: ['sponsor_top_banner', 'sponsor_advance', 'sponsor_automatic'],
     limit: ITEM_PER_PAGE
   }, ctx);
   return provideSponsorsWithRestaurantData({ sponsors }, ctx);
@@ -66,7 +66,7 @@ export async function getBannerSponsors(options: any, ctx: ServerContext) {
 
 export async function getRightColSponsors(_: any, ctx: any) {
   const sponsors = await getSponsors({
-    plans: ['sponsor_right_bar', 'sponsor_advance'],
+    plans: ['sponsor_right_bar', 'sponsor_advance', 'sponsor_automatic'],
     limit: RIGHT_COL_SPONSOR_LIMIT
   }, ctx);
   return provideSponsorsWithRestaurantData({ sponsors }, ctx);
