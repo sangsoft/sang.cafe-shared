@@ -6,6 +6,7 @@ export class IBillItem {
   quantity: number;
   planId: string;
   restaurantId?: string;
+  brokerageValue?: number;
 }
 
 export class BillItem {
@@ -16,6 +17,7 @@ export class BillItem {
   public quantity: number;
   public planId: string;
   public restaurantId?: string;
+  public brokerageValue?: number;
 
   constructor(obj: IBillItem) {
     Object.assign(this, obj);

@@ -6,6 +6,7 @@ export declare class IBillItem {
     quantity: number;
     planId: string;
     restaurantId?: string;
+    brokerageValue?: number;
 }
 export declare class BillItem {
     description: string;
@@ -15,5 +16,6 @@ export declare class BillItem {
     quantity: number;
     planId: string;
     restaurantId?: string;
+    brokerageValue?: number;
     constructor(obj: IBillItem);
 }
