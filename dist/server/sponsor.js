@@ -76,7 +76,7 @@ exports.getSponsors = getSponsors;
 function getBannerSponsors(options, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
         let sponsors = yield getSponsors({
-            plans: ['sponsor_top_banner', 'sponsor_advance'],
+            plans: ['sponsor_top_banner', 'sponsor_advance', 'sponsor_automatic'],
             limit: constants_1.ITEM_PER_PAGE
         }, ctx);
         return provideSponsorsWithRestaurantData({ sponsors }, ctx);
@@ -86,7 +86,7 @@ exports.getBannerSponsors = getBannerSponsors;
 function getRightColSponsors(_, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
         const sponsors = yield getSponsors({
-            plans: ['sponsor_right_bar', 'sponsor_advance'],
+            plans: ['sponsor_right_bar', 'sponsor_advance', 'sponsor_automatic'],
             limit: constants_1.RIGHT_COL_SPONSOR_LIMIT
         }, ctx);
         return provideSponsorsWithRestaurantData({ sponsors }, ctx);
