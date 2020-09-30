@@ -52,7 +52,7 @@ export interface IRestaurant {
   matches?: {
     fieldMatchingCount: number;
     fields: string[];
-    searches: SearchRecord;
+    search: SearchRecord;
   }[];
 }
 
