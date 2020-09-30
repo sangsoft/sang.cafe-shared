@@ -84,7 +84,7 @@ export declare class Restaurant extends Model {
     matches?: {
         fieldMatchingCount: number;
         fields: string[];
-        searches: SearchRecord;
+        search: SearchRecord;
     }[];
     constructor(obj?: IRestaurant);
     getThumpObj(photo: string | Photo): string | Photo;

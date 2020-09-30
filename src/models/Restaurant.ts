@@ -97,7 +97,7 @@ export class Restaurant extends Model {
   public matches?: {
     fieldMatchingCount: number;
     fields: string[];
-    searches: SearchRecord;
+    search: SearchRecord;
   }[];
 
   constructor(obj?: IRestaurant) {
