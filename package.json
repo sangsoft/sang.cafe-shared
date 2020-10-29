@@ -1,6 +1,6 @@
 {
   "name": "@sangcafe/shared",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "main": "dist/index.js",
   "repository": "git@github.com:nquangtrung/sang.cafe-shared.git",
   "author": "trungnq <nquangtrung@gmail.com>",

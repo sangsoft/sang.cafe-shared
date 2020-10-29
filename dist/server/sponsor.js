@@ -77,7 +77,7 @@ function getBannerSponsors(options, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
         let sponsors = yield getSponsors({
             plans: ['sponsor_top_banner', 'sponsor_advance', 'sponsor_automatic'],
-            limit: constants_1.ITEM_PER_PAGE
+            limit: constants_1.ITEM_PER_PAGE_FULL
         }, ctx);
         return provideSponsorsWithRestaurantData({ sponsors }, ctx);
     });
