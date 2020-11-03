@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Model_1 = require("./Model");
 const joi_1 = __importDefault(require("@hapi/joi"));
+const Role_1 = require("./Role");
 class User extends Model_1.Model {
     constructor(obj) {
         super();
@@ -19,6 +20,7 @@ class User extends Model_1.Model {
         this.buyer = null;
         this.seller = null;
         Object.assign(this, obj);
+        this.roles = obj.roles.map(role => new Role_1.Role(role));
     }
     can(action) {
         for (const role of this.roles) {
