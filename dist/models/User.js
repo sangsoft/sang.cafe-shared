@@ -20,6 +20,14 @@ class User extends Model_1.Model {
         this.seller = null;
         Object.assign(this, obj);
     }
+    can(action) {
+        for (const role of this.roles) {
+            if (role.can(action)) {
+                return true;
+            }
+        }
+        return false;
+    }
     getPhotoUrl() {
         return this.getUrl(this.photoURL);
     }
