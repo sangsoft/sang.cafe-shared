@@ -70,7 +70,7 @@ class User extends Model_1.Model {
         const obj = super.flatten();
         return {
             obj,
-            roles: this.roles.map(role => role.flatten)
+            roles: this.roles.map(role => role.flatten())
         };
     }
 }

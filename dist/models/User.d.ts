@@ -51,6 +51,6 @@ export declare class User extends Model {
     onPrepareData(): any;
     flatten(): {
         obj: any;
-        roles: (() => any)[];
+        roles: any[];
     };
 }
