@@ -20,9 +20,11 @@ export interface IUser {
   seller?: IUserStatus;
   signInMetaData?: {
     reason?: 'post' | 'view-contact';
-    path?: string
+    path?: string;
   },
   searches?: SearchRecord[];
+  type?: string;
+  roles?: string[];
 }
 
 export class User extends Model {
@@ -43,6 +45,8 @@ export class User extends Model {
     path?: string
   }
   searches?: any[];
+  type?: string;
+  roles?: string[];
 
   constructor(obj: IUser) {
     super();
