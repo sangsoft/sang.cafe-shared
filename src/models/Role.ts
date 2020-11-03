@@ -23,7 +23,7 @@ export class Role extends Model {
     super();
     Object.assign(this, obj);
     this.capabilities = Object.keys(obj).map((key: string) => {
-      if (['uid', 'superadmin'].includes(key)) {
+      if (['uid', 'superadmin', 'name'].includes(key)) {
         return null;
       }
       if (obj[key]) {

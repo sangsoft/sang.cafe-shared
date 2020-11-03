@@ -10,7 +10,7 @@ class Role extends Model_1.Model {
         super();
         Object.assign(this, obj);
         this.capabilities = Object.keys(obj).map((key) => {
-            if (['uid', 'superadmin'].includes(key)) {
+            if (['uid', 'superadmin', 'name'].includes(key)) {
                 return null;
             }
             if (obj[key]) {
