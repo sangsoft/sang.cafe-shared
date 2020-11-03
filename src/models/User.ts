@@ -2,6 +2,7 @@ import { Model } from "./Model";
 import Joi from '@hapi/joi';
 import { Photo } from "./Photo";
 import { SearchRecord } from "./SearchRecord";
+import { Role } from "./Role";
 
 export interface IUserStatus {
   level: number;
@@ -24,7 +25,7 @@ export interface IUser {
   },
   searches?: SearchRecord[];
   type?: string;
-  roles?: string[];
+  roles?: Role[];
 }
 
 export class User extends Model {
@@ -46,11 +47,20 @@ export class User extends Model {
   }
   searches?: any[];
   type?: string;
-  roles?: string[];
+  roles?: Role[];
 
   constructor(obj: IUser) {
     super();
     Object.assign(this, obj);
+  }
+
+  can(action: string): boolean {
+    for (const role of this.roles) {
+      if (role.can(action)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   getPhotoUrl(): string {
