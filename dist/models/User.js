@@ -20,7 +20,7 @@ class User extends Model_1.Model {
         this.buyer = null;
         this.seller = null;
         Object.assign(this, obj);
-        this.roles = obj.roles.map(role => new Role_1.Role(role));
+        this.roles = (obj.roles || []).map(role => new Role_1.Role(role));
     }
     can(action) {
         for (const role of this.roles) {

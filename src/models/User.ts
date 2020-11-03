@@ -52,7 +52,7 @@ export class User extends Model {
   constructor(obj: IUser) {
     super();
     Object.assign(this, obj);
-    this.roles = obj.roles.map(role => new Role(role))
+    this.roles = (obj.roles || []).map(role => new Role(role))
   }
 
   can(action: string): boolean {
