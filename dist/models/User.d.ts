@@ -49,8 +49,5 @@ export declare class User extends Model {
     getPhotoUrl(): string;
     createSchema(): any;
     onPrepareData(): any;
-    flatten(): {
-        obj: any;
-        roles: any[];
-    };
+    flatten(): any;
 }

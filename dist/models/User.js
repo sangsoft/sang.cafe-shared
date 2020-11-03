@@ -68,10 +68,7 @@ class User extends Model_1.Model {
     }
     flatten() {
         const obj = super.flatten();
-        return {
-            obj,
-            roles: this.roles.map(role => role.flatten())
-        };
+        return Object.assign(Object.assign({}, obj), { roles: this.roles.map(role => role.flatten()) });
     }
 }
 exports.User = User;
