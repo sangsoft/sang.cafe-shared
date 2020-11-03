@@ -111,4 +111,12 @@ export class User extends Model {
 
     return obj;
   }
+
+  flatten() {
+    const obj = super.flatten();
+    return {
+      obj,
+      roles: this.roles.map(role => role.flatten)
+    };
+  }
 }

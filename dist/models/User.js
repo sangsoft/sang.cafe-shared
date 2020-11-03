@@ -66,6 +66,13 @@ class User extends Model_1.Model {
         delete obj.requestPost;
         return obj;
     }
+    flatten() {
+        const obj = super.flatten();
+        return {
+            obj,
+            roles: this.roles.map(role => role.flatten)
+        };
+    }
 }
 exports.User = User;
 //# sourceMappingURL=User.js.map
