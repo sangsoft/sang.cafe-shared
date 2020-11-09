@@ -43,6 +43,9 @@ export interface IRestaurant {
         fields: string[];
         search: SearchRecord;
     }[];
+    privateAddress?: string;
+    privateContact?: string;
+    privateContactPerson?: string;
 }
 export declare class Restaurant extends Model {
     name: string;
@@ -86,6 +89,9 @@ export declare class Restaurant extends Model {
         fields: string[];
         search: SearchRecord;
     }[];
+    privateAddress?: string;
+    privateContact?: string;
+    privateContactPerson?: string;
     constructor(obj?: IRestaurant);
     getThumpObj(photo: string | Photo): string | Photo;
     getMainPhotoObj(): string | Photo;

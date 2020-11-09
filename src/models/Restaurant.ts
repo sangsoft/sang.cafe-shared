@@ -54,6 +54,11 @@ export interface IRestaurant {
     fields: string[];
     search: SearchRecord;
   }[];
+
+  // Level 999
+  privateAddress?: string;
+  privateContact?: string;
+  privateContactPerson?: string;
 }
 
 export class Restaurant extends Model {
@@ -99,6 +104,10 @@ export class Restaurant extends Model {
     fields: string[];
     search: SearchRecord;
   }[];
+  public privateAddress?: string;
+  public privateContact?: string;
+  public privateContactPerson?: string;
+
 
   constructor(obj?: IRestaurant) {
     super();
@@ -252,6 +261,10 @@ export class Restaurant extends Model {
       'businessLicensePhotoUrl': photo,
       'bannerPhotoUrl': photo,
 
+      'privateAddress': Joi.string(),
+      'privateContact': Joi.string(),
+      'privateContactPerson': Joi.string(),
+
       'ownerId': Joi.string(),
       'slug': Joi.string(),
       'place': Joi.object(),
@@ -260,6 +273,8 @@ export class Restaurant extends Model {
       'updatedAt': Joi.object(),
       'approved': Joi.boolean(),
       'sold': Joi.boolean(),
+
+
     })
   }
 
