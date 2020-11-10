@@ -46,6 +46,7 @@ export interface IRestaurant {
     privateAddress?: string;
     privateContact?: string;
     privateContactPerson?: string;
+    brokerage?: boolean;
 }
 export declare class Restaurant extends Model {
     name: string;
@@ -92,6 +93,7 @@ export declare class Restaurant extends Model {
     privateAddress?: string;
     privateContact?: string;
     privateContactPerson?: string;
+    brokerage?: boolean;
     constructor(obj?: IRestaurant);
     getThumpObj(photo: string | Photo): string | Photo;
     getMainPhotoObj(): string | Photo;

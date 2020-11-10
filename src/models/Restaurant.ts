@@ -59,6 +59,7 @@ export interface IRestaurant {
   privateAddress?: string;
   privateContact?: string;
   privateContactPerson?: string;
+  brokerage?: boolean;
 }
 
 export class Restaurant extends Model {
@@ -107,7 +108,7 @@ export class Restaurant extends Model {
   public privateAddress?: string;
   public privateContact?: string;
   public privateContactPerson?: string;
-
+  public brokerage?: boolean;
 
   constructor(obj?: IRestaurant) {
     super();
