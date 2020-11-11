@@ -145,6 +145,7 @@ class Restaurant extends Model_1.Model {
             'privateAddress': joi_1.default.string(),
             'privateContact': joi_1.default.string(),
             'privateContactPerson': joi_1.default.string(),
+            'brokerage': joi_1.default.boolean(),
             'ownerId': joi_1.default.string(),
             'slug': joi_1.default.string(),
             'place': joi_1.default.object(),

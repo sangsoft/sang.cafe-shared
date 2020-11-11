@@ -265,6 +265,7 @@ export class Restaurant extends Model {
       'privateAddress': Joi.string(),
       'privateContact': Joi.string(),
       'privateContactPerson': Joi.string(),
+      'brokerage': Joi.boolean(),
 
       'ownerId': Joi.string(),
       'slug': Joi.string(),
