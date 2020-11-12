@@ -11,6 +11,11 @@ var TaskStatus;
     TaskStatus["ONGOING"] = "ongoing";
     TaskStatus["COMPLETE"] = "complete";
 })(TaskStatus = exports.TaskStatus || (exports.TaskStatus = {}));
+var TaskType;
+(function (TaskType) {
+    TaskType["FILL_DATA"] = "fill-data";
+    TaskType["COMMUNICATE_BUYER"] = "communicate-buyer";
+})(TaskType = exports.TaskType || (exports.TaskType = {}));
 class Task extends Model_1.Model {
     constructor(obj) {
         super();

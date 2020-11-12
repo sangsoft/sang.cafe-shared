@@ -4,6 +4,10 @@ export declare enum TaskStatus {
     ONGOING = "ongoing",
     COMPLETE = "complete"
 }
+export declare enum TaskType {
+    FILL_DATA = "fill-data",
+    COMMUNICATE_BUYER = "communicate-buyer"
+}
 export interface ITaskNote {
     ownerId: string;
     content: string;
@@ -17,6 +21,7 @@ export interface ITask {
     props?: string[];
     notes?: ITaskNote[];
     status: TaskStatus;
+    type: TaskType;
 }
 export declare class Task extends Model {
     uid?: string;
@@ -29,6 +34,7 @@ export declare class Task extends Model {
     status: TaskStatus;
     createdAt: any;
     updatedAt: any;
+    type: TaskType;
     constructor(obj?: ITask);
     createSchema(): any;
     onPrepareData(): any;

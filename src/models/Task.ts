@@ -7,6 +7,12 @@ export enum TaskStatus {
   COMPLETE = 'complete',
 }
 
+export enum TaskType {
+  FILL_DATA = 'fill-data',
+  COMMUNICATE_BUYER = 'communicate-buyer',
+}
+
+
 export interface ITaskNote {
   ownerId: string;
   content: string;
@@ -21,6 +27,7 @@ export interface ITask {
   props?: string[];
   notes?: ITaskNote[];
   status: TaskStatus;
+  type: TaskType;
 }
 export class Task extends Model {
   uid?: string;
@@ -33,6 +40,7 @@ export class Task extends Model {
   status: TaskStatus = TaskStatus.PENDING;
   createdAt: any = {};
   updatedAt: any = {};
+  type: TaskType;
 
   constructor(obj?: ITask) {
     super();
