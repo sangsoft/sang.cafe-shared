@@ -27,6 +27,8 @@ export declare class Task extends Model {
     props?: string[];
     notes?: ITaskNote[];
     status: TaskStatus;
+    createdAt: any;
+    updatedAt: any;
     constructor(obj?: ITask);
     createSchema(): any;
     onPrepareData(): any;

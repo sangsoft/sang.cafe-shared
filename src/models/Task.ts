@@ -31,6 +31,8 @@ export class Task extends Model {
   props?: string[];
   notes?: ITaskNote[];
   status: TaskStatus = TaskStatus.PENDING;
+  createdAt: any = {};
+  updatedAt: any = {};
 
   constructor(obj?: ITask) {
     super();
