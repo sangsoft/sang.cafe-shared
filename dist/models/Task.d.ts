@@ -22,6 +22,7 @@ export interface ITask {
     notes?: ITaskNote[];
     status: TaskStatus;
     type: TaskType;
+    priority: number;
 }
 export declare class Task extends Model {
     uid?: string;
@@ -35,6 +36,7 @@ export declare class Task extends Model {
     createdAt: any;
     updatedAt: any;
     type: TaskType;
+    priority: number;
     constructor(obj?: ITask);
     createSchema(): any;
     onPrepareData(): any;
