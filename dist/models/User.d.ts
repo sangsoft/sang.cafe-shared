@@ -23,6 +23,7 @@ export interface IUser {
     searches?: SearchRecord[];
     type?: string;
     roles?: Role[];
+    identity?: string;
 }
 export declare class User extends Model {
     uid?: string;
@@ -44,6 +45,7 @@ export declare class User extends Model {
     searches?: any[];
     type?: string;
     roles?: Role[];
+    identity?: string;
     constructor(obj: IUser);
     can(action: string): boolean;
     getPhotoUrl(): string;

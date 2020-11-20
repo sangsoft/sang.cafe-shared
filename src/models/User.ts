@@ -26,6 +26,7 @@ export interface IUser {
   searches?: SearchRecord[];
   type?: string;
   roles?: Role[];
+  identity?: string;
 }
 
 export class User extends Model {
@@ -48,7 +49,7 @@ export class User extends Model {
   searches?: any[];
   type?: string;
   roles?: Role[];
-
+  identity?: string;
   constructor(obj: IUser) {
     super();
     Object.assign(this, obj);
@@ -95,6 +96,8 @@ export class User extends Model {
       'photoURL': photo,
       'admin': Joi.boolean(),
       'canPost': Joi.boolean(),
+      'roles': Joi.array(),
+      'identity': Joi.string(),
     });
   }
 
