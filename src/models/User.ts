@@ -79,8 +79,9 @@ export class User extends Model {
               'https'
             ]
           }),
-        Joi.object()
+        Joi.object(),
       )
+      .allow(null)
 
     const requiredString = Joi.string()
       .required()
@@ -96,8 +97,8 @@ export class User extends Model {
       'photoURL': photo,
       'admin': Joi.boolean(),
       'canPost': Joi.boolean(),
-      'roles': Joi.array(),
-      'identity': Joi.string(),
+      'roles': Joi.array().allow(null),
+      'identity': Joi.string().allow(null),
     });
   }
 

@@ -41,7 +41,8 @@ class User extends Model_1.Model {
             scheme: [
                 'https'
             ]
-        }), joi_1.default.object());
+        }), joi_1.default.object())
+            .allow(null);
         const requiredString = joi_1.default.string()
             .required();
         return joi_1.default.object({
@@ -56,8 +57,8 @@ class User extends Model_1.Model {
             'photoURL': photo,
             'admin': joi_1.default.boolean(),
             'canPost': joi_1.default.boolean(),
-            'roles': joi_1.default.array(),
-            'identity': joi_1.default.string(),
+            'roles': joi_1.default.array().allow(null),
+            'identity': joi_1.default.string().allow(null),
         });
     }
     onPrepareData() {
