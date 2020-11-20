@@ -99,6 +99,7 @@ export class User extends Model {
       'canPost': Joi.boolean(),
       'roles': Joi.array().allow(null),
       'identity': Joi.string().allow(null),
+      'signInMetaData': Joi.object().allow(null),
     });
   }
 
