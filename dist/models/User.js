@@ -70,6 +70,7 @@ class User extends Model_1.Model {
         delete obj.admin;
         delete obj.doc;
         delete obj.requestPost;
+        delete obj.roles;
         return obj;
     }
     flatten() {

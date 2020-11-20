@@ -114,6 +114,7 @@ export class User extends Model {
     delete obj.admin;
     delete obj.doc;
     delete obj.requestPost;
+    delete obj.roles;
 
     return obj;
   }
