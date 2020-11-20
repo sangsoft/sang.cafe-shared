@@ -8,5 +8,7 @@ export interface SearchParameters {
     priceTo?: number;
     areaFrom?: number;
     areaTo?: number;
+    levelsFrom?: number;
+    levelsTo?: number;
     identity: string;
 }
