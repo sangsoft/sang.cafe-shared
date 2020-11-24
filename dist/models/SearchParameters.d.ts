@@ -10,5 +10,7 @@ export interface SearchParameters {
     areaTo?: number;
     levelsFrom?: number;
     levelsTo?: number;
+    frontWidthFrom?: number;
+    frontWidthTo?: number;
     identity: string;
 }
