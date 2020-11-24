@@ -1,4 +1,5 @@
 import { Model } from "./Model";
+import { IUser } from "./User";
 export declare enum TaskStatus {
     PENDING = "pending",
     ONGOING = "ongoing",
@@ -23,6 +24,7 @@ export interface ITask {
     status: TaskStatus;
     type: TaskType;
     priority: number;
+    assignee?: IUser;
 }
 export declare class Task extends Model {
     uid?: string;
@@ -37,6 +39,7 @@ export declare class Task extends Model {
     updatedAt: any;
     type: TaskType;
     priority: number;
+    assignee?: IUser;
     constructor(obj?: ITask);
     createSchema(): any;
     onPrepareData(): any;

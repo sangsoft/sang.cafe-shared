@@ -1,5 +1,6 @@
 import { Model } from "./Model";
 import Joi from '@hapi/joi';
+import { IUser } from "./User";
 
 export enum TaskStatus {
   PENDING = 'pending',
@@ -29,6 +30,7 @@ export interface ITask {
   status: TaskStatus;
   type: TaskType;
   priority: number;
+  assignee?: IUser;
 }
 export class Task extends Model {
   uid?: string;
@@ -43,6 +45,7 @@ export class Task extends Model {
   updatedAt: any = {};
   type: TaskType;
   priority: number;
+  assignee?: IUser;
 
   constructor(obj?: ITask) {
     super();
