@@ -11,8 +11,23 @@ export enum TaskStatus {
 export enum TaskType {
   FILL_DATA = 'fill-data',
   COMMUNICATE_BUYER = 'communicate-buyer',
+  BROKERAGE = 'brokerage',
 }
 
+export enum TaskResult {
+  DONE = 'done',
+  // fill-data
+  DATA_COMPLETED = 'data-completed',
+
+  // communicate-buyer
+  BUYER_NOT_INTERESTED = 'buyer-not-interested',
+  BUYER_CONSIDERING = 'buyer-considering',
+
+  // brokerage
+  DEAL_SUCCESS = 'deal-success',
+  DEAL_FAILED_BUYER_REJECT = 'deal-failed-buyer-reject',
+  DEAL_FAILED_SELLER_REJECT = 'deal-failed-seller-reject',
+}
 
 export interface ITaskNote {
   ownerId: string;
@@ -31,6 +46,9 @@ export interface ITask {
   type: TaskType;
   priority: number;
   assignee?: IUser;
+  seller?: IUser;
+  buyer?: IUser;
+  result?: TaskResult;
 }
 export class Task extends Model {
   uid?: string;
@@ -46,6 +64,10 @@ export class Task extends Model {
   type: TaskType;
   priority: number;
   assignee?: IUser;
+  seller?: IUser;
+  buyer?: IUser;
+  agent?: IUser;
+  result?: TaskResult;
 
   constructor(obj?: ITask) {
     super();

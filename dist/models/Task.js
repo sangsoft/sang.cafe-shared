@@ -15,7 +15,21 @@ var TaskType;
 (function (TaskType) {
     TaskType["FILL_DATA"] = "fill-data";
     TaskType["COMMUNICATE_BUYER"] = "communicate-buyer";
+    TaskType["BROKERAGE"] = "brokerage";
 })(TaskType = exports.TaskType || (exports.TaskType = {}));
+var TaskResult;
+(function (TaskResult) {
+    TaskResult["DONE"] = "done";
+    // fill-data
+    TaskResult["DATA_COMPLETED"] = "data-completed";
+    // communicate-buyer
+    TaskResult["BUYER_NOT_INTERESTED"] = "buyer-not-interested";
+    TaskResult["BUYER_CONSIDERING"] = "buyer-considering";
+    // brokerage
+    TaskResult["DEAL_SUCCESS"] = "deal-success";
+    TaskResult["DEAL_FAILED_BUYER_REJECT"] = "deal-failed-buyer-reject";
+    TaskResult["DEAL_FAILED_SELLER_REJECT"] = "deal-failed-seller-reject";
+})(TaskResult = exports.TaskResult || (exports.TaskResult = {}));
 class Task extends Model_1.Model {
     constructor(obj) {
         super();
