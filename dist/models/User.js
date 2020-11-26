@@ -59,6 +59,7 @@ class User extends Model_1.Model {
             'canPost': joi_1.default.boolean(),
             'roles': joi_1.default.array().allow(null),
             'identity': joi_1.default.string().allow(null),
+            'note': joi_1.default.string().allow(null),
             'signInMetaData': joi_1.default.object().allow(null),
         });
     }
