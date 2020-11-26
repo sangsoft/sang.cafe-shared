@@ -27,6 +27,7 @@ export interface IUser {
   type?: string;
   roles?: Role[];
   identity?: string;
+  note?: string;
 }
 
 export class User extends Model {
@@ -50,6 +51,7 @@ export class User extends Model {
   type?: string;
   roles?: Role[];
   identity?: string;
+  note?: string;
   constructor(obj: IUser) {
     super();
     Object.assign(this, obj);
