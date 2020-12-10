@@ -22,8 +22,11 @@ class User extends Model_1.Model {
         Object.assign(this, obj);
         this.roles = (obj.roles || []).map(role => new Role_1.Role(role));
     }
+    isSuperAdmin() {
+        return (this.roles || []).some((role) => role.superadmin);
+    }
     can(action) {
-        for (const role of this.roles) {
+        for (const role of (this.roles || [])) {
             if (role.can(action)) {
                 return true;
             }

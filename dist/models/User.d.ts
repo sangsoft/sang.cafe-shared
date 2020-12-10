@@ -49,6 +49,7 @@ export declare class User extends Model {
     identity?: string;
     note?: string;
     constructor(obj: IUser);
+    isSuperAdmin(): boolean;
     can(action: string): boolean;
     getPhotoUrl(): string;
     createSchema(): any;

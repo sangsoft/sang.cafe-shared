@@ -58,8 +58,12 @@ export class User extends Model {
     this.roles = (obj.roles || []).map(role => new Role(role))
   }
 
+  isSuperAdmin(): boolean {
+    return (this.roles || []).some((role) => role.superadmin);
+  }
+
   can(action: string): boolean {
-    for (const role of this.roles) {
+    for (const role of (this.roles || [])) {
       if (role.can(action)) {
         return true;
       }
