@@ -28,6 +28,9 @@ export interface IRestaurant {
   district: string;
   area: number;
   frontWidth: number;
+  shortCode?: string;
+  createdById?: string;
+
   // Renting
   monthlyRent?: number;
   contractTimeLeft?: number;
@@ -95,6 +98,8 @@ export class Restaurant extends Model {
   public imageResized?: boolean;
   public bannerPhotoUrl?: string | Photo;
   public slug?: string;
+  public shortCode?: string;
+  public createdById?: string;
 
   public landOwnerPhoneNumber?: string
   public monthlyRent?: number;
@@ -117,6 +122,9 @@ export class Restaurant extends Model {
     }
 
     this.photos = this.photos ? this.photos.filter(_ => !!_) : [];
+    if (!this.createdById) {
+      this.createdById = this.ownerId;
+    }
   }
 
   getThumpObj(photo: string | Photo): string | Photo {
@@ -267,6 +275,8 @@ export class Restaurant extends Model {
       'privateContactPerson': Joi.string(),
       'brokerage': Joi.boolean(),
 
+      'createdById': Joi.string().allow(null),
+      'shortCode': Joi.string().allow(null),
       'ownerId': Joi.string(),
       'slug': Joi.string(),
       'place': Joi.object(),
@@ -275,8 +285,6 @@ export class Restaurant extends Model {
       'updatedAt': Joi.object(),
       'approved': Joi.boolean(),
       'sold': Joi.boolean(),
-
-
     })
   }
 
@@ -293,6 +301,7 @@ export class Restaurant extends Model {
     delete obj.ad;
     delete obj.show;
     delete obj.imageResized;
+    delete obj.createdById;
 
     return obj;
   }

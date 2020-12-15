@@ -22,6 +22,8 @@ export interface IRestaurant {
     district: string;
     area: number;
     frontWidth: number;
+    shortCode?: string;
+    createdById?: string;
     monthlyRent?: number;
     contractTimeLeft?: number;
     levels?: number;
@@ -81,6 +83,8 @@ export declare class Restaurant extends Model {
     imageResized?: boolean;
     bannerPhotoUrl?: string | Photo;
     slug?: string;
+    shortCode?: string;
+    createdById?: string;
     landOwnerPhoneNumber?: string;
     monthlyRent?: number;
     contractTimeLeft?: number;

@@ -20,6 +20,9 @@ class Restaurant extends Model_1.Model {
             Object.assign(this, obj);
         }
         this.photos = this.photos ? this.photos.filter(_ => !!_) : [];
+        if (!this.createdById) {
+            this.createdById = this.ownerId;
+        }
     }
     getThumpObj(photo) {
         if (!photo) {
@@ -146,6 +149,8 @@ class Restaurant extends Model_1.Model {
             'privateContact': joi_1.default.string(),
             'privateContactPerson': joi_1.default.string(),
             'brokerage': joi_1.default.boolean(),
+            'createdById': joi_1.default.string().allow(null),
+            'shortCode': joi_1.default.string().allow(null),
             'ownerId': joi_1.default.string(),
             'slug': joi_1.default.string(),
             'place': joi_1.default.object(),
@@ -165,6 +170,7 @@ class Restaurant extends Model_1.Model {
         delete obj.ad;
         delete obj.show;
         delete obj.imageResized;
+        delete obj.createdById;
         return obj;
     }
 }
