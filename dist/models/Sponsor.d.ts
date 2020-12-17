@@ -1,4 +1,5 @@
 export interface ISponsor {
+    uid?: string;
     billId: string;
     createdAt: any;
     expiredAt: any;
