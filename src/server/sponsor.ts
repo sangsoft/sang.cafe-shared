@@ -23,23 +23,22 @@ export async function getSponsors({ plans, limit }, ctx: ServerContext) {
     .collection('SPONSORS')
     .where('expiredAt', '>', admin.firestore.Timestamp.now())
     .where('planId', 'in', plans)
+    .where('disabled', '==', false)
     .orderBy('expiredAt', 'desc')
     .get()
-    .then((snap) => {
-      let newSponsors = [];
-      snap.forEach((doc) => {
-        // And get its value
-        newSponsors.push(doc);
-      })
-      return newSponsors;
+    .then((snap: admin.firestore.QuerySnapshot) => {
+      return snap.docs;
     });
-  sponsors = sponsors.reduce((result, sponsor) => {
-    if (result.find(s => s.get('restaurantId') === sponsor.get('restaurantId'))) {
-      return result;
-    }
 
-    return result.concat(sponsor);
-  }, []);
+  // filter out duplicated sponsors
+  sponsors = sponsors
+    .reduce((result, sponsor) => {
+      if (result.find(s => s.get('restaurantId') === sponsor.get('restaurantId'))) {
+        return result;
+      }
+
+      return result.concat(sponsor);
+    }, []);
 
   let results = [];
   do {
@@ -57,11 +56,17 @@ export async function getSponsors({ plans, limit }, ctx: ServerContext) {
 }
 
 export async function getBannerSponsors(options: any, ctx: ServerContext) {
-  let sponsors = await getSponsors({
-    plans: ['sponsor_top_banner', 'sponsor_advance', 'sponsor_automatic'],
-    limit: ITEM_PER_PAGE_FULL
+  let sponsorAutomatics = await getSponsors({
+    plans: ['sponsor_automatic'],
+    limit: 8
   }, ctx);
-  return provideSponsorsWithRestaurantData({ sponsors }, ctx);
+  let sponsors = await getSponsors({
+    plans: ['sponsor_top_banner', 'sponsor_advance'],
+    limit: 16
+  }, ctx);
+  return provideSponsorsWithRestaurantData({
+    sponsors: sponsorAutomatics.concat(sponsors)
+  }, ctx);
 }
 
 export async function getRightColSponsors(_: any, ctx: any) {

@@ -118,7 +118,7 @@ exports.SUPPORTED_TYPES = {
     ['for_rent']: {
         text: 'Mặt bằng',
         value: 'for_rent',
-        topPage: false
+        topPage: true
     },
     [exports.RESTAURANT_TYPES.convenience_store]: {
         text: 'Tiệm tạp hóa',
@@ -153,7 +153,7 @@ exports.SUPPORTED_TYPES = {
     ['other']: {
         text: 'Khác',
         value: 'other',
-        topPage: true
+        topPage: false
     }
 };
 //# sourceMappingURL=Enums.js.map

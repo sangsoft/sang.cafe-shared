@@ -41,17 +41,15 @@ function getSponsors({ plans, limit }, ctx) {
             .collection('SPONSORS')
             .where('expiredAt', '>', admin.firestore.Timestamp.now())
             .where('planId', 'in', plans)
+            .where('disabled', '==', false)
             .orderBy('expiredAt', 'desc')
             .get()
             .then((snap) => {
-            let newSponsors = [];
-            snap.forEach((doc) => {
-                // And get its value
-                newSponsors.push(doc);
-            });
-            return newSponsors;
+            return snap.docs;
         });
-        sponsors = sponsors.reduce((result, sponsor) => {
+        // filter out duplicated sponsors
+        sponsors = sponsors
+            .reduce((result, sponsor) => {
             if (result.find(s => s.get('restaurantId') === sponsor.get('restaurantId'))) {
                 return result;
             }
@@ -75,11 +73,17 @@ function getSponsors({ plans, limit }, ctx) {
 exports.getSponsors = getSponsors;
 function getBannerSponsors(options, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
-        let sponsors = yield getSponsors({
-            plans: ['sponsor_top_banner', 'sponsor_advance', 'sponsor_automatic'],
-            limit: constants_1.ITEM_PER_PAGE_FULL
+        let sponsorAutomatics = yield getSponsors({
+            plans: ['sponsor_automatic'],
+            limit: 8
         }, ctx);
-        return provideSponsorsWithRestaurantData({ sponsors }, ctx);
+        let sponsors = yield getSponsors({
+            plans: ['sponsor_top_banner', 'sponsor_advance'],
+            limit: 16
+        }, ctx);
+        return provideSponsorsWithRestaurantData({
+            sponsors: sponsorAutomatics.concat(sponsors)
+        }, ctx);
     });
 }
 exports.getBannerSponsors = getBannerSponsors;

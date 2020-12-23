@@ -117,7 +117,7 @@ export const SUPPORTED_TYPES: { [key: string]: { text: string, value: string, to
   ['for_rent']: {
     text: 'Mặt bằng',
     value: 'for_rent',
-    topPage: false
+    topPage: true
   },
   [RESTAURANT_TYPES.convenience_store]: {
     text: 'Tiệm tạp hóa',
@@ -152,6 +152,6 @@ export const SUPPORTED_TYPES: { [key: string]: { text: string, value: string, to
   ['other']: {
     text: 'Khác',
     value: 'other',
-    topPage: true
+    topPage: false
   }
 }
