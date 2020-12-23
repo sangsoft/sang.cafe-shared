@@ -1,6 +1,7 @@
 import { IUser } from "./User";
 import { Model } from "./Model";
 import Joi from '@hapi/joi';
+import { Photo } from "./Photo";
 
 export interface IComment {
   uid?: string;
@@ -8,6 +9,7 @@ export interface IComment {
   createdByUid: string;
   createdByUser?: IUser;
   createdAt?: any;
+  photos?: Photo[];
 }
 
 export class Comment extends Model {
@@ -16,6 +18,7 @@ export class Comment extends Model {
   createdByUid: string;
   createdByUser?: IUser;
   createdAt?: any;
+  photos?: Photo[];
 
   constructor(obj?: IComment) {
     super();
