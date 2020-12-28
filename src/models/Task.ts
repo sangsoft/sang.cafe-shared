@@ -1,6 +1,7 @@
 import { Model } from "./Model";
 import Joi from '@hapi/joi';
 import { IUser } from "./User";
+import { IRestaurant } from "./Restaurant";
 
 export enum TaskStatus {
   PENDING = 'pending',
@@ -29,45 +30,75 @@ export enum TaskResult {
   DEAL_FAILED_SELLER_REJECT = 'deal-failed-seller-reject',
 }
 
-export interface ITaskNote {
-  ownerId: string;
-  content: string;
-}
-
 export interface ITask {
   uid?: string;
   name: string;
   description: string;
-  restaurantId?: string;
-  assigneeId?: string;
+  
   props?: string[];
-  notes?: ITaskNote[];
   status: TaskStatus;
   type: TaskType;
   priority: number;
+
+  assigneeId?: string;
   assignee?: IUser;
-  seller?: IUser;
+
+  restaurantId?: string;
+  restaurant?: IRestaurant;
+
+  buyerId?: string;
   buyer?: IUser;
+  buyerRequirement?: string
+
+  sellerId?: string;
+  seller?: IUser;
+  sellerRequirement?: string
+
+  agentId?: string;
+  agent?: IUser;
+
+  createdById?: String;
+  createdBy?: IUser;
+
   result?: TaskResult;
+
+  appoinment?: Date[];
 }
 export class Task extends Model {
   uid?: string;
   name: string;
   description: string;
-  restaurantId?: string;
-  assigneeId?: string;
-  props?: string[];
-  notes?: ITaskNote[];
-  status: TaskStatus = TaskStatus.PENDING;
+  
   createdAt: any = {};
   updatedAt: any = {};
+  props?: string[];
+  status: TaskStatus;
   type: TaskType;
   priority: number;
+
+  assigneeId?: string;
   assignee?: IUser;
-  seller?: IUser;
+
+  restaurantId?: string;
+  restaurant?: IRestaurant;
+
+  buyerId?: string;
   buyer?: IUser;
+  buyerRequirement?: string
+
+  sellerId?: string;
+  seller?: IUser;
+  sellerRequirement?: string
+
+  agentId?: string;
   agent?: IUser;
+
+  createdById?: String;
+  createdBy?: IUser;
+
   result?: TaskResult;
+
+  appoinment?: Date[];
 
   constructor(obj?: ITask) {
     super();

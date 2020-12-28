@@ -33,7 +33,6 @@ var TaskResult;
 class Task extends Model_1.Model {
     constructor(obj) {
         super();
-        this.status = TaskStatus.PENDING;
         this.createdAt = {};
         this.updatedAt = {};
         if (obj) {
