@@ -43,7 +43,7 @@ export interface ITask {
     createdById?: String;
     createdBy?: IUser;
     result?: TaskResult;
-    appoinment?: Date[];
+    appointment?: Date[];
 }
 export declare class Task extends Model {
     uid?: string;
@@ -70,7 +70,7 @@ export declare class Task extends Model {
     createdById?: String;
     createdBy?: IUser;
     result?: TaskResult;
-    appoinment?: Date[];
+    appointment?: Date[];
     constructor(obj?: ITask);
     createSchema(): any;
     onPrepareData(): any;

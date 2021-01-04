@@ -62,7 +62,7 @@ export interface ITask {
 
   result?: TaskResult;
 
-  appoinment?: Date[];
+  appointment?: Date[];
 }
 export class Task extends Model {
   uid?: string;
@@ -98,7 +98,7 @@ export class Task extends Model {
 
   result?: TaskResult;
 
-  appoinment?: Date[];
+  appointment?: Date[];
 
   constructor(obj?: ITask) {
     super();
