@@ -20,6 +20,7 @@ export interface IRestaurant {
   // Level -1
   photos: (string | Photo)[];
   name: string;
+  title?: string;
   description: string;
   price: number;
   type: string;
@@ -30,6 +31,8 @@ export interface IRestaurant {
   frontWidth: number;
   shortCode?: string;
   createdById?: string;
+  numberOfFronts?: number;
+  depth?: number;
 
   // Renting
   monthlyRent?: number;
@@ -67,6 +70,7 @@ export interface IRestaurant {
 
 export class Restaurant extends Model {
   public name: string;
+  public title?: string;
   public description: string;
   public price: number;
   public contact: string;
@@ -100,6 +104,8 @@ export class Restaurant extends Model {
   public slug?: string;
   public shortCode?: string;
   public createdById?: string;
+  public numberOfFronts?: number;
+  public depth?: number;
 
   public landOwnerPhoneNumber?: string
   public monthlyRent?: number;

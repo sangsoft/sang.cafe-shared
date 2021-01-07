@@ -14,6 +14,7 @@ export interface IRestaurant {
     slug?: string;
     photos: (string | Photo)[];
     name: string;
+    title?: string;
     description: string;
     price: number;
     type: string;
@@ -24,6 +25,8 @@ export interface IRestaurant {
     frontWidth: number;
     shortCode?: string;
     createdById?: string;
+    numberOfFronts?: number;
+    depth?: number;
     monthlyRent?: number;
     contractTimeLeft?: number;
     levels?: number;
@@ -52,6 +55,7 @@ export interface IRestaurant {
 }
 export declare class Restaurant extends Model {
     name: string;
+    title?: string;
     description: string;
     price: number;
     contact: string;
@@ -85,6 +89,8 @@ export declare class Restaurant extends Model {
     slug?: string;
     shortCode?: string;
     createdById?: string;
+    numberOfFronts?: number;
+    depth?: number;
     landOwnerPhoneNumber?: string;
     monthlyRent?: number;
     contractTimeLeft?: number;
