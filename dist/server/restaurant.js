@@ -215,7 +215,10 @@ function getRestaurantsByCursor(options, ctx) {
         return query
             .get()
             .then((snap) => {
-            return snap.docs.map(doc => restaurantFromSnap(doc));
+            return snap.docs.map(doc => {
+                const restaurant = restaurantFromSnap(doc);
+                return view_level_1.removeLevelSpecificData({ user: null, restaurant });
+            });
         });
     });
 }

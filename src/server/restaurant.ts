@@ -198,7 +198,10 @@ export async function getRestaurantsByCursor(options: any, ctx: any) {
   return query
     .get()
     .then((snap: admin.firestore.QuerySnapshot) => {
-      return snap.docs.map(doc => restaurantFromSnap(doc));
+      return snap.docs.map(doc => {
+        const restaurant = restaurantFromSnap(doc);
+        return removeLevelSpecificData({ user: null, restaurant });
+      });
     });
 }
 
