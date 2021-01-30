@@ -152,7 +152,10 @@ function getListing({ options, user }, ctx) {
         return query
             .get()
             .then((snap) => {
-            return snap.docs.map(doc => restaurantFromSnap(doc));
+            return snap.docs.map(doc => {
+                const restaurant = restaurantFromSnap(doc);
+                return view_level_1.removeLevelSpecificData({ user, restaurant });
+            });
         })
             .then((restaurants) => ownerId ? provideSavedStatus({ ownerId, restaurants }, ctx) : restaurants);
     });

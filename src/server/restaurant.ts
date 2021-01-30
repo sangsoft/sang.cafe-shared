@@ -138,7 +138,10 @@ export async function getListing({ options, user }: any, ctx: ServerContext) {
   return query
     .get()
     .then((snap: admin.firestore.QuerySnapshot) => {
-      return snap.docs.map(doc => restaurantFromSnap(doc));
+      return snap.docs.map(doc => {
+        const restaurant = restaurantFromSnap(doc);
+        return removeLevelSpecificData({ user, restaurant });
+      });
     })
     .then((restaurants: any) => ownerId ? provideSavedStatus({ ownerId, restaurants }, ctx) : restaurants);
 }
