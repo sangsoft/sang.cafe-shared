@@ -25,6 +25,10 @@ export function removeLevelSpecificData({ user, restaurant }) {
       delete newRestaurant[keyName]
     });
   });
+
+  ['privateAddress', 'privateContact', 'privateContactPerson'].forEach((key) => {
+    delete newRestaurant[key];
+  })
   return newRestaurant;
 }
 
