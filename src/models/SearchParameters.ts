@@ -6,8 +6,10 @@ export interface SearchParameters {
   page?: number;
   priceFrom?: number;
   priceTo?: number;
+  priceRange?: number;
   areaFrom?: number;
   areaTo?: number;
+  areaRange?: number;
   levelsFrom?: number;
   levelsTo?: number;
   frontWidthFrom?: number;
