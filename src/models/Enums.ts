@@ -149,6 +149,11 @@ export const SUPPORTED_TYPES: { [key: string]: { text: string, value: string, to
     value: RESTAURANT_TYPES.hair_care,
     topPage: true
   },
+  ['hotel']: {
+    text: 'Khách sạn',
+    value: 'hotel',
+    topPage: false
+  },
   ['other']: {
     text: 'Khác',
     value: 'other',

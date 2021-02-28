@@ -150,6 +150,11 @@ exports.SUPPORTED_TYPES = {
         value: exports.RESTAURANT_TYPES.hair_care,
         topPage: true
     },
+    ['hotel']: {
+        text: 'Khách sạn',
+        value: 'hotel',
+        topPage: false
+    },
     ['other']: {
         text: 'Khác',
         value: 'other',
