@@ -1,6 +1,7 @@
 import { Model } from "./Model";
 import { IUser } from "./User";
 import { IRestaurant } from "./Restaurant";
+import { SearchMatch } from "./SearchMatch";
 export declare enum TaskStatus {
     PENDING = "pending",
     ONGOING = "ongoing",
@@ -44,6 +45,7 @@ export interface ITask {
     createdBy?: IUser;
     result?: TaskResult;
     appointment?: Date[];
+    match?: SearchMatch;
 }
 export declare class Task extends Model {
     uid?: string;
@@ -71,6 +73,7 @@ export declare class Task extends Model {
     createdBy?: IUser;
     result?: TaskResult;
     appointment?: Date[];
+    match?: SearchMatch;
     constructor(obj?: ITask);
     createSchema(): any;
     onPrepareData(): any;

@@ -2,6 +2,7 @@ import { Model } from "./Model";
 import Joi from '@hapi/joi';
 import { IUser } from "./User";
 import { IRestaurant } from "./Restaurant";
+import { SearchMatch } from "./SearchMatch";
 
 export enum TaskStatus {
   PENDING = 'pending',
@@ -63,6 +64,8 @@ export interface ITask {
   result?: TaskResult;
 
   appointment?: Date[];
+
+  match?: SearchMatch;
 }
 export class Task extends Model {
   uid?: string;
@@ -99,6 +102,8 @@ export class Task extends Model {
   result?: TaskResult;
 
   appointment?: Date[];
+
+  match?: SearchMatch;
 
   constructor(obj?: ITask) {
     super();
