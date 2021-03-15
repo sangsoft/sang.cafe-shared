@@ -38,6 +38,7 @@ export interface IRestaurant {
   monthlyRent?: number;
   contractTimeLeft?: number;
   levels?: number;
+  contractEnd?: { month: number, year: number };
 
   // Level 0
   contact: string;
@@ -45,7 +46,7 @@ export interface IRestaurant {
   landOwnerPhoneNumber?: string;
 
   // Level 1
-  since: number;
+  since?: number | { month: number, year: number };
   revenue: number;
   grossProfit: number;
   menuPhotoUrl: string | Photo;
@@ -88,7 +89,7 @@ export class Restaurant extends Model {
   public approved: boolean = false;
   public sold: boolean = false;
   public doc?: any;
-  public since: number = new Date().getFullYear();
+  public since?: number | { month: number, year: number } = new Date().getFullYear();
   public revenue: number;
   public grossProfit: number;
   public menuPhotoUrl: string | Photo;
@@ -110,6 +111,8 @@ export class Restaurant extends Model {
   public landOwnerPhoneNumber?: string
   public monthlyRent?: number;
   public contractTimeLeft?: number;
+  public contractEnd?: { month: number, year: number };
+
   public levels?: number;
   public matches?: {
     fieldMatchingCount: number;
