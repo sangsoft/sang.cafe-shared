@@ -30,10 +30,17 @@ export interface IRestaurant {
     monthlyRent?: number;
     contractTimeLeft?: number;
     levels?: number;
+    contractEnd?: {
+        month: number;
+        year: number;
+    };
     contact: string;
     contactPerson: string;
     landOwnerPhoneNumber?: string;
-    since: number;
+    since?: number | {
+        month: number;
+        year: number;
+    };
     revenue: number;
     grossProfit: number;
     menuPhotoUrl: string | Photo;
@@ -73,7 +80,10 @@ export declare class Restaurant extends Model {
     approved: boolean;
     sold: boolean;
     doc?: any;
-    since: number;
+    since?: number | {
+        month: number;
+        year: number;
+    };
     revenue: number;
     grossProfit: number;
     menuPhotoUrl: string | Photo;
@@ -94,6 +104,10 @@ export declare class Restaurant extends Model {
     landOwnerPhoneNumber?: string;
     monthlyRent?: number;
     contractTimeLeft?: number;
+    contractEnd?: {
+        month: number;
+        year: number;
+    };
     levels?: number;
     matches?: {
         fieldMatchingCount: number;
