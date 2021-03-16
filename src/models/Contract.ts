@@ -5,7 +5,9 @@ export interface IContract {
   agentId?: string,
   phoneNumber?: string,
   status: 'pending' | 'rejected' | 'confirmed',
-  type: 'brokerage'
+  type: 'brokerage',
+  createdAt: any,
+  respondedAt: any,
 }
 
 export const ContractTypes = {

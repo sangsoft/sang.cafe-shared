@@ -6,6 +6,8 @@ export interface IContract {
     phoneNumber?: string;
     status: 'pending' | 'rejected' | 'confirmed';
     type: 'brokerage';
+    createdAt: any;
+    respondedAt: any;
 }
 export declare const ContractTypes: {
     BROKERAGE: string;
