@@ -12,6 +12,8 @@ export interface IBill {
   total: number;
   ownerId?: string;
   shortCode?: string;
+  contractId?: string;
+  contractStatus?: string;
 }
 
 export class Bill extends Model {
@@ -24,6 +26,8 @@ export class Bill extends Model {
   public total: number;
   public ownerId?: string;
   public shortCode?: string;
+  public contractId?: string;
+  public contractStatus?: string;
 
   constructor(obj: IBill) {
     super();

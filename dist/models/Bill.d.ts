@@ -10,6 +10,8 @@ export interface IBill {
     total: number;
     ownerId?: string;
     shortCode?: string;
+    contractId?: string;
+    contractStatus?: string;
 }
 export declare class Bill extends Model {
     uid?: string;
@@ -21,6 +23,8 @@ export declare class Bill extends Model {
     total: number;
     ownerId?: string;
     shortCode?: string;
+    contractId?: string;
+    contractStatus?: string;
     constructor(obj: IBill);
     createSchema(): any;
     onPrepareData(): this;
