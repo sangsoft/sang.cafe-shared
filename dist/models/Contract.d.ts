@@ -1,5 +1,6 @@
 export interface IContract {
     uid: string;
+    billPath: string;
     billId: string;
     customerId: string;
     itemId: number;
