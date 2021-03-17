@@ -1,1 +1,1 @@
-{"version":3,"file":"Contract.js","sourceRoot":"","sources":["../../src/models/Contract.ts"],"names":[],"mappings":";;AAYa,QAAA,aAAa,GAAG;IAC3B,SAAS,EAAE,WAAW;CACvB,CAAC;AAEW,QAAA,cAAc,GAAG;IAC5B,OAAO,EAAE,SAAS;IAClB,QAAQ,EAAE,UAAU;IACpB,SAAS,EAAE,WAAW;CACvB,CAAC"}
+{"version":3,"file":"Contract.js","sourceRoot":"","sources":["../../src/models/Contract.ts"],"names":[],"mappings":";;AAaa,QAAA,aAAa,GAAG;IAC3B,SAAS,EAAE,WAAW;CACvB,CAAC;AAEW,QAAA,cAAc,GAAG;IAC5B,OAAO,EAAE,SAAS;IAClB,QAAQ,EAAE,UAAU;IACpB,SAAS,EAAE,WAAW;CACvB,CAAC"}

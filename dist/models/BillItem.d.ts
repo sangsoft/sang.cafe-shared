@@ -7,6 +7,8 @@ export declare class IBillItem {
     planId: string;
     restaurantId?: string;
     brokerageValue?: number;
+    contractId?: string;
+    contractStatus?: string;
 }
 export declare class BillItem {
     description: string;
@@ -17,5 +19,7 @@ export declare class BillItem {
     planId: string;
     restaurantId?: string;
     brokerageValue?: number;
+    contractId?: string;
+    contractStatus?: string;
     constructor(obj: IBillItem);
 }

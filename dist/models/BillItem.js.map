@@ -1,1 +1,1 @@
-{"version":3,"file":"BillItem.js","sourceRoot":"","sources":["../../src/models/BillItem.ts"],"names":[],"mappings":";;AAAA,MAAa,SAAS;CASrB;AATD,8BASC;AAED,MAAa,QAAQ;IAUnB,YAAY,GAAc;QACxB,MAAM,CAAC,MAAM,CAAC,IAAI,EAAE,GAAG,CAAC,CAAC;IAC3B,CAAC;CACF;AAbD,4BAaC"}
+{"version":3,"file":"BillItem.js","sourceRoot":"","sources":["../../src/models/BillItem.ts"],"names":[],"mappings":";;AAAA,MAAa,SAAS;CAWrB;AAXD,8BAWC;AAED,MAAa,QAAQ;IAanB,YAAY,GAAc;QACxB,MAAM,CAAC,MAAM,CAAC,IAAI,EAAE,GAAG,CAAC,CAAC;IAC3B,CAAC;CACF;AAhBD,4BAgBC"}

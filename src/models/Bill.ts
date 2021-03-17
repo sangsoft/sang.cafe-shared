@@ -26,8 +26,6 @@ export class Bill extends Model {
   public total: number;
   public ownerId?: string;
   public shortCode?: string;
-  public contractId?: string;
-  public contractStatus?: string;
 
   constructor(obj: IBill) {
     super();

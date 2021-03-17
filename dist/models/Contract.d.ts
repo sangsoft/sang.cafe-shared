@@ -2,6 +2,7 @@ export interface IContract {
     uid: string;
     billId: string;
     customerId: string;
+    itemId: number;
     agentId?: string;
     phoneNumber?: string;
     status: 'pending' | 'rejected' | 'confirmed';
