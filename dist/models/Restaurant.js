@@ -82,7 +82,7 @@ class Restaurant extends Model_1.Model {
     }
     getBannerPhotoUrl() {
         if (this.bannerPhotoUrl) {
-            return this.getUrl(this.bannerPhotoUrl);
+            return this.getThumbUrl(this.bannerPhotoUrl);
         }
         else {
             return this.getMainPhotoThumbUrl();

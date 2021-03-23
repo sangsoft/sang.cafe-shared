@@ -211,7 +211,7 @@ export class Restaurant extends Model {
 
   getBannerPhotoUrl(): string {
     if (this.bannerPhotoUrl) {
-      return this.getUrl(this.bannerPhotoUrl);
+      return this.getThumbUrl(this.bannerPhotoUrl);
     } else {
       return this.getMainPhotoThumbUrl();
     }
