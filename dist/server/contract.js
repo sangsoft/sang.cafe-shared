@@ -22,8 +22,13 @@ function getContractsAndBills({ contractId }, ctx) {
             .doc(contract.billPath)
             .get()
             .then(snap => data_1.objFromSnap(snap));
+        const restaurant = yield firebase_1.firestore()
+            .collection('RESTAURANTS')
+            .doc(bill.items[contract.itemId].restaurantId)
+            .get()
+            .then(snap => data_1.objFromSnap(snap));
         return {
-            contract, bill
+            contract, bill, restaurant
         };
     });
 }
