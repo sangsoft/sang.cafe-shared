@@ -144,6 +144,25 @@ export class Restaurant extends Model {
       return photo;
     }
 
+    if (photo.sml) {
+      return photo.sml
+    }
+
+    if (photo.med) {
+      return photo.med
+    }
+
+    return photo;
+  }
+
+  getMedObj(photo: string | Photo): string | Photo {
+    if (!photo) {
+      return '';
+    }
+    if (typeof photo === 'string') {
+      return photo;
+    }
+
     if (photo.med) {
       return photo.med
     }
@@ -191,6 +210,14 @@ export class Restaurant extends Model {
     return this.getUrl(this.getThumpObj(photo));
   }
 
+  getMedUrl(photo: string | Photo): string {
+    return this.getUrl(this.getMedObj(photo));
+  }
+
+  getMainPhotoMedUrl(): string {
+    return this.getMedUrl(this.getMainPhotoObj()) || this.getMedUrl(this.menuPhotoUrl) || this.getUrl(this.menuPhotoUrl);
+  }
+
   getMainThumbHeight(): number {
     let mainPhoto = this.getMainPhotoObj();
     let thumb = this.getThumpObj(mainPhoto);
@@ -211,9 +238,9 @@ export class Restaurant extends Model {
 
   getBannerPhotoUrl(): string {
     if (this.bannerPhotoUrl) {
-      return this.getThumbUrl(this.bannerPhotoUrl);
+      return this.getMedUrl(this.bannerPhotoUrl);
     } else {
-      return this.getMainPhotoThumbUrl();
+      return this.getMainPhotoMedUrl();
     }
   }
 

@@ -31,6 +31,21 @@ class Restaurant extends Model_1.Model {
         if (typeof photo === 'string') {
             return photo;
         }
+        if (photo.sml) {
+            return photo.sml;
+        }
+        if (photo.med) {
+            return photo.med;
+        }
+        return photo;
+    }
+    getMedObj(photo) {
+        if (!photo) {
+            return '';
+        }
+        if (typeof photo === 'string') {
+            return photo;
+        }
         if (photo.med) {
             return photo.med;
         }
@@ -66,6 +81,12 @@ class Restaurant extends Model_1.Model {
     getThumbUrl(photo) {
         return this.getUrl(this.getThumpObj(photo));
     }
+    getMedUrl(photo) {
+        return this.getUrl(this.getMedObj(photo));
+    }
+    getMainPhotoMedUrl() {
+        return this.getMedUrl(this.getMainPhotoObj()) || this.getMedUrl(this.menuPhotoUrl) || this.getUrl(this.menuPhotoUrl);
+    }
     getMainThumbHeight() {
         let mainPhoto = this.getMainPhotoObj();
         let thumb = this.getThumpObj(mainPhoto);
@@ -82,10 +103,10 @@ class Restaurant extends Model_1.Model {
     }
     getBannerPhotoUrl() {
         if (this.bannerPhotoUrl) {
-            return this.getThumbUrl(this.bannerPhotoUrl);
+            return this.getMedUrl(this.bannerPhotoUrl);
         }
         else {
-            return this.getMainPhotoThumbUrl();
+            return this.getMainPhotoMedUrl();
         }
     }
     createSchema() {

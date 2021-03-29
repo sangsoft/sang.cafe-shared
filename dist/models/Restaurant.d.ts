@@ -120,10 +120,13 @@ export declare class Restaurant extends Model {
     brokerage?: boolean;
     constructor(obj?: IRestaurant);
     getThumpObj(photo: string | Photo): string | Photo;
+    getMedObj(photo: string | Photo): string | Photo;
     getMainPhotoObj(): string | Photo;
     getMainPhotoUrl(): string;
     getMainPhotoThumbUrl(): string;
     getThumbUrl(photo: string | Photo): string;
+    getMedUrl(photo: string | Photo): string;
+    getMainPhotoMedUrl(): string;
     getMainThumbHeight(): number;
     getBannerPhotoUrl(): string;
     createSchema(): any;
