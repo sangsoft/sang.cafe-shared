@@ -1,5 +1,5 @@
 import { Photo } from "./Photo";
-
+import { parse, stringify } from 'querystring'
 export abstract class Model {
   private schema: any;
   public path: string;
@@ -29,13 +29,25 @@ export abstract class Model {
   }
 
   getUrl(photo: string | Photo): string {
+    let url = '';
     if (typeof photo === 'string') {
-      return photo;
+      url = photo;
     } else if (photo) {
-      return photo.url;
-    } else {
-      return '';
+      url = photo.url;
     }
+
+    if (url === '') {
+      return url;
+    }
+
+    let urlObj = new URL(url);
+    const query = parse(urlObj.search);
+    if (!query.alt) {
+      query.alt = 'media';
+    }
+    urlObj.search = stringify(query);
+
+    return urlObj.toString();
   }
 
   toDataWithTimestamp(firebase: any, ownerId: string): any {
