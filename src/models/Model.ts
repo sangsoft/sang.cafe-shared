@@ -38,7 +38,6 @@ export abstract class Model {
     }
   }
 
-
   toDataWithTimestamp(firebase: any, ownerId: string): any {
     let obj = this.toData();
 
