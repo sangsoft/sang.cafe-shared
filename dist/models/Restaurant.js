@@ -109,6 +109,14 @@ class Restaurant extends Model_1.Model {
             return this.getMainPhotoMedUrl();
         }
     }
+    getSmallBannerPhotoUrl() {
+        if (this.bannerPhotoUrl) {
+            return this.getThumbUrl(this.bannerPhotoUrl);
+        }
+        else {
+            return this.getMainPhotoThumbUrl();
+        }
+    }
     createSchema() {
         const requiredString = joi_1.default.string()
             .required();

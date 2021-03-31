@@ -129,6 +129,7 @@ export declare class Restaurant extends Model {
     getMainPhotoMedUrl(): string;
     getMainThumbHeight(): number;
     getBannerPhotoUrl(): string;
+    getSmallBannerPhotoUrl(): string;
     createSchema(): any;
     onPrepareData(): any;
 }

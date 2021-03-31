@@ -17,6 +17,9 @@ export declare function getRestaurantsByPage(options: any, ctx: any): Promise<{
     nbPages: any;
     exhaustiveNbHits: any;
 }>;
-export declare function getRestaurantsByCursor(options: any, ctx: any): Promise<any>;
+export declare function getRestaurantsByCursor(options: {
+    after: number;
+    before: number;
+}, ctx: any): Promise<any>;
 export declare function getRestaurants(options: any, ctx: any): Promise<any>;
 export declare function getAllRestaurants(options: any, ctx: ServerContext): Promise<any>;

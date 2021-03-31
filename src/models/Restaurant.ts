@@ -244,6 +244,14 @@ export class Restaurant extends Model {
     }
   }
 
+  getSmallBannerPhotoUrl(): string {
+    if (this.bannerPhotoUrl) {
+      return this.getThumbUrl(this.bannerPhotoUrl);
+    } else {
+      return this.getMainPhotoThumbUrl();
+    }
+  }
+
   createSchema() {
     const requiredString = Joi.string()
       .required()
