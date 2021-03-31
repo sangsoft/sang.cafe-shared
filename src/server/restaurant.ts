@@ -173,7 +173,7 @@ export async function getRestaurantsByPage(options: any, ctx: any) {
   return searchRestaurant({ page: options.page }, ctx);
 }
 
-export async function getRestaurantsByCursor(options: any, ctx: any) {
+export async function getRestaurantsByCursor(options: { after: number, before: number }, ctx: any) {
   let query = firestore()
     .collection('RESTAURANTS')
     .where('show', '==', true)
