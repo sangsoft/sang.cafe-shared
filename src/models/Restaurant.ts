@@ -67,6 +67,12 @@ export interface IRestaurant {
   privateContact?: string;
   privateContactPerson?: string;
   brokerage?: boolean;
+  transactionInformation?: {
+    buyerPhoneNumber?: string;
+    transactionChannel?: string;
+    transactionDate?: Date;
+    transactionValue?: number;
+  }
 }
 
 export class Restaurant extends Model {
@@ -123,6 +129,13 @@ export class Restaurant extends Model {
   public privateContact?: string;
   public privateContactPerson?: string;
   public brokerage?: boolean;
+  public transactionInformation?: {
+    buyerPhoneNumber?: string;
+    transactionChannel?: string;
+    transactionDate?: Date;
+    transactionValue?: number;
+  }
+
 
   constructor(obj?: IRestaurant) {
     super();

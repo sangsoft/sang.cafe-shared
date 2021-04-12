@@ -59,6 +59,12 @@ export interface IRestaurant {
     privateContact?: string;
     privateContactPerson?: string;
     brokerage?: boolean;
+    transactionInformation?: {
+        buyerPhoneNumber?: string;
+        transactionChannel?: string;
+        transactionDate?: Date;
+        transactionValue?: number;
+    };
 }
 export declare class Restaurant extends Model {
     name: string;
@@ -118,6 +124,12 @@ export declare class Restaurant extends Model {
     privateContact?: string;
     privateContactPerson?: string;
     brokerage?: boolean;
+    transactionInformation?: {
+        buyerPhoneNumber?: string;
+        transactionChannel?: string;
+        transactionDate?: Date;
+        transactionValue?: number;
+    };
     constructor(obj?: IRestaurant);
     getThumpObj(photo: string | Photo): string | Photo;
     getMedObj(photo: string | Photo): string | Photo;
