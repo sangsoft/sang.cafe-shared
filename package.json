@@ -17,7 +17,7 @@
     "firebase-admin": "^9.5.0",
     "google-libphonenumber": "^3.2.19",
     "jest": "^26.1.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "random": "^2.2.0",
     "shuffle-array": "^1.0.1",
     "ts-jest": "^26.1.3"
