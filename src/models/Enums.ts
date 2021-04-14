@@ -119,6 +119,11 @@ export const SUPPORTED_TYPES: { [key: string]: { text: string, value: string, to
     value: 'for_rent',
     topPage: true
   },
+  ['bar_pub']: {
+    text: 'Quán bar/Beer club',
+    value: 'bar_pub',
+    topPage: false
+  },
   [RESTAURANT_TYPES.convenience_store]: {
     text: 'Tiệm tạp hóa',
     value: RESTAURANT_TYPES.convenience_store,

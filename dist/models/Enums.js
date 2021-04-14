@@ -120,6 +120,11 @@ exports.SUPPORTED_TYPES = {
         value: 'for_rent',
         topPage: true
     },
+    ['bar_pub']: {
+        text: 'Quán bar/Beer club',
+        value: 'bar_pub',
+        topPage: false
+    },
     [exports.RESTAURANT_TYPES.convenience_store]: {
         text: 'Tiệm tạp hóa',
         value: exports.RESTAURANT_TYPES.convenience_store,
