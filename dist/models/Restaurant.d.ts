@@ -48,6 +48,7 @@ export interface IRestaurant {
     businessLicensePhotoUrl: string | Photo;
     employeeCount: number;
     hasPos: boolean;
+    hasLivingSpace: boolean;
     show?: boolean;
     imageResized?: boolean;
     matches?: {
@@ -96,6 +97,7 @@ export declare class Restaurant extends Model {
     businessLicensePhotoUrl: string | Photo;
     employeeCount: number;
     hasPos: boolean;
+    hasLivingSpace: boolean;
     ad: boolean;
     show: boolean;
     area: number;

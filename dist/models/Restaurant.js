@@ -14,6 +14,7 @@ class Restaurant extends Model_1.Model {
         this.sold = false;
         this.since = new Date().getFullYear();
         this.hasPos = false;
+        this.hasLivingSpace = false;
         this.ad = false;
         this.show = false;
         if (obj) {
