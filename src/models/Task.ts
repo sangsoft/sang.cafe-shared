@@ -27,6 +27,7 @@ export enum TaskResult {
 
   // brokerage
   DEAL_SUCCESS = 'deal-success',
+  DEAL_DEPOSITED = 'deal-deposited',
   DEAL_FAILED_BUYER_REJECT = 'deal-failed-buyer-reject',
   DEAL_FAILED_SELLER_REJECT = 'deal-failed-seller-reject',
 }
