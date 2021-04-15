@@ -10,6 +10,7 @@ var TaskStatus;
     TaskStatus["PENDING"] = "pending";
     TaskStatus["ONGOING"] = "ongoing";
     TaskStatus["COMPLETE"] = "complete";
+    TaskStatus["DEPOSITED"] = "deposited";
 })(TaskStatus = exports.TaskStatus || (exports.TaskStatus = {}));
 var TaskType;
 (function (TaskType) {
@@ -27,7 +28,6 @@ var TaskResult;
     TaskResult["BUYER_CONSIDERING"] = "buyer-considering";
     // brokerage
     TaskResult["DEAL_SUCCESS"] = "deal-success";
-    TaskResult["DEAL_DEPOSITED"] = "deal-deposited";
     TaskResult["DEAL_FAILED_BUYER_REJECT"] = "deal-failed-buyer-reject";
     TaskResult["DEAL_FAILED_SELLER_REJECT"] = "deal-failed-seller-reject";
 })(TaskResult = exports.TaskResult || (exports.TaskResult = {}));
