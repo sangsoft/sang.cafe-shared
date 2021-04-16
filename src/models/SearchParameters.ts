@@ -14,5 +14,7 @@ export interface SearchParameters {
   levelsTo?: number;
   frontWidthFrom?: number;
   frontWidthTo?: number;
+  monthlyRentalFrom?: number;
+  monthlyRentalTo?: number;
   identity: string;
 }
