@@ -34,6 +34,7 @@ export interface IRestaurant {
         month: number;
         year: number;
     };
+    minimalContractTime?: number;
     contact: string;
     contactPerson: string;
     landOwnerPhoneNumber?: string;
@@ -116,6 +117,7 @@ export declare class Restaurant extends Model {
         month: number;
         year: number;
     };
+    minimalContractTime?: number;
     levels?: number;
     matches?: {
         fieldMatchingCount: number;
