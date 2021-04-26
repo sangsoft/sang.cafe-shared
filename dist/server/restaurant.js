@@ -247,4 +247,19 @@ function getAllRestaurants(options, ctx) {
     });
 }
 exports.getAllRestaurants = getAllRestaurants;
+function getLastestRestaurants({ limit }, ctx) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return firebase_1.firestore()
+            .collection('RESTAURANTS')
+            .orderBy('createdAt', 'desc')
+            .limit(limit)
+            .get()
+            .then((snap) => {
+            return snap.docs.map((doc) => {
+                return restaurantFromSnap(doc);
+            });
+        });
+    });
+}
+exports.getLastestRestaurants = getLastestRestaurants;
 //# sourceMappingURL=restaurant.js.map

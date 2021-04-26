@@ -225,3 +225,16 @@ export async function getAllRestaurants(options: any, ctx: ServerContext) {
       })
     });
 }
+
+export async function getLastestRestaurants({ limit }: { limit: number }, ctx: ServerContext) {
+  return firestore()
+    .collection('RESTAURANTS')
+    .orderBy('createdAt', 'desc')
+    .limit(limit)
+    .get()
+    .then((snap: admin.firestore.QuerySnapshot) => {
+      return snap.docs.map((doc: admin.firestore.DocumentSnapshot) => {
+        return restaurantFromSnap(doc);
+      })
+    });
+}
