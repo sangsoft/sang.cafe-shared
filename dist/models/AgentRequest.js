@@ -9,4 +9,11 @@ exports.CompensationModel = {
     'fee-based': 'Mô hình phí',
     'commission-based': 'Mô hình hoa hồng',
 };
+var AgentRequestStatus;
+(function (AgentRequestStatus) {
+    AgentRequestStatus["PENDING"] = "pending";
+    AgentRequestStatus["APPROVED"] = "approved";
+    AgentRequestStatus["REJECTED"] = "rejected";
+    AgentRequestStatus["UNDERGOING"] = "undergoing";
+})(AgentRequestStatus = exports.AgentRequestStatus || (exports.AgentRequestStatus = {}));
 //# sourceMappingURL=AgentRequest.js.map

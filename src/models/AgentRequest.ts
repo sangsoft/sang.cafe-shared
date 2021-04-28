@@ -10,6 +10,8 @@ export interface IAgentRequest {
   bank: string;
   account: string;
   accountName: string;
+  createdAt: any;
+  status: AgentRequestStatus;
 }
 
 export const IDTypeText = {
@@ -22,3 +24,10 @@ export const CompensationModel = {
   'fee-based': 'Mô hình phí',
   'commission-based': 'Mô hình hoa hồng',
 };
+
+export enum AgentRequestStatus {
+  PENDING = 'pending',
+  APPROVED = 'approved',
+  REJECTED = 'rejected',
+  UNDERGOING = 'undergoing',
+}

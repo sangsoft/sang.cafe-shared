@@ -12,6 +12,8 @@ export interface IAgentRequest {
     bank: string;
     account: string;
     accountName: string;
+    createdAt: any;
+    status: AgentRequestStatus;
 }
 export declare const IDTypeText: {
     cccd: string;
@@ -22,3 +24,9 @@ export declare const CompensationModel: {
     'fee-based': string;
     'commission-based': string;
 };
+export declare enum AgentRequestStatus {
+    PENDING = "pending",
+    APPROVED = "approved",
+    REJECTED = "rejected",
+    UNDERGOING = "undergoing"
+}
