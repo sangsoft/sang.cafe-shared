@@ -1,0 +1,24 @@
+export interface IAgentRequest {
+    name: string;
+    typeOfID: string;
+    portrait: string;
+    idFront: string;
+    idBack: string;
+    operationAreas: {
+        district: string;
+        city: string;
+    }[];
+    policy: string;
+    bank: string;
+    account: string;
+    accountName: string;
+}
+export declare const IDTypeText: {
+    cccd: string;
+    passport: string;
+    driving_license: string;
+};
+export declare const CompensationModel: {
+    'fee-based': string;
+    'commission-based': string;
+};

@@ -6,4 +6,3 @@ export interface IDeployment {
     url: string;
   };
 }
-
