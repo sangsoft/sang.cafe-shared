@@ -11,9 +11,15 @@ export interface IAgentRequest {
   account: string;
   accountName: string;
   createdAt: any;
+  rejectedAt: any;
+  approvedAt: any;
   status: AgentRequestStatus;
   phoneNumber: string;
   email?: string;
+  approvedBy: string;
+  rejactedBy: string;
+  rejectedReason: string;
+  positions?: string[];
 }
 
 export const IDTypeText = {
