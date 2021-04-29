@@ -12,6 +12,8 @@ export interface IAgentRequest {
   accountName: string;
   createdAt: any;
   status: AgentRequestStatus;
+  phoneNumber: string;
+  email?: string;
 }
 
 export const IDTypeText = {
