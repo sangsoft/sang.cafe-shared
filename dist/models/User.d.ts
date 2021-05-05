@@ -48,6 +48,14 @@ export declare class User extends Model {
     buyer?: IUserStatus;
     seller?: IUserStatus;
     signInMetaData?: {
+        phoneNumber: string;
+        email?: string;
+        displayName?: string;
+        registerAsSeller?: boolean;
+        idNumber?: string;
+        address?: string;
+        issueDate?: string;
+        issueAuthority?: string;
         reason?: 'post' | 'view-contact';
         path?: string;
     };
