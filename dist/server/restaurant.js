@@ -251,6 +251,7 @@ function getLastestRestaurants({ limit }, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
         return firebase_1.firestore()
             .collection('RESTAURANTS')
+            .where('show', '==', true)
             .orderBy('createdAt', 'desc')
             .limit(limit)
             .get()

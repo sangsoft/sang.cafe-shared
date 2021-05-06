@@ -229,6 +229,7 @@ export async function getAllRestaurants(options: any, ctx: ServerContext) {
 export async function getLastestRestaurants({ limit }: { limit: number }, ctx: ServerContext) {
   return firestore()
     .collection('RESTAURANTS')
+    .where('show', '==', true)
     .orderBy('createdAt', 'desc')
     .limit(limit)
     .get()
