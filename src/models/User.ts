@@ -37,6 +37,9 @@ export interface IUser {
   roles?: Role[];
   identity?: string;
   note?: string;
+  idNumber?: string;
+  issueAuthority?: string;
+  issueDate?: string;
 }
 
 export class User extends Model {
@@ -70,6 +73,11 @@ export class User extends Model {
   roles?: Role[];
   identity?: string;
   note?: string;
+
+  idNumber?: string;
+  issueAuthority?: string;
+  issueDate?: string;
+
   constructor(obj: IUser) {
     super();
     Object.assign(this, obj);

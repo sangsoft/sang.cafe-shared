@@ -33,6 +33,9 @@ export interface IUser {
     roles?: Role[];
     identity?: string;
     note?: string;
+    idNumber?: string;
+    issueAuthority?: string;
+    issueDate?: string;
 }
 export declare class User extends Model {
     uid?: string;
@@ -64,6 +67,9 @@ export declare class User extends Model {
     roles?: Role[];
     identity?: string;
     note?: string;
+    idNumber?: string;
+    issueAuthority?: string;
+    issueDate?: string;
     constructor(obj: IUser);
     isSuperAdmin(): boolean;
     can(action: string): boolean;
