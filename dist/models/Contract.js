@@ -7,5 +7,6 @@ exports.ContractStatus = {
     PENDING: 'pending',
     REJECTED: 'rejected',
     CONFIRMED: 'confirmed',
+    PROOF_BYPASSED: 'proof_bypassed'
 };
 //# sourceMappingURL=Contract.js.map

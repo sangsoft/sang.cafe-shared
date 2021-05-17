@@ -10,6 +10,7 @@ export interface IContract {
   type: 'brokerage',
   createdAt: any,
   respondedAt: any,
+  proofUrl: string,
 }
 
 export const ContractTypes = {
@@ -20,4 +21,5 @@ export const ContractStatus = {
   PENDING: 'pending',
   REJECTED: 'rejected',
   CONFIRMED: 'confirmed',
+  PROOF_BYPASSED: 'proof_bypassed'
 };
