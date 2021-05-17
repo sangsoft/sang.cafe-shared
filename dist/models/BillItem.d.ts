@@ -9,6 +9,7 @@ export declare class IBillItem {
     brokerageValue?: number;
     contractId?: string;
     contractStatus?: string;
+    proofUrl?: string;
 }
 export declare class BillItem {
     description: string;
@@ -21,5 +22,6 @@ export declare class BillItem {
     brokerageValue?: number;
     contractId?: string;
     contractStatus?: string;
+    proofUrl?: string;
     constructor(obj: IBillItem);
 }

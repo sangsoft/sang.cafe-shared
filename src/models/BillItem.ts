@@ -9,6 +9,7 @@ export class IBillItem {
   brokerageValue?: number;
   contractId?: string;
   contractStatus?: string;
+  proofUrl?: string;
 }
 
 export class BillItem {
@@ -22,7 +23,7 @@ export class BillItem {
   public brokerageValue?: number;
   public contractId?: string;
   public contractStatus?: string;
-
+  public proofUrl?: string;
 
   constructor(obj: IBillItem) {
     Object.assign(this, obj);
