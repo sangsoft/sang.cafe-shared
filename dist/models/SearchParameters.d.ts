@@ -16,5 +16,6 @@ export interface SearchParameters {
     frontWidthTo?: number;
     monthlyRentalFrom?: number;
     monthlyRentalTo?: number;
+    monthlyRentalRange?: number;
     identity: string;
 }
