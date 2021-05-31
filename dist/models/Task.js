@@ -17,12 +17,17 @@ var TaskType;
     TaskType["FILL_DATA"] = "fill-data";
     TaskType["COMMUNICATE_BUYER"] = "communicate-buyer";
     TaskType["BROKERAGE"] = "brokerage";
+    TaskType["CRAWLED_DATA"] = "crawled-data";
 })(TaskType = exports.TaskType || (exports.TaskType = {}));
 var TaskResult;
 (function (TaskResult) {
     TaskResult["DONE"] = "done";
     // fill-data
     TaskResult["DATA_COMPLETED"] = "data-completed";
+    // crawled-data
+    TaskResult["SELLER_NOT_INTERESTED"] = "seller-not-interested";
+    TaskResult["SELLER_ACCEPTED"] = "seller-accepted";
+    TaskResult["SELLER_IS_BROKER"] = "is-broker";
     // communicate-buyer
     TaskResult["BUYER_NOT_INTERESTED"] = "buyer-not-interested";
     TaskResult["BUYER_CONSIDERING"] = "buyer-considering";

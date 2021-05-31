@@ -15,12 +15,18 @@ export enum TaskType {
   FILL_DATA = 'fill-data',
   COMMUNICATE_BUYER = 'communicate-buyer',
   BROKERAGE = 'brokerage',
+  CRAWLED_DATA = 'crawled-data'
 }
 
 export enum TaskResult {
   DONE = 'done',
   // fill-data
   DATA_COMPLETED = 'data-completed',
+
+  // crawled-data
+  SELLER_NOT_INTERESTED = 'seller-not-interested',
+  SELLER_ACCEPTED = 'seller-accepted',
+  SELLER_IS_BROKER = 'is-broker',
 
   // communicate-buyer
   BUYER_NOT_INTERESTED = 'buyer-not-interested',

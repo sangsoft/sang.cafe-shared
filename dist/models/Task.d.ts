@@ -11,11 +11,15 @@ export declare enum TaskStatus {
 export declare enum TaskType {
     FILL_DATA = "fill-data",
     COMMUNICATE_BUYER = "communicate-buyer",
-    BROKERAGE = "brokerage"
+    BROKERAGE = "brokerage",
+    CRAWLED_DATA = "crawled-data"
 }
 export declare enum TaskResult {
     DONE = "done",
     DATA_COMPLETED = "data-completed",
+    SELLER_NOT_INTERESTED = "seller-not-interested",
+    SELLER_ACCEPTED = "seller-accepted",
+    SELLER_IS_BROKER = "is-broker",
     BUYER_NOT_INTERESTED = "buyer-not-interested",
     BUYER_CONSIDERING = "buyer-considering",
     DEAL_SUCCESS = "deal-success",
