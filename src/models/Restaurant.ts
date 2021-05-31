@@ -5,6 +5,20 @@ import { Photo } from "./Photo";
 import { IUser } from "./User";
 import { SearchRecord } from "./SearchRecord";
 
+export interface CrawledSeed {
+  city?: string;
+  mix?: boolean;
+  type?: string;
+  url: string;
+}
+
+export interface CrawledSource {
+  address?: string;
+  type?: string;
+  url: string;
+  seed: CrawledSeed;
+}
+
 export interface IRestaurant {
   uid?: string;
   place?: any;
@@ -75,7 +89,8 @@ export interface IRestaurant {
     transactionChannel?: string;
     transactionDate?: Date;
     transactionValue?: number;
-  }
+  };
+  source?: CrawledSource;
 }
 
 export class Restaurant extends Model {
@@ -140,7 +155,7 @@ export class Restaurant extends Model {
     transactionDate?: Date;
     transactionValue?: number;
   }
-
+  public source?: CrawledSource;
 
   constructor(obj?: IRestaurant) {
     super();

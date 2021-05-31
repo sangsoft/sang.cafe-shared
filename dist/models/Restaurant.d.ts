@@ -1,6 +1,18 @@
 import { Model } from "./Model";
 import { Photo } from "./Photo";
 import { SearchRecord } from "./SearchRecord";
+export interface CrawledSeed {
+    city?: string;
+    mix?: boolean;
+    type?: string;
+    url: string;
+}
+export interface CrawledSource {
+    address?: string;
+    type?: string;
+    url: string;
+    seed: CrawledSeed;
+}
 export interface IRestaurant {
     uid?: string;
     place?: any;
@@ -67,6 +79,7 @@ export interface IRestaurant {
         transactionDate?: Date;
         transactionValue?: number;
     };
+    source?: CrawledSource;
 }
 export declare class Restaurant extends Model {
     name: string;
@@ -134,6 +147,7 @@ export declare class Restaurant extends Model {
         transactionDate?: Date;
         transactionValue?: number;
     };
+    source?: CrawledSource;
     constructor(obj?: IRestaurant);
     getThumpObj(photo: string | Photo): string | Photo;
     getMedObj(photo: string | Photo): string | Photo;
