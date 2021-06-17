@@ -3,7 +3,7 @@ import { IUser } from "./User";
 
 export interface SearchRecord extends SearchParameters {
   name?: string;
-  district?: string;
+  district?: string | string[];
   city?: string;
   type?: string;
   page?: number;
