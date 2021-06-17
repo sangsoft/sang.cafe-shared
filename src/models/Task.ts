@@ -15,11 +15,19 @@ export enum TaskType {
   FILL_DATA = 'fill-data',
   COMMUNICATE_BUYER = 'communicate-buyer',
   BROKERAGE = 'brokerage',
-  CRAWLED_DATA = 'crawled-data'
+  CRAWLED_DATA = 'crawled-data',
+  POST_EXTENSION = 'post-extension'
 }
 
 export enum TaskResult {
   DONE = 'done',
+
+  // post-extension
+  EXTENDS = 'extends',
+  CHANGE_TO_BROKERAGE = 'change-to-brokerage',
+  SOLD = 'sold',
+  EXTENSION_REJECTED = 'extension-rejected',
+
   // fill-data
   DATA_COMPLETED = 'data-completed',
 

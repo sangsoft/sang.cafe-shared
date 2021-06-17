@@ -18,10 +18,16 @@ var TaskType;
     TaskType["COMMUNICATE_BUYER"] = "communicate-buyer";
     TaskType["BROKERAGE"] = "brokerage";
     TaskType["CRAWLED_DATA"] = "crawled-data";
+    TaskType["POST_EXTENSION"] = "post-extension";
 })(TaskType = exports.TaskType || (exports.TaskType = {}));
 var TaskResult;
 (function (TaskResult) {
     TaskResult["DONE"] = "done";
+    // post-extension
+    TaskResult["EXTENDS"] = "extends";
+    TaskResult["CHANGE_TO_BROKERAGE"] = "change-to-brokerage";
+    TaskResult["SOLD"] = "sold";
+    TaskResult["EXTENSION_REJECTED"] = "extension-rejected";
     // fill-data
     TaskResult["DATA_COMPLETED"] = "data-completed";
     // crawled-data
