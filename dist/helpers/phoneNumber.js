@@ -21,7 +21,7 @@ function normalizePhoneNumberNoThrow(number) {
         return normalizePhoneNumber(number);
     }
     catch (e) {
-        console.error(e);
+        console.warn(e);
         return null;
     }
 }
