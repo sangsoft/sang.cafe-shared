@@ -79,6 +79,7 @@ export interface ITask {
   result?: TaskResult;
 
   appointment?: Date[];
+  location?: string[];
 
   match?: SearchMatch;
 }
@@ -117,7 +118,8 @@ export class Task extends Model {
   result?: TaskResult;
 
   appointment?: Date[];
-
+  location?: string[];
+  
   match?: SearchMatch;
 
   constructor(obj?: ITask) {

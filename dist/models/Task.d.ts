@@ -55,6 +55,7 @@ export interface ITask {
     createdBy?: IUser;
     result?: TaskResult;
     appointment?: Date[];
+    location?: string[];
     match?: SearchMatch;
 }
 export declare class Task extends Model {
@@ -83,6 +84,7 @@ export declare class Task extends Model {
     createdBy?: IUser;
     result?: TaskResult;
     appointment?: Date[];
+    location?: string[];
     match?: SearchMatch;
     constructor(obj?: ITask);
     createSchema(): any;
