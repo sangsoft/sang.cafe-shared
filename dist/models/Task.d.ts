@@ -10,6 +10,7 @@ export declare enum TaskStatus {
 }
 export declare enum TaskType {
     FILL_DATA = "fill-data",
+    FINALIZE_POST = "finalize-post",
     COMMUNICATE_BUYER = "communicate-buyer",
     BROKERAGE = "brokerage",
     CRAWLED_DATA = "crawled-data",
