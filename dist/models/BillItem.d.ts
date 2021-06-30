@@ -7,6 +7,10 @@ export declare class IBillItem {
     planId: string;
     restaurantId?: string;
     brokerageValue?: number;
+    brokerageValueFull?: {
+        quick?: number;
+        slow?: number;
+    };
     contractId?: string;
     contractStatus?: string;
     proofUrl?: string;
@@ -23,5 +27,9 @@ export declare class BillItem {
     contractId?: string;
     contractStatus?: string;
     proofUrl?: string;
+    brokerageValueFull?: {
+        quick?: number;
+        slow?: number;
+    };
     constructor(obj: IBillItem);
 }

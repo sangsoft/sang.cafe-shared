@@ -7,6 +7,10 @@ export class IBillItem {
   planId: string;
   restaurantId?: string;
   brokerageValue?: number;
+  brokerageValueFull?: {
+    quick?: number;
+    slow?: number;
+  };
   contractId?: string;
   contractStatus?: string;
   proofUrl?: string;
@@ -24,6 +28,10 @@ export class BillItem {
   public contractId?: string;
   public contractStatus?: string;
   public proofUrl?: string;
+  public brokerageValueFull?: {
+    quick?: number;
+    slow?: number;
+  };
 
   constructor(obj: IBillItem) {
     Object.assign(this, obj);
