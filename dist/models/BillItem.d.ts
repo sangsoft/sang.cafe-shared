@@ -7,6 +7,8 @@ export declare class IBillItem {
     planId: string;
     restaurantId?: string;
     brokerageValue?: number;
+    brokerageThreshold?: string;
+    brokerageThresholdType?: string;
     brokerageValueFull?: {
         quick?: number;
         slow?: number;
@@ -27,6 +29,8 @@ export declare class BillItem {
     contractId?: string;
     contractStatus?: string;
     proofUrl?: string;
+    brokerageThreshold?: string;
+    brokerageThresholdType?: string;
     brokerageValueFull?: {
         quick?: number;
         slow?: number;
