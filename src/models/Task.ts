@@ -36,6 +36,7 @@ export enum TaskResult {
   SELLER_NOT_INTERESTED = 'seller-not-interested',
   SELLER_ACCEPTED = 'seller-accepted',
   SELLER_IS_BROKER = 'is-broker',
+  POST_NOT_COMPATIBLE = 'post-not-compatible',
 
   // communicate-buyer
   BUYER_NOT_INTERESTED = 'buyer-not-interested',

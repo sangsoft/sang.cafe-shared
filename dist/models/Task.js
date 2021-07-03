@@ -35,6 +35,7 @@ var TaskResult;
     TaskResult["SELLER_NOT_INTERESTED"] = "seller-not-interested";
     TaskResult["SELLER_ACCEPTED"] = "seller-accepted";
     TaskResult["SELLER_IS_BROKER"] = "is-broker";
+    TaskResult["POST_NOT_COMPATIBLE"] = "post-not-compatible";
     // communicate-buyer
     TaskResult["BUYER_NOT_INTERESTED"] = "buyer-not-interested";
     TaskResult["BUYER_CONSIDERING"] = "buyer-considering";
