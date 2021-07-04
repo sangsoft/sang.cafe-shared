@@ -36,6 +36,8 @@ var TaskResult;
     TaskResult["SELLER_ACCEPTED"] = "seller-accepted";
     TaskResult["SELLER_IS_BROKER"] = "is-broker";
     TaskResult["POST_NOT_COMPATIBLE"] = "post-not-compatible";
+    TaskResult["FOR_SALE_PRICE_TOO_LOW"] = "for-sale-price-too-low";
+    TaskResult["RENTAL_PRICE_TOO_LOW"] = "rental-price-too-low";
     // communicate-buyer
     TaskResult["BUYER_NOT_INTERESTED"] = "buyer-not-interested";
     TaskResult["BUYER_CONSIDERING"] = "buyer-considering";

@@ -27,6 +27,8 @@ export declare enum TaskResult {
     SELLER_ACCEPTED = "seller-accepted",
     SELLER_IS_BROKER = "is-broker",
     POST_NOT_COMPATIBLE = "post-not-compatible",
+    FOR_SALE_PRICE_TOO_LOW = "for-sale-price-too-low",
+    RENTAL_PRICE_TOO_LOW = "rental-price-too-low",
     BUYER_NOT_INTERESTED = "buyer-not-interested",
     BUYER_CONSIDERING = "buyer-considering",
     DEAL_SUCCESS = "deal-success",
