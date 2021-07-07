@@ -16,6 +16,7 @@ var TaskType;
 (function (TaskType) {
     TaskType["FILL_DATA"] = "fill-data";
     TaskType["FINALIZE_POST"] = "finalize-post";
+    TaskType["FINALIZE_OLD_POST"] = "finalize-old-post";
     TaskType["COMMUNICATE_BUYER"] = "communicate-buyer";
     TaskType["BROKERAGE"] = "brokerage";
     TaskType["CRAWLED_DATA"] = "crawled-data";
