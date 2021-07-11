@@ -91,6 +91,8 @@ export interface IRestaurant {
     transactionValue?: number;
   };
   source?: CrawledSource;
+
+  status: string;
 }
 
 export class Restaurant extends Model {
@@ -156,7 +158,7 @@ export class Restaurant extends Model {
     transactionValue?: number;
   }
   public source?: CrawledSource;
-
+  public status: string;
   constructor(obj?: IRestaurant) {
     super();
     if (obj) {
