@@ -40,6 +40,8 @@ export interface IUser {
   idNumber?: string;
   issueAuthority?: string;
   issueDate?: string;
+
+  credentials?: Photo[];
 }
 
 export class User extends Model {
@@ -73,6 +75,8 @@ export class User extends Model {
   roles?: Role[];
   identity?: string;
   note?: string;
+
+  credentials?: Photo[];
 
   idNumber?: string;
   issueAuthority?: string;
