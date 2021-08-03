@@ -39,6 +39,7 @@ var TaskResult;
     TaskResult["POST_NOT_COMPATIBLE"] = "post-not-compatible";
     TaskResult["FOR_SALE_PRICE_TOO_LOW"] = "for-sale-price-too-low";
     TaskResult["RENTAL_PRICE_TOO_LOW"] = "rental-price-too-low";
+    TaskResult["COULDNT_CONTACT"] = "couldnt-contact";
     // communicate-buyer
     TaskResult["BUYER_NOT_INTERESTED"] = "buyer-not-interested";
     TaskResult["BUYER_CONSIDERING"] = "buyer-considering";
