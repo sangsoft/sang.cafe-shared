@@ -10,7 +10,7 @@ Sang cửa hàng ở 108 Nam Đồng, Đống Đa, Hà Nội.
 Ai có nhu cầu liên hệ số đt 0328888888.
 `,
 `
-Sang cửa hàng ở {{address}}.
+Sang cửa hàng ở 108 Nam Đồng, Đống Đa, Hà Nội.
 Ai có nhu cầu liên hệ số đt {{phone_number}}.
 `
         ],
