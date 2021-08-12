@@ -13,18 +13,15 @@ function removeSubstitutionKey(text: string): string {
 }
 
 export function cleanPhoneNumber(text: string, patterns = Patterns): string {
-  let output = removeSubstitutionKey(text);
-  for (const pattern of patterns) {
-    if (pattern.test(output)) {
-      const matches = output.match(pattern);
-      //output = matches.reduce((output, match) => output.replace(match.trim(), '{{phone_number}}'));
-      for (const match of matches) {
-        output = output.replace(match.trim(), '{{phone_number}}');
-      }
-    }
-  }
+  const output = patterns.reduce((result, pattern) => {
+    const matches = result.match(pattern);
+    return (matches || []).reduce((result, match) => {
+      return result.replace(match.trim(), '{{phone_number}}')
+    }, result);
+}, removeSubstitutionKey(text));
   return output;
 }
+
 export function cleanAddress(text: string): string {
   return text;
 }
