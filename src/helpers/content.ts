@@ -23,3 +23,7 @@ export function cleanPhoneNumber(text: string, patterns = Patterns): string {
 
   return text;
 }
+
+export function cleanAddress(text: string): string {
+  return text;
+}
