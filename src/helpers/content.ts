@@ -7,18 +7,19 @@ const Patterns = [pattern, substitutionPattern, spacedPattern];
 function removeSubstitutionKey(text: string): string {
   if (substitutionKey.test(text)) {
     const matches = text.match(substitutionKey);
-    return text.replace(matches[0],'');
+    return text.replace(matches[0], '');
   }
   else return text
 }
 
 export function cleanPhoneNumber(text: string, patterns = Patterns): string {
-  text = removeSubstitutionKey(text);
+  const textSubstitutionKeyRemoved = removeSubstitutionKey(text);
   for (const pattern of patterns) {
-    if (pattern.test(text)) {
-      const matches = text.match(pattern);
-      return text.replace(matches[0].trim(), '{{phone_number}}');
+    if (pattern.test(textSubstitutionKeyRemoved)) {
+      const matches = textSubstitutionKeyRemoved.match(pattern);
+      return textSubstitutionKeyRemoved.replace(matches[0].trim(), '{{phone_number}}');
     }
-  } 
-    return text
+  }
+
+  return text;
 }
