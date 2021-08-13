@@ -18,7 +18,7 @@ export function cleanPhoneNumber(text: string, patterns = Patterns): string {
     return (matches || []).reduce((result, match) => {
       return result.replace(match.trim(), '{{phone_number}}')
     }, result);
-}, removeSubstitutionKey(text));
+  }, removeSubstitutionKey(text));
   return output;
 }
 
