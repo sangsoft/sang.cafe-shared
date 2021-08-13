@@ -232,6 +232,18 @@ Mr Quang {{phone_number}} (Call - SMS – Zalo – Viber)
 Trân trọng cảm ơn vì đã xem tin!
           `
         ],
+        [
+          `
+Cho thuê nhà mặt phố La Thành, 200m2 sát khu dân cư, tiện lợi, giá hấp dẫn, chủ nhà thân thiện
+Cho thuê mặt bằng phố La Thành, Đống Đa, Hà Nội. Diện tích 200m2, giá thoả thuận, ngay sát cổng chung cư đông dân cư, mặt đường, ô tô đỗ cửa, giá thoả thuận hợp lý trong bối cảnh dịch, trước đã làm nhà hàng ăn, 2 tầng.
+Liên hệ chú Chính: 0968669099.
+          `,
+          `
+Cho thuê nhà mặt phố La Thành, 200m2 sát khu dân cư, tiện lợi, giá hấp dẫn, chủ nhà thân thiện
+Cho thuê mặt bằng phố La Thành, Đống Đa, Hà Nội. Diện tích 200m2, giá thoả thuận, ngay sát cổng chung cư đông dân cư, mặt đường, ô tô đỗ cửa, giá thoả thuận hợp lý trong bối cảnh dịch, trước đã làm nhà hàng ăn, 2 tầng.
+Liên hệ chú Chính: {{phone_number}}.
+          `
+        ],
       ])('cleanPhoneNumber(%p) should be %p', (text: string, expected: string) => {
         expect(cleanPhoneNumber(text)).toEqual(expected);
       })
