@@ -300,12 +300,12 @@ Liên hệ gặp chủ nhà: {{phone_number}}- Mr Tâm (tôi chỉ tiếp ngư�
           `
 184Cho thuê nhà 16 Hoàng Việt, 2 mặt tiền góc ngã tư Hoàng Việt - Đông Du gần chợ An Hải Bắc, thuận lợi buôn bán, diện tích sàn 92m2, ngang 10m, 2 tầng tổng diện tích cho thuê 184m2. Khu dân cư đông đúc nhất quận Sơn Trà , Đà Nẵng, ngay sau khán đài xem bắn pháo hoa
 Rất thuận tiện để mở các siêu thị
-Call 0916899783/ 0913 222 214
+Call 0916899783/ 0913 222 214 ***0916899783*** +840972551218-Mr.Minh
           `,
           `
 184Cho thuê nhà 16 Hoàng Việt, 2 mặt tiền góc ngã tư Hoàng Việt - Đông Du gần chợ An Hải Bắc, thuận lợi buôn bán, diện tích sàn 92m2, ngang 10m, 2 tầng tổng diện tích cho thuê 184m2. Khu dân cư đông đúc nhất quận Sơn Trà , Đà Nẵng, ngay sau khán đài xem bắn pháo hoa
 Rất thuận tiện để mở các siêu thị
-Call {{phone_number}}/ {{phone_number}}
+Call {{phone_number}}/ {{phone_number}} ***{{phone_number}}*** +{{phone_number}}-Mr.Minh
           `
         ],
       ])('cleanPhoneNumber(%p) should be %p', (text: string, expected: string) => {
