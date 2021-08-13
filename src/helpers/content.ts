@@ -13,23 +13,26 @@ function removeSubstitutionKey(text: string): string {
   else return text
 }
 
-export function cleanPhoneNumber(text: string, patterns = Patterns): string {
+function matchPatternsAndReplace(text: string, patterns: RegExp[], placeholder: string): string {
   const output = patterns.reduce((result, pattern) => {
     const matches = result.match(pattern);
     return (matches || []).reduce((result, match) => {
-      return result.replace(match.trim(), '{{phone_number}}')
+      return result.replace(match.trim(), placeholder)
     }, result);
-  }, removeSubstitutionKey(text));
+  }, text);
   return output;
 }
 
-//Clean Address
-const streetName = /(?:phố|đường)\s(?:\s?[A-Z]\pL+)+/
-const streetNameWithNumber = /(?:số|ngõ|ngách)? \d{1,3} (?:phố|đường)?\s(?:\s?[A-Z]\pL+)+/
+export function cleanPhoneNumber(text: string, patterns = Patterns): string {
+  return matchPatternsAndReplace(removeSubstitutionKey(text), patterns, '{{phone_number}}');
+}
 
-const streetPatterns = [streetName, streetNameWithNumber]
+//Clean Address
+const streetName = /(?:phố|đường)\s(?:\s?[A-Z]\pL+)+/g;
+const streetNameWithNumber = /(?:số|ngõ|ngách)?\s?\d{1,3}(?:\/\d{1,3})?\s(?:phố|đường)?\s?(?:\s?[A-Z]\pL+)+/g;
+
+const streetPatterns = [streetName, streetNameWithNumber];
 
 export function cleanAddress(text: string, patterns = streetPatterns): string {
-  cleanPhoneNumber(text, patterns)
-  return text;
+  return matchPatternsAndReplace(text, patterns, '{{address}}');
 }
