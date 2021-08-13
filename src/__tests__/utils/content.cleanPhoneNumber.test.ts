@@ -144,6 +144,16 @@ Ai có nhu cầu liên hệ số đt {{phone_number}}.
           Ai có nhu cầu liên hệ số đt {{phone_number}} hoặc {{phone_number}}.
           `
         ],
+        [
+          `
+          Sang cửa hàng ở 032 Nam Đồng, Đống Đa, Hà Nội.
+          Ai có nhu cầu liên hệ số đt 032777777bay hoặc 032 999 2222.
+          `,
+          `
+          Sang cửa hàng ở 032 Nam Đồng, Đống Đa, Hà Nội.
+          Ai có nhu cầu liên hệ số đt {{phone_number}} hoặc {{phone_number}}.
+          `
+        ],
       ])('cleanPhoneNumber(%p) should be %p', (text: string, expected: string) => {
         expect(cleanPhoneNumber(text)).toEqual(expected);
       })
