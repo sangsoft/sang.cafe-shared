@@ -28,8 +28,9 @@ export function cleanPhoneNumber(text: string, patterns = Patterns): string {
 }
 
 //Clean Address
-const streetName = /(?:phố|đường)\s(?:\s?[A-Z]\pL+)+/g;
-const streetNameWithNumber = /(?:số|ngõ|ngách)?\s?\d{1,3}(?:\/\d{1,3})?\s(?:phố|đường)?\s?(?:\s?[A-Z]\pL+)+/g;
+const pL ='a-zA-ZÁáÀàẢảÃãẠạĂăẮắẰằẲẳẴẵẶặÂâẤấẦầẨẩẪẫẬậĐđÉéÈèẺẻẼẽẸẹÊêẾếỀềỂểỄễỆệÍíÌìỈỉĨĩỊịÓóÒòỎỏÕõỌọÔôỐốỒồỔổỖỗỘộƠơỚớỜờỞởỠỡỢợÚúÙùỦủŨũỤụƯưỨứỪừỬửỮữỰựÝýỲỳỶỷỸỹỴỵ';
+const streetName = new RegExp(`(?:phố|đường)\\s(?:\\s?[A-Z][${pL}]+)+`,'g');
+const streetNameWithNumber = new RegExp(`(?:số|ngõ|ngách)?\\s?\\d{1,3}(?:\\/\\d{1,3})?\\s(?:phố|đường)?s?(?:\\s?[A-ZĐ][${pL}]+)+`, 'g');
 
 const streetPatterns = [streetName, streetNameWithNumber];
 
