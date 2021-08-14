@@ -1,5 +1,6 @@
 import 'jest';
 import { cleanPhoneNumber } from '../../helpers/content';
+
 describe('utils', () => {
   describe('content', () => {
     describe('cleanPhoneNumber', () => {
