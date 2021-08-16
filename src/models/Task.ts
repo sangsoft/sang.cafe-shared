@@ -41,6 +41,7 @@ export enum TaskResult {
   FOR_SALE_PRICE_TOO_LOW = 'for-sale-price-too-low',
   RENTAL_PRICE_TOO_LOW = 'rental-price-too-low',
   COULDNT_CONTACT = 'couldnt-contact',
+  OLD_CUSTOMER_ACCEPTED = 'old-customer-accepted',
   DUPLICATED = 'deplicated',
 
   // communicate-buyer
