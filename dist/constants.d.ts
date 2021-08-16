@@ -27,7 +27,7 @@ export declare const SUPPORTED_BANKS: {
     logo: string;
 }[];
 export declare const MOMO_ERROR: {
-    -1: string;
+    [-1]: string;
     0: string;
     3: string;
     7: string;

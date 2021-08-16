@@ -277,7 +277,7 @@ exports.SUPPORTED_BANKS = exports.BANKS.filter(({ code }) => [
     'NCB',
 ].includes(code));
 exports.MOMO_ERROR = {
-    '-1': 'Chữ ký không khớp',
+    [-1]: 'Chữ ký không khớp',
     '0': 'Thành công',
     '3': 'Thông tin tài khoản không tồn tại',
     '7': 'Không có quyền truy cập',
