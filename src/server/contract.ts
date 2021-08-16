@@ -2,7 +2,7 @@ import { IBill } from '../models/Bill';
 import { IContract } from '../models/Contract';
 import { IRestaurant } from '../models/Restaurant';
 import { ServerContext } from '../models/ServerContext';
-import { objFromSnap } from './data';
+import { objFromSnap } from '../helpers/data';
 import { firestore } from './firebase';
 
 export async function getContractsAndBills({ contractId }: {

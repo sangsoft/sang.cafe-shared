@@ -1,11 +1,11 @@
 import { firestore } from './firebase';
-import { objFromSnap, divideIntoLessThan10 } from './data';
+import { objFromSnap, divideIntoLessThan10 } from '../helpers/data';
 import { removeLevelSpecificData } from './view-level';
 import { ITEM_PER_PAGE, ITEM_PER_PAGE_FULL } from '../constants';
 import { timestampFromObj } from '../helpers/times';
 import * as admin from 'firebase-admin';
 import { ServerContext } from '../models/ServerContext';
-import { IRestaurant, Restaurant } from '../models/Restaurant';
+import { IRestaurant } from '../models/Restaurant';
 import { getRightColSponsors } from './sponsor';
 import { searchRestaurant } from '../helpers/algolia';
 import { cleanPhoneNumber } from '../helpers/content';

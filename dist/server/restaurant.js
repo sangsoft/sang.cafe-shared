@@ -17,7 +17,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const firebase_1 = require("./firebase");
-const data_1 = require("./data");
+const data_1 = require("../helpers/data");
 const view_level_1 = require("./view-level");
 const constants_1 = require("../constants");
 const times_1 = require("../helpers/times");

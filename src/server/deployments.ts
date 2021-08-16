@@ -1,7 +1,7 @@
 import { firestore } from "./firebase";
 import * as admin from 'firebase-admin';
 import { IDeployment } from "../models/Deployment";
-import { objFromSnap } from "./data";
+import { objFromSnap } from "../helpers/data";
 
 export async function getLastDeployment(): Promise<IDeployment | null> {
   return firestore()

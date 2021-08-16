@@ -1,4 +1,4 @@
-import { objFromSnap } from './data';
+import { objFromSnap } from '../helpers/data';
 import { firestore } from './firebase';
 import * as admin from 'firebase-admin';
 import { ITEM_PER_PAGE_FULL, RIGHT_COL_SPONSOR_LIMIT } from '../constants';

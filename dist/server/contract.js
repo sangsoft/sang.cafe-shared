@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const data_1 = require("./data");
+const data_1 = require("../helpers/data");
 const firebase_1 = require("./firebase");
 function getContractsAndBills({ contractId }, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
