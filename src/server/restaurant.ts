@@ -5,19 +5,37 @@ import { ITEM_PER_PAGE, ITEM_PER_PAGE_FULL } from '../constants';
 import { timestampFromObj } from '../helpers/times';
 import * as admin from 'firebase-admin';
 import { ServerContext } from '../models/ServerContext';
-import { Restaurant } from '../models/Restaurant';
+import { IRestaurant, Restaurant } from '../models/Restaurant';
 import { getRightColSponsors } from './sponsor';
 import { searchRestaurant } from '../helpers/algolia';
+import { cleanPhoneNumber } from '../helpers/content';
 
-function restaurantFromSnap(doc: admin.firestore.DocumentSnapshot): Restaurant {
-  let data: any = objFromSnap(doc);
-  if (data && data.place) {
+export function restaurantFromSnap(
+  doc: admin.firestore.DocumentSnapshot, 
+  {
+    keepSource,
+    cleanContent,
+  }: {
+    keepSource?: boolean,
+    cleanContent?: boolean,
+  }): IRestaurant {
+  const data: IRestaurant = objFromSnap(doc);
+  if (data.place) {
     data.place = {
       geometry: data.place.geometry,
-      url: data.place.url
+      url: data.place.url,
     };
   }
-  return new Restaurant(data);
+
+  if (cleanContent && data.brokerage) {
+    data.description = cleanPhoneNumber(data.description);
+  }
+
+  if (!keepSource) {
+    // eslint-disable-next-line
+    delete (data as any).source;
+  }
+  return data;
 }
 
 export async function mergeWithSponsor({ sponsors, restaurants, user }: any, ctx: ServerContext) {
@@ -61,7 +79,7 @@ export async function getRestaurant({ id }, ctx: ServerContext) {
     .doc(id)
     .get()
     .then((snap) => {
-      const restaurant = restaurantFromSnap(snap);
+      const restaurant = restaurantFromSnap(snap, { keepSource: false, cleanContent: true });
       if (!restaurant.show) {
         if (!user) {
           return null;
@@ -84,7 +102,7 @@ export async function getRestaurantBySlug({ slug }, ctx: ServerContext) {
       if (snap.empty) {
         return null;
       }
-      const restaurant = restaurantFromSnap(snap.docs[0]);
+      const restaurant = restaurantFromSnap(snap.docs[0], { keepSource: false, cleanContent: true });
       if (!restaurant.show) {
         if (!user) {
           return null;
@@ -139,7 +157,7 @@ export async function getListing({ options, user }: any, ctx: ServerContext) {
     .get()
     .then((snap: admin.firestore.QuerySnapshot) => {
       return snap.docs.map(doc => {
-        const restaurant = restaurantFromSnap(doc);
+        const restaurant = restaurantFromSnap(doc, { keepSource: false, cleanContent: true });
         return removeLevelSpecificData({ user, restaurant });
       });
     })
@@ -159,7 +177,7 @@ export async function getRestaurantsInList({ ids }, ctx: ServerContext) {
           .where(admin.firestore.FieldPath.documentId(), 'in', part)
           .get()
           .then((snap: admin.firestore.QuerySnapshot) => {
-            const data = snap.docs.map(doc => restaurantFromSnap(doc));
+            const data = snap.docs.map(doc => restaurantFromSnap(doc, { keepSource: false, cleanContent: true }));
             return part.map(id => data.find((restaurant) => restaurant.uid === id));
           });
       })
@@ -199,7 +217,7 @@ export async function getRestaurantsByCursor(options: { after: number, before: n
     .get()
     .then((snap: admin.firestore.QuerySnapshot) => {
       return snap.docs.map(doc => {
-        const restaurant = restaurantFromSnap(doc);
+        const restaurant = restaurantFromSnap(doc, { keepSource: false, cleanContent: true });
         return removeLevelSpecificData({ user: null, restaurant });
       });
     });
@@ -221,7 +239,7 @@ export async function getAllRestaurants(options: any, ctx: ServerContext) {
     .get()
     .then((snap: admin.firestore.QuerySnapshot) => {
       return snap.docs.map((doc: admin.firestore.DocumentSnapshot) => {
-        return restaurantFromSnap(doc);
+        return restaurantFromSnap(doc, { keepSource: false, cleanContent: true });
       })
     });
 }
@@ -235,7 +253,7 @@ export async function getLastestRestaurants({ limit }: { limit: number }, ctx: S
     .get()
     .then((snap: admin.firestore.QuerySnapshot) => {
       return snap.docs.map((doc: admin.firestore.DocumentSnapshot) => {
-        return restaurantFromSnap(doc);
+        return restaurantFromSnap(doc, { keepSource: false, cleanContent: true });
       })
     });
 }

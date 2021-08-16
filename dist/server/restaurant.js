@@ -22,19 +22,27 @@ const view_level_1 = require("./view-level");
 const constants_1 = require("../constants");
 const times_1 = require("../helpers/times");
 const admin = __importStar(require("firebase-admin"));
-const Restaurant_1 = require("../models/Restaurant");
 const sponsor_1 = require("./sponsor");
 const algolia_1 = require("../helpers/algolia");
-function restaurantFromSnap(doc) {
-    let data = data_1.objFromSnap(doc);
-    if (data && data.place) {
+const content_1 = require("../helpers/content");
+function restaurantFromSnap(doc, { keepSource, cleanContent, }) {
+    const data = data_1.objFromSnap(doc);
+    if (data.place) {
         data.place = {
             geometry: data.place.geometry,
-            url: data.place.url
+            url: data.place.url,
         };
     }
-    return new Restaurant_1.Restaurant(data);
+    if (cleanContent && data.brokerage) {
+        data.description = content_1.cleanPhoneNumber(data.description);
+    }
+    if (!keepSource) {
+        // eslint-disable-next-line
+        delete data.source;
+    }
+    return data;
 }
+exports.restaurantFromSnap = restaurantFromSnap;
 function mergeWithSponsor({ sponsors, restaurants, user }, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
         if (!restaurants || restaurants.length === 0) {
@@ -75,7 +83,7 @@ function getRestaurant({ id }, ctx) {
             .doc(id)
             .get()
             .then((snap) => {
-            const restaurant = restaurantFromSnap(snap);
+            const restaurant = restaurantFromSnap(snap, { keepSource: false, cleanContent: true });
             if (!restaurant.show) {
                 if (!user) {
                     return null;
@@ -101,7 +109,7 @@ function getRestaurantBySlug({ slug }, ctx) {
             if (snap.empty) {
                 return null;
             }
-            const restaurant = restaurantFromSnap(snap.docs[0]);
+            const restaurant = restaurantFromSnap(snap.docs[0], { keepSource: false, cleanContent: true });
             if (!restaurant.show) {
                 if (!user) {
                     return null;
@@ -153,7 +161,7 @@ function getListing({ options, user }, ctx) {
             .get()
             .then((snap) => {
             return snap.docs.map(doc => {
-                const restaurant = restaurantFromSnap(doc);
+                const restaurant = restaurantFromSnap(doc, { keepSource: false, cleanContent: true });
                 return view_level_1.removeLevelSpecificData({ user, restaurant });
             });
         })
@@ -173,7 +181,7 @@ function getRestaurantsInList({ ids }, ctx) {
                 .where(admin.firestore.FieldPath.documentId(), 'in', part)
                 .get()
                 .then((snap) => {
-                const data = snap.docs.map(doc => restaurantFromSnap(doc));
+                const data = snap.docs.map(doc => restaurantFromSnap(doc, { keepSource: false, cleanContent: true }));
                 return part.map(id => data.find((restaurant) => restaurant.uid === id));
             });
         }));
@@ -216,7 +224,7 @@ function getRestaurantsByCursor(options, ctx) {
             .get()
             .then((snap) => {
             return snap.docs.map(doc => {
-                const restaurant = restaurantFromSnap(doc);
+                const restaurant = restaurantFromSnap(doc, { keepSource: false, cleanContent: true });
                 return view_level_1.removeLevelSpecificData({ user: null, restaurant });
             });
         });
@@ -241,7 +249,7 @@ function getAllRestaurants(options, ctx) {
             .get()
             .then((snap) => {
             return snap.docs.map((doc) => {
-                return restaurantFromSnap(doc);
+                return restaurantFromSnap(doc, { keepSource: false, cleanContent: true });
             });
         });
     });
@@ -257,7 +265,7 @@ function getLastestRestaurants({ limit }, ctx) {
             .get()
             .then((snap) => {
             return snap.docs.map((doc) => {
-                return restaurantFromSnap(doc);
+                return restaurantFromSnap(doc, { keepSource: false, cleanContent: true });
             });
         });
     });
