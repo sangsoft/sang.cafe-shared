@@ -1,42 +1,12 @@
 import { firestore } from './firebase';
-import { objFromSnap, divideIntoLessThan10 } from '../helpers/data';
+import { divideIntoLessThan10, restaurantFromSnap } from '../helpers/data';
 import { removeLevelSpecificData } from './view-level';
 import { ITEM_PER_PAGE, ITEM_PER_PAGE_FULL } from '../constants';
 import { timestampFromObj } from '../helpers/times';
 import * as admin from 'firebase-admin';
 import { ServerContext } from '../models/ServerContext';
-import { IRestaurant } from '../models/Restaurant';
 import { getRightColSponsors } from './sponsor';
 import { searchRestaurant } from '../helpers/algolia';
-import { cleanPhoneNumber } from '../helpers/content';
-
-export function restaurantFromSnap(
-  doc: admin.firestore.DocumentSnapshot, 
-  {
-    keepSource,
-    cleanContent,
-  }: {
-    keepSource?: boolean,
-    cleanContent?: boolean,
-  }): IRestaurant {
-  const data: IRestaurant = objFromSnap(doc);
-  if (data.place) {
-    data.place = {
-      geometry: data.place.geometry,
-      url: data.place.url,
-    };
-  }
-
-  if (cleanContent && data.brokerage) {
-    data.description = cleanPhoneNumber(data.description);
-  }
-
-  if (!keepSource) {
-    // eslint-disable-next-line
-    delete (data as any).source;
-  }
-  return data;
-}
 
 export async function mergeWithSponsor({ sponsors, restaurants, user }: any, ctx: ServerContext) {
   if (!restaurants || restaurants.length === 0) {

@@ -1,4 +1,6 @@
 import * as admin from 'firebase-admin';
+import { IRestaurant } from '../models/Restaurant';
+import { cleanPhoneNumber } from './content';
 
 export function objFromSnap(snap: admin.firestore.DocumentSnapshot, withSnap = false): any { // eslint-disable-line
   if (!snap || !snap.exists) {
@@ -10,6 +12,34 @@ export function objFromSnap(snap: admin.firestore.DocumentSnapshot, withSnap = f
     uid: snap.id,
     snap: withSnap ? snap : null,
   };
+}
+
+export function restaurantFromSnap(
+  doc: admin.firestore.DocumentSnapshot, 
+  {
+    keepSource,
+    cleanContent,
+  }: {
+    keepSource?: boolean,
+    cleanContent?: boolean,
+  }): IRestaurant {
+  const data: IRestaurant = objFromSnap(doc);
+  if (data.place) {
+    data.place = {
+      geometry: data.place.geometry,
+      url: data.place.url,
+    };
+  }
+
+  if (cleanContent && data.brokerage) {
+    data.description = cleanPhoneNumber(data.description);
+  }
+
+  if (!keepSource) {
+    // eslint-disable-next-line
+    delete (data as any).source;
+  }
+  return data;
 }
 
 export function randomShortCode(size) {
