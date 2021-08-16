@@ -46,7 +46,7 @@ Diện tích 72m2, mặt tiền 11m giá 63 triệu/tháng.
 Lh: Ms.Mai Anh 0917.971.866 (KHÔNG MẤT PHÍ MÔI GIỚI)
           `,
           `
-Cho thuê mặt bằng kinh doanh tại địa chỉ số {{address}}, Thanh Xuân, Hà Nội.
+Cho thuê mặt bằng kinh doanh tại địa chỉ {{address}}, Thanh Xuân, Hà Nội.
 Vị trí đẹp nhất phố Lê Trọng Tấn, gần VinCom, ngân hàng, vị trí kinh doanh, văn phòng đắc địa.
 Vỉa hè rộng rãi, chỗ để ô tô, xe máy thoải mái thuận tiện giao dịch, khu vực tập trung nhiều tòa nhà văn phòng, giao thông khu vực thuận tiện sang các quận trung tâm khác của thành phố.
 Phù hợp làm chuỗi cửa hàng, văn phòng giao dịch, ngân hàng, showroom, cafe,…
