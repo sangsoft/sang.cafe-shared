@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const content_1 = require("./content");
 function objFromSnap(snap, withSnap = false) {
     if (!snap || !snap.exists) {
         return null;
@@ -7,6 +8,24 @@ function objFromSnap(snap, withSnap = false) {
     return Object.assign(Object.assign({}, snap.data()), { path: snap.ref.path, uid: snap.id, snap: withSnap ? snap : null });
 }
 exports.objFromSnap = objFromSnap;
+function restaurantFromSnap(doc, { keepSource, cleanContent, }) {
+    const data = objFromSnap(doc);
+    if (data.place) {
+        data.place = {
+            geometry: data.place.geometry,
+            url: data.place.url,
+        };
+    }
+    if (cleanContent && data.brokerage) {
+        data.description = content_1.cleanPhoneNumber(data.description);
+    }
+    if (!keepSource) {
+        // eslint-disable-next-line
+        delete data.source;
+    }
+    return data;
+}
+exports.restaurantFromSnap = restaurantFromSnap;
 function randomShortCode(size) {
     const random = require('random');
     let code = '';

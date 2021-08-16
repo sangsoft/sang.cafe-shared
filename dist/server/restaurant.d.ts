@@ -1,10 +1,4 @@
-import * as admin from 'firebase-admin';
 import { ServerContext } from '../models/ServerContext';
-import { IRestaurant } from '../models/Restaurant';
-export declare function restaurantFromSnap(doc: admin.firestore.DocumentSnapshot, { keepSource, cleanContent, }: {
-    keepSource?: boolean;
-    cleanContent?: boolean;
-}): IRestaurant;
 export declare function mergeWithSponsor({ sponsors, restaurants, user }: any, ctx: ServerContext): Promise<any>;
 export declare function getRestaurant({ id }: {
     id: any;
