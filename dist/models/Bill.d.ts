@@ -1,11 +1,20 @@
 import { BillItem } from "./BillItem";
 import { Model } from "./Model";
+export declare enum BillStatus {
+    PENDING = "pending",
+    PAID = "paid",
+    CANCELLED = "cancelled",
+    CONFIRMED = "confirmed",
+    BROKER_CONTRACT_PAID = "broker-contract-paid",
+    EXPIRED = "expired",
+    PARTIAL_PAID = "partial-paid"
+}
 export interface IBill {
     items: BillItem[];
     uid?: string;
     createdAt?: any;
     billExpiredAfterMinutes?: number;
-    status?: 'expired' | 'partial-paid' | 'paid' | 'pending';
+    status?: BillStatus;
     paid?: number;
     total: number;
     ownerId?: string;
@@ -18,7 +27,7 @@ export declare class Bill extends Model {
     items: BillItem[];
     createdAt: any;
     billExpiredAfterMinutes: number;
-    status: 'expired' | 'partial-paid' | 'paid' | 'pending';
+    status: BillStatus;
     paid: number;
     total: number;
     ownerId?: string;
