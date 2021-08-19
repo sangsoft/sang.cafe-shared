@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "test:watch": "jest -o --watch --runInBand",
+    "test:watch": "GOOGLE_APPLICATION_CREDENTIALS=./restaurant-listing-89eb7-firebase-adminsdk.json jest -o --watch --runInBand",
     "test": "jest"
   },
   "dependencies": {
