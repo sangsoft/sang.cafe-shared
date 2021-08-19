@@ -13,6 +13,12 @@ describe('utils', () => {
         ['2001:ee0:5007:2760:24ca:84ae:7581:355', 'Hồ Chí Minh'],
         ['2402:800:6314:2a3d:985f:2283:95cd:1a6f', 'Hà Nội'],
 
+        // Random foreign IP
+        ['45.146.54.42', null], // Hong Kong
+        ['193.36.225.200', null], // LA
+        ['85.203.21.7', null], // Singapore
+        ['154.16.51.24', null], // Tokyo
+
         // Edge cases
         ['118.68.96.255', 'Hà Nội'],
         ['118.68.96.0', 'Hà Nội'],
