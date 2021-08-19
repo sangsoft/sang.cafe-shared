@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const ip_address_1 = require("ip-address");
 const firebase_1 = require("../server/firebase");
+const data_1 = require("./data");
 function ipToBigInteger(ip) {
     let address;
     try {
@@ -24,7 +25,7 @@ function ipToBigInteger(ip) {
 exports.ipToBigInteger = ipToBigInteger;
 function findBigIntIpRange(bigInt) {
     return __awaiter(this, void 0, void 0, function* () {
-        const snap = firebase_1.firestore()
+        const snap = yield firebase_1.firestore()
             .collection('IP_RANGES')
             .where('fromBigInt', '<=', bigInt)
             .orderBy('fromBigInt', 'desc')
@@ -33,7 +34,7 @@ function findBigIntIpRange(bigInt) {
         if (snap.empty) {
             return null;
         }
-        const range = snap.docs[0].data();
+        const range = data_1.objFromSnap(snap.docs[0]);
         if (range.toBigInt >= bigInt) {
             return range;
         }

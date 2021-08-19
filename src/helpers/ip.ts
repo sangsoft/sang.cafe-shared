@@ -1,5 +1,6 @@
 import { Address4, Address6 } from 'ip-address';
 import { firestore } from '../server/firebase';
+import { objFromSnap } from './data';
 
 export interface Range {
   from: string;
@@ -24,7 +25,7 @@ export function ipToBigInteger(ip: string): string {
 }
 
 export async function findBigIntIpRange(bigInt: string): Promise<Range | null>  {
-  const snap = firestore()
+  const snap = await firestore()
     .collection('IP_RANGES')
     .where('fromBigInt', '<=', bigInt)
     .orderBy('fromBigInt', 'desc')
@@ -34,7 +35,7 @@ export async function findBigIntIpRange(bigInt: string): Promise<Range | null>  
     return null; 
   }
 
-  const range = snap.docs[0].data();
+  const range = objFromSnap(snap.docs[0]);
   if (range.toBigInt >= bigInt) {
     return range;
   }
