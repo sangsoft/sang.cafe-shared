@@ -27,7 +27,7 @@ export async function findBigIntIpRange(bigInt: string): Promise<Range | null>  
   const snap = firestore()
     .collection('IP_RANGES')
     .where('fromBigInt', '<=', bigInt)
-    .orderBy('fromBigInt', 'asc')
+    .orderBy('fromBigInt', 'desc')
     .limit(1)
     .get()
   if (snap.empty) {

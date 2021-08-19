@@ -27,7 +27,7 @@ function findBigIntIpRange(bigInt) {
         const snap = firebase_1.firestore()
             .collection('IP_RANGES')
             .where('fromBigInt', '<=', bigInt)
-            .orderBy('fromBigInt', 'asc')
+            .orderBy('fromBigInt', 'desc')
             .limit(1)
             .get();
         if (snap.empty) {
