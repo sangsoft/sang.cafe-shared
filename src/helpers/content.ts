@@ -1,6 +1,9 @@
 import { SUPPORTED_DISTRICTS, pL } from "../constants";
 
 function removeSubstitutionKey(text: string): string {
+  if (!text) {
+    return text;
+  }
   if (substitutionKey.test(text)) {
     const matches = text.match(substitutionKey);
     return text.replace(matches[0], '');
@@ -9,6 +12,9 @@ function removeSubstitutionKey(text: string): string {
 }
 
 export function matchWithPatterns(text: string, patterns: RegExp[]): string[] {
+  if (!text) {
+    return [];
+  }
   return patterns.reduce((result, pattern) => {
     const matches = text.match(pattern);
     return result.concat(matches);

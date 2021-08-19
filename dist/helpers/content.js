@@ -2,6 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const constants_1 = require("../constants");
 function removeSubstitutionKey(text) {
+    if (!text) {
+        return text;
+    }
     if (substitutionKey.test(text)) {
         const matches = text.match(substitutionKey);
         return text.replace(matches[0], '');
@@ -10,6 +13,9 @@ function removeSubstitutionKey(text) {
         return text;
 }
 function matchWithPatterns(text, patterns) {
+    if (!text) {
+        return [];
+    }
     return patterns.reduce((result, pattern) => {
         const matches = text.match(pattern);
         return result.concat(matches);
