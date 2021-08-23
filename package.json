@@ -8,7 +8,7 @@
   "scripts": {
     "build": "tsc",
     "test:watch": "GOOGLE_APPLICATION_CREDENTIALS=./restaurant-listing-89eb7-firebase-adminsdk.json jest -o --watch --runInBand",
-    "test": "jest"
+    "test": "GOOGLE_APPLICATION_CREDENTIALS=./restaurant-listing-89eb7-firebase-adminsdk.json jest"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",

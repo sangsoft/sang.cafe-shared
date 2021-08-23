@@ -7,6 +7,7 @@ describe('utils', () => {
         // These are real life customer IP recorded in our DB
         ['118.68.96.242', 'Hà Nội'],
         ['171.237.198.246', 'Hà Nội'],
+        ['27.73.122.12', 'Hà Nội'],
         ['171.253.182.164', 'Hồ Chí Minh'],
         ['14.162.202.22', 'Hà Nội'],
         ['2001:ee0:4fcc:55c0:c039:d1da:723f:583c', 'Hà Nội'],
@@ -29,6 +30,7 @@ describe('utils', () => {
                                     // Match first 8 number
       ])('findIpRange(%p) should be %p', async (ip, expected) => {
         const range = await findIpRange(ip);
+        console.log(range);
         if (expected) {
           expect(range.city).toBe(expected);
         } else {

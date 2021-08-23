@@ -42,7 +42,7 @@ export async function mergeWithSponsor({ sponsors, restaurants, user }: any, ctx
   return newRestaurants;
 }
 
-export async function getRestaurant({ id }, ctx: ServerContext) {
+export async function getRestaurant({ id }: { id: string, cleanContent?: boolean }, ctx: ServerContext) {
   const user = null;
   return firestore()
     .collection('RESTAURANTS')
