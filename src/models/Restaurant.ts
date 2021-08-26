@@ -62,8 +62,8 @@ export interface IRestaurant {
 
   // Level 1
   since?: number | { month: number, year: number };
-  revenue: number;
-  grossProfit: number;
+  revenue?: number;
+  grossProfit?: number;
   menuPhotoUrl: string | Photo;
   bannerPhotoUrl?: string | Photo;
   businessLicensePhotoUrl: string | Photo;
@@ -116,8 +116,8 @@ export class Restaurant extends Model {
   public sold: boolean = false;
   public doc?: any;
   public since?: number | { month: number, year: number } = new Date().getFullYear();
-  public revenue: number;
-  public grossProfit: number;
+  public revenue?: number;
+  public grossProfit?: number;
   public menuPhotoUrl: string | Photo;
   public businessLicensePhotoUrl: string | Photo;
   public employeeCount: number;
