@@ -60,8 +60,8 @@ export interface IRestaurant {
     bannerPhotoUrl?: string | Photo;
     businessLicensePhotoUrl: string | Photo;
     employeeCount: number;
-    hasPos: boolean;
-    hasLivingSpace: boolean;
+    hasPos?: boolean;
+    hasLivingSpace?: boolean;
     show?: boolean;
     imageResized?: boolean;
     matches?: {
