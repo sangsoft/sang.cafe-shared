@@ -1,7 +1,8 @@
 import { ServerContext } from '../models/ServerContext';
 export declare function mergeWithSponsor({ sponsors, restaurants, user }: any, ctx: ServerContext): Promise<any>;
 export declare function getRestaurant({ id }: {
-    id: any;
+    id: string;
+    cleanContent?: boolean;
 }, ctx: ServerContext): Promise<any>;
 export declare function getRestaurantBySlug({ slug }: {
     slug: any;

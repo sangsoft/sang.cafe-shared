@@ -111,8 +111,8 @@ export declare class Restaurant extends Model {
     menuPhotoUrl: string | Photo;
     businessLicensePhotoUrl: string | Photo;
     employeeCount: number;
-    hasPos: boolean;
-    hasLivingSpace: boolean;
+    hasPos?: boolean;
+    hasLivingSpace?: boolean;
     ad: boolean;
     show: boolean;
     area: number;
