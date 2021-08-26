@@ -54,8 +54,8 @@ export interface IRestaurant {
         month: number;
         year: number;
     };
-    revenue: number;
-    grossProfit: number;
+    revenue?: number;
+    grossProfit?: number;
     menuPhotoUrl: string | Photo;
     bannerPhotoUrl?: string | Photo;
     businessLicensePhotoUrl: string | Photo;
@@ -106,8 +106,8 @@ export declare class Restaurant extends Model {
         month: number;
         year: number;
     };
-    revenue: number;
-    grossProfit: number;
+    revenue?: number;
+    grossProfit?: number;
     menuPhotoUrl: string | Photo;
     businessLicensePhotoUrl: string | Photo;
     employeeCount: number;
