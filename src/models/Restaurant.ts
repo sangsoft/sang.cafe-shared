@@ -32,7 +32,7 @@ export interface IRestaurant {
   slug?: string;
 
   // Level -1
-  photos: (string | Photo)[];
+  photos: Photo[];
   name: string;
   title?: string;
   description: string;
@@ -103,7 +103,7 @@ export class Restaurant extends Model {
   public contact: string;
   public contactPerson: string;
   public type: string = SUPPORTED_TYPES.other.value;
-  public photos: (string | Photo)[];
+  public photos: Photo[];
   public uid?: string;
   public place?: any;
   public address: string;
