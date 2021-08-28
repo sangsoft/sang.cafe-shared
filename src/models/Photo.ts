@@ -9,6 +9,9 @@ export interface Photo {
   };
   sml?: Photo;
   med?: Photo;
+
+  fileId?: string;
+  bucketId?: string;
 }
 
 export function fromExifData(url: string, exif: any): Photo {
