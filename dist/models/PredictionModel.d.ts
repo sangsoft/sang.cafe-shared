@@ -11,6 +11,12 @@ export interface IPredictionModel {
     type: PredictionModelType;
     uploadedUrl: string;
     status: PredictionModelStatus;
+    createdAt: any;
+    createdBy: string;
+    deactivatedBy: string;
+    deactivatedAt: any;
+    activatedBy: string;
+    activatedAt: string;
 }
 export interface IPredictionResult {
 }
@@ -19,4 +25,5 @@ export interface IPredictionLog {
     modelId: string;
     result: IPredictionResult;
     customerResponse: string;
+    params: string;
 }
