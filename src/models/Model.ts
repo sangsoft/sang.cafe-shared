@@ -28,7 +28,7 @@ export abstract class Model {
   }
 
   getUrl(photo: string | Photo): string {
-    let url = toPhoto(photo).url;
+    let url = toPhoto(photo)?.url || '';
 
     if (url === '') {
       return url;

@@ -19,7 +19,8 @@ class Model {
         return obj;
     }
     getUrl(photo) {
-        let url = Photo_1.toPhoto(photo).url;
+        var _a;
+        let url = ((_a = Photo_1.toPhoto(photo)) === null || _a === void 0 ? void 0 : _a.url) || '';
         if (url === '') {
             return url;
         }
