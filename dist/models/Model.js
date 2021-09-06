@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const Photo_1 = require("./Photo");
 const querystring_1 = require("querystring");
 class Model {
     constructor() {
@@ -18,23 +19,23 @@ class Model {
         return obj;
     }
     getUrl(photo) {
-        let url = '';
-        if (typeof photo === 'string') {
-            url = photo;
-        }
-        else if (photo) {
-            url = photo.url;
-        }
+        let url = Photo_1.toPhoto(photo).url;
         if (url === '') {
             return url;
         }
-        let urlObj = new URL(url);
-        const query = querystring_1.parse(urlObj.search);
-        if (!query.alt) {
-            query.alt = 'media';
+        try {
+            let urlObj = new URL(url);
+            const query = querystring_1.parse(urlObj.search);
+            if (!query.alt) {
+                query.alt = 'media';
+            }
+            urlObj.search = querystring_1.stringify(query);
+            return urlObj.toString();
         }
-        urlObj.search = querystring_1.stringify(query);
-        return urlObj.toString();
+        catch (e) {
+            console.warn(e);
+            return url;
+        }
     }
     toDataWithTimestamp(firebase, ownerId) {
         let obj = this.toData();

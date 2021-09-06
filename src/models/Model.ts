@@ -1,4 +1,4 @@
-import { Photo } from "./Photo";
+import { Photo, toPhoto } from "./Photo";
 import { parse, stringify } from 'querystring'
 export abstract class Model {
   private schema: any;
@@ -25,29 +25,28 @@ export abstract class Model {
     delete obj.schema;
     delete obj.path;
     return obj;
-
   }
 
   getUrl(photo: string | Photo): string {
-    let url = '';
-    if (typeof photo === 'string') {
-      url = photo;
-    } else if (photo) {
-      url = photo.url;
-    }
+    let url = toPhoto(photo).url;
 
     if (url === '') {
       return url;
     }
 
-    let urlObj = new URL(url);
-    const query = parse(urlObj.search);
-    if (!query.alt) {
-      query.alt = 'media';
-    }
-    urlObj.search = stringify(query);
+    try {
+      let urlObj = new URL(url);
+      const query = parse(urlObj.search);
+      if (!query.alt) {
+        query.alt = 'media';
+      }
+      urlObj.search = stringify(query);
 
-    return urlObj.toString();
+      return urlObj.toString();
+    } catch(e) {
+      console.warn(e);
+      return url;
+    }
   }
 
   toDataWithTimestamp(firebase: any, ownerId: string): any {
