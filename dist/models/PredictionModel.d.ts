@@ -13,6 +13,12 @@ export interface IPredictionModel {
     status: PredictionModelStatus;
     createdAt: any;
     createdBy: string;
+    testDeployedAt: any;
+    testDeploymentStatus: 'pending' | 'deployed' | 'waiting' | 'removed';
+    deployedAt: any;
+    deploymentStatus: 'pending' | 'deployed' | 'waiting' | 'removed';
+    modelUri: string;
+    transformerUri: string;
     deactivatedBy: string;
     deactivatedAt: any;
     activatedBy: string;
