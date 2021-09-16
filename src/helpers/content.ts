@@ -37,7 +37,7 @@ const substitutionKey = /\s*(?:[\w|\*])\s*[\=]\s*\d{0,2}\b/g; //check for substi
 const phonePatterns = [generalPhonePattern, substitutionPhonePattern, spacedPhonePattern];
 
 export function cleanPhoneNumber(text: string, patterns = phonePatterns): string {
-  return matchWithPatternsAndReplace(removeSubstitutionKey(text), patterns, '{{phone_number}}');
+  return matchWithPatternsAndReplace(removeSubstitutionKey(text || ''), patterns, '{{phone_number}}');
 }
 
 //Clean Address

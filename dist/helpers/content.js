@@ -36,7 +36,7 @@ const substitutionPhonePattern = /\b(?:[\d|o|O]+(?:[\w|\*])+[\d|o|O]+[\w|\*]*){2
 const substitutionKey = /\s*(?:[\w|\*])\s*[\=]\s*\d{0,2}\b/g; //check for substitution keys like x = 3, *:4
 const phonePatterns = [generalPhonePattern, substitutionPhonePattern, spacedPhonePattern];
 function cleanPhoneNumber(text, patterns = phonePatterns) {
-    return matchWithPatternsAndReplace(removeSubstitutionKey(text), patterns, '{{phone_number}}');
+    return matchWithPatternsAndReplace(removeSubstitutionKey(text || ''), patterns, '{{phone_number}}');
 }
 exports.cleanPhoneNumber = cleanPhoneNumber;
 //Clean Address

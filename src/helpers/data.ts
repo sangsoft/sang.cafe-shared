@@ -32,7 +32,7 @@ export function restaurantFromSnap(
   }
 
   if (cleanContent && data.brokerage) {
-    data.description = cleanPhoneNumber(data.description);
+    data.description = cleanPhoneNumber(data.description || '');
   }
 
   if (!keepSource) {

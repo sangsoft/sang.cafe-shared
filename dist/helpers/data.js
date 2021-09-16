@@ -17,7 +17,7 @@ function restaurantFromSnap(doc, { keepSource, cleanContent, }) {
         };
     }
     if (cleanContent && data.brokerage) {
-        data.description = content_1.cleanPhoneNumber(data.description);
+        data.description = content_1.cleanPhoneNumber(data.description || '');
     }
     if (!keepSource) {
         // eslint-disable-next-line
