@@ -12,6 +12,7 @@ export interface Photo {
     fileId?: string;
     bucketId?: string;
     gsPath?: string;
+    externalPhoto?: Photo;
 }
 export declare function fromExifData(url: string, exif: any): Photo;
 export declare function toPhoto(photo: string | Photo): Photo;

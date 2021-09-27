@@ -14,6 +14,8 @@ export interface Photo {
   bucketId?: string;
 
   gsPath?: string;
+
+  externalPhoto?: Photo;
 }
 
 export function fromExifData(url: string, exif: any): Photo {
