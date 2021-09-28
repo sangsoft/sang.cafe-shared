@@ -5,3 +5,8 @@ export function timestampFromObj(obj: { _seconds: number; _nanoseconds: number }
   console.log('Convering', obj, 'to', ts);
   return ts;
 }
+
+export interface SerializedTimestamp {
+  _seconds: number;
+  _nanoseconds: number;
+}
