@@ -12,12 +12,12 @@ function removeLevelSpecificData({ user, restaurant }) {
     const level = getUserViewLevel(user);
     const newRestaurant = Object.assign({}, restaurant);
     Object.keys(LEVELED_DATA).forEach(key => {
-        console.log('User level', level, 'with', key, 'lower?', key <= level, user);
+        // console.log('User level', level, 'with', key, 'lower?', key <= level, user)
         if (key <= level) {
             return;
         }
         const properties = LEVELED_DATA[key];
-        console.log('Deleting', properties);
+        // console.log('Deleting', properties);
         properties.forEach((keyName) => {
             delete newRestaurant[keyName];
         });
