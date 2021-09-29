@@ -1,5 +1,6 @@
 import * as admin from 'firebase-admin';
 import { SerializedTimestamp } from '../helpers/times';
+import { User } from './User';
 
 export enum CollectedInfoStatus {
   PENDING = 'pending',
@@ -27,5 +28,6 @@ export interface CollectedInfo extends CollectedInfoInput {
   createdBy: string;
   createdAt: admin.firestore.Timestamp | Date | SerializedTimestamp;
   rejectedReason: CollectedInfoRejectedReason;
+  user?: User;
 }
 
