@@ -18,6 +18,7 @@ export interface CollectedInfoInput {
     overallImage: string;
 }
 export interface CollectedInfo extends CollectedInfoInput {
+    uid?: string;
     status: CollectedInfoStatus;
     createdBy: string;
     createdAt: admin.firestore.Timestamp | Date | SerializedTimestamp;
