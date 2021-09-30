@@ -62,6 +62,7 @@ export interface IRestaurant {
     employeeCount: number;
     hasPos?: boolean;
     hasLivingSpace?: boolean;
+    temporaryBrokerage?: boolean;
     show?: boolean;
     imageResized?: boolean;
     matches?: {
@@ -124,6 +125,7 @@ export declare class Restaurant extends Model {
     createdById?: string;
     numberOfFronts?: number;
     depth?: number;
+    temporaryBrokerage?: boolean;
     landOwnerPhoneNumber?: string;
     monthlyRent?: number;
     contractTimeLeft?: number;

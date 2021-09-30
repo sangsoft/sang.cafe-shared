@@ -70,7 +70,8 @@ export interface IRestaurant {
   employeeCount: number;
   hasPos?: boolean;
   hasLivingSpace?: boolean;
-
+  temporaryBrokerage?: boolean;
+  
   show?: boolean;
   imageResized?: boolean;
   matches?: {
@@ -134,6 +135,7 @@ export class Restaurant extends Model {
   public createdById?: string;
   public numberOfFronts?: number;
   public depth?: number;
+  public temporaryBrokerage?: boolean;
 
   public landOwnerPhoneNumber?: string
   public monthlyRent?: number;
