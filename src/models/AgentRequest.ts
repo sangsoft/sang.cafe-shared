@@ -5,6 +5,7 @@ export interface IAgentRequest {
   portrait: string;
   idFront: string;
   idBack: string;
+  idNumber: string;
   operationAreas: { district: string, city: string }[]
   policy: string;
   bank: string;
