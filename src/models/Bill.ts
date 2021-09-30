@@ -10,6 +10,7 @@ export enum BillStatus {
   BROKER_CONTRACT_PAID = 'broker-contract-paid',
   EXPIRED = 'expired',
   PARTIAL_PAID = 'partial-paid',
+  TEMPORARY_CONFIRMED = 'temprorary-confirmed'
 }
 
 export interface IBill {

@@ -7,7 +7,8 @@ export declare enum BillStatus {
     CONFIRMED = "confirmed",
     BROKER_CONTRACT_PAID = "broker-contract-paid",
     EXPIRED = "expired",
-    PARTIAL_PAID = "partial-paid"
+    PARTIAL_PAID = "partial-paid",
+    TEMPORARY_CONFIRMED = "temprorary-confirmed"
 }
 export interface IBill {
     items: BillItem[];
