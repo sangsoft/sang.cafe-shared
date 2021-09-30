@@ -62,7 +62,6 @@ export interface IRestaurant {
     employeeCount: number;
     hasPos?: boolean;
     hasLivingSpace?: boolean;
-    temporaryBrokerage?: boolean;
     show?: boolean;
     imageResized?: boolean;
     matches?: {
@@ -81,6 +80,9 @@ export interface IRestaurant {
         transactionValue?: number;
     };
     source?: CrawledSource;
+    temporaryBrokerage?: boolean;
+    temporaryBillId?: string;
+    temporaryBillShortcode?: string;
     status: string;
 }
 export declare class Restaurant extends Model {
@@ -126,6 +128,8 @@ export declare class Restaurant extends Model {
     numberOfFronts?: number;
     depth?: number;
     temporaryBrokerage?: boolean;
+    temporaryBillId?: string;
+    temporaryBillShortcode?: string;
     landOwnerPhoneNumber?: string;
     monthlyRent?: number;
     contractTimeLeft?: number;
