@@ -5,6 +5,11 @@ import { Role } from "./Role";
 export interface IUserStatus {
     level: number;
 }
+export interface IPaymentInfo {
+    bank: string;
+    accountName: string;
+    account: string;
+}
 export interface IUser {
     displayName: string;
     email: string;
@@ -37,6 +42,7 @@ export interface IUser {
     issueAuthority?: string;
     issueDate?: string;
     credentials?: Photo[];
+    paymentInfo?: IPaymentInfo;
 }
 export declare class User extends Model {
     uid?: string;
@@ -72,6 +78,7 @@ export declare class User extends Model {
     idNumber?: string;
     issueAuthority?: string;
     issueDate?: string;
+    paymentInfo?: IPaymentInfo;
     constructor(obj: IUser);
     isSuperAdmin(): boolean;
     can(action: string): boolean;

@@ -8,6 +8,12 @@ export interface IUserStatus {
   level: number;
 }
 
+export interface IPaymentInfo {
+  bank: string;
+  accountName: string;
+  account: string;
+}
+
 export interface IUser {
   displayName: string;
   email: string;
@@ -42,6 +48,8 @@ export interface IUser {
   issueDate?: string;
 
   credentials?: Photo[];
+
+  paymentInfo?: IPaymentInfo;
 }
 
 export class User extends Model {
@@ -81,6 +89,8 @@ export class User extends Model {
   idNumber?: string;
   issueAuthority?: string;
   issueDate?: string;
+
+  paymentInfo?: IPaymentInfo;
 
   constructor(obj: IUser) {
     super();
