@@ -20,6 +20,7 @@ export interface CollectedInfoInput {
   district: string;
   infoImage: string;
   overallImage: string;
+  phoneNumber: string;
 }
 
 export interface CollectedInfo extends CollectedInfoInput {
