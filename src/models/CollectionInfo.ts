@@ -30,6 +30,7 @@ export interface CollectedInfo extends CollectedInfoInput {
   createdAt: admin.firestore.Timestamp | Date | SerializedTimestamp;
   rejectedReason: CollectedInfoRejectedReason;
   user?: User;
+  originalPhoneNumber?: string;
   phoneNumber: string;
 }
 
