@@ -5,7 +5,7 @@ function removeSubstitutionKey(text: string): string {
     return text;
   }
   if (substitutionKey.test(text)) {
-    const matches = text.match(substitutionKey);
+    const matches = (text || '').match(substitutionKey);
     return text.replace(matches[0], '');
   }
   else return text
@@ -16,7 +16,7 @@ export function matchWithPatterns(text: string, patterns: RegExp[]): string[] {
     return [];
   }
   return patterns.reduce((result, pattern) => {
-    const matches = text.match(pattern);
+    const matches = (text || '').match(pattern);
     return result.concat(matches);
   }, []).filter(_ => !!_);
 }

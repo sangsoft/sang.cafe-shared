@@ -6,7 +6,7 @@ function removeSubstitutionKey(text) {
         return text;
     }
     if (substitutionKey.test(text)) {
-        const matches = text.match(substitutionKey);
+        const matches = (text || '').match(substitutionKey);
         return text.replace(matches[0], '');
     }
     else
@@ -17,7 +17,7 @@ function matchWithPatterns(text, patterns) {
         return [];
     }
     return patterns.reduce((result, pattern) => {
-        const matches = text.match(pattern);
+        const matches = (text || '').match(pattern);
         return result.concat(matches);
     }, []).filter(_ => !!_);
 }
