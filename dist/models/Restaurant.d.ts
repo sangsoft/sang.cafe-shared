@@ -85,7 +85,7 @@ export interface IRestaurant {
     temporaryBillId?: string;
     temporaryBillShortcode?: string;
     status: string;
-    tags?: string;
+    tags?: string[];
     tagsDetail?: {
         [keys: string]: NearByResult[];
     };

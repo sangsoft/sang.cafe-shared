@@ -99,7 +99,7 @@ export interface IRestaurant {
   
   status: string;
 
-  tags?: string;
+  tags?: string[];
   tagsDetail?: { [keys:string]: NearByResult[] },
   taggedAt: any,
   geotagged?: boolean,
