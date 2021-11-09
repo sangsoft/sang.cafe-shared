@@ -173,6 +173,12 @@ export class Restaurant extends Model {
   }
   public source?: CrawledSource;
   public status: string;
+
+  public tags?: string;
+  public tagsDetail?: { [keys:string]: NearByResult[] };
+  public taggedAt: any;
+  public geotagged?: boolean;
+
   constructor(obj?: IRestaurant) {
     super();
     if (obj) {

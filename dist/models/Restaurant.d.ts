@@ -163,6 +163,12 @@ export declare class Restaurant extends Model {
     };
     source?: CrawledSource;
     status: string;
+    tags?: string;
+    tagsDetail?: {
+        [keys: string]: NearByResult[];
+    };
+    taggedAt: any;
+    geotagged?: boolean;
     constructor(obj?: IRestaurant);
     getThumpObj(photo: string | Photo): string | Photo;
     getMedObj(photo: string | Photo): string | Photo;
