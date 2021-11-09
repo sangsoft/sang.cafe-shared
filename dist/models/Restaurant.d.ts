@@ -1,6 +1,7 @@
 import { Model } from "./Model";
 import { Photo } from "./Photo";
 import { SearchRecord } from "./SearchRecord";
+import { NearByResult } from "./Geo";
 export interface CrawledSeed {
     city?: string;
     mix?: boolean;
@@ -84,6 +85,12 @@ export interface IRestaurant {
     temporaryBillId?: string;
     temporaryBillShortcode?: string;
     status: string;
+    tags?: string;
+    tagsDetail?: {
+        [keys: string]: NearByResult[];
+    };
+    taggedAt: any;
+    geotagged?: boolean;
 }
 export declare class Restaurant extends Model {
     name: string;
