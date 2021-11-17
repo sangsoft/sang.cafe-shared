@@ -101,7 +101,7 @@ export interface IRestaurant {
 
   tags?: string[];
   tagsDetail?: { [keys:string]: NearByResult[] },
-  taggedAt: any,
+  taggedAt?: any,
   geotagged?: boolean,
 
 }
@@ -176,7 +176,7 @@ export class Restaurant extends Model {
 
   public tags?: string[];
   public tagsDetail?: { [keys:string]: NearByResult[] };
-  public taggedAt: any;
+  public taggedAt?: any;
   public geotagged?: boolean;
 
   constructor(obj?: IRestaurant) {
