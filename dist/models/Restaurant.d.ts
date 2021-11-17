@@ -89,7 +89,7 @@ export interface IRestaurant {
     tagsDetail?: {
         [keys: string]: NearByResult[];
     };
-    taggedAt: any;
+    taggedAt?: any;
     geotagged?: boolean;
 }
 export declare class Restaurant extends Model {
@@ -167,7 +167,7 @@ export declare class Restaurant extends Model {
     tagsDetail?: {
         [keys: string]: NearByResult[];
     };
-    taggedAt: any;
+    taggedAt?: any;
     geotagged?: boolean;
     constructor(obj?: IRestaurant);
     getThumpObj(photo: string | Photo): string | Photo;
