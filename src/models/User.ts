@@ -52,6 +52,7 @@ export interface IUser {
   paymentInfo?: IPaymentInfo;
 
   createdBy?: 'signup' | 'facebook' | 'chatfuel';
+  fbPsid?: string;
 }
 
 export class User extends Model {
@@ -95,7 +96,8 @@ export class User extends Model {
   paymentInfo?: IPaymentInfo;
  
   createdBy?: 'signup' | 'facebook' | 'chatfuel';
-
+  fbPsid?: string;
+  
   constructor(obj: IUser) {
     super();
     Object.assign(this, obj);

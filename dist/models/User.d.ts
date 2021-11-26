@@ -44,6 +44,7 @@ export interface IUser {
     credentials?: Photo[];
     paymentInfo?: IPaymentInfo;
     createdBy?: 'signup' | 'facebook' | 'chatfuel';
+    fbPsid?: string;
 }
 export declare class User extends Model {
     uid?: string;
@@ -81,6 +82,7 @@ export declare class User extends Model {
     issueDate?: string;
     paymentInfo?: IPaymentInfo;
     createdBy?: 'signup' | 'facebook' | 'chatfuel';
+    fbPsid?: string;
     constructor(obj: IUser);
     isSuperAdmin(): boolean;
     can(action: string): boolean;
