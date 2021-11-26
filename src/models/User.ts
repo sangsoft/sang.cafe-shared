@@ -50,6 +50,8 @@ export interface IUser {
   credentials?: Photo[];
 
   paymentInfo?: IPaymentInfo;
+
+  createdBy?: 'signup' | 'facebook' | 'chatfuel';
 }
 
 export class User extends Model {
@@ -91,6 +93,8 @@ export class User extends Model {
   issueDate?: string;
 
   paymentInfo?: IPaymentInfo;
+ 
+  createdBy?: 'signup' | 'facebook' | 'chatfuel';
 
   constructor(obj: IUser) {
     super();
