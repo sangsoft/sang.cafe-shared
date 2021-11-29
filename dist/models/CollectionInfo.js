@@ -11,5 +11,6 @@ var CollectedInfoRejectedReason;
     CollectedInfoRejectedReason["IMAGE_TOO_BLURRY"] = "image-too-blurry";
     CollectedInfoRejectedReason["DUPLICATED"] = "duplicated";
     CollectedInfoRejectedReason["CANNOT_CONTACT_OWNER"] = "cannot-contact-owner";
+    CollectedInfoRejectedReason["PREMISE_DOES_NOT_MEET_REQUIREMENT"] = "premise-does-not-meet-requirement";
 })(CollectedInfoRejectedReason = exports.CollectedInfoRejectedReason || (exports.CollectedInfoRejectedReason = {}));
 //# sourceMappingURL=CollectionInfo.js.map
