@@ -19,4 +19,6 @@ export interface SearchParameters {
   monthlyRentalRange?: number;
   identity: string;
   tags?: string[];
+
+  createdBy?: string;
 }
