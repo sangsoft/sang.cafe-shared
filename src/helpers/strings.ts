@@ -16,3 +16,37 @@ export function slug(str: string): string {
 
   return str;
 }
+
+const charMaps = {
+  'a': [
+    'a', 'á', 'à', 'ả', 'ã', 'ạ',
+    'ă', 'ắ', 'ằ', 'ẳ', 'ẵ', 'ặ',
+    'â', 'ấ', 'ầ', 'ẩ', 'ẫ', 'ậ',
+  ],
+  'd': ['d', 'đ'],
+  'e': [
+    'e', 'é', 'è', 'ẻ', 'ẽ', 'ẹ',
+    'ê', 'ế', 'ề', 'ể', 'ễ', 'ệ',
+  ],
+  'i': [
+    'i', 'í', 'ì', 'ỉ', 'ĩ', 'ị',
+  ],
+  'o': [
+    'o', 'ó', 'ò', 'ỏ', 'õ', 'ọ',
+    'ô', 'ố', 'ồ', 'ổ', 'ỗ', 'ộ',
+  ],
+  'u': [
+    'u', 'ú', 'ù', 'ủ', 'ũ', 'ụ',
+    'ư', 'ứ', 'ừ', 'ử', 'ữ', 'ự',
+  ],
+};
+
+export function converVietnameseCharsToASCII(str: string): string {
+  return str.split('').map((c) => {
+    return (Object.keys(charMaps).find((key) => {
+      if (charMaps[key].includes(c)) {
+        return true;
+      }
+    }) || c).toUpperCase();
+  }).join('');
+}

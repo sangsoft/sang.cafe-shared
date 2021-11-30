@@ -16,4 +16,37 @@ function slug(str) {
     return str;
 }
 exports.slug = slug;
+const charMaps = {
+    'a': [
+        'a', 'á', 'à', 'ả', 'ã', 'ạ',
+        'ă', 'ắ', 'ằ', 'ẳ', 'ẵ', 'ặ',
+        'â', 'ấ', 'ầ', 'ẩ', 'ẫ', 'ậ',
+    ],
+    'd': ['d', 'đ'],
+    'e': [
+        'e', 'é', 'è', 'ẻ', 'ẽ', 'ẹ',
+        'ê', 'ế', 'ề', 'ể', 'ễ', 'ệ',
+    ],
+    'i': [
+        'i', 'í', 'ì', 'ỉ', 'ĩ', 'ị',
+    ],
+    'o': [
+        'o', 'ó', 'ò', 'ỏ', 'õ', 'ọ',
+        'ô', 'ố', 'ồ', 'ổ', 'ỗ', 'ộ',
+    ],
+    'u': [
+        'u', 'ú', 'ù', 'ủ', 'ũ', 'ụ',
+        'ư', 'ứ', 'ừ', 'ử', 'ữ', 'ự',
+    ],
+};
+function converVietnameseCharsToASCII(str) {
+    return str.split('').map((c) => {
+        return (Object.keys(charMaps).find((key) => {
+            if (charMaps[key].includes(c)) {
+                return true;
+            }
+        }) || c).toUpperCase();
+    }).join('');
+}
+exports.converVietnameseCharsToASCII = converVietnameseCharsToASCII;
 //# sourceMappingURL=strings.js.map
