@@ -29,4 +29,5 @@ export interface CollectedInfo extends CollectedInfoInput {
     user?: User;
     originalPhoneNumber?: string;
     phoneNumber: string;
+    note?: string;
 }
