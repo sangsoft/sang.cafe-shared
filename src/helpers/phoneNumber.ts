@@ -21,7 +21,7 @@ export function normalizePhoneNumberNoThrow(number: string): string | null {
   try {
     return normalizePhoneNumber(number);
   } catch(e) {
-    console.warn(e);
+    console.warn(e.message);
     return null;
   }
 }
