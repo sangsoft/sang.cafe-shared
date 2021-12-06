@@ -5,6 +5,7 @@ import type { IUser } from "./User";
 import type { IRestaurant } from "./Restaurant";
 import type { SearchMatch } from "./SearchMatch";
 import type { SerializedTimestamp } from "../helpers/times";
+import { CollectedInfo } from './CollectionInfo';
 
 export enum TaskStatus {
   PENDING = 'pending',
@@ -102,6 +103,7 @@ export interface ITask {
   match?: SearchMatch;
 
   infoId?: string;
+  info?: Partial<CollectedInfo>;
 }
 export class Task extends Model {
   uid?: string;
@@ -143,6 +145,7 @@ export class Task extends Model {
   match?: SearchMatch;
 
   infoId?: string;
+  info?: Partial<CollectedInfo>;
 
   constructor(obj?: ITask) {
     super();
