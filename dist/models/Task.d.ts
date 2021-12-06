@@ -15,10 +15,13 @@ export declare enum TaskType {
     COMMUNICATE_BUYER = "communicate-buyer",
     BROKERAGE = "brokerage",
     CRAWLED_DATA = "crawled-data",
-    POST_EXTENSION = "post-extension"
+    POST_EXTENSION = "post-extension",
+    HANDLE_COLLECTED_INFO = "handle-collected-info"
 }
 export declare enum TaskResult {
     DONE = "done",
+    DATA_COLLECTED_NOT_SATISFIED = "data-collected-not-satisfied",
+    DATA_DUPLICATED = "data-duplicated",
     EXTENDS = "extends",
     CHANGE_TO_BROKERAGE = "change-to-brokerage",
     SOLD = "sold",
@@ -65,6 +68,7 @@ export interface ITask {
     appointment?: Date[];
     location?: string[];
     match?: SearchMatch;
+    infoId?: string;
 }
 export declare class Task extends Model {
     uid?: string;
@@ -94,6 +98,7 @@ export declare class Task extends Model {
     appointment?: Date[];
     location?: string[];
     match?: SearchMatch;
+    infoId?: string;
     constructor(obj?: ITask);
     createSchema(): any;
     onPrepareData(): any;

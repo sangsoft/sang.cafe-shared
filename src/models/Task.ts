@@ -18,11 +18,16 @@ export enum TaskType {
   COMMUNICATE_BUYER = 'communicate-buyer',
   BROKERAGE = 'brokerage',
   CRAWLED_DATA = 'crawled-data',
-  POST_EXTENSION = 'post-extension'
+  POST_EXTENSION = 'post-extension',
+  HANDLE_COLLECTED_INFO = 'handle-collected-info'
 }
 
 export enum TaskResult {
   DONE = 'done',
+
+  // handle-collected-info
+  DATA_COLLECTED_NOT_SATISFIED = 'data-collected-not-satisfied',
+  DATA_DUPLICATED = 'data-duplicated',
 
   // post-extension
   EXTENDS = 'extends',
@@ -90,6 +95,8 @@ export interface ITask {
   location?: string[];
 
   match?: SearchMatch;
+
+  infoId?: string;
 }
 export class Task extends Model {
   uid?: string;
@@ -129,6 +136,8 @@ export class Task extends Model {
   location?: string[];
   
   match?: SearchMatch;
+
+  infoId?: string;
 
   constructor(obj?: ITask) {
     super();

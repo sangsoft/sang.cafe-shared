@@ -53,6 +53,7 @@ export interface IUser {
 
   createdBy?: 'signup' | 'facebook' | 'chatfuel';
   fbPsid?: string;
+  labels?: string[];
 }
 
 export class User extends Model {
@@ -97,6 +98,7 @@ export class User extends Model {
  
   createdBy?: 'signup' | 'facebook' | 'chatfuel';
   fbPsid?: string;
+  labels?: string[];
   
   constructor(obj: IUser) {
     super();
