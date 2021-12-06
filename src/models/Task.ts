@@ -1,8 +1,10 @@
-import { Model } from "./Model";
 import Joi from '@hapi/joi';
-import { IUser } from "./User";
-import { IRestaurant } from "./Restaurant";
-import { SearchMatch } from "./SearchMatch";
+
+import { Model } from "./Model";
+import type { IUser } from "./User";
+import type { IRestaurant } from "./Restaurant";
+import type { SearchMatch } from "./SearchMatch";
+import type { SerializedTimestamp } from "../helpers/times";
 
 export enum TaskStatus {
   PENDING = 'pending',
@@ -86,8 +88,11 @@ export interface ITask {
   agentId?: string;
   agent?: IUser;
 
-  createdById?: String;
+  createdById?: string;
   createdBy?: IUser;
+
+  completedUserId?: string;
+  completedAt?: Date | SerializedTimestamp;
 
   result?: TaskResult;
 

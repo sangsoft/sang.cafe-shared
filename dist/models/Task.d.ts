@@ -1,7 +1,8 @@
 import { Model } from "./Model";
-import { IUser } from "./User";
-import { IRestaurant } from "./Restaurant";
-import { SearchMatch } from "./SearchMatch";
+import type { IUser } from "./User";
+import type { IRestaurant } from "./Restaurant";
+import type { SearchMatch } from "./SearchMatch";
+import type { SerializedTimestamp } from "../helpers/times";
 export declare enum TaskStatus {
     PENDING = "pending",
     ONGOING = "ongoing",
@@ -62,8 +63,10 @@ export interface ITask {
     sellerRequirement?: string;
     agentId?: string;
     agent?: IUser;
-    createdById?: String;
+    createdById?: string;
     createdBy?: IUser;
+    completedUserId?: string;
+    completedAt?: Date | SerializedTimestamp;
     result?: TaskResult;
     appointment?: Date[];
     location?: string[];

@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Model_1 = require("./Model");
 const joi_1 = __importDefault(require("@hapi/joi"));
+const Model_1 = require("./Model");
 var TaskStatus;
 (function (TaskStatus) {
     TaskStatus["PENDING"] = "pending";
