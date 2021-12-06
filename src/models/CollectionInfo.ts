@@ -34,5 +34,6 @@ export interface CollectedInfo extends CollectedInfoInput {
   originalPhoneNumber?: string;
   phoneNumber: string;
   note?: string;
+  acceptedBy?: string;
 }
 
