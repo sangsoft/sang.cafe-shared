@@ -91,6 +91,8 @@ export interface IRestaurant {
     };
     taggedAt?: any;
     geotagged?: boolean;
+    taskId?: string;
+    infoId?: string;
 }
 export declare class Restaurant extends Model {
     name: string;
@@ -169,6 +171,8 @@ export declare class Restaurant extends Model {
     };
     taggedAt?: any;
     geotagged?: boolean;
+    taskId?: string;
+    infoId?: string;
     constructor(obj?: IRestaurant);
     getThumpObj(photo: string | Photo): string | Photo;
     getMedObj(photo: string | Photo): string | Photo;

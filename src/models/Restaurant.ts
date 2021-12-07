@@ -104,6 +104,8 @@ export interface IRestaurant {
   taggedAt?: any,
   geotagged?: boolean,
 
+  taskId?: string,
+  infoId?: string,
 }
 
 export class Restaurant extends Model {
@@ -179,6 +181,9 @@ export class Restaurant extends Model {
   public taggedAt?: any;
   public geotagged?: boolean;
 
+  public taskId?: string;
+  public infoId?: string;
+  
   constructor(obj?: IRestaurant) {
     super();
     if (obj) {
