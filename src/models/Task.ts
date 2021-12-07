@@ -104,6 +104,8 @@ export interface ITask {
 
   infoId?: string;
   info?: Partial<CollectedInfo>;
+
+  hidden?: string;
 }
 export class Task extends Model {
   uid?: string;
@@ -147,6 +149,7 @@ export class Task extends Model {
   infoId?: string;
   info?: Partial<CollectedInfo>;
 
+  hidden?: string;
   constructor(obj?: ITask) {
     super();
     if (obj) {
