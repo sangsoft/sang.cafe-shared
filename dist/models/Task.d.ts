@@ -75,6 +75,8 @@ export interface ITask {
     infoId?: string;
     info?: Partial<CollectedInfo>;
     hidden?: string;
+    city?: string | null;
+    district?: string | null;
 }
 export declare class Task extends Model {
     uid?: string;
@@ -106,7 +108,9 @@ export declare class Task extends Model {
     match?: SearchMatch;
     infoId?: string;
     info?: Partial<CollectedInfo>;
-    hidden?: string;
+    hidden?: string | null;
+    city?: string | null;
+    district?: string | null;
     constructor(obj?: ITask);
     createSchema(): any;
     onPrepareData(): any;
