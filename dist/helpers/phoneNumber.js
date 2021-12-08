@@ -26,4 +26,23 @@ function normalizePhoneNumberNoThrow(number) {
     }
 }
 exports.normalizePhoneNumberNoThrow = normalizePhoneNumberNoThrow;
+function normalizePhoneNumberNational(number) {
+    // Try to normalize the phone number as a Japanese number
+    const parsed = phoneUtil.parseAndKeepRawInput(number, 'VN');
+    if (!ACCEPTABLE_TYPES.includes(phoneUtil.getNumberType(parsed))) {
+        return;
+    }
+    return `0${parsed.getNationalNumber()}`;
+}
+exports.normalizePhoneNumberNational = normalizePhoneNumberNational;
+function normalizePhoneNumberNationalNoThrow(number) {
+    try {
+        return normalizePhoneNumberNational(number) || null;
+    }
+    catch (e) {
+        console.warn(e.message);
+        return null;
+    }
+}
+exports.normalizePhoneNumberNationalNoThrow = normalizePhoneNumberNationalNoThrow;
 //# sourceMappingURL=phoneNumber.js.map

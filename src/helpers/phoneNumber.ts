@@ -16,7 +16,6 @@ export function normalizePhoneNumber(number: string): string {
 
   return phoneUtil.format(parsed, PhoneNumberFormat.E164);
 }
-
 export function normalizePhoneNumberNoThrow(number: string): string | null {
   try {
     return normalizePhoneNumber(number);
@@ -25,3 +24,23 @@ export function normalizePhoneNumberNoThrow(number: string): string | null {
     return null;
   }
 }
+
+export function normalizePhoneNumberNational(number: string): string {
+  // Try to normalize the phone number as a Japanese number
+  const parsed = phoneUtil.parseAndKeepRawInput(number, 'VN');
+  if (!ACCEPTABLE_TYPES.includes(phoneUtil.getNumberType(parsed))) {
+    return;
+  }
+
+  return `0${parsed.getNationalNumber()}`;
+}
+
+export function normalizePhoneNumberNationalNoThrow(number: string): string {
+  try {
+    return normalizePhoneNumberNational(number) || null;
+  } catch(e) {
+    console.warn(e.message);
+    return null;
+  }
+}
+
