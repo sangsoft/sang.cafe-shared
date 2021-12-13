@@ -42,6 +42,7 @@ export interface FBUserProfile {
     id: string;
     name: string;
     profile_pic: string;
+    email: string;
 }
 export interface FBConversation {
     id: string;
