@@ -174,6 +174,18 @@ export function guessUserTypeFromLabel(label: FBLabel): 'seller' | 'buyer' | 'br
   }
 }
 
+export function guessUserTypeFromLabels(labels: FBLabel[]): 'seller' | 'buyer' | 'broker' | 'owner' | null {
+  for (const label of labels) {
+    const guessedType = guessUserTypeFromLabel(label);
+    if (guessedType) {
+      return guessedType;
+    }
+  }
+
+  return null;
+}
+
+
 function extractDistricts(labels: FBLabel[]): string[] {
   return labels.reduce((result: string[], label: FBLabel) => {
     const normalizedText = label.page_label_name.toLowerCase().trim();

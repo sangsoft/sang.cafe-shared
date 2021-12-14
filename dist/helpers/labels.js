@@ -170,6 +170,16 @@ function guessUserTypeFromLabel(label) {
     }
 }
 exports.guessUserTypeFromLabel = guessUserTypeFromLabel;
+function guessUserTypeFromLabels(labels) {
+    for (const label of labels) {
+        const guessedType = guessUserTypeFromLabel(label);
+        if (guessedType) {
+            return guessedType;
+        }
+    }
+    return null;
+}
+exports.guessUserTypeFromLabels = guessUserTypeFromLabels;
 function extractDistricts(labels) {
     return labels.reduce((result, label) => {
         const normalizedText = label.page_label_name.toLowerCase().trim();
