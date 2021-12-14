@@ -312,6 +312,40 @@ function guessUserTypeFromLabels(labels) {
     return null;
 }
 exports.guessUserTypeFromLabels = guessUserTypeFromLabels;
+function extractPriceFromLabel(label) {
+    if (label.page_label_name.indexOf('triệu') > 0 && label.page_label_name.indexOf('triệu/tháng') < 0) {
+        return parseFloat(label.page_label_name.replace('triệu', ''));
+    }
+    return null;
+}
+exports.extractPriceFromLabel = extractPriceFromLabel;
+function extractPriceFromLabels(labels) {
+    for (const label of labels) {
+        const price = extractPriceFromLabel(label);
+        if (price) {
+            return price;
+        }
+    }
+    return null;
+}
+exports.extractPriceFromLabels = extractPriceFromLabels;
+function extractMonthlyRentFromLabel(label) {
+    if (label.page_label_name.indexOf('triệu/tháng') > 0) {
+        return parseFloat(label.page_label_name.replace('triệu/tháng', ''));
+    }
+    return null;
+}
+exports.extractMonthlyRentFromLabel = extractMonthlyRentFromLabel;
+function extractMonthlyRentFromLabels(labels) {
+    for (const label of labels) {
+        const monthlyRent = extractMonthlyRentFromLabel(label);
+        if (monthlyRent) {
+            return monthlyRent;
+        }
+    }
+    return null;
+}
+exports.extractMonthlyRentFromLabels = extractMonthlyRentFromLabels;
 function extractDistricts(labels) {
     return labels.reduce((result, label) => {
         const normalizedText = strings_1.converVietnameseCharsToASCII(label.page_label_name.trim()).toLowerCase();

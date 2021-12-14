@@ -320,6 +320,45 @@ export function guessUserTypeFromLabels(labels: FBLabel[]): 'seller' | 'buyer' |
   return null;
 }
 
+export function extractPriceFromLabel(label: FBLabel): number | null {
+  if (label.page_label_name.indexOf('triệu') > 0  && label.page_label_name.indexOf('triệu/tháng') < 0) {
+    return parseFloat(label.page_label_name.replace('triệu', ''));
+  }
+
+  return null;
+}
+
+export function extractPriceFromLabels(labels: FBLabel[]): number | null {
+  for (const label of labels) {
+    const price = extractPriceFromLabel(label);
+    if (price) {
+      return price;
+    }
+  }
+
+  return null;
+}
+
+export function extractMonthlyRentFromLabel(label: FBLabel): number | null {
+  if (label.page_label_name.indexOf('triệu/tháng') > 0) {
+    return parseFloat(label.page_label_name.replace('triệu/tháng', ''));
+  }
+
+  return null;
+}
+
+export function extractMonthlyRentFromLabels(labels: FBLabel[]): number | null {
+  for (const label of labels) {
+    const monthlyRent = extractMonthlyRentFromLabel(label);
+    if (monthlyRent) {
+      return monthlyRent;
+    }
+  }
+
+  return null;
+}
+
+
 export function extractDistricts(labels: FBLabel[]): string[] {
   return labels.reduce((result: string[], label: FBLabel) => {
     const normalizedText = converVietnameseCharsToASCII(label.page_label_name.trim()).toLowerCase();
