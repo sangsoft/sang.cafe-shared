@@ -1,6 +1,7 @@
 import type { SearchParameters } from '../models/SearchParameters';
 import type { FBLabel } from '../models/facebook';
 import { normalizePhoneNumberNoThrow } from '../helpers/phoneNumber';
+import { converVietnameseCharsToASCII } from './strings';
 
 export const Tags = [
   'near:mall',
@@ -143,11 +144,145 @@ export const DistrictKeywords: {[key: string]: { keywords: string[], city: strin
     keywords: ['cần giờ', 'can gio', 'cangio', 'can giờ', 'cần gio'],
     city: 'Hồ Chí Minh',
   },
+
+  // Hà Nội -----------------------------------------------------------------------------------------
+  'Ba Đình': {
+    keywords: ['ba đình', 'ba đinh', 'badinh', 'ba dinh', 'bađình'],
+    city: 'Hà Nội',
+  },
+  'Hoàn Kiếm': {
+    keywords: ['hoàn kiếm', 'hoan kiem', 'hoan kiem', 'hoàn kiem', 'hoan kiêm', 'hoan kiem'],
+    city: 'Hà Nội',
+  },
+  'Tây Hồ': {
+    keywords: ['tây hồ', 'tay ho', 'tayho', 'tây ho', 'tay hồ', 'tay hô'],
+    city: 'Hà Nội',
+  },
+  'Long Biên': {
+    keywords: ['long biên', 'long bien', 'longbien'],
+    city: 'Hà Nội',
+  },
+  'Cầu Giấy': {
+    keywords: ['cầu giấy', 'cau giay', 'caugiay', 'câu giấy', 'cầu giây', 'câu giây', 'cau giây', 'cầu giay'],
+    city: 'Hà Nội',
+  },
+  'Đống Đa': {
+    keywords: ['dong da', 'dongda'],
+    city: 'Hà Nội',
+  },
+  'Hai Bà Trưng': {
+    keywords: ['hai ba trung', 'haibatrung', 'hai batrung', 'haiba trung'],
+    city: 'Hà Nội',
+  },
+  'Hoàng Mai': {
+    keywords: ['hoang mai', 'hoangmai'],
+    city: 'Hà Nội',
+  },
+  'Thanh Xuân': {
+    keywords: ['thanhxuan', 'thanh xuan'],
+    city: 'Hà Nội',
+  },
+  'Sóc Sơn': {
+    keywords: ['socson', 'soc son'],
+    city: 'Hà Nội',
+  },
+  'Đông Anh': {
+    keywords: ['dong anh', 'donganh'],
+    city: 'Hà Nội',
+  },
+  'Gia Lâm': {
+    keywords: ['gia lam', 'gialam'],
+    city: 'Hà Nội',
+  },
+  'Nam Từ Liêm': {
+    keywords: ['nam tu liem', 'namtuliem', 'namtu liem', 'nam tuliem'],
+    city: 'Hà Nội',
+  },
+  'Thanh Trì': {
+    keywords: ['thanh tri', 'thanhtri'],
+    city: 'Hà Nội',
+  },
+  'Bắc Từ Liêm': {
+    keywords: ['bac tu liem', 'bactuliem', 'bac tuliem', 'bactu liem'],
+    city: 'Hà Nội',
+  },
+  'Mê Linh': {
+    keywords: ['me linh', 'melinh'],
+    city: 'Hà Nội',
+  },
+  'Hà Đông': {
+    keywords: ['ha dong', 'ha dong'],
+    city: 'Hà Nội',
+  },
+  'Sơn Tây': {
+    keywords: ['son tay', 'sontay'],
+    city: 'Hà Nội',
+  },
+  'Ba Vì': {
+    keywords: ['ba vi', 'bavi'],
+    city: 'Hà Nội',
+  },
+  'Phúc Thọ': {
+    keywords: ['phuc tho', 'phuctho'],
+    city: 'Hà Nội',
+  },
+  'Đan Phượng': {
+    keywords: ['dan phuong', 'danphuong'],
+    city: 'Hà Nội',
+  },
+  'Hoài Đức': {
+    keywords: ['hoai duc', 'hoaiduc'],
+    city: 'Hà Nội',
+  },
+  'Quốc Oai': {
+    keywords: ['quoc oai', 'quocoai'],
+    city: 'Hà Nội',
+  },
+  'Thạch Thất': {
+    keywords: ['thach that', 'thachthat'],
+    city: 'Hà Nội',
+  },
+  'Chương Mỹ': {
+    keywords: ['chuong my', 'chuongmy'],
+    city: 'Hà Nội',
+  },
+  'Thanh Oai': {
+    keywords: ['thanh oai', 'thanhoai'],
+    city: 'Hà Nội',
+  },
+  'Thường Tín': {
+    keywords: ['thuong tin', 'thuongtin'],
+    city: 'Hà Nội',
+  },
+  'Phú Xuyên': {
+    keywords: ['phu xuyen', 'phuxuyen'],
+    city: 'Hà Nội',
+  },
+  'Ứng Hòa': {
+    keywords: ['ung hoa', 'unghoa'],
+    city: 'Hà Nội',
+  },
+  'Mỹ Đức': {
+    keywords: ['my duc', 'myduc'],
+    city: 'Hà Nội',
+  },
+
 };
 
 export function guessPhoneNumberFromLabel(label: FBLabel): string | null {
   const normalizedPhoneNumber = normalizePhoneNumberNoThrow(label.page_label_name);
   return normalizedPhoneNumber;
+}
+
+export function guessPhoneNumberFromLabels(labels: FBLabel[]): string | null {
+  for (const label of labels) {
+    const number = guessPhoneNumberFromLabel(label);
+    if (number) {
+      return number;
+    }
+  }
+
+  return null;
 }
 
 export function guessUserTypeFromLabel(label: FBLabel): 'seller' | 'buyer' | 'broker' | 'owner' | null {
@@ -185,10 +320,9 @@ export function guessUserTypeFromLabels(labels: FBLabel[]): 'seller' | 'buyer' |
   return null;
 }
 
-
-function extractDistricts(labels: FBLabel[]): string[] {
+export function extractDistricts(labels: FBLabel[]): string[] {
   return labels.reduce((result: string[], label: FBLabel) => {
-    const normalizedText = label.page_label_name.toLowerCase().trim();
+    const normalizedText = converVietnameseCharsToASCII(label.page_label_name.trim()).toLowerCase();
     const districts = Object.keys(DistrictKeywords).filter((key: string) => {
       const keywords = DistrictKeywords[key].keywords;
       for (const word of keywords) {
@@ -203,7 +337,11 @@ function extractDistricts(labels: FBLabel[]): string[] {
   }, []);
 }
 
-function extractTags(labels: FBLabel[]): string[] {
+export function getCity(district: string): string {
+  return DistrictKeywords[district].city;
+}
+
+export function extractTags(labels: FBLabel[]): string[] {
   return labels.map(label => label.page_label_name)
     .filter(tag => Tags.includes(tag));
 }
@@ -217,7 +355,7 @@ export function guessSearchParams(labels: FBLabel[], psid: string): SearchParame
     identity: psid,
     district,
     tags,
-    city: district.length > 0 ? DistrictKeywords[district[0]].city : undefined,
+    city: district.length > 0 ? getCity(district[0]) : undefined,
   };
 
   Object.keys(paramsWithDistricts).forEach((key: string) => {
