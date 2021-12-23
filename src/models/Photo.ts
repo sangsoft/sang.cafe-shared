@@ -1,3 +1,5 @@
+import type { UploadApiResponse } from 'cloudinary';
+
 export interface Photo {
   url: string;
   main?: boolean;
@@ -16,6 +18,8 @@ export interface Photo {
   gsPath?: string;
 
   externalPhoto?: Photo;
+
+  cloudinary?: UploadApiResponse;
 }
 
 export function fromExifData(url: string, exif: any): Photo {
