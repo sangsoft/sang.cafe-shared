@@ -18,6 +18,13 @@ class Model {
         delete obj.path;
         return obj;
     }
+    getPhotoCloudinaryPublicId(photo) {
+        const thePhoto = Photo_1.toPhoto(photo);
+        if (thePhoto === null || thePhoto === void 0 ? void 0 : thePhoto.cloudinary) {
+            return thePhoto.cloudinary.public_id;
+        }
+        return this.getUrl(photo);
+    }
     getUrl(photo) {
         var _a;
         let url = ((_a = Photo_1.toPhoto(photo)) === null || _a === void 0 ? void 0 : _a.url) || '';
