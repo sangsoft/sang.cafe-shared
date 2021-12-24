@@ -183,6 +183,7 @@ export declare class Restaurant extends Model {
     getMedUrl(photo: string | Photo): string;
     getMainPhotoMedUrl(): string;
     getMainThumbHeight(): number;
+    getPhotoCloudinaryPublicId(photo: string | Photo): string;
     getBannerPhotoUrl(): string;
     getSmallBannerPhotoUrl(): string;
     createSchema(): any;

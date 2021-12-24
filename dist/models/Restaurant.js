@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Enums_1 = require("./Enums");
 const joi_1 = __importDefault(require("@hapi/joi"));
 const Model_1 = require("./Model");
+const Photo_1 = require("./Photo");
 class Restaurant extends Model_1.Model {
     constructor(obj) {
         super();
@@ -101,6 +102,13 @@ class Restaurant extends Model_1.Model {
             return -1;
         }
         return thumb.dimensions.height;
+    }
+    getPhotoCloudinaryPublicId(photo) {
+        const thePhoto = Photo_1.toPhoto(photo);
+        if (thePhoto === null || thePhoto === void 0 ? void 0 : thePhoto.cloudinary) {
+            return thePhoto.cloudinary.public_id;
+        }
+        return this.getUrl(photo);
     }
     getBannerPhotoUrl() {
         if (this.bannerPhotoUrl) {

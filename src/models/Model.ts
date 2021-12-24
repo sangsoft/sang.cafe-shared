@@ -1,6 +1,5 @@
 import { Photo, toPhoto } from "./Photo";
 import { parse, stringify } from 'querystring'
-import cloudinary from 'cloudinary'
 export abstract class Model {
   private schema: any;
   public path: string;
@@ -26,15 +25,6 @@ export abstract class Model {
     delete obj.schema;
     delete obj.path;
     return obj;
-  }
-
-  getPhotoCloudinaryPublicId(photo: string | Photo): string {
-    const thePhoto = toPhoto(photo)
-    if (thePhoto?.cloudinary) {
-      return thePhoto.cloudinary.public_id
-    }
-
-    return this.getUrl(photo)
   }
 
   getUrl(photo: string | Photo): string {

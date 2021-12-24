@@ -1,7 +1,7 @@
 import { RESTAURANT_TYPES, SUPPORTED_TYPES } from "./Enums";
 import Joi from '@hapi/joi';
 import { Model } from "./Model";
-import { Photo } from "./Photo";
+import { Photo, toPhoto } from "./Photo";
 import { IUser } from "./User";
 import { SearchRecord } from "./SearchRecord";
 import { NearByResult } from "./Geo";
@@ -294,6 +294,15 @@ export class Restaurant extends Model {
     }
 
     return thumb.dimensions.height;
+  }
+
+  getPhotoCloudinaryPublicId(photo: string | Photo): string {
+    const thePhoto = toPhoto(photo)
+    if (thePhoto?.cloudinary) {
+      return thePhoto.cloudinary.public_id
+    }
+
+    return this.getUrl(photo)
   }
 
   getBannerPhotoUrl(): string {

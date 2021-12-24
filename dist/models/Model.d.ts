@@ -7,7 +7,6 @@ export declare abstract class Model {
     abstract onPrepareData(): any;
     toData(): any;
     flatten(): any;
-    getPhotoCloudinaryPublicId(photo: string | Photo): string;
     getUrl(photo: string | Photo): string;
     toDataWithTimestamp(firebase: any, ownerId: string): any;
     errorPath(error: any): any;
