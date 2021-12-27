@@ -1,5 +1,6 @@
 import * as admin from 'firebase-admin';
 import { SerializedTimestamp } from '../helpers/times';
+import { PavementStatus } from './Restaurant';
 import { User } from './User';
 
 export enum CollectedInfoStatus {
@@ -22,6 +23,15 @@ export interface CollectedInfoInput {
   infoImage: string;
   overallImage: string;
   phoneNumber: string;
+
+  carLaneNumber: string;
+  oneWayRoad: boolean;
+  hardSeparation: boolean;
+
+  numberOfFronts: number;
+  pavementStatus: PavementStatus;
+  levels: number;
+  canParkCar: boolean;
 }
 
 export interface CollectedInfo extends CollectedInfoInput {

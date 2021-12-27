@@ -6,6 +6,12 @@ import { IUser } from "./User";
 import { SearchRecord } from "./SearchRecord";
 import { NearByResult } from "./Geo";
 
+export enum PavementStatus {
+  PAVEMENT_WITH_MOTORBIKE_PARKING = 'pavement-with-motorbike-parking',
+  PAVEMENT_WITHOUT_MOTORBIKE_PARKING = 'pavement-without-parking',
+  NO_PAVEMENT = 'no-pavement'
+}
+
 export interface CrawledSeed {
   city?: string;
   mix?: boolean;
@@ -106,6 +112,13 @@ export interface IRestaurant {
 
   taskId?: string,
   infoId?: string,
+
+  carLaneNumber?: string,
+  oneWayRoad?: boolean,
+  hardSeparation?: boolean,
+
+  pavementStatus?: PavementStatus,
+  canParkCar?: boolean,
 }
 
 export class Restaurant extends Model {
@@ -183,6 +196,13 @@ export class Restaurant extends Model {
 
   public taskId?: string;
   public infoId?: string;
+
+  public carLaneNumber?: string;
+  public oneWayRoad?: boolean;
+  public hardSeparation?: boolean;
+
+  public pavementStatus?: PavementStatus;
+  public canParkCar?: boolean;
   
   constructor(obj?: IRestaurant) {
     super();
