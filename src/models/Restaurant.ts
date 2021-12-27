@@ -12,6 +12,11 @@ export enum PavementStatus {
   NO_PAVEMENT = 'no-pavement'
 }
 
+export enum RoadDirection {
+  ONE_WAY_ROAD = 'one-way-road',
+  TWO_WAY_ROAD = 'two-way-road',
+}
+
 export interface CrawledSeed {
   city?: string;
   mix?: boolean;
@@ -114,7 +119,7 @@ export interface IRestaurant {
   infoId?: string,
 
   carLaneNumber?: string,
-  oneWayRoad?: boolean,
+  oneWayRoad?: RoadDirection,
   hardSeparation?: boolean,
 
   pavementStatus?: PavementStatus,
@@ -198,7 +203,7 @@ export class Restaurant extends Model {
   public infoId?: string;
 
   public carLaneNumber?: string;
-  public oneWayRoad?: boolean;
+  public oneWayRoad?: RoadDirection;
   public hardSeparation?: boolean;
 
   public pavementStatus?: PavementStatus;

@@ -13,6 +13,11 @@ var PavementStatus;
     PavementStatus["PAVEMENT_WITHOUT_MOTORBIKE_PARKING"] = "pavement-without-parking";
     PavementStatus["NO_PAVEMENT"] = "no-pavement";
 })(PavementStatus = exports.PavementStatus || (exports.PavementStatus = {}));
+var RoadDirection;
+(function (RoadDirection) {
+    RoadDirection["ONE_WAY_ROAD"] = "one-way-road";
+    RoadDirection["TWO_WAY_ROAD"] = "two-way-road";
+})(RoadDirection = exports.RoadDirection || (exports.RoadDirection = {}));
 class Restaurant extends Model_1.Model {
     constructor(obj) {
         super();

@@ -1,6 +1,6 @@
 import * as admin from 'firebase-admin';
 import { SerializedTimestamp } from '../helpers/times';
-import { PavementStatus } from './Restaurant';
+import { PavementStatus, RoadDirection } from './Restaurant';
 import { User } from './User';
 export declare enum CollectedInfoStatus {
     PENDING = "pending",
@@ -21,7 +21,7 @@ export interface CollectedInfoInput {
     overallImage: string;
     phoneNumber: string;
     carLaneNumber: string;
-    oneWayRoad: boolean;
+    oneWayRoad: RoadDirection;
     hardSeparation: boolean;
     numberOfFronts: number;
     pavementStatus: PavementStatus;
