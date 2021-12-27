@@ -2,6 +2,11 @@ import { Model } from "./Model";
 import { Photo } from "./Photo";
 import { SearchRecord } from "./SearchRecord";
 import { NearByResult } from "./Geo";
+export declare enum PavementStatus {
+    PAVEMENT_WITH_MOTORBIKE_PARKING = "pavement-with-motorbike-parking",
+    PAVEMENT_WITHOUT_MOTORBIKE_PARKING = "pavement-without-parking",
+    NO_PAVEMENT = "no-pavement"
+}
 export interface CrawledSeed {
     city?: string;
     mix?: boolean;
@@ -93,6 +98,11 @@ export interface IRestaurant {
     geotagged?: boolean;
     taskId?: string;
     infoId?: string;
+    carLaneNumber?: string;
+    oneWayRoad?: boolean;
+    hardSeparation?: boolean;
+    pavementStatus?: PavementStatus;
+    canParkCar?: boolean;
 }
 export declare class Restaurant extends Model {
     name: string;
@@ -173,6 +183,11 @@ export declare class Restaurant extends Model {
     geotagged?: boolean;
     taskId?: string;
     infoId?: string;
+    carLaneNumber?: string;
+    oneWayRoad?: boolean;
+    hardSeparation?: boolean;
+    pavementStatus?: PavementStatus;
+    canParkCar?: boolean;
     constructor(obj?: IRestaurant);
     getThumpObj(photo: string | Photo): string | Photo;
     getMedObj(photo: string | Photo): string | Photo;

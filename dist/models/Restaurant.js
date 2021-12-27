@@ -7,6 +7,12 @@ const Enums_1 = require("./Enums");
 const joi_1 = __importDefault(require("@hapi/joi"));
 const Model_1 = require("./Model");
 const Photo_1 = require("./Photo");
+var PavementStatus;
+(function (PavementStatus) {
+    PavementStatus["PAVEMENT_WITH_MOTORBIKE_PARKING"] = "pavement-with-motorbike-parking";
+    PavementStatus["PAVEMENT_WITHOUT_MOTORBIKE_PARKING"] = "pavement-without-parking";
+    PavementStatus["NO_PAVEMENT"] = "no-pavement";
+})(PavementStatus = exports.PavementStatus || (exports.PavementStatus = {}));
 class Restaurant extends Model_1.Model {
     constructor(obj) {
         super();
