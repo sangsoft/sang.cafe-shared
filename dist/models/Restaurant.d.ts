@@ -17,6 +17,12 @@ export declare enum StreetType {
     STREET_2_WAY_NO_SEPARATION = "street-2-way-no-separation",
     STREET_2_WAY_WITH_HARD_SEPARATION = "street-2-way-hard-separation"
 }
+export declare enum StreetLaneType {
+    WITH_2_LANE = "2-lane",
+    WITH_4_LANE = "4-lane",
+    WITH_6_LANE = "6-lane",
+    MORE_THAN_6_LANE = "more-than-6-lane"
+}
 export declare enum RoadDirection {
     ONE_WAY_ROAD = "one-way-road",
     TWO_WAY_ROAD = "two-way-road"
@@ -118,6 +124,7 @@ export interface IRestaurant {
     pavementStatus?: PavementStatus;
     canParkCar?: boolean;
     streetType?: StreetType;
+    streetLaneType?: StreetLaneType;
 }
 export declare class Restaurant extends Model {
     name: string;
@@ -204,6 +211,7 @@ export declare class Restaurant extends Model {
     pavementStatus?: PavementStatus;
     canParkCar?: boolean;
     streetType?: StreetType;
+    streetLaneType?: StreetLaneType;
     constructor(obj?: IRestaurant);
     getThumpObj(photo: string | Photo): string | Photo;
     getMedObj(photo: string | Photo): string | Photo;

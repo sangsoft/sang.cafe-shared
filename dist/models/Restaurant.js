@@ -24,6 +24,13 @@ var StreetType;
     StreetType["STREET_2_WAY_NO_SEPARATION"] = "street-2-way-no-separation";
     StreetType["STREET_2_WAY_WITH_HARD_SEPARATION"] = "street-2-way-hard-separation";
 })(StreetType = exports.StreetType || (exports.StreetType = {}));
+var StreetLaneType;
+(function (StreetLaneType) {
+    StreetLaneType["WITH_2_LANE"] = "2-lane";
+    StreetLaneType["WITH_4_LANE"] = "4-lane";
+    StreetLaneType["WITH_6_LANE"] = "6-lane";
+    StreetLaneType["MORE_THAN_6_LANE"] = "more-than-6-lane";
+})(StreetLaneType = exports.StreetLaneType || (exports.StreetLaneType = {}));
 var RoadDirection;
 (function (RoadDirection) {
     RoadDirection["ONE_WAY_ROAD"] = "one-way-road";

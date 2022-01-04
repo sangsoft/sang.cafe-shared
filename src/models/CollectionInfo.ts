@@ -1,6 +1,6 @@
 import * as admin from 'firebase-admin';
 import { SerializedTimestamp } from '../helpers/times';
-import { PavementStatus, RoadDirection } from './Restaurant';
+import { PavementStatus, RoadDirection, StreetLaneType, StreetType } from './Restaurant';
 import { User } from './User';
 
 export enum CollectedInfoStatus {
@@ -32,6 +32,9 @@ export interface CollectedInfoInput {
   pavementStatus: PavementStatus;
   levels: number;
   canParkCar: boolean;
+
+  streetType: StreetType;
+  streetLaneType: StreetLaneType;
 }
 
 export interface CollectedInfo extends CollectedInfoInput {
