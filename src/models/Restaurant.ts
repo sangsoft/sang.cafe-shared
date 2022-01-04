@@ -9,7 +9,18 @@ import { NearByResult } from "./Geo";
 export enum PavementStatus {
   PAVEMENT_WITH_MOTORBIKE_PARKING = 'pavement-with-motorbike-parking',
   PAVEMENT_WITHOUT_MOTORBIKE_PARKING = 'pavement-without-parking',
-  NO_PAVEMENT = 'no-pavement'
+  NO_PAVEMENT = 'no-pavement',
+  PAVEMENT_SMALLER_THAN_3M = 'pavement-smaller-than-3m',
+  PAVEMENT_3_6M = 'pavement-3-6m',
+  PAVEMENT_LARGER_THAN_6M = 'pavement-larger-than-6m',
+}
+
+export enum StreetType {
+  ALLEYWAY_ONLY_MOTORBIKE = 'alleyway-only-motorbike',
+  ALLEYWAY_CAR_CAN_ENTER = 'alleyway-car-can-enter',
+  STREET_1_WAY = 'street-1-way',
+  STREET_2_WAY_NO_SEPARATION = 'street-2-way-no-separation',
+  STREET_2_WAY_WITH_HARD_SEPARATION = 'street-2-way-hard-separation',
 }
 
 export enum RoadDirection {
@@ -124,6 +135,8 @@ export interface IRestaurant {
 
   pavementStatus?: PavementStatus,
   canParkCar?: boolean,
+
+  streetType?: StreetType,
 }
 
 export class Restaurant extends Model {
@@ -208,6 +221,8 @@ export class Restaurant extends Model {
 
   public pavementStatus?: PavementStatus;
   public canParkCar?: boolean;
+
+  public streetType?: StreetType;
   
   constructor(obj?: IRestaurant) {
     super();

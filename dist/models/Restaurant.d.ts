@@ -5,7 +5,17 @@ import { NearByResult } from "./Geo";
 export declare enum PavementStatus {
     PAVEMENT_WITH_MOTORBIKE_PARKING = "pavement-with-motorbike-parking",
     PAVEMENT_WITHOUT_MOTORBIKE_PARKING = "pavement-without-parking",
-    NO_PAVEMENT = "no-pavement"
+    NO_PAVEMENT = "no-pavement",
+    PAVEMENT_SMALLER_THAN_3M = "pavement-smaller-than-3m",
+    PAVEMENT_3_6M = "pavement-3-6m",
+    PAVEMENT_LARGER_THAN_6M = "pavement-larger-than-6m"
+}
+export declare enum StreetType {
+    ALLEYWAY_ONLY_MOTORBIKE = "alleyway-only-motorbike",
+    ALLEYWAY_CAR_CAN_ENTER = "alleyway-car-can-enter",
+    STREET_1_WAY = "street-1-way",
+    STREET_2_WAY_NO_SEPARATION = "street-2-way-no-separation",
+    STREET_2_WAY_WITH_HARD_SEPARATION = "street-2-way-hard-separation"
 }
 export declare enum RoadDirection {
     ONE_WAY_ROAD = "one-way-road",
@@ -107,6 +117,7 @@ export interface IRestaurant {
     hardSeparation?: boolean;
     pavementStatus?: PavementStatus;
     canParkCar?: boolean;
+    streetType?: StreetType;
 }
 export declare class Restaurant extends Model {
     name: string;
@@ -192,6 +203,7 @@ export declare class Restaurant extends Model {
     hardSeparation?: boolean;
     pavementStatus?: PavementStatus;
     canParkCar?: boolean;
+    streetType?: StreetType;
     constructor(obj?: IRestaurant);
     getThumpObj(photo: string | Photo): string | Photo;
     getMedObj(photo: string | Photo): string | Photo;
