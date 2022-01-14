@@ -12,6 +12,7 @@ export enum TaskStatus {
   ONGOING = 'ongoing',
   COMPLETE = 'complete',
   DEPOSITED = 'deposited',
+  DELEGATED = 'delegated',
 }
 
 export enum TaskType {
@@ -74,6 +75,9 @@ export interface ITask {
 
   assigneeId?: string;
   assignee?: IUser;
+
+  assignedById?: string;
+  assignedBy?: IUser;
 
   restaurantId?: string;
   restaurant?: IRestaurant;

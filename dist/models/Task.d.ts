@@ -8,7 +8,8 @@ export declare enum TaskStatus {
     PENDING = "pending",
     ONGOING = "ongoing",
     COMPLETE = "complete",
-    DEPOSITED = "deposited"
+    DEPOSITED = "deposited",
+    DELEGATED = "delegated"
 }
 export declare enum TaskType {
     FILL_DATA = "fill-data",
@@ -54,6 +55,8 @@ export interface ITask {
     priority: number;
     assigneeId?: string;
     assignee?: IUser;
+    assignedById?: string;
+    assignedBy?: IUser;
     restaurantId?: string;
     restaurant?: IRestaurant;
     buyerId?: string;

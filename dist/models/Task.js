@@ -11,6 +11,7 @@ var TaskStatus;
     TaskStatus["ONGOING"] = "ongoing";
     TaskStatus["COMPLETE"] = "complete";
     TaskStatus["DEPOSITED"] = "deposited";
+    TaskStatus["DELEGATED"] = "delegated";
 })(TaskStatus = exports.TaskStatus || (exports.TaskStatus = {}));
 var TaskType;
 (function (TaskType) {
