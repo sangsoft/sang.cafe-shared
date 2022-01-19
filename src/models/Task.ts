@@ -113,6 +113,8 @@ export interface ITask {
 
   city?: string | null;
   district?: string | null;
+
+  assigneeHistory?: string[];
 }
 export class Task extends Model {
   uid?: string;

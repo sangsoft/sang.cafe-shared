@@ -80,6 +80,7 @@ export interface ITask {
     hidden?: string;
     city?: string | null;
     district?: string | null;
+    assigneeHistory?: string[];
 }
 export declare class Task extends Model {
     uid?: string;
