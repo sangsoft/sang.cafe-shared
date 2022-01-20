@@ -79,6 +79,9 @@ export interface ITask {
   assignedById?: string;
   assignedBy?: IUser;
 
+  delegatedById?: string;
+  delegatedBy?: IUser;
+
   restaurantId?: string;
   restaurant?: IRestaurant;
 
