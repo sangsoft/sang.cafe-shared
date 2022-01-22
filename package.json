@@ -20,7 +20,7 @@
     "google-libphonenumber": "^3.2.19",
     "ip-address": "^8.1.0",
     "jest": "^26.1.0",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^3.1.1",
     "random": "^2.2.0",
     "shuffle-array": "^1.0.1",
     "ts-jest": "^26.1.3"
