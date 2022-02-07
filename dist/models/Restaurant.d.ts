@@ -2,6 +2,7 @@ import { Model } from "./Model";
 import { Photo } from "./Photo";
 import { SearchRecord } from "./SearchRecord";
 import { NearByResult } from "./Geo";
+import { SerializedTimestamp } from "../helpers/times";
 export declare enum PavementStatus {
     PAVEMENT_WITH_MOTORBIKE_PARKING = "pavement-with-motorbike-parking",
     PAVEMENT_WITHOUT_MOTORBIKE_PARKING = "pavement-without-parking",
@@ -38,6 +39,15 @@ export interface CrawledSource {
     type?: string;
     url: string;
     seed: CrawledSeed;
+}
+export interface IPost {
+    uid?: string;
+    createdAt: Date | SerializedTimestamp;
+    slug: string;
+    restaurantId: string;
+    monthlyRent: number;
+    currentBusinessType: string;
+    levels: number;
 }
 export interface IRestaurant {
     uid?: string;
@@ -125,6 +135,8 @@ export interface IRestaurant {
     canParkCar?: boolean;
     streetType?: StreetType;
     streetLaneType?: StreetLaneType;
+    postId?: string;
+    post?: IPost;
 }
 export declare class Restaurant extends Model {
     name: string;
@@ -212,6 +224,8 @@ export declare class Restaurant extends Model {
     canParkCar?: boolean;
     streetType?: StreetType;
     streetLaneType?: StreetLaneType;
+    postId?: string;
+    post?: IPost;
     constructor(obj?: IRestaurant);
     getThumpObj(photo: string | Photo): string | Photo;
     getMedObj(photo: string | Photo): string | Photo;
