@@ -1,5 +1,7 @@
 export declare enum PredictionModelType {
-    RENT_VALUE = "rent-value"
+    RENT_VALUE = "rent-value",
+    RENT_VALUE_HAN = "rent-value-hanoi",
+    RENT_VALUE_SGN = "rent-value-hcmc"
 }
 export declare enum PredictionModelStatus {
     ACTIVE = "active",
@@ -23,6 +25,7 @@ export interface IPredictionModel {
     deactivatedAt: any;
     activatedBy: string;
     activatedAt: string;
+    city?: string;
 }
 export interface IPredictionResult {
 }

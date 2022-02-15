@@ -1,5 +1,7 @@
 export enum PredictionModelType {
   RENT_VALUE='rent-value',
+  RENT_VALUE_HAN='rent-value-hanoi',
+  RENT_VALUE_SGN='rent-value-hcmc',
 }
 
 export enum PredictionModelStatus {
@@ -25,6 +27,7 @@ export interface IPredictionModel {
   deactivatedAt: any;
   activatedBy: string;
   activatedAt: string;
+  city?: string;
 }
 
 export interface IPredictionResult {
@@ -38,3 +41,4 @@ export interface IPredictionLog {
   customerResponse: string;
   params: string;
 }
+
