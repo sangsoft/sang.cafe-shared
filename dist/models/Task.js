@@ -23,6 +23,7 @@ var TaskType;
     TaskType["CRAWLED_DATA"] = "crawled-data";
     TaskType["POST_EXTENSION"] = "post-extension";
     TaskType["HANDLE_COLLECTED_INFO"] = "handle-collected-info";
+    TaskType["HANDLE_COLLECTED_INFO_MISSING_PHONE"] = "handle-collected-info-missing-phone";
 })(TaskType = exports.TaskType || (exports.TaskType = {}));
 var TaskResult;
 (function (TaskResult) {

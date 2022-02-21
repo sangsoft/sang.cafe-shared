@@ -14,6 +14,7 @@ export enum CollectedInfoRejectedReason {
   DUPLICATED = 'duplicated',
   CANNOT_CONTACT_OWNER = 'cannot-contact-owner',
   PREMISE_DOES_NOT_MEET_REQUIREMENT = 'premise-does-not-meet-requirement',
+  PREMISE_DOES_NOT_MEET_PROJECT_REQUIREMENT = 'premise-does-not-meet-project-requirement',
 }
 
 export interface CollectedInfoInput {

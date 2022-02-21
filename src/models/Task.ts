@@ -23,7 +23,8 @@ export enum TaskType {
   BROKERAGE = 'brokerage',
   CRAWLED_DATA = 'crawled-data',
   POST_EXTENSION = 'post-extension',
-  HANDLE_COLLECTED_INFO = 'handle-collected-info'
+  HANDLE_COLLECTED_INFO = 'handle-collected-info',
+  HANDLE_COLLECTED_INFO_MISSING_PHONE = 'handle-collected-info-missing-phone'
 }
 
 export enum TaskResult {

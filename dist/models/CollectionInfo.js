@@ -12,5 +12,6 @@ var CollectedInfoRejectedReason;
     CollectedInfoRejectedReason["DUPLICATED"] = "duplicated";
     CollectedInfoRejectedReason["CANNOT_CONTACT_OWNER"] = "cannot-contact-owner";
     CollectedInfoRejectedReason["PREMISE_DOES_NOT_MEET_REQUIREMENT"] = "premise-does-not-meet-requirement";
+    CollectedInfoRejectedReason["PREMISE_DOES_NOT_MEET_PROJECT_REQUIREMENT"] = "premise-does-not-meet-project-requirement";
 })(CollectedInfoRejectedReason = exports.CollectedInfoRejectedReason || (exports.CollectedInfoRejectedReason = {}));
 //# sourceMappingURL=CollectionInfo.js.map

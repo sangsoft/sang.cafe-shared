@@ -11,7 +11,8 @@ export declare enum CollectedInfoRejectedReason {
     IMAGE_TOO_BLURRY = "image-too-blurry",
     DUPLICATED = "duplicated",
     CANNOT_CONTACT_OWNER = "cannot-contact-owner",
-    PREMISE_DOES_NOT_MEET_REQUIREMENT = "premise-does-not-meet-requirement"
+    PREMISE_DOES_NOT_MEET_REQUIREMENT = "premise-does-not-meet-requirement",
+    PREMISE_DOES_NOT_MEET_PROJECT_REQUIREMENT = "premise-does-not-meet-project-requirement"
 }
 export interface CollectedInfoInput {
     address: string;
