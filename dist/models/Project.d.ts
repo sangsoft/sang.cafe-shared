@@ -4,6 +4,9 @@ export declare enum ProjectStatus {
     ONGOING = "ongoing",
     CLOSED = "closed"
 }
+export declare enum ProjectType {
+    FIND_PREMISE = "find-premise"
+}
 export interface IProject {
     name: string;
     code: string;
@@ -17,4 +20,5 @@ export interface IProject {
     createdById: string;
     endedById: string;
     status: ProjectStatus;
+    type: ProjectType;
 }

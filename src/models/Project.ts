@@ -6,6 +6,10 @@ export enum ProjectStatus {
   CLOSED = 'closed'
 }
 
+export enum ProjectType {
+  FIND_PREMISE = 'find-premise'
+}
+
 export interface IProject {
   name: string;
   code: string;
@@ -19,4 +23,5 @@ export interface IProject {
   createdById: string;
   endedById: string;
   status: ProjectStatus;
+  type: ProjectType;
 }

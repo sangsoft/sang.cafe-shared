@@ -6,4 +6,8 @@ var ProjectStatus;
     ProjectStatus["ONGOING"] = "ongoing";
     ProjectStatus["CLOSED"] = "closed";
 })(ProjectStatus = exports.ProjectStatus || (exports.ProjectStatus = {}));
+var ProjectType;
+(function (ProjectType) {
+    ProjectType["FIND_PREMISE"] = "find-premise";
+})(ProjectType = exports.ProjectType || (exports.ProjectType = {}));
 //# sourceMappingURL=Project.js.map
