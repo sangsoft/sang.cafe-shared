@@ -118,6 +118,8 @@ export interface ITask {
   district?: string | null;
 
   assigneeHistory?: string[];
+
+  projectId?: string;
 }
 export class Task extends Model {
   uid?: string;
@@ -165,6 +167,8 @@ export class Task extends Model {
 
   city?: string | null;
   district?: string | null;
+
+  projectId?: string;
 
   constructor(obj?: ITask) {
     super();

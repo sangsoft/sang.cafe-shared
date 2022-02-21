@@ -35,6 +35,9 @@ export interface CollectedInfoInput {
 
   streetType: StreetType;
   streetLaneType: StreetLaneType;
+
+  missingPhoneNumber?: boolean;
+  projectId?: string;
 }
 
 export interface CollectedInfo extends CollectedInfoInput {

@@ -83,6 +83,7 @@ export interface ITask {
     city?: string | null;
     district?: string | null;
     assigneeHistory?: string[];
+    projectId?: string;
 }
 export declare class Task extends Model {
     uid?: string;
@@ -117,6 +118,7 @@ export declare class Task extends Model {
     hidden?: string | null;
     city?: string | null;
     district?: string | null;
+    projectId?: string;
     constructor(obj?: ITask);
     createSchema(): any;
     onPrepareData(): any;

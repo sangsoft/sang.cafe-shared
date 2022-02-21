@@ -29,6 +29,8 @@ export interface CollectedInfoInput {
     canParkCar: boolean;
     streetType: StreetType;
     streetLaneType: StreetLaneType;
+    missingPhoneNumber?: boolean;
+    projectId?: string;
 }
 export interface CollectedInfo extends CollectedInfoInput {
     uid?: string;
