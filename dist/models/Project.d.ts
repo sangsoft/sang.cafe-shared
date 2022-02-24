@@ -18,7 +18,7 @@ export interface IProject {
     endDate?: SerializedTimestamp | Date | string;
     createdAt: SerializedTimestamp | Date | string;
     createdById: string;
-    endedById: string;
+    endedById?: string;
     status: ProjectStatus;
     type: ProjectType;
     customerCodeName: string;
