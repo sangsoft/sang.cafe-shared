@@ -1,6 +1,10 @@
 import * as admin from 'firebase-admin';
+import { IProject } from '../models/Project';
 import { IRestaurant } from '../models/Restaurant';
 export declare function objFromSnap(snap: admin.firestore.DocumentSnapshot, withSnap?: boolean): any;
+export declare function projectFromSnap(snap: admin.firestore.DocumentSnapshot, { showCustomer }: {
+    showCustomer?: boolean;
+}): IProject | null;
 export declare function restaurantFromSnap(doc: admin.firestore.DocumentSnapshot, { keepSource, cleanContent, }: {
     keepSource?: boolean;
     cleanContent?: boolean;

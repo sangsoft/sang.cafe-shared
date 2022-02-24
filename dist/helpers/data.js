@@ -8,6 +8,16 @@ function objFromSnap(snap, withSnap = false) {
     return Object.assign(Object.assign({}, snap.data()), { path: snap.ref.path, uid: snap.id, snap: withSnap ? snap : null });
 }
 exports.objFromSnap = objFromSnap;
+function projectFromSnap(snap, { showCustomer }) {
+    const data = objFromSnap(snap);
+    if (!showCustomer) {
+        delete data.customerName;
+        delete data.customerId;
+        delete data.customerCodeName;
+    }
+    return data;
+}
+exports.projectFromSnap = projectFromSnap;
 function restaurantFromSnap(doc, { keepSource, cleanContent, }) {
     const data = objFromSnap(doc);
     if (data.place) {

@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin';
+import { IProject } from '../models/Project';
 import { IRestaurant } from '../models/Restaurant';
 import { cleanPhoneNumber } from './content';
 
@@ -12,6 +13,16 @@ export function objFromSnap(snap: admin.firestore.DocumentSnapshot, withSnap = f
     uid: snap.id,
     snap: withSnap ? snap : null,
   };
+}
+
+export function projectFromSnap(snap: admin.firestore.DocumentSnapshot, { showCustomer }: { showCustomer?: boolean }): IProject | null { // eslint-disable-line
+  const data: IProject = objFromSnap(snap);
+  if (!showCustomer) {
+    delete data.customerName;
+    delete data.customerId;
+    delete data.customerCodeName;
+  }
+  return data;
 }
 
 export function restaurantFromSnap(
