@@ -17,11 +17,13 @@ export interface IProject {
   customerId: string;
   descriptionRequirement: string;
   descriptionCommission: string;
-  startDate: SerializedTimestamp;
-  endDate?: SerializedTimestamp;
-  createdAt: SerializedTimestamp;
+  startDate: SerializedTimestamp | Date | string;
+  endDate?: SerializedTimestamp | Date | string;
+  createdAt: SerializedTimestamp | Date | string;
   createdById: string;
   endedById: string;
   status: ProjectStatus;
   type: ProjectType;
+  customerCodeName: string;
+  districts: string[];
 }
