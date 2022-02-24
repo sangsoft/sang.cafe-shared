@@ -22,5 +22,6 @@ export interface IProject {
     status: ProjectStatus;
     type: ProjectType;
     customerCodeName: string;
+    city?: string;
     districts: string[];
 }
