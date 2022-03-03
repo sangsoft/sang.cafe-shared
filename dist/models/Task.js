@@ -12,6 +12,7 @@ var TaskStatus;
     TaskStatus["COMPLETE"] = "complete";
     TaskStatus["DEPOSITED"] = "deposited";
     TaskStatus["DELEGATED"] = "delegated";
+    TaskStatus["OUT_OF_DATE"] = "out-of-date";
 })(TaskStatus = exports.TaskStatus || (exports.TaskStatus = {}));
 var TaskType;
 (function (TaskType) {

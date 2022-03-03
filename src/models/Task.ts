@@ -13,6 +13,7 @@ export enum TaskStatus {
   COMPLETE = 'complete',
   DEPOSITED = 'deposited',
   DELEGATED = 'delegated',
+  OUT_OF_DATE = 'out-of-date',
 }
 
 export enum TaskType {

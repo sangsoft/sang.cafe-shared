@@ -9,7 +9,8 @@ export declare enum TaskStatus {
     ONGOING = "ongoing",
     COMPLETE = "complete",
     DEPOSITED = "deposited",
-    DELEGATED = "delegated"
+    DELEGATED = "delegated",
+    OUT_OF_DATE = "out-of-date"
 }
 export declare enum TaskType {
     FILL_DATA = "fill-data",
