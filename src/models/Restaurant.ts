@@ -162,6 +162,8 @@ export interface IRestaurant {
 
   lastPostPath?: string;
   lastPostId?: string;
+
+  collectedInfoNote?: string;
 }
 
 export class Restaurant extends Model {
@@ -255,6 +257,9 @@ export class Restaurant extends Model {
 
   public lastPostPath?: string;
   public lastPostId?: string;
+
+  public collectedInfoNote?: string;
+
   
   constructor(obj?: IRestaurant) {
     super();

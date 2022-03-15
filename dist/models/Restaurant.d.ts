@@ -139,6 +139,7 @@ export interface IRestaurant {
     post?: IPost;
     lastPostPath?: string;
     lastPostId?: string;
+    collectedInfoNote?: string;
 }
 export declare class Restaurant extends Model {
     name: string;
@@ -230,6 +231,7 @@ export declare class Restaurant extends Model {
     post?: IPost;
     lastPostPath?: string;
     lastPostId?: string;
+    collectedInfoNote?: string;
     constructor(obj?: IRestaurant);
     getThumpObj(photo: string | Photo): string | Photo;
     getMedObj(photo: string | Photo): string | Photo;
