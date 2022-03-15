@@ -1,5 +1,6 @@
 import { BillItem } from "./BillItem";
 import { Model } from "./Model";
+import { SerializedTimestamp } from "../helpers/times";
 export declare enum BillStatus {
     PENDING = "pending",
     PAID = "paid",
@@ -22,6 +23,12 @@ export interface IBill {
     shortCode?: string;
     contractId?: string;
     contractStatus?: string;
+    restaurantId?: string;
+    restaurantIds?: string[];
+    restaurantTaskId?: string;
+    restaurantTaskIds?: string[];
+    statusUpdatedBy: string;
+    statusUpdatedAt: SerializedTimestamp | Date;
 }
 export declare class Bill extends Model {
     uid?: string;
