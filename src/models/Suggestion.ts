@@ -1,5 +1,9 @@
 import { SerializedTimestamp } from "../helpers/times"
 
+export enum SuggestionStatus {
+  ACTIVE = 'active',
+  OUTDATED = 'outdated'
+}
 export interface ISusggestion {
   uid: string
   customerCode: string
@@ -8,4 +12,10 @@ export interface ISusggestion {
   shortCodes: string[]
   ids: string[]
   customerName: string
+  status: SuggestionStatus
+  createdById: string
+  createdBy: {
+    displayName: string,
+    phoneNumber: string
+  }
 }
