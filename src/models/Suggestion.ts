@@ -4,6 +4,12 @@ export enum SuggestionStatus {
   ACTIVE = 'active',
   OUTDATED = 'outdated'
 }
+
+export interface SuggestionShortList {
+  shortListedById: string,
+  shortCode: string,
+  createdAt: SerializedTimestamp
+}
 export interface ISusggestion {
   uid: string
   customerCode: string
@@ -17,5 +23,7 @@ export interface ISusggestion {
   createdBy: {
     displayName: string,
     phoneNumber: string
-  }
+  },
+
+  shortList: SuggestionShortList[]
 }
