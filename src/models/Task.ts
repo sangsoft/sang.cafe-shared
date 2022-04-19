@@ -14,6 +14,7 @@ export enum TaskStatus {
   DEPOSITED = 'deposited',
   DELEGATED = 'delegated',
   OUT_OF_DATE = 'out-of-date',
+  BILL_CREATED = 'bill-created'
 }
 
 export enum TaskType {

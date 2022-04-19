@@ -13,6 +13,7 @@ var TaskStatus;
     TaskStatus["DEPOSITED"] = "deposited";
     TaskStatus["DELEGATED"] = "delegated";
     TaskStatus["OUT_OF_DATE"] = "out-of-date";
+    TaskStatus["BILL_CREATED"] = "bill-created";
 })(TaskStatus = exports.TaskStatus || (exports.TaskStatus = {}));
 var TaskType;
 (function (TaskType) {

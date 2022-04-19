@@ -10,7 +10,8 @@ export declare enum TaskStatus {
     COMPLETE = "complete",
     DEPOSITED = "deposited",
     DELEGATED = "delegated",
-    OUT_OF_DATE = "out-of-date"
+    OUT_OF_DATE = "out-of-date",
+    BILL_CREATED = "bill-created"
 }
 export declare enum TaskType {
     FILL_DATA = "fill-data",
