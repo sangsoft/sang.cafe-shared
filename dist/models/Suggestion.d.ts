@@ -22,5 +22,6 @@ export interface ISusggestion {
         displayName: string;
         phoneNumber: string;
     };
+    projectId: string;
     shortList: SuggestionShortList[];
 }
