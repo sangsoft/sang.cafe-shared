@@ -11,7 +11,7 @@ export interface SuggestionShortList {
   createdAt: SerializedTimestamp
 }
 
-export interface ISusggestion {
+export interface ISuggestion {
   uid: string
   customerCode: string
   code: string
