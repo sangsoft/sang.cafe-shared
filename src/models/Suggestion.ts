@@ -10,7 +10,8 @@ export interface SuggestionShortList {
   shortCode: string,
   createdAt: SerializedTimestamp
 }
-export interface ISusggestion {
+
+export interface ISuggestion {
   uid: string
   customerCode: string
   code: string
@@ -24,6 +25,7 @@ export interface ISusggestion {
     displayName: string,
     phoneNumber: string
   },
-  projectId: string
+  projectId: string,
+  oldSuggestionId: string | null,
   shortList: SuggestionShortList[]
 }
