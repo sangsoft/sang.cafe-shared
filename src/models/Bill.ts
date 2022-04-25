@@ -30,8 +30,8 @@ export interface IBill {
   restaurantIds?: string[];
   restaurantTaskId?: string;
   restaurantTaskIds?: string[];
-  statusUpdatedBy: string;
-  statusUpdatedAt: SerializedTimestamp | Date;
+  statusUpdatedBy?: string;
+  statusUpdatedAt?: SerializedTimestamp | Date;
 }
 
 export class Bill extends Model {
@@ -44,6 +44,12 @@ export class Bill extends Model {
   public total: number;
   public ownerId?: string;
   public shortCode?: string;
+  public statusUpdatedBy?: string;
+  public statusUpdatedAt?: SerializedTimestamp | Date;
+  public restaurantId?: string;
+  public restaurantIds?: string[];
+  public restaurantTaskId?: string;
+  public restaurantTaskIds?: string[];
 
   constructor(obj: IBill) {
     super();

@@ -27,8 +27,8 @@ export interface IBill {
     restaurantIds?: string[];
     restaurantTaskId?: string;
     restaurantTaskIds?: string[];
-    statusUpdatedBy: string;
-    statusUpdatedAt: SerializedTimestamp | Date;
+    statusUpdatedBy?: string;
+    statusUpdatedAt?: SerializedTimestamp | Date;
 }
 export declare class Bill extends Model {
     uid?: string;
@@ -40,6 +40,12 @@ export declare class Bill extends Model {
     total: number;
     ownerId?: string;
     shortCode?: string;
+    statusUpdatedBy?: string;
+    statusUpdatedAt?: SerializedTimestamp | Date;
+    restaurantId?: string;
+    restaurantIds?: string[];
+    restaurantTaskId?: string;
+    restaurantTaskIds?: string[];
     constructor(obj: IBill);
     createSchema(): any;
     onPrepareData(): this;
