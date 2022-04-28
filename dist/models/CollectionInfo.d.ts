@@ -27,6 +27,7 @@ export interface CollectedInfoInput {
     numberOfFronts: number;
     pavementStatus: PavementStatus;
     levels: number;
+    totalLevels: number;
     canParkCar: boolean;
     streetType: StreetType;
     streetLaneType: StreetLaneType;

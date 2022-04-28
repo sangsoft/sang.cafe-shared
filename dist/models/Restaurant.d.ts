@@ -78,6 +78,8 @@ export interface IRestaurant {
     monthlyRent?: number;
     contractTimeLeft?: number;
     levels?: number;
+    totalLevels?: number;
+    availableLevels?: number[];
     contractEnd?: {
         month: number;
         year: number;
@@ -195,6 +197,8 @@ export declare class Restaurant extends Model {
     };
     minimalContractTime?: number;
     levels?: number;
+    totalLevels?: number;
+    availableLevels?: number[];
     matches?: {
         fieldMatchingCount: number;
         fields: string[];
