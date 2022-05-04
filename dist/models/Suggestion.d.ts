@@ -14,7 +14,6 @@ export interface ISuggestion {
     code: string;
     createdAt: SerializedTimestamp;
     shortCodes: string[];
-    ids: string[];
     customerName: string;
     status: SuggestionStatus;
     createdById: string;
