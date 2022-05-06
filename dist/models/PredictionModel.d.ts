@@ -28,6 +28,22 @@ export interface IPredictionModel {
     city?: string;
 }
 export interface IPredictionResult {
+    modelId: string;
+    prediction: {
+        model: {
+            feature_config_path: string;
+            model_path: string;
+            transformer_path: string;
+        };
+        results: ({
+            prediction: {
+                value: number;
+                confident_range: number[];
+            };
+        } | {
+            error: string;
+        })[];
+    };
 }
 export interface IPredictionLog {
     uid: string;
