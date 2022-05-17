@@ -1,7 +1,7 @@
-import { Model } from "./Model";
-import { Photo } from "./Photo";
-import { SearchRecord } from "./SearchRecord";
-import { Role } from "./Role";
+import { Model } from './Model';
+import { Photo } from './Photo';
+import { SearchRecord } from './SearchRecord';
+import { Role } from './Role';
 export interface IUserStatus {
     level: number;
 }
@@ -46,6 +46,8 @@ export interface IUser {
     createdBy?: 'signup' | 'facebook' | 'chatfuel';
     fbPsid?: string;
     labels?: string[];
+    isOrganization?: boolean;
+    belongsToOrganization?: string;
 }
 export declare class User extends Model {
     uid?: string;
@@ -85,6 +87,8 @@ export declare class User extends Model {
     createdBy?: 'signup' | 'facebook' | 'chatfuel';
     fbPsid?: string;
     labels?: string[];
+    isOrganization?: boolean;
+    belongsToOrganization?: string;
     constructor(obj: IUser);
     isSuperAdmin(): boolean;
     can(action: string): boolean;
