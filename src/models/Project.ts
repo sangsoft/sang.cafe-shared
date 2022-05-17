@@ -14,7 +14,7 @@ export enum ProjectType {
 export interface IProjectRequirements {
   priceRange: number[];
   monthlyRentalRange: number[];
-  type: string;
+  type: string[];
 }
 export interface IRelatedAdmins {
   admin: IUser;
