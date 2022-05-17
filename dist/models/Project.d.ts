@@ -8,14 +8,21 @@ export declare enum ProjectStatus {
 export declare enum ProjectType {
     FIND_PREMISE = "find-premise"
 }
+export declare enum RelatedAdminType {
+    ADMIN = "admin",
+    CUSTOMER = "customer"
+}
 export interface IProjectRequirements {
     priceRange: number[];
     monthlyRentalRange: number[];
-    type: string;
+    type: string[];
 }
 export interface IRelatedAdmins {
-    admin: IUser;
+    admin: Partial<IUser>;
     createPemission: boolean;
+    type: RelatedAdminType;
+    createdAt: SerializedTimestamp | Date | string;
+    createdById: string;
 }
 export interface IProject {
     name: string;
