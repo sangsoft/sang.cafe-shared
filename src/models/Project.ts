@@ -11,14 +11,22 @@ export enum ProjectType {
   FIND_PREMISE = 'find-premise',
 }
 
+export enum RelatedAdminType {
+  ADMIN = 'admin',
+  CUSTOMER = 'customer',
+}
+
 export interface IProjectRequirements {
   priceRange: number[];
   monthlyRentalRange: number[];
   type: string[];
 }
 export interface IRelatedAdmins {
-  admin: IUser;
+  admin: Partial<IUser>;
   createPemission: boolean;
+  type: RelatedAdminType;
+  createdAt: SerializedTimestamp | Date | string;
+  createdById: string;
 }
 
 export interface IProject {
