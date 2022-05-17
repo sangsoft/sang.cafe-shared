@@ -20,13 +20,13 @@ class User extends Model_1.Model {
         this.buyer = null;
         this.seller = null;
         Object.assign(this, obj);
-        this.roles = (obj.roles || []).map(role => new Role_1.Role(role));
+        this.roles = (obj.roles || []).map((role) => new Role_1.Role(role));
     }
     isSuperAdmin() {
         return (this.roles || []).some((role) => role.superadmin);
     }
     can(action) {
-        for (const role of (this.roles || [])) {
+        for (const role of this.roles || []) {
             if (role.can(action)) {
                 return true;
             }
@@ -37,33 +37,28 @@ class User extends Model_1.Model {
         return this.getUrl(this.photoURL);
     }
     createSchema() {
-        const photo = joi_1.default
-            .alternatives()
-            .try(joi_1.default.string()
-            .uri({
-            scheme: [
-                'https'
-            ]
+        const photo = joi_1.default.alternatives()
+            .try(joi_1.default.string().uri({
+            scheme: ['https'],
         }), joi_1.default.object())
             .allow(null);
-        const requiredString = joi_1.default.string()
-            .required();
+        const requiredString = joi_1.default.string().required();
         return joi_1.default.object({
-            'uid': joi_1.default.string(),
-            'createdAt': joi_1.default.object(),
-            'updatedAt': joi_1.default.object(),
-            'displayName': requiredString,
-            'phoneNumber': requiredString,
-            'email': joi_1.default.string()
+            uid: joi_1.default.string(),
+            createdAt: joi_1.default.object(),
+            updatedAt: joi_1.default.object(),
+            displayName: requiredString,
+            phoneNumber: requiredString,
+            email: joi_1.default.string()
                 .email({ tlds: { allow: false } })
                 .required(),
-            'photoURL': photo,
-            'admin': joi_1.default.boolean(),
-            'canPost': joi_1.default.boolean(),
-            'roles': joi_1.default.array().allow(null),
-            'identity': joi_1.default.string().allow(null),
-            'note': joi_1.default.string().allow(null),
-            'signInMetaData': joi_1.default.object().allow(null),
+            photoURL: photo,
+            admin: joi_1.default.boolean(),
+            canPost: joi_1.default.boolean(),
+            roles: joi_1.default.array().allow(null),
+            identity: joi_1.default.string().allow(null),
+            note: joi_1.default.string().allow(null),
+            signInMetaData: joi_1.default.object().allow(null),
         });
     }
     onPrepareData() {
@@ -79,7 +74,7 @@ class User extends Model_1.Model {
     }
     flatten() {
         const obj = super.flatten();
-        return Object.assign(Object.assign({}, obj), { roles: this.roles.map(role => role.flatten()) });
+        return Object.assign(Object.assign({}, obj), { roles: this.roles.map((role) => role.flatten()) });
     }
 }
 exports.User = User;

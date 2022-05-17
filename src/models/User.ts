@@ -1,8 +1,8 @@
-import { Model } from "./Model";
+import { Model } from './Model';
 import Joi from '@hapi/joi';
-import { Photo } from "./Photo";
-import { SearchRecord } from "./SearchRecord";
-import { Role } from "./Role";
+import { Photo } from './Photo';
+import { SearchRecord } from './SearchRecord';
+import { Role } from './Role';
 
 export interface IUserStatus {
   level: number;
@@ -34,10 +34,10 @@ export interface IUser {
     address?: string;
     issueDate?: string;
     issueAuthority?: string;
-  
+
     reason?: 'post' | 'view-contact';
     path?: string;
-  },
+  };
   searches?: SearchRecord[];
   type?: string;
   roles?: Role[];
@@ -54,6 +54,8 @@ export interface IUser {
   createdBy?: 'signup' | 'facebook' | 'chatfuel';
   fbPsid?: string;
   labels?: string[];
+  isOrganization?: boolean;
+  belongsToOrganization?: string;
 }
 
 export class User extends Model {
@@ -78,10 +80,10 @@ export class User extends Model {
     address?: string;
     issueDate?: string;
     issueAuthority?: string;
-  
+
     reason?: 'post' | 'view-contact';
     path?: string;
-  }
+  };
   searches?: any[];
   type?: string;
   roles?: Role[];
@@ -95,15 +97,17 @@ export class User extends Model {
   issueDate?: string;
 
   paymentInfo?: IPaymentInfo;
- 
+
   createdBy?: 'signup' | 'facebook' | 'chatfuel';
   fbPsid?: string;
   labels?: string[];
-  
+  isOrganization?: boolean;
+  belongsToOrganization?: string;
+
   constructor(obj: IUser) {
     super();
     Object.assign(this, obj);
-    this.roles = (obj.roles || []).map(role => new Role(role))
+    this.roles = (obj.roles || []).map((role) => new Role(role));
   }
 
   isSuperAdmin(): boolean {
@@ -111,7 +115,7 @@ export class User extends Model {
   }
 
   can(action: string): boolean {
-    for (const role of (this.roles || [])) {
+    for (const role of this.roles || []) {
       if (role.can(action)) {
         return true;
       }
@@ -124,44 +128,39 @@ export class User extends Model {
   }
 
   createSchema() {
-    const photo = Joi
-      .alternatives()
+    const photo = Joi.alternatives()
       .try(
-        Joi.string()
-          .uri({
-            scheme: [
-              'https'
-            ]
-          }),
+        Joi.string().uri({
+          scheme: ['https'],
+        }),
         Joi.object(),
       )
-      .allow(null)
+      .allow(null);
 
-    const requiredString = Joi.string()
-      .required()
+    const requiredString = Joi.string().required();
     return Joi.object({
-      'uid': Joi.string(),
-      'createdAt': Joi.object(),
-      'updatedAt': Joi.object(),
-      'displayName': requiredString,
-      'phoneNumber': requiredString,
-      'email': Joi.string()
+      uid: Joi.string(),
+      createdAt: Joi.object(),
+      updatedAt: Joi.object(),
+      displayName: requiredString,
+      phoneNumber: requiredString,
+      email: Joi.string()
         .email({ tlds: { allow: false } })
         .required(),
-      'photoURL': photo,
-      'admin': Joi.boolean(),
-      'canPost': Joi.boolean(),
-      'roles': Joi.array().allow(null),
-      'identity': Joi.string().allow(null),
-      'note': Joi.string().allow(null),
-      'signInMetaData': Joi.object().allow(null),
+      photoURL: photo,
+      admin: Joi.boolean(),
+      canPost: Joi.boolean(),
+      roles: Joi.array().allow(null),
+      identity: Joi.string().allow(null),
+      note: Joi.string().allow(null),
+      signInMetaData: Joi.object().allow(null),
     });
   }
 
   onPrepareData() {
     let obj: any = {
-      ...this
-    }
+      ...this,
+    };
 
     delete obj.buyer;
     delete obj.seller;
@@ -178,7 +177,7 @@ export class User extends Model {
     const obj = super.flatten();
     return {
       ...obj,
-      roles: this.roles.map(role => role.flatten())
+      roles: this.roles.map((role) => role.flatten()),
     };
   }
 }
