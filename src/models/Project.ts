@@ -1,13 +1,32 @@
-import { SerializedTimestamp } from "../helpers/times";
+import { SerializedTimestamp } from '../helpers/times';
+import { IUser } from './User';
 
 export enum ProjectStatus {
   PENDING = 'pending',
   ONGOING = 'ongoing',
-  CLOSED = 'closed'
+  CLOSED = 'closed',
 }
 
 export enum ProjectType {
-  FIND_PREMISE = 'find-premise'
+  FIND_PREMISE = 'find-premise',
+}
+
+export enum RelatedAdminType {
+  ADMIN = 'admin',
+  CUSTOMER = 'customer',
+}
+
+export interface IProjectRequirements {
+  priceRange: number[];
+  monthlyRentalRange: number[];
+  type: string[];
+}
+export interface IRelatedAdmins {
+  admin: Partial<IUser>;
+  createPemission: boolean;
+  type: RelatedAdminType;
+  createdAt: SerializedTimestamp | Date | string;
+  createdById: string;
 }
 
 export interface IProject {
@@ -15,6 +34,8 @@ export interface IProject {
   code: string;
   customerName: string;
   customerId: string;
+  requirements: IProjectRequirements;
+  relatedAdmins: IRelatedAdmins[];
   descriptionRequirement: string;
   descriptionCommission: string;
   startDate: SerializedTimestamp | Date | string;
