@@ -1,4 +1,5 @@
 import { SerializedTimestamp } from '../helpers/times';
+import { PavementStatus, StreetLaneType, StreetType } from './Restaurant';
 import { IUser } from './User';
 
 export enum ProjectStatus {
@@ -11,20 +12,26 @@ export enum ProjectType {
   FIND_PREMISE = 'find-premise',
 }
 
-export enum RelatedAdminType {
+export enum RelatedMemberType {
   ADMIN = 'admin',
   CUSTOMER = 'customer',
 }
 
 export interface IProjectRequirements {
+  area: number[];
+  numberOfFronts: number;
+  pavementStatus: PavementStatus;
+  streetType?: StreetType;
+  streetLaneType?: StreetLaneType;
   priceRange: number[];
   monthlyRentalRange: number[];
   type: string[];
 }
-export interface IRelatedAdmins {
-  admin: Partial<IUser>;
+
+export interface IRelatedMember {
+  member: Partial<IUser>;
   createPemission: boolean;
-  type: RelatedAdminType;
+  type: RelatedMemberType;
   createdAt: SerializedTimestamp | Date | string;
   createdById: string;
 }
@@ -35,7 +42,7 @@ export interface IProject {
   customerName: string;
   customerId: string;
   requirements: IProjectRequirements;
-  relatedAdmins: IRelatedAdmins[];
+  relatedMembers: IRelatedMember[];
   descriptionRequirement: string;
   descriptionCommission: string;
   startDate: SerializedTimestamp | Date | string;
