@@ -4,7 +4,7 @@ import { IRestaurant } from '../models/Restaurant';
 export declare function objFromSnap(snap: admin.firestore.DocumentSnapshot, withSnap?: boolean): any;
 export declare function projectFromSnap(snap: admin.firestore.DocumentSnapshot, { showCustomer, membersSnap }: {
     showCustomer?: boolean;
-    membersSnap?: admin.firestore.DocumentSnapshot[];
+    membersSnap?: admin.firestore.QuerySnapshot;
 }): IProject | null;
 export declare function restaurantFromSnap(doc: admin.firestore.DocumentSnapshot, { keepSource, cleanContent, }: {
     keepSource?: boolean;

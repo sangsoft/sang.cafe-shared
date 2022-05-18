@@ -11,7 +11,7 @@ function objFromSnap(snap, withSnap = false) {
 exports.objFromSnap = objFromSnap;
 function projectFromSnap(snap, { showCustomer, membersSnap }) {
     const data = objFromSnap(snap);
-    const relatedMembers = (membersSnap || []).map((snap) => objFromSnap(snap));
+    const relatedMembers = ((membersSnap === null || membersSnap === void 0 ? void 0 : membersSnap.docs) || []).map((snap) => objFromSnap(snap));
     if (!showCustomer) {
         delete data.customerName;
         delete data.customerId;

@@ -18,10 +18,10 @@ export function objFromSnap(snap: admin.firestore.DocumentSnapshot, withSnap = f
 
 export function projectFromSnap(
   snap: admin.firestore.DocumentSnapshot,
-  { showCustomer, membersSnap }: { showCustomer?: boolean; membersSnap?: admin.firestore.DocumentSnapshot[] },
+  { showCustomer, membersSnap }: { showCustomer?: boolean; membersSnap?: admin.firestore.QuerySnapshot },
 ): IProject | null {
   const data: IProject = objFromSnap(snap);
-  const relatedMembers: IRelatedMember[] = (membersSnap || []).map((snap) => objFromSnap(snap));
+  const relatedMembers: IRelatedMember[] = (membersSnap?.docs || []).map((snap) => objFromSnap(snap));
   if (!showCustomer) {
     delete data.customerName;
     delete data.customerId;
