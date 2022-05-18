@@ -1,9 +1,10 @@
 import * as admin from 'firebase-admin';
-import { IProject } from '../models/Project';
+import { IProject, IRelatedMember } from '../models/Project';
 import { IRestaurant } from '../models/Restaurant';
 import { cleanPhoneNumber } from './content';
 
-export function objFromSnap(snap: admin.firestore.DocumentSnapshot, withSnap = false): any { // eslint-disable-line
+export function objFromSnap(snap: admin.firestore.DocumentSnapshot, withSnap = false): any {
+  // eslint-disable-line
   if (!snap || !snap.exists) {
     return null;
   }
@@ -15,25 +16,30 @@ export function objFromSnap(snap: admin.firestore.DocumentSnapshot, withSnap = f
   };
 }
 
-export function projectFromSnap(snap: admin.firestore.DocumentSnapshot, { showCustomer }: { showCustomer?: boolean }): IProject | null { // eslint-disable-line
+export function projectFromSnap(
+  snap: admin.firestore.DocumentSnapshot,
+  { showCustomer, membersSnap }: { showCustomer?: boolean; membersSnap?: admin.firestore.DocumentSnapshot[] },
+): IProject | null {
   const data: IProject = objFromSnap(snap);
+  const relatedMembers: IRelatedMember[] = (membersSnap || []).map((snap) => objFromSnap(snap));
   if (!showCustomer) {
     delete data.customerName;
     delete data.customerId;
     delete data.customerCodeName;
   }
-  return data;
+  return { ...data, relatedMembers };
 }
 
 export function restaurantFromSnap(
-  doc: admin.firestore.DocumentSnapshot, 
+  doc: admin.firestore.DocumentSnapshot,
   {
     keepSource,
     cleanContent,
   }: {
-    keepSource?: boolean,
-    cleanContent?: boolean,
-  }): IRestaurant {
+    keepSource?: boolean;
+    cleanContent?: boolean;
+  },
+): IRestaurant {
   const data: IRestaurant = objFromSnap(doc);
   if (data.place) {
     data.place = {

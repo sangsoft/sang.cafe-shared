@@ -2,20 +2,22 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const content_1 = require("./content");
 function objFromSnap(snap, withSnap = false) {
+    // eslint-disable-line
     if (!snap || !snap.exists) {
         return null;
     }
     return Object.assign(Object.assign({}, snap.data()), { path: snap.ref.path, uid: snap.id, snap: withSnap ? snap : null });
 }
 exports.objFromSnap = objFromSnap;
-function projectFromSnap(snap, { showCustomer }) {
+function projectFromSnap(snap, { showCustomer, membersSnap }) {
     const data = objFromSnap(snap);
+    const relatedMembers = (membersSnap || []).map((snap) => objFromSnap(snap));
     if (!showCustomer) {
         delete data.customerName;
         delete data.customerId;
         delete data.customerCodeName;
     }
-    return data;
+    return Object.assign(Object.assign({}, data), { relatedMembers });
 }
 exports.projectFromSnap = projectFromSnap;
 function restaurantFromSnap(doc, { keepSource, cleanContent, }) {
