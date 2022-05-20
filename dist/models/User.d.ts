@@ -47,6 +47,8 @@ export interface IUser {
     fbPsid?: string;
     labels?: string[];
     isOrganization?: boolean;
+    representativeName?: string;
+    taxCode?: string;
     belongsToOrganization?: string;
 }
 export declare class User extends Model {
@@ -88,6 +90,8 @@ export declare class User extends Model {
     fbPsid?: string;
     labels?: string[];
     isOrganization?: boolean;
+    representativeName?: string;
+    taxCode?: string;
     belongsToOrganization?: string;
     constructor(obj: IUser);
     isSuperAdmin(): boolean;

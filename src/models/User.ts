@@ -54,7 +54,11 @@ export interface IUser {
   createdBy?: 'signup' | 'facebook' | 'chatfuel';
   fbPsid?: string;
   labels?: string[];
+
+  //Organization
   isOrganization?: boolean;
+  representativeName?: string;
+  taxCode?: string;
   belongsToOrganization?: string;
 }
 
@@ -101,7 +105,11 @@ export class User extends Model {
   createdBy?: 'signup' | 'facebook' | 'chatfuel';
   fbPsid?: string;
   labels?: string[];
+
+  //Organization
   isOrganization?: boolean;
+  representativeName?: string;
+  taxCode?: string;
   belongsToOrganization?: string;
 
   constructor(obj: IUser) {
