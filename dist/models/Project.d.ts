@@ -18,11 +18,13 @@ export interface IProjectRequirements {
     area: number[];
     priceRange: number[];
     monthlyRentalRange: number[];
+    frontWidth: number[];
+    levels: number[];
     numberOfFronts: number;
-    pavementStatus?: PavementStatus;
-    streetType?: StreetType;
-    streetLaneType?: StreetLaneType;
-    tags?: string[];
+    pavementStatus: PavementStatus;
+    streetType: StreetType;
+    streetLaneType: StreetLaneType;
+    tags: string[];
 }
 export interface IRelatedMember {
     member: Partial<IUser>;
