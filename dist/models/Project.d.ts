@@ -14,14 +14,15 @@ export declare enum RelatedMemberType {
     CUSTOMER = "customer"
 }
 export interface IProjectRequirements {
+    type: string[];
     area: number[];
-    numberOfFronts: number;
-    pavementStatus: PavementStatus;
-    streetType?: StreetType;
-    streetLaneType?: StreetLaneType;
     priceRange: number[];
     monthlyRentalRange: number[];
-    type: string[];
+    numberOfFronts: number;
+    pavementStatus?: PavementStatus;
+    streetType?: StreetType;
+    streetLaneType?: StreetLaneType;
+    tags?: string[];
 }
 export interface IRelatedMember {
     member: Partial<IUser>;
