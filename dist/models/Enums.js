@@ -97,73 +97,107 @@ exports.RESTAURANT_TYPES = {
     travel_agency: 'travel_agency',
     university: 'university',
     veterinary_care: 'veterinary_care',
-    zoo: 'zoo'
+    zoo: 'zoo',
 };
 exports.SUPPORTED_TYPES = {
     [exports.RESTAURANT_TYPES.restaurant]: {
         text: 'Nhà hàng',
         value: exports.RESTAURANT_TYPES.restaurant,
-        topPage: true
+        topPage: true,
     },
     [exports.RESTAURANT_TYPES.cafe]: {
         text: 'Café',
         value: exports.RESTAURANT_TYPES.cafe,
-        topPage: true
+        topPage: true,
     },
     ['boba_tea']: {
         text: 'Trà sữa/Kem',
         value: 'boba_tea',
-        topPage: false
+        topPage: false,
     },
     ['for_rent']: {
         text: 'Mặt bằng',
         value: 'for_rent',
-        topPage: true
+        topPage: true,
     },
     ['bar_pub']: {
         text: 'Quán bar/Beer club',
         value: 'bar_pub',
-        topPage: false
+        topPage: false,
     },
     [exports.RESTAURANT_TYPES.convenience_store]: {
         text: 'Tiệm tạp hóa',
         value: exports.RESTAURANT_TYPES.convenience_store,
-        topPage: false
+        topPage: false,
     },
     [exports.RESTAURANT_TYPES.clothing_store]: {
         text: 'Shop quần áo',
         value: exports.RESTAURANT_TYPES.clothing_store,
-        topPage: false
+        topPage: false,
     },
     [exports.RESTAURANT_TYPES.bakery]: {
         text: 'Tiệm bánh',
         value: exports.RESTAURANT_TYPES.bakery,
-        topPage: false
+        topPage: false,
     },
     ['snack']: {
         text: 'Ăn vặt',
         value: 'snack',
-        topPage: false
+        topPage: false,
     },
     [exports.RESTAURANT_TYPES.beauty_salon]: {
         text: 'Salon làm đẹp',
         value: exports.RESTAURANT_TYPES.beauty_salon,
-        topPage: true
+        topPage: true,
     },
     [exports.RESTAURANT_TYPES.hair_care]: {
         text: 'Tiệm làm đầu',
         value: exports.RESTAURANT_TYPES.hair_care,
-        topPage: true
+        topPage: true,
     },
     ['hotel']: {
         text: 'Khách sạn',
         value: 'hotel',
-        topPage: false
+        topPage: false,
     },
     ['other']: {
         text: 'Khác',
         value: 'other',
-        topPage: false
-    }
+        topPage: false,
+    },
 };
+//prettier-ignore
+const TAGS_PREFIX = { 'near': 'Gần', 'next2': 'Liền kề' };
+//prettier-ignore
+const TAGS_PLACES = {
+    'university': 'trường đại học',
+    'hospital': "bệnh viện",
+    'office a': "tòa nhà văn phòng (cao cấp)",
+    'office b': "tòa nhà văn phòng",
+    'mall': "TTTM",
+    'cinema': "rạp film",
+    'highschool': "trường cấp 3",
+    'residential': "khu dân cư",
+    'metrostn': "ga metro",
+    'busstn': "bến xe bus",
+    'coachstn': "bến xe",
+    'walkstreet': "phố đi bộ",
+    'pubstreet': "phố bia",
+    'market': "chợ dân sinh",
+    'supermarket': "siêu thị",
+    'megamarket': "đại siêu thị",
+    'cvs': "cửa hàng tiện lợi",
+    'grocery': "cửa hàng tươi sống",
+    'park': "công viên",
+    'government building': "cơ quan nhà nước",
+    'museum': "bảo tàng",
+};
+exports.SUPPORTED_TAGS = Object.keys(TAGS_PREFIX).reduce((result, prefix) => {
+    const places = Object.keys(TAGS_PLACES).reduce((output, place) => {
+        const text = `${TAGS_PREFIX[prefix]} ${TAGS_PLACES[place]}`;
+        const tagName = [prefix, place].join(':');
+        return Object.assign(Object.assign({}, output), { [tagName]: text });
+    }, {});
+    return Object.assign(Object.assign({}, result), places);
+}, {});
 //# sourceMappingURL=Enums.js.map
