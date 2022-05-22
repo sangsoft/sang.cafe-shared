@@ -22,7 +22,7 @@ var StreetType;
     StreetType["ALLEYWAY_CAR_CAN_ENTER"] = "alleyway-car-can-enter";
     StreetType["STREET_1_WAY"] = "street-1-way";
     StreetType["STREET_2_WAY_NO_SEPARATION"] = "street-2-way-no-separation";
-    StreetType["STREET_2_WAY_WITH_HARD_SEPARATION"] = "street-2-way-hard-separation";
+    StreetType["STREET_2_WAY_WITH_HARD_SEPARATION"] = "street-2-way-with-hard-separation";
 })(StreetType = exports.StreetType || (exports.StreetType = {}));
 var StreetLaneType;
 (function (StreetLaneType) {
@@ -50,7 +50,7 @@ class Restaurant extends Model_1.Model {
         if (obj) {
             Object.assign(this, obj);
         }
-        this.photos = this.photos ? this.photos.filter(_ => !!_) : [];
+        this.photos = this.photos ? this.photos.filter((_) => !!_) : [];
         if (!this.createdById) {
             this.createdById = this.ownerId;
         }
@@ -89,7 +89,7 @@ class Restaurant extends Model_1.Model {
         if (!this.photos) {
             return '';
         }
-        let photo = this.photos.find(photo => {
+        let photo = this.photos.find((photo) => {
             if (typeof photo === 'string') {
                 return false;
             }
@@ -107,7 +107,7 @@ class Restaurant extends Model_1.Model {
         return this.getUrl(this.getMainPhotoObj());
     }
     getMainPhotoThumbUrl() {
-        return this.getThumbUrl(this.getMainPhotoObj()) || this.getThumbUrl(this.menuPhotoUrl) || this.getUrl(this.menuPhotoUrl);
+        return (this.getThumbUrl(this.getMainPhotoObj()) || this.getThumbUrl(this.menuPhotoUrl) || this.getUrl(this.menuPhotoUrl));
     }
     getThumbUrl(photo) {
         return this.getUrl(this.getThumpObj(photo));
@@ -116,7 +116,7 @@ class Restaurant extends Model_1.Model {
         return this.getUrl(this.getMedObj(photo));
     }
     getMainPhotoMedUrl() {
-        return this.getMedUrl(this.getMainPhotoObj()) || this.getMedUrl(this.menuPhotoUrl) || this.getUrl(this.menuPhotoUrl);
+        return (this.getMedUrl(this.getMainPhotoObj()) || this.getMedUrl(this.menuPhotoUrl) || this.getUrl(this.menuPhotoUrl));
     }
     getMainThumbHeight() {
         let mainPhoto = this.getMainPhotoObj();
@@ -156,76 +156,59 @@ class Restaurant extends Model_1.Model {
         }
     }
     createSchema() {
-        const requiredString = joi_1.default.string()
-            .required();
-        const requiredNumber = joi_1.default.number()
-            .required();
-        const photo = joi_1.default
-            .alternatives()
-            .try(joi_1.default.string()
+        const requiredString = joi_1.default.string().required();
+        const requiredNumber = joi_1.default.number().required();
+        const photo = joi_1.default.alternatives().try(joi_1.default.string()
             .uri({
-            scheme: [
-                'https'
-            ]
+            scheme: ['https'],
         })
             .allow(null), joi_1.default.object());
         const requiredUrl = joi_1.default.string()
             .uri({
-            scheme: [
-                'https'
-            ]
+            scheme: ['https'],
         })
             .required();
         return joi_1.default.object({
-            'photos': joi_1.default.array()
-                .items(photo)
-                .max(10)
-                .required(),
-            'name': joi_1.default.string()
-                .min(3)
-                .max(256)
-                .required(),
-            'type': joi_1.default.string()
+            photos: joi_1.default.array().items(photo).max(10).required(),
+            name: joi_1.default.string().min(3).max(256).required(),
+            type: joi_1.default.string()
                 .valid(...Object.keys(Enums_1.SUPPORTED_TYPES))
                 .required(),
-            'since': requiredNumber,
-            'employeeCount': requiredNumber,
-            'hasPos': joi_1.default.boolean()
-                .required(),
-            'description': requiredString,
-            'contactPerson': requiredString,
-            'contact': requiredString,
-            'area': requiredNumber,
-            'frontWidth': requiredNumber,
-            'levels': joi_1.default.number(),
-            'monthlyRent': joi_1.default.number(),
-            'contractTimeLeft': joi_1.default.number(),
-            'landOwnerPhoneNumber': joi_1.default
-                .string()
-                .allow(''),
-            'address': requiredString,
-            'city': requiredString,
-            'district': requiredString,
-            'grossProfit': requiredNumber,
-            'revenue': requiredNumber,
-            'price': requiredNumber,
-            'menuPhotoUrl': photo.required(),
-            'businessLicensePhotoUrl': photo,
-            'bannerPhotoUrl': photo,
-            'privateAddress': joi_1.default.string(),
-            'privateContact': joi_1.default.string(),
-            'privateContactPerson': joi_1.default.string(),
-            'brokerage': joi_1.default.boolean(),
-            'createdById': joi_1.default.string().allow(null),
-            'shortCode': joi_1.default.string().allow(null),
-            'ownerId': joi_1.default.string(),
-            'slug': joi_1.default.string(),
-            'place': joi_1.default.object(),
-            'uid': joi_1.default.string(),
-            'createdAt': joi_1.default.object(),
-            'updatedAt': joi_1.default.object(),
-            'approved': joi_1.default.boolean(),
-            'sold': joi_1.default.boolean(),
+            since: requiredNumber,
+            employeeCount: requiredNumber,
+            hasPos: joi_1.default.boolean().required(),
+            description: requiredString,
+            contactPerson: requiredString,
+            contact: requiredString,
+            area: requiredNumber,
+            frontWidth: requiredNumber,
+            levels: joi_1.default.number(),
+            monthlyRent: joi_1.default.number(),
+            contractTimeLeft: joi_1.default.number(),
+            landOwnerPhoneNumber: joi_1.default.string().allow(''),
+            address: requiredString,
+            city: requiredString,
+            district: requiredString,
+            grossProfit: requiredNumber,
+            revenue: requiredNumber,
+            price: requiredNumber,
+            menuPhotoUrl: photo.required(),
+            businessLicensePhotoUrl: photo,
+            bannerPhotoUrl: photo,
+            privateAddress: joi_1.default.string(),
+            privateContact: joi_1.default.string(),
+            privateContactPerson: joi_1.default.string(),
+            brokerage: joi_1.default.boolean(),
+            createdById: joi_1.default.string().allow(null),
+            shortCode: joi_1.default.string().allow(null),
+            ownerId: joi_1.default.string(),
+            slug: joi_1.default.string(),
+            place: joi_1.default.object(),
+            uid: joi_1.default.string(),
+            createdAt: joi_1.default.object(),
+            updatedAt: joi_1.default.object(),
+            approved: joi_1.default.boolean(),
+            sold: joi_1.default.boolean(),
         });
     }
     onPrepareData() {

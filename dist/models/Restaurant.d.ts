@@ -1,8 +1,8 @@
-import { Model } from "./Model";
-import { Photo } from "./Photo";
-import { SearchRecord } from "./SearchRecord";
-import { NearByResult } from "./Geo";
-import { SerializedTimestamp } from "../helpers/times";
+import { Model } from './Model';
+import { Photo } from './Photo';
+import { SearchRecord } from './SearchRecord';
+import { NearByResult } from './Geo';
+import { SerializedTimestamp } from '../helpers/times';
 export declare enum PavementStatus {
     PAVEMENT_WITH_MOTORBIKE_PARKING = "pavement-with-motorbike-parking",
     PAVEMENT_WITHOUT_MOTORBIKE_PARKING = "pavement-without-parking",
@@ -16,7 +16,7 @@ export declare enum StreetType {
     ALLEYWAY_CAR_CAN_ENTER = "alleyway-car-can-enter",
     STREET_1_WAY = "street-1-way",
     STREET_2_WAY_NO_SEPARATION = "street-2-way-no-separation",
-    STREET_2_WAY_WITH_HARD_SEPARATION = "street-2-way-hard-separation"
+    STREET_2_WAY_WITH_HARD_SEPARATION = "street-2-way-with-hard-separation"
 }
 export declare enum StreetLaneType {
     WITH_2_LANE = "2-lane",
