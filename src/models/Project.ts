@@ -23,7 +23,7 @@ export interface IProjectRequirements {
   priceRange: number[];
   monthlyRentalRange: number[];
   frontWidth: number[];
-  levels: number;
+  levels: number[];
   numberOfFronts: number;
   pavementStatus: PavementStatus;
   streetType: StreetType;
