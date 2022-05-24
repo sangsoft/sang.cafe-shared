@@ -28,7 +28,7 @@ export interface IProjectRequirements {
 }
 export interface IRelatedMember {
     member: Partial<IUser>;
-    createPemission: boolean;
+    createPermission: boolean;
     type: RelatedMemberType;
     createdAt: SerializedTimestamp | Date | string;
     createdById: string;
