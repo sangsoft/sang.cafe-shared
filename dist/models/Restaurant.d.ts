@@ -70,6 +70,7 @@ export interface IRestaurant {
     city: string;
     district: string;
     area: number;
+    landArea?: number;
     frontWidth: number;
     shortCode?: string;
     createdById?: string;
@@ -177,6 +178,7 @@ export declare class Restaurant extends Model {
     ad: boolean;
     show: boolean;
     area: number;
+    landArea?: number;
     frontWidth: number;
     imageResized?: boolean;
     bannerPhotoUrl?: string | Photo;
