@@ -10,4 +10,9 @@ var ProjectType;
 (function (ProjectType) {
     ProjectType["FIND_PREMISE"] = "find-premise";
 })(ProjectType = exports.ProjectType || (exports.ProjectType = {}));
+var RelatedMemberType;
+(function (RelatedMemberType) {
+    RelatedMemberType["ADMIN"] = "admin";
+    RelatedMemberType["CUSTOMER"] = "customer";
+})(RelatedMemberType = exports.RelatedMemberType || (exports.RelatedMemberType = {}));
 //# sourceMappingURL=Project.js.map

@@ -104,3 +104,6 @@ export declare const SUPPORTED_TYPES: {
         topPage: boolean;
     };
 };
+export declare const SUPPORTED_TAGS: {
+    [key: string]: string;
+};
