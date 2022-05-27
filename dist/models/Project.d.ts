@@ -16,6 +16,7 @@ export declare enum RelatedMemberType {
 export interface IProjectRequirements {
     type: string[];
     area: number[];
+    totalArea: number[];
     priceRange: number[];
     monthlyRentalRange: number[];
     frontWidth: number[];
