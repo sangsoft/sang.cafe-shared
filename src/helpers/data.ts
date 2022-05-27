@@ -43,8 +43,8 @@ export function restaurantFromSnap(
   const data: IRestaurant = objFromSnap(doc);
   if (data.place) {
     data.place = {
-      geometry: data.place.geometry,
-      url: data.place.url,
+      geometry: data.place.geometry || null,
+      url: data.place.url || null,
     };
   }
 
