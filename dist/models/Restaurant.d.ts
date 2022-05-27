@@ -154,6 +154,7 @@ export declare class Restaurant extends Model {
     contactPerson: string;
     type: string;
     photos: Photo[];
+    propertyDesignPhotos?: Photo[];
     uid?: string;
     place?: any;
     address: string;
