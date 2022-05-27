@@ -61,6 +61,7 @@ export interface IRestaurant {
     ad?: boolean;
     slug?: string;
     photos: Photo[];
+    propertyDesignPhotos?: Photo[];
     name: string;
     title?: string;
     description: string;

@@ -74,6 +74,7 @@ export interface IRestaurant {
 
   // Level -1
   photos: Photo[];
+  propertyDesignPhotos?: Photo[];
   name: string;
   title?: string;
   description: string;
