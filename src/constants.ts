@@ -6,6 +6,8 @@ export const BILL_SHORT_CODE_SIZE = 6;
 export const OUR_REGION = 'asia-east2';
 export const REWRITE_REGION = 'us-central1';
 
+export const EMPTY_VALUE = 'Empty';
+
 export const SUPPORTED_CITIES = [
   'Hồ Chí Minh',
   'Hà Nội',
@@ -165,16 +167,7 @@ export const SUPPORTED_DISTRICTS = {
     'Thới Lai',
     'Vĩnh Thạnh',
   ],
-  'Đà Nẵng': [
-    'Cẩm Lệ',
-    'Hải Châu',
-    'Liên Chiểu',
-    'Ngũ Hành Sơn',
-    'Sơn Trà',
-    'Thanh Khê',
-    'Hòa Vang',
-    'Hoàng Sa',
-  ],
+  'Đà Nẵng': ['Cẩm Lệ', 'Hải Châu', 'Liên Chiểu', 'Ngũ Hành Sơn', 'Sơn Trà', 'Thanh Khê', 'Hòa Vang', 'Hoàng Sa'],
   'Hải Phòng': [
     'Đồ Sơn',
     'Dương Kinh',
@@ -281,15 +274,9 @@ export const BANKS = [
   { code: 'YOLO', name: 'Ví điện tử YOLO', logo: '/banks/yolo_logo.png' },
 ];
 
-export const SUPPORTED_BANKS = BANKS.filter(({ code }) => [
-  'TECHCOMBANK',
-  'VIETCOMBANK',
-  'ACB',
-  'AGRIBANK',
-  'VIETINBANK',
-  'VIB',
-  'NCB',
-].includes(code));
+export const SUPPORTED_BANKS = BANKS.filter(({ code }) =>
+  ['TECHCOMBANK', 'VIETCOMBANK', 'ACB', 'AGRIBANK', 'VIETINBANK', 'VIB', 'NCB'].includes(code),
+);
 
 export const MOMO_ERROR = {
   [-1]: 'Chữ ký không khớp',
@@ -334,4 +321,5 @@ export const MOMO_ERROR = {
   '9043': 'Tài khoản người dùng cần phải liên kết ngân hàng(theo quy định của ngân hàng nhà nước',
 };
 
-export const pL ='a-zA-ZÁáÀàẢảÃãẠạĂăẮắẰằẲẳẴẵẶặÂâẤấẦầẨẩẪẫẬậĐđÉéÈèẺẻẼẽẸẹÊêẾếỀềỂểỄễỆệÍíÌìỈỉĨĩỊịÓóÒòỎỏÕõỌọÔôỐốỒồỔổỖỗỘộƠơỚớỜờỞởỠỡỢợÚúÙùỦủŨũỤụƯưỨứỪừỬửỮữỰựÝýỲỳỶỷỸỹỴỵ';
+export const pL =
+  'a-zA-ZÁáÀàẢảÃãẠạĂăẮắẰằẲẳẴẵẶặÂâẤấẦầẨẩẪẫẬậĐđÉéÈèẺẻẼẽẸẹÊêẾếỀềỂểỄễỆệÍíÌìỈỉĨĩỊịÓóÒòỎỏÕõỌọÔôỐốỒồỔổỖỗỘộƠơỚớỜờỞởỠỡỢợÚúÙùỦủŨũỤụƯưỨứỪừỬửỮữỰựÝýỲỳỶỷỸỹỴỵ';
