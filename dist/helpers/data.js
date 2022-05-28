@@ -24,8 +24,8 @@ function restaurantFromSnap(doc, { keepSource, cleanContent, }) {
     const data = objFromSnap(doc);
     if (data.place) {
         data.place = {
-            geometry: data.place.geometry,
-            url: data.place.url,
+            geometry: data.place.geometry || null,
+            url: data.place.url || null,
         };
     }
     if (cleanContent && data.brokerage) {

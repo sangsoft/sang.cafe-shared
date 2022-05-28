@@ -74,6 +74,7 @@ export interface IRestaurant {
 
   // Level -1
   photos: Photo[];
+  propertyDesignPhotos?: Photo[];
   name: string;
   title?: string;
   description: string;
@@ -179,6 +180,7 @@ export class Restaurant extends Model {
   public contactPerson: string;
   public type: string = SUPPORTED_TYPES.other.value;
   public photos: Photo[];
+  public propertyDesignPhotos?: Photo[];
   public uid?: string;
   public place?: any;
   public address: string;

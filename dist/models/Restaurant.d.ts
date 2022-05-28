@@ -61,6 +61,7 @@ export interface IRestaurant {
     ad?: boolean;
     slug?: string;
     photos: Photo[];
+    propertyDesignPhotos?: Photo[];
     name: string;
     title?: string;
     description: string;
@@ -153,6 +154,7 @@ export declare class Restaurant extends Model {
     contactPerson: string;
     type: string;
     photos: Photo[];
+    propertyDesignPhotos?: Photo[];
     uid?: string;
     place?: any;
     address: string;
