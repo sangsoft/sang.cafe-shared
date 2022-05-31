@@ -6,6 +6,7 @@ exports.RIGHT_COL_SPONSOR_LIMIT = 2;
 exports.BILL_SHORT_CODE_SIZE = 6;
 exports.OUR_REGION = 'asia-east2';
 exports.REWRITE_REGION = 'us-central1';
+exports.EMPTY_VALUE = 'Empty';
 exports.SUPPORTED_CITIES = [
     'Hồ Chí Minh',
     'Hà Nội',
@@ -165,16 +166,7 @@ exports.SUPPORTED_DISTRICTS = {
         'Thới Lai',
         'Vĩnh Thạnh',
     ],
-    'Đà Nẵng': [
-        'Cẩm Lệ',
-        'Hải Châu',
-        'Liên Chiểu',
-        'Ngũ Hành Sơn',
-        'Sơn Trà',
-        'Thanh Khê',
-        'Hòa Vang',
-        'Hoàng Sa',
-    ],
+    'Đà Nẵng': ['Cẩm Lệ', 'Hải Châu', 'Liên Chiểu', 'Ngũ Hành Sơn', 'Sơn Trà', 'Thanh Khê', 'Hòa Vang', 'Hoàng Sa'],
     'Hải Phòng': [
         'Đồ Sơn',
         'Dương Kinh',
@@ -267,15 +259,7 @@ exports.BANKS = [
     { code: 'VNPTPAY', name: 'Ví điện tử VNPTPAY', logo: '/banks/vnptpay_logo.png' },
     { code: 'YOLO', name: 'Ví điện tử YOLO', logo: '/banks/yolo_logo.png' },
 ];
-exports.SUPPORTED_BANKS = exports.BANKS.filter(({ code }) => [
-    'TECHCOMBANK',
-    'VIETCOMBANK',
-    'ACB',
-    'AGRIBANK',
-    'VIETINBANK',
-    'VIB',
-    'NCB',
-].includes(code));
+exports.SUPPORTED_BANKS = exports.BANKS.filter(({ code }) => ['TECHCOMBANK', 'VIETCOMBANK', 'ACB', 'AGRIBANK', 'VIETINBANK', 'VIB', 'NCB'].includes(code));
 exports.MOMO_ERROR = {
     [-1]: 'Chữ ký không khớp',
     '0': 'Thành công',
