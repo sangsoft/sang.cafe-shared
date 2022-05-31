@@ -1,4 +1,5 @@
 export interface IAgentRequest {
+    uid: string;
     name: string;
     typeOfID: string;
     portrait: string;
