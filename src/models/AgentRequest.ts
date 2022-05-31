@@ -21,6 +21,7 @@ export interface IAgentRequest {
   rejactedBy: string;
   rejectedReason: string;
   positions?: string[];
+  directReview?: boolean;
 }
 
 export const IDTypeText = {

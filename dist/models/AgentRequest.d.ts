@@ -23,6 +23,7 @@ export interface IAgentRequest {
     rejactedBy: string;
     rejectedReason: string;
     positions?: string[];
+    directReview?: boolean;
 }
 export declare const IDTypeText: {
     cccd: string;
