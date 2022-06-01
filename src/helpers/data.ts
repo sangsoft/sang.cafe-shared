@@ -3,17 +3,26 @@ import { IProject, IRelatedMember } from '../models/Project';
 import { IRestaurant } from '../models/Restaurant';
 import { cleanPhoneNumber } from './content';
 
-export function objFromSnap(snap: admin.firestore.DocumentSnapshot, withSnap = false): any {
+export function objFromSnap(snap: admin.firestore.DocumentSnapshot, withSnap = false, options?: { doNotOverwriteId: boolean }): any {
   // eslint-disable-line
   if (!snap || !snap.exists) {
     return null;
   }
-  return {
+
+  let doNotOverwriteId = false
+  if (options) {
+    doNotOverwriteId = options.doNotOverwriteId
+  }
+  const data = {
     ...snap.data(),
     path: snap.ref.path,
-    uid: snap.id,
     snap: withSnap ? snap : null,
-  };
+  } as any // eslint-disable-line
+
+  if (!doNotOverwriteId) {
+    data.uid = snap.ref.id
+  }
+  return data;
 }
 
 export function projectFromSnap(
@@ -33,14 +42,18 @@ export function projectFromSnap(
 export function restaurantFromSnap(
   doc: admin.firestore.DocumentSnapshot,
   {
+    fromSlug,
     keepSource,
     cleanContent,
   }: {
     keepSource?: boolean;
     cleanContent?: boolean;
+    fromSlug?: boolean;
   },
 ): IRestaurant {
-  const data: IRestaurant = objFromSnap(doc);
+  const data: IRestaurant = objFromSnap(doc, false, {
+    doNotOverwriteId: !!fromSlug
+  });
   if (data.place) {
     data.place = {
       geometry: data.place.geometry || null,
