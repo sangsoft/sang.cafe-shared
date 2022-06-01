@@ -1,4 +1,5 @@
 export interface IAgentRequest {
+    uid: string;
     name: string;
     typeOfID: string;
     portrait: string;
@@ -23,6 +24,8 @@ export interface IAgentRequest {
     rejactedBy: string;
     rejectedReason: string;
     positions?: string[];
+    directReview?: boolean;
+    userId: string;
 }
 export declare const IDTypeText: {
     cccd: string;
