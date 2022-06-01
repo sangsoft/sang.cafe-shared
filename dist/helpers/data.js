@@ -1,12 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const content_1 = require("./content");
-function objFromSnap(snap, withSnap = false) {
+function objFromSnap(snap, withSnap = false, options) {
     // eslint-disable-line
     if (!snap || !snap.exists) {
         return null;
     }
-    return Object.assign(Object.assign({}, snap.data()), { path: snap.ref.path, uid: snap.id, snap: withSnap ? snap : null });
+    let doNotOverwriteId = false;
+    if (options) {
+        doNotOverwriteId = options.doNotOverwriteId;
+    }
+    const data = Object.assign(Object.assign({}, snap.data()), { path: snap.ref.path, snap: withSnap ? snap : null }); // eslint-disable-line
+    if (!doNotOverwriteId) {
+        data.uid = snap.ref.id;
+    }
+    return data;
 }
 exports.objFromSnap = objFromSnap;
 function projectFromSnap(snap, { showCustomer, membersSnap }) {
@@ -20,8 +28,10 @@ function projectFromSnap(snap, { showCustomer, membersSnap }) {
     return Object.assign(Object.assign({}, data), { relatedMembers });
 }
 exports.projectFromSnap = projectFromSnap;
-function restaurantFromSnap(doc, { keepSource, cleanContent, }) {
-    const data = objFromSnap(doc);
+function restaurantFromSnap(doc, { fromSlug, keepSource, cleanContent, }) {
+    const data = objFromSnap(doc, false, {
+        doNotOverwriteId: !!fromSlug
+    });
     if (data.place) {
         data.place = {
             geometry: data.place.geometry || null,
