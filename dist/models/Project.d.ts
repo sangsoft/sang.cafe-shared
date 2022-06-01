@@ -35,6 +35,7 @@ export interface IRelatedMember {
     createdById: string;
 }
 export interface IProject {
+    uid: string;
     name: string;
     code: string;
     customerName: string;
