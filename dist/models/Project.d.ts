@@ -29,6 +29,7 @@ export interface IProjectRequirements {
 }
 export interface IRelatedMember {
     member: Partial<IUser>;
+    uid: string;
     createPermission: boolean;
     viewPermission: boolean;
     type: RelatedMemberType;
