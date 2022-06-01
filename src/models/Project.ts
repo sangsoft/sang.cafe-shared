@@ -41,6 +41,7 @@ export interface IRelatedMember {
 }
 
 export interface IProject {
+  uid: string;
   name: string;
   code: string;
   customerName: string;
