@@ -54,6 +54,7 @@ export interface IProject {
   endDate?: SerializedTimestamp | Date | string;
   createdAt: SerializedTimestamp | Date | string;
   createdById: string;
+  lastUpdatedAt: SerializedTimestamp | Date | string;
   endedById?: string;
   status: ProjectStatus;
   type: ProjectType;
