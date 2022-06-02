@@ -36,7 +36,6 @@ export interface IRelatedMember {
   member: Partial<IUser>;
   uid: string;
   createPermission: boolean;
-  viewPermission: boolean;
   type: RelatedMemberType;
   createdAt: SerializedTimestamp | Date | string;
   createdById: string;
