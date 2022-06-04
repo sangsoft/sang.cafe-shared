@@ -65,7 +65,7 @@ export interface IUser {
 
 export class User extends Model {
   uid?: string;
-  customerCode: string;
+  customerCode?: string;
   displayName: string = '';
   email: string = '';
   phoneNumber: string = '';
