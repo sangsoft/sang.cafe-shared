@@ -20,6 +20,7 @@ export interface IUser {
   phoneNumber: string;
   photoURL: string | Photo;
   uid?: string;
+  customerCode?: string;
   canPost: boolean;
   admin: boolean;
   doc?: any;
@@ -64,6 +65,7 @@ export interface IUser {
 
 export class User extends Model {
   uid?: string;
+  customerCode: string;
   displayName: string = '';
   email: string = '';
   phoneNumber: string = '';
