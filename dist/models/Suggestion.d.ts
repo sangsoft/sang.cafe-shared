@@ -1,4 +1,4 @@
-import { SerializedTimestamp } from "../helpers/times";
+import { SerializedTimestamp } from '../helpers/times';
 export declare enum SuggestionStatus {
     ACTIVE = "active",
     OUTDATED = "outdated"
@@ -6,6 +6,12 @@ export declare enum SuggestionStatus {
 export interface SuggestionShortList {
     shortListedById: string;
     shortCode: string;
+    createdAt: SerializedTimestamp;
+}
+export interface StaffComment {
+    shortCode: string;
+    comment: string;
+    createdById: string;
     createdAt: SerializedTimestamp;
 }
 export interface ISuggestion {
@@ -21,6 +27,7 @@ export interface ISuggestion {
         displayName: string;
         phoneNumber: string;
     };
+    staffComments: StaffComment[];
     projectId: string;
     oldSuggestionId: string | null;
     shortList: SuggestionShortList[];
