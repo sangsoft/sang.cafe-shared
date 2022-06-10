@@ -1,28 +1,42 @@
 import * as admin from 'firebase-admin';
 import { IProject, IRelatedMember } from '../models/Project';
 import { IRestaurant } from '../models/Restaurant';
+import { ISuggestion, StaffComment } from '../models/Suggestion';
 import { cleanPhoneNumber } from './content';
 
-export function objFromSnap(snap: admin.firestore.DocumentSnapshot, withSnap = false, options?: { doNotOverwriteId: boolean }): any {
+export function objFromSnap(
+  snap: admin.firestore.DocumentSnapshot,
+  withSnap = false,
+  options?: { doNotOverwriteId: boolean },
+): any {
   // eslint-disable-line
   if (!snap || !snap.exists) {
     return null;
   }
 
-  let doNotOverwriteId = false
+  let doNotOverwriteId = false;
   if (options) {
-    doNotOverwriteId = options.doNotOverwriteId
+    doNotOverwriteId = options.doNotOverwriteId;
   }
   const data = {
     ...snap.data(),
     path: snap.ref.path,
     snap: withSnap ? snap : null,
-  } as any // eslint-disable-line
+  } as any; // eslint-disable-line
 
   if (!doNotOverwriteId) {
-    data.uid = snap.ref.id
+    data.uid = snap.ref.id;
   }
   return data;
+}
+
+export function suggestionFromSnap(
+  snap: admin.firestore.DocumentSnapshot,
+  { commentsSnap }: { commentsSnap?: admin.firestore.QuerySnapshot },
+): ISuggestion | null {
+  const data: ISuggestion = objFromSnap(snap);
+  const staffComments: StaffComment[] = (commentsSnap?.docs || []).map((snap) => objFromSnap(snap));
+  return { ...data, staffComments };
 }
 
 export function projectFromSnap(
@@ -52,7 +66,7 @@ export function restaurantFromSnap(
   },
 ): IRestaurant {
   const data: IRestaurant = objFromSnap(doc, false, {
-    doNotOverwriteId: !!fromSlug
+    doNotOverwriteId: !!fromSlug,
   });
   if (data.place) {
     data.place = {
