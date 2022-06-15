@@ -17,6 +17,12 @@ function objFromSnap(snap, withSnap = false, options) {
     return data;
 }
 exports.objFromSnap = objFromSnap;
+function suggestionFromSnap(snap, { commentsSnap }) {
+    const data = objFromSnap(snap);
+    const staffComments = ((commentsSnap === null || commentsSnap === void 0 ? void 0 : commentsSnap.docs) || []).map((snap) => objFromSnap(snap));
+    return Object.assign(Object.assign({}, data), { staffComments });
+}
+exports.suggestionFromSnap = suggestionFromSnap;
 function projectFromSnap(snap, { showCustomer, membersSnap }) {
     const data = objFromSnap(snap);
     const relatedMembers = ((membersSnap === null || membersSnap === void 0 ? void 0 : membersSnap.docs) || []).map((snap) => objFromSnap(snap));
@@ -30,7 +36,7 @@ function projectFromSnap(snap, { showCustomer, membersSnap }) {
 exports.projectFromSnap = projectFromSnap;
 function restaurantFromSnap(doc, { fromSlug, keepSource, cleanContent, }) {
     const data = objFromSnap(doc, false, {
-        doNotOverwriteId: !!fromSlug
+        doNotOverwriteId: !!fromSlug,
     });
     if (data.place) {
         data.place = {
