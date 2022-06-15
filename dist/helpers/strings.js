@@ -16,6 +16,13 @@ function slug(str) {
     return str;
 }
 exports.slug = slug;
+function capitalize(str) {
+    if (!str) {
+        return;
+    }
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+exports.capitalize = capitalize;
 const charMaps = {
     'a': [
         'a', 'á', 'à', 'ả', 'ã', 'ạ',
