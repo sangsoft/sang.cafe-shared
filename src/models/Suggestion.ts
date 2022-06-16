@@ -24,7 +24,7 @@ export interface StaffRemark {
 }
 
 export interface CustomerComment {
-  shortList: string;
+  shortCode: string;
   comment: string;
   createdById: string;
   createdAt: SerializedTimestamp;
