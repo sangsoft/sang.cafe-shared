@@ -35,7 +35,7 @@ export function suggestionFromSnap(
   {
     remarksSnap,
     commentsSnap,
-  }: { remarksSnap?: admin.firestore.QuerySnapshot; commentsSnap: admin.firestore.QuerySnapshot },
+  }: { remarksSnap?: admin.firestore.QuerySnapshot; commentsSnap?: admin.firestore.QuerySnapshot },
 ): ISuggestion | null {
   const data: ISuggestion = objFromSnap(snap);
   const staffRemarks: StaffRemark[] = (remarksSnap?.docs || []).map((snap) => objFromSnap(snap));

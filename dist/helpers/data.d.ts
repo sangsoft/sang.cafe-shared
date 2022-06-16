@@ -7,7 +7,7 @@ export declare function objFromSnap(snap: admin.firestore.DocumentSnapshot, with
 }): any;
 export declare function suggestionFromSnap(snap: admin.firestore.DocumentSnapshot, { remarksSnap, commentsSnap, }: {
     remarksSnap?: admin.firestore.QuerySnapshot;
-    commentsSnap: admin.firestore.QuerySnapshot;
+    commentsSnap?: admin.firestore.QuerySnapshot;
 }): ISuggestion | null;
 export declare function projectFromSnap(snap: admin.firestore.DocumentSnapshot, { showCustomer, membersSnap }: {
     showCustomer?: boolean;
