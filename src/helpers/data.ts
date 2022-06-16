@@ -1,7 +1,7 @@
 import * as admin from 'firebase-admin';
 import { IProject, IRelatedMember } from '../models/Project';
 import { IRestaurant } from '../models/Restaurant';
-import { ISuggestion, StaffComment } from '../models/Suggestion';
+import { CustomerComment, ISuggestion, StaffRemark } from '../models/Suggestion';
 import { cleanPhoneNumber } from './content';
 
 export function objFromSnap(
@@ -32,11 +32,15 @@ export function objFromSnap(
 
 export function suggestionFromSnap(
   snap: admin.firestore.DocumentSnapshot,
-  { commentsSnap }: { commentsSnap?: admin.firestore.QuerySnapshot },
+  {
+    remarksSnap,
+    commentsSnap,
+  }: { remarksSnap?: admin.firestore.QuerySnapshot; commentsSnap: admin.firestore.QuerySnapshot },
 ): ISuggestion | null {
   const data: ISuggestion = objFromSnap(snap);
-  const staffComments: StaffComment[] = (commentsSnap?.docs || []).map((snap) => objFromSnap(snap));
-  return { ...data, staffComments };
+  const staffRemarks: StaffRemark[] = (remarksSnap?.docs || []).map((snap) => objFromSnap(snap));
+  const customerComments: CustomerComment[] = (commentsSnap?.docs || []).map((snap) => objFromSnap(snap));
+  return { ...data, staffRemarks, customerComments };
 }
 
 export function projectFromSnap(

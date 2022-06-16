@@ -17,10 +17,11 @@ function objFromSnap(snap, withSnap = false, options) {
     return data;
 }
 exports.objFromSnap = objFromSnap;
-function suggestionFromSnap(snap, { commentsSnap }) {
+function suggestionFromSnap(snap, { remarksSnap, commentsSnap, }) {
     const data = objFromSnap(snap);
-    const staffComments = ((commentsSnap === null || commentsSnap === void 0 ? void 0 : commentsSnap.docs) || []).map((snap) => objFromSnap(snap));
-    return Object.assign(Object.assign({}, data), { staffComments });
+    const staffRemarks = ((remarksSnap === null || remarksSnap === void 0 ? void 0 : remarksSnap.docs) || []).map((snap) => objFromSnap(snap));
+    const customerComments = ((commentsSnap === null || commentsSnap === void 0 ? void 0 : commentsSnap.docs) || []).map((snap) => objFromSnap(snap));
+    return Object.assign(Object.assign({}, data), { staffRemarks, customerComments });
 }
 exports.suggestionFromSnap = suggestionFromSnap;
 function projectFromSnap(snap, { showCustomer, membersSnap }) {

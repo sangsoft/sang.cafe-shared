@@ -11,8 +11,20 @@ export interface SuggestionShortList {
   createdAt: SerializedTimestamp;
 }
 
-export interface StaffComment {
+export interface Remark {
+  positive: string;
+  negative: string;
+}
+
+export interface StaffRemark {
   shortCode: string;
+  remark: Remark;
+  createdById: string;
+  createdAt: SerializedTimestamp;
+}
+
+export interface CustomerComment {
+  shortList: string;
   comment: string;
   createdById: string;
   createdAt: SerializedTimestamp;
@@ -31,7 +43,8 @@ export interface ISuggestion {
     displayName: string;
     phoneNumber: string;
   };
-  staffComments: StaffComment[];
+  staffRemarks: StaffRemark[];
+  customerComments: CustomerComment[];
   projectId: string;
   oldSuggestionId: string | null;
   shortList: SuggestionShortList[];
