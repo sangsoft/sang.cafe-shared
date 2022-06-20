@@ -1,14 +1,11 @@
 import { Photo, toPhoto } from "./Photo";
 import { parse, stringify } from 'querystring'
 export abstract class Model {
-  private schema: any;
   public path: string;
 
   constructor() {
-    this.schema = this.createSchema();
   }
 
-  abstract createSchema(): any;
   abstract onPrepareData(): any;
 
   toData(): any {
@@ -22,7 +19,6 @@ export abstract class Model {
     const obj = {
       ...this,
     }
-    delete obj.schema;
     delete obj.path;
     return obj;
   }
@@ -67,17 +63,5 @@ export abstract class Model {
     let path = this.errorPath(error);
     let type = error.details[0].type;
     return `Thiếu thông tin ${path} hoặc sai cấu trúc (${type})`;
-  }
-
-  validate() {
-    let result = this.schema.validate(this.toData());
-    console.log('validate', result);
-    if (!result.error) {
-      return {};
-    }
-    let error = result.error;
-    return {
-      [this.errorPath(error)]: new Error(this.errorMessage(error))
-    };
   }
 }

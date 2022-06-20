@@ -123,6 +123,5 @@ export declare class Task extends Model {
     district?: string | null;
     projectId?: string;
     constructor(obj?: ITask);
-    createSchema(): any;
     onPrepareData(): any;
 }

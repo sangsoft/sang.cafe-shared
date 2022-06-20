@@ -1,4 +1,3 @@
-import Joi from '@hapi/joi';
 
 import { Model } from "./Model";
 import type { IUser } from "./User";
@@ -178,10 +177,6 @@ export class Task extends Model {
     if (obj) {
       Object.assign(this, obj);
     }
-  }
-
-  createSchema() {
-    return Joi.object();
   }
 
   onPrepareData(): any {

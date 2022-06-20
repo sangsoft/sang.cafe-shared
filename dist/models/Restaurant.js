@@ -1,10 +1,6 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const Enums_1 = require("./Enums");
-const joi_1 = __importDefault(require("@hapi/joi"));
 const Model_1 = require("./Model");
 const Photo_1 = require("./Photo");
 var PavementStatus;
@@ -154,62 +150,6 @@ class Restaurant extends Model_1.Model {
         else {
             return this.getMainPhotoThumbUrl();
         }
-    }
-    createSchema() {
-        const requiredString = joi_1.default.string().required();
-        const requiredNumber = joi_1.default.number().required();
-        const photo = joi_1.default.alternatives().try(joi_1.default.string()
-            .uri({
-            scheme: ['https'],
-        })
-            .allow(null), joi_1.default.object());
-        const requiredUrl = joi_1.default.string()
-            .uri({
-            scheme: ['https'],
-        })
-            .required();
-        return joi_1.default.object({
-            photos: joi_1.default.array().items(photo).max(10).required(),
-            name: joi_1.default.string().min(3).max(256).required(),
-            type: joi_1.default.string()
-                .valid(...Object.keys(Enums_1.SUPPORTED_TYPES))
-                .required(),
-            since: requiredNumber,
-            employeeCount: requiredNumber,
-            hasPos: joi_1.default.boolean().required(),
-            description: requiredString,
-            contactPerson: requiredString,
-            contact: requiredString,
-            area: requiredNumber,
-            frontWidth: requiredNumber,
-            levels: joi_1.default.number(),
-            monthlyRent: joi_1.default.number(),
-            contractTimeLeft: joi_1.default.number(),
-            landOwnerPhoneNumber: joi_1.default.string().allow(''),
-            address: requiredString,
-            city: requiredString,
-            district: requiredString,
-            grossProfit: requiredNumber,
-            revenue: requiredNumber,
-            price: requiredNumber,
-            menuPhotoUrl: photo.required(),
-            businessLicensePhotoUrl: photo,
-            bannerPhotoUrl: photo,
-            privateAddress: joi_1.default.string(),
-            privateContact: joi_1.default.string(),
-            privateContactPerson: joi_1.default.string(),
-            brokerage: joi_1.default.boolean(),
-            createdById: joi_1.default.string().allow(null),
-            shortCode: joi_1.default.string().allow(null),
-            ownerId: joi_1.default.string(),
-            slug: joi_1.default.string(),
-            place: joi_1.default.object(),
-            uid: joi_1.default.string(),
-            createdAt: joi_1.default.object(),
-            updatedAt: joi_1.default.object(),
-            approved: joi_1.default.boolean(),
-            sold: joi_1.default.boolean(),
-        });
     }
     onPrepareData() {
         let obj = Object.assign(Object.assign({}, this), { photos: this.photos || [] });

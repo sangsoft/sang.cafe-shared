@@ -1,10 +1,6 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const Model_1 = require("./Model");
-const joi_1 = __importDefault(require("@hapi/joi"));
 const Role_1 = require("./Role");
 class User extends Model_1.Model {
     constructor(obj) {
@@ -35,31 +31,6 @@ class User extends Model_1.Model {
     }
     getPhotoUrl() {
         return this.getUrl(this.photoURL);
-    }
-    createSchema() {
-        const photo = joi_1.default.alternatives()
-            .try(joi_1.default.string().uri({
-            scheme: ['https'],
-        }), joi_1.default.object())
-            .allow(null);
-        const requiredString = joi_1.default.string().required();
-        return joi_1.default.object({
-            uid: joi_1.default.string(),
-            createdAt: joi_1.default.object(),
-            updatedAt: joi_1.default.object(),
-            displayName: requiredString,
-            phoneNumber: requiredString,
-            email: joi_1.default.string()
-                .email({ tlds: { allow: false } })
-                .required(),
-            photoURL: photo,
-            admin: joi_1.default.boolean(),
-            canPost: joi_1.default.boolean(),
-            roles: joi_1.default.array().allow(null),
-            identity: joi_1.default.string().allow(null),
-            note: joi_1.default.string().allow(null),
-            signInMetaData: joi_1.default.object().allow(null),
-        });
     }
     onPrepareData() {
         let obj = Object.assign({}, this);

@@ -1,5 +1,4 @@
 import { Model } from "./Model";
-import Joi from '@hapi/joi';
 
 export interface INotification {
   uid?: string;
@@ -33,10 +32,6 @@ export class Notification extends Model {
   constructor(obj: INotification) {
     super();
     Object.assign(this, obj);
-  }
-
-  createSchema() {
-    return Joi.object({});
   }
 
   onPrepareData() {

@@ -1,6 +1,5 @@
 import { BillItem } from "./BillItem";
 import { Model } from "./Model";
-import Joi from '@hapi/joi';
 import { SerializedTimestamp } from "../helpers/times";
 
 export enum BillStatus {
@@ -54,10 +53,6 @@ export class Bill extends Model {
   constructor(obj: IBill) {
     super();
     Object.assign(this, obj);
-  }
-
-  createSchema() {
-    return Joi.object({});
   }
 
   onPrepareData() {

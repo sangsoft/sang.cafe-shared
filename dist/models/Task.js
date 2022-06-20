@@ -1,9 +1,5 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const joi_1 = __importDefault(require("@hapi/joi"));
 const Model_1 = require("./Model");
 var TaskStatus;
 (function (TaskStatus) {
@@ -66,9 +62,6 @@ class Task extends Model_1.Model {
         if (obj) {
             Object.assign(this, obj);
         }
-    }
-    createSchema() {
-        return joi_1.default.object();
     }
     onPrepareData() {
         let obj = Object.assign({}, this);

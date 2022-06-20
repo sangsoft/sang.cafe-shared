@@ -99,7 +99,6 @@ export declare class User extends Model {
     isSuperAdmin(): boolean;
     can(action: string): boolean;
     getPhotoUrl(): string;
-    createSchema(): any;
     onPrepareData(): any;
     flatten(): any;
 }

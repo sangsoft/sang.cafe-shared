@@ -1,5 +1,4 @@
 import { Model } from './Model';
-import Joi from '@hapi/joi';
 import { Photo } from './Photo';
 import { SearchRecord } from './SearchRecord';
 import { Role } from './Role';
@@ -135,36 +134,6 @@ export class User extends Model {
 
   getPhotoUrl(): string {
     return this.getUrl(this.photoURL);
-  }
-
-  createSchema() {
-    const photo = Joi.alternatives()
-      .try(
-        Joi.string().uri({
-          scheme: ['https'],
-        }),
-        Joi.object(),
-      )
-      .allow(null);
-
-    const requiredString = Joi.string().required();
-    return Joi.object({
-      uid: Joi.string(),
-      createdAt: Joi.object(),
-      updatedAt: Joi.object(),
-      displayName: requiredString,
-      phoneNumber: requiredString,
-      email: Joi.string()
-        .email({ tlds: { allow: false } })
-        .required(),
-      photoURL: photo,
-      admin: Joi.boolean(),
-      canPost: Joi.boolean(),
-      roles: Joi.array().allow(null),
-      identity: Joi.string().allow(null),
-      note: Joi.string().allow(null),
-      signInMetaData: Joi.object().allow(null),
-    });
   }
 
   onPrepareData() {

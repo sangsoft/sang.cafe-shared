@@ -17,6 +17,5 @@ export declare class Comment extends Model {
     createdAt?: any;
     photos?: Photo[];
     constructor(obj?: IComment);
-    createSchema(): any;
     onPrepareData(): any;
 }

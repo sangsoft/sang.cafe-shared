@@ -47,6 +47,5 @@ export declare class Bill extends Model {
     restaurantTaskId?: string;
     restaurantTaskIds?: string[];
     constructor(obj: IBill);
-    createSchema(): any;
     onPrepareData(): this;
 }

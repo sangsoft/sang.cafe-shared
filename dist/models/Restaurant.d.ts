@@ -253,6 +253,5 @@ export declare class Restaurant extends Model {
     getPhotoCloudinaryPublicId(photo: string | Photo): string;
     getBannerPhotoUrl(): string;
     getSmallBannerPhotoUrl(): string;
-    createSchema(): any;
     onPrepareData(): any;
 }

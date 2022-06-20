@@ -1,5 +1,4 @@
 import { Model } from "./Model";
-import Joi from '@hapi/joi';
 
 export interface IRole {
   uid?: string;
@@ -38,10 +37,6 @@ export class Role extends Model {
       return true;
     }
     return this.capabilities.includes(action);
-  }
-
-  createSchema() {
-    return Joi.object();
   }
 
   onPrepareData() {

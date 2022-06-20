@@ -4,7 +4,6 @@ const Photo_1 = require("./Photo");
 const querystring_1 = require("querystring");
 class Model {
     constructor() {
-        this.schema = this.createSchema();
     }
     toData() {
         let obj = this.onPrepareData();
@@ -14,7 +13,6 @@ class Model {
     }
     flatten() {
         const obj = Object.assign({}, this);
-        delete obj.schema;
         delete obj.path;
         return obj;
     }
@@ -49,17 +47,6 @@ class Model {
         let path = this.errorPath(error);
         let type = error.details[0].type;
         return `Thiếu thông tin ${path} hoặc sai cấu trúc (${type})`;
-    }
-    validate() {
-        let result = this.schema.validate(this.toData());
-        console.log('validate', result);
-        if (!result.error) {
-            return {};
-        }
-        let error = result.error;
-        return {
-            [this.errorPath(error)]: new Error(this.errorMessage(error))
-        };
     }
 }
 exports.Model = Model;

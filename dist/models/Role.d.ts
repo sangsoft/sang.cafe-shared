@@ -16,6 +16,5 @@ export declare class Role extends Model {
     'user:admin': boolean;
     constructor(obj: IRole);
     can(action: string): boolean;
-    createSchema(): any;
     onPrepareData(): any;
 }

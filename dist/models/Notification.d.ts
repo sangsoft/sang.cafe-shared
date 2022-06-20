@@ -27,6 +27,5 @@ export declare class Notification extends Model {
     title: string;
     topic: string;
     constructor(obj: INotification);
-    createSchema(): any;
     onPrepareData(): this;
 }

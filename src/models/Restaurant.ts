@@ -1,5 +1,4 @@
 import { RESTAURANT_TYPES, SUPPORTED_TYPES } from './Enums';
-import Joi from '@hapi/joi';
 import { Model } from './Model';
 import { Photo, toPhoto } from './Photo';
 import { IUser } from './User';
@@ -408,69 +407,6 @@ export class Restaurant extends Model {
     } else {
       return this.getMainPhotoThumbUrl();
     }
-  }
-
-  createSchema() {
-    const requiredString = Joi.string().required();
-    const requiredNumber = Joi.number().required();
-    const photo = Joi.alternatives().try(
-      Joi.string()
-        .uri({
-          scheme: ['https'],
-        })
-        .allow(null),
-      Joi.object(),
-    );
-    const requiredUrl = Joi.string()
-      .uri({
-        scheme: ['https'],
-      })
-      .required();
-
-    return Joi.object({
-      photos: Joi.array().items(photo).max(10).required(),
-      name: Joi.string().min(3).max(256).required(),
-      type: Joi.string()
-        .valid(...Object.keys(SUPPORTED_TYPES))
-        .required(),
-      since: requiredNumber,
-      employeeCount: requiredNumber,
-      hasPos: Joi.boolean().required(),
-      description: requiredString,
-      contactPerson: requiredString,
-      contact: requiredString,
-      area: requiredNumber,
-      frontWidth: requiredNumber,
-      levels: Joi.number(),
-      monthlyRent: Joi.number(),
-      contractTimeLeft: Joi.number(),
-      landOwnerPhoneNumber: Joi.string().allow(''),
-      address: requiredString,
-      city: requiredString,
-      district: requiredString,
-      grossProfit: requiredNumber,
-      revenue: requiredNumber,
-      price: requiredNumber,
-      menuPhotoUrl: photo.required(),
-      businessLicensePhotoUrl: photo,
-      bannerPhotoUrl: photo,
-
-      privateAddress: Joi.string(),
-      privateContact: Joi.string(),
-      privateContactPerson: Joi.string(),
-      brokerage: Joi.boolean(),
-
-      createdById: Joi.string().allow(null),
-      shortCode: Joi.string().allow(null),
-      ownerId: Joi.string(),
-      slug: Joi.string(),
-      place: Joi.object(),
-      uid: Joi.string(),
-      createdAt: Joi.object(),
-      updatedAt: Joi.object(),
-      approved: Joi.boolean(),
-      sold: Joi.boolean(),
-    });
   }
 
   onPrepareData(): any {

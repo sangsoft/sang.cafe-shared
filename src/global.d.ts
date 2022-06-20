@@ -1,4 +1,3 @@
-declare module '@hapi/joi';
 declare module "*.svg" {
   const content: string;
   export default content;

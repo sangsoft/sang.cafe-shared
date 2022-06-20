@@ -1,6 +1,5 @@
 import { IUser } from "./User";
 import { Model } from "./Model";
-import Joi from '@hapi/joi';
 import { Photo } from "./Photo";
 
 export interface IComment {
@@ -25,10 +24,6 @@ export class Comment extends Model {
     if (obj) {
       Object.assign(this, obj);
     }
-  }
-
-  createSchema() {
-    return Joi.object();
   }
 
   onPrepareData(): any {
