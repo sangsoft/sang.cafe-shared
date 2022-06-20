@@ -5,7 +5,8 @@ import { ISuggestion } from '../models/Suggestion';
 export declare function objFromSnap(snap: admin.firestore.DocumentSnapshot, withSnap?: boolean, options?: {
     doNotOverwriteId: boolean;
 }): any;
-export declare function suggestionFromSnap(snap: admin.firestore.DocumentSnapshot, { commentsSnap }: {
+export declare function suggestionFromSnap(snap: admin.firestore.DocumentSnapshot, { remarksSnap, commentsSnap, }: {
+    remarksSnap?: admin.firestore.QuerySnapshot;
     commentsSnap?: admin.firestore.QuerySnapshot;
 }): ISuggestion | null;
 export declare function projectFromSnap(snap: admin.firestore.DocumentSnapshot, { showCustomer, membersSnap }: {
