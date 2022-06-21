@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin';
+import { Model } from '../models/Model';
 import { IProject } from '../models/Project';
 import { IRestaurant } from '../models/Restaurant';
 import { ISuggestion } from '../models/Suggestion';
@@ -20,3 +21,6 @@ export declare function restaurantFromSnap(doc: admin.firestore.DocumentSnapshot
 }): IRestaurant;
 export declare function randomShortCode(size: any): string;
 export declare function divideIntoLessThan10<T>(arr: T[]): T[][];
+export declare function toData(model: Model): void;
+export declare function toDataWithTimestamp(model: Model): void;
+export declare function prepareRestaurant(restaurant: IRestaurant): IRestaurant;

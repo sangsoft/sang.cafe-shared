@@ -1,6 +1,6 @@
 import { isBefore, isAfter } from 'date-fns';
-import { User } from './User';
-import { IRestaurant } from './Restaurant';
+import type { IUser } from './User';
+import type { IRestaurant } from './Restaurant';
 
 type SaleOffApplicationFn = (ctx: SaleOffContext, plan: Plan) => Plan;
 
@@ -45,7 +45,7 @@ export interface ISaleOff {
 }
 
 export interface SaleOffContext {
-  user: User;
+  user: IUser;
   restaurant: IRestaurant;
 }
 

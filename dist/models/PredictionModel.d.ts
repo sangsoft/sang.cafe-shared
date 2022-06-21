@@ -1,3 +1,4 @@
+import type { Model } from "./Model";
 export declare enum PredictionModelType {
     RENT_VALUE = "rent-value",
     RENT_VALUE_HAN = "rent-value-hanoi",
@@ -8,7 +9,7 @@ export declare enum PredictionModelStatus {
     DEACTIVE = "deactive",
     ERROR = "error"
 }
-export interface IPredictionModel {
+export interface IPredictionModel extends Model {
     uid: string;
     type: PredictionModelType;
     uploadedUrl: string;

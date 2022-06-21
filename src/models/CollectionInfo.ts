@@ -2,7 +2,7 @@ import type * as admin from 'firebase-admin';
 import type { SerializedTimestamp } from '../helpers/times';
 import type { Model } from './Model';
 import type { PavementStatus, RoadDirection, StreetLaneType, StreetType } from './Restaurant';
-import type { User } from './User';
+import type { IUser } from './User';
 
 export enum CollectedInfoStatus {
   PENDING = 'pending',
@@ -49,7 +49,7 @@ export interface CollectedInfo extends CollectedInfoInput {
   createdBy: string;
   createdAt: admin.firestore.Timestamp | Date | SerializedTimestamp;
   rejectedReason: CollectedInfoRejectedReason;
-  user?: User;
+  user?: IUser;
   originalPhoneNumber?: string;
   phoneNumber: string;
   note?: string;

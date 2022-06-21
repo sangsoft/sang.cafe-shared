@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Model_1 = require("./Model");
 var TaskStatus;
 (function (TaskStatus) {
     TaskStatus["PENDING"] = "pending";
@@ -54,19 +53,4 @@ var TaskResult;
     TaskResult["DEAL_FAILED_BUYER_REJECT"] = "deal-failed-buyer-reject";
     TaskResult["DEAL_FAILED_SELLER_REJECT"] = "deal-failed-seller-reject";
 })(TaskResult = exports.TaskResult || (exports.TaskResult = {}));
-class Task extends Model_1.Model {
-    constructor(obj) {
-        super();
-        this.createdAt = {};
-        this.updatedAt = {};
-        if (obj) {
-            Object.assign(this, obj);
-        }
-    }
-    onPrepareData() {
-        let obj = Object.assign({}, this);
-        return obj;
-    }
-}
-exports.Task = Task;
 //# sourceMappingURL=Task.js.map

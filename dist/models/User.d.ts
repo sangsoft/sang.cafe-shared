@@ -1,7 +1,7 @@
-import { Model } from './Model';
-import { Photo } from './Photo';
-import { SearchRecord } from './SearchRecord';
-import { Role } from './Role';
+import type { Model } from './Model';
+import type { Photo } from './Photo';
+import type { SearchRecord } from './SearchRecord';
+import type { IRole } from './Role';
 export interface IUserStatus {
     level: number;
 }
@@ -10,7 +10,7 @@ export interface IPaymentInfo {
     accountName: string;
     account: string;
 }
-export interface IUser {
+export interface IUser extends Model {
     displayName: string;
     email: string;
     phoneNumber: string;
@@ -36,7 +36,7 @@ export interface IUser {
     };
     searches?: SearchRecord[];
     type?: string;
-    roles?: Role[];
+    roles?: IRole[];
     identity?: string;
     note?: string;
     idNumber?: string;
@@ -51,54 +51,4 @@ export interface IUser {
     representativeName?: string;
     taxCode?: string;
     belongsToOrganization?: string;
-}
-export declare class User extends Model {
-    uid?: string;
-    customerCode?: string;
-    displayName: string;
-    email: string;
-    phoneNumber: string;
-    photoURL: string | Photo;
-    canPost: boolean;
-    admin: boolean;
-    createdAt: any;
-    updatedAt: any;
-    doc?: any;
-    buyer?: IUserStatus;
-    seller?: IUserStatus;
-    signInMetaData?: {
-        phoneNumber: string;
-        email?: string;
-        displayName?: string;
-        registerAsSeller?: boolean;
-        idNumber?: string;
-        address?: string;
-        issueDate?: string;
-        issueAuthority?: string;
-        reason?: 'post' | 'view-contact';
-        path?: string;
-    };
-    searches?: any[];
-    type?: string;
-    roles?: Role[];
-    identity?: string;
-    note?: string;
-    credentials?: Photo[];
-    idNumber?: string;
-    issueAuthority?: string;
-    issueDate?: string;
-    paymentInfo?: IPaymentInfo;
-    createdBy?: 'signup' | 'facebook' | 'chatfuel';
-    fbPsid?: string;
-    labels?: string[];
-    isOrganization?: boolean;
-    representativeName?: string;
-    taxCode?: string;
-    belongsToOrganization?: string;
-    constructor(obj: IUser);
-    isSuperAdmin(): boolean;
-    can(action: string): boolean;
-    getPhotoUrl(): string;
-    onPrepareData(): any;
-    flatten(): any;
 }

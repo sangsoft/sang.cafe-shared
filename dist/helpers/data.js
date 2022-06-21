@@ -74,4 +74,23 @@ function divideIntoLessThan10(arr) {
     return result;
 }
 exports.divideIntoLessThan10 = divideIntoLessThan10;
+function toData(model) {
+}
+exports.toData = toData;
+function toDataWithTimestamp(model) {
+}
+exports.toDataWithTimestamp = toDataWithTimestamp;
+function prepareRestaurant(restaurant) {
+    const obj = Object.assign(Object.assign({}, this), { photos: this.photos || [] });
+    delete obj.saved;
+    // delete obj.uid;
+    delete obj.approved;
+    delete obj.doc;
+    delete obj.ad;
+    delete obj.show;
+    delete obj.imageResized;
+    delete obj.createdById;
+    return obj;
+}
+exports.prepareRestaurant = prepareRestaurant;
 //# sourceMappingURL=data.js.map

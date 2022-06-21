@@ -1,4 +1,5 @@
-export interface IContract {
+import type { Model } from "./Model";
+export interface IContract extends Model {
     uid: string;
     billPath: string;
     billId: string;

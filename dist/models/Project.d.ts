@@ -1,6 +1,7 @@
-import { SerializedTimestamp } from '../helpers/times';
-import { PavementStatus, StreetLaneType, StreetType } from './Restaurant';
-import { IUser } from './User';
+import type { SerializedTimestamp } from '../helpers/times';
+import type { Model } from './Model';
+import type { PavementStatus, StreetLaneType, StreetType } from './Restaurant';
+import type { IUser } from './User';
 export declare enum ProjectStatus {
     PENDING = "pending",
     ONGOING = "ongoing",
@@ -35,7 +36,7 @@ export interface IRelatedMember {
     createdAt: SerializedTimestamp | Date | string;
     createdById: string;
 }
-export interface IProject {
+export interface IProject extends Model {
     uid: string;
     name: string;
     code: string;
