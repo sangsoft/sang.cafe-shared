@@ -1,5 +1,6 @@
+import type { Model } from "./Model";
 
-export interface IAgentRequest {
+export interface IAgentRequest extends Model {
   uid: string;
   name: string;
   typeOfID: string;

@@ -1,8 +1,8 @@
-import { IUser } from "./User";
-import { Model } from "./Model";
-import { Photo } from "./Photo";
+import type { IUser } from "./User";
+import type { Model } from "./Model";
+import type { Photo } from "./Photo";
 
-export interface IComment {
+export interface IComment extends Model {
   uid?: string;
   text: string;
   createdByUid: string;
@@ -11,27 +11,3 @@ export interface IComment {
   photos?: Photo[];
 }
 
-export class Comment extends Model {
-  uid?: string;
-  text: string;
-  createdByUid: string;
-  createdByUser?: IUser;
-  createdAt?: any;
-  photos?: Photo[];
-
-  constructor(obj?: IComment) {
-    super();
-    if (obj) {
-      Object.assign(this, obj);
-    }
-  }
-
-  onPrepareData(): any {
-    let obj = {
-      ...this,
-    }
-
-    return obj;
-  }
-
-}

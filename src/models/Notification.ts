@@ -1,6 +1,6 @@
-import { Model } from "./Model";
+import type { Model } from "./Model";
 
-export interface INotification {
+export interface INotification extends Model {
   uid?: string;
   createdAt?: any;
   data: {
@@ -13,35 +13,4 @@ export interface INotification {
   body: string;
   title: string;
   topic: string;
-}
-
-export class Notification extends Model {
-  public uid?: string;
-  public createdAt?: any;
-  public data: {
-    type: string;
-    restaurantUid?: string;
-    userUid?: string;
-    billUid?: string;
-    billShortCode?: string;
-  };
-  public body: string;
-  public title: string;
-  public topic: string;
-
-  constructor(obj: INotification) {
-    super();
-    Object.assign(this, obj);
-  }
-
-  onPrepareData() {
-    let obj = {
-      ...this
-    }
-
-    delete obj.createdAt;
-    delete obj.uid;
-
-    return obj;
-  }
 }

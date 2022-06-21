@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin';
+import { Model } from '../models/Model';
 import { IProject, IRelatedMember } from '../models/Project';
 import { IRestaurant } from '../models/Restaurant';
 import { CustomerComment, ISuggestion, StaffRemark } from '../models/Suggestion';
@@ -108,4 +109,30 @@ export function divideIntoLessThan10<T>(arr: T[]): T[][] {
     result.push(arr.splice(0, 10));
   }
   return result;
+}
+
+export function toData(model: Model) {
+
+}
+
+export function toDataWithTimestamp(model: Model) {
+
+}
+
+export function prepareRestaurant(restaurant: IRestaurant): IRestaurant {
+  const obj = {
+    ...this,
+    photos: this.photos || [],
+  };
+
+  delete obj.saved;
+  // delete obj.uid;
+  delete obj.approved;
+  delete obj.doc;
+  delete obj.ad;
+  delete obj.show;
+  delete obj.imageResized;
+  delete obj.createdById;
+
+  return obj;
 }
