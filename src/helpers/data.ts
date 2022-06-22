@@ -2,6 +2,7 @@ import * as admin from 'firebase-admin';
 import { Model } from '../models/Model';
 import { IProject, IRelatedMember } from '../models/Project';
 import { IRestaurant } from '../models/Restaurant';
+import type { IRole } from '../models/Role';
 import { CustomerComment, ISuggestion, StaffRemark } from '../models/Suggestion';
 import { cleanPhoneNumber } from './content';
 
@@ -56,6 +57,30 @@ export function projectFromSnap(
     delete data.customerCodeName;
   }
   return { ...data, relatedMembers };
+}
+
+export function roleFromSnap(
+  snap: admin.firestore.DocumentSnapshot
+): IRole | null {
+  const data: IRole = objFromSnap(snap);
+  if (!data) {
+    return null;
+  }
+
+  const capabilities = Object.keys(data).map((key: string) => {
+    if (['uid', 'superadmin', 'name'].includes(key)) {
+      return null;
+    }
+    if (data[key]) {
+      return key;
+    }
+  })
+    .filter(_ => !!_);
+
+  return {
+    ...data,
+    capabilities
+  }
 }
 
 export function restaurantFromSnap(

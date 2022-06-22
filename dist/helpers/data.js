@@ -35,6 +35,23 @@ function projectFromSnap(snap, { showCustomer, membersSnap }) {
     return Object.assign(Object.assign({}, data), { relatedMembers });
 }
 exports.projectFromSnap = projectFromSnap;
+function roleFromSnap(snap) {
+    const data = objFromSnap(snap);
+    if (!data) {
+        return null;
+    }
+    const capabilities = Object.keys(data).map((key) => {
+        if (['uid', 'superadmin', 'name'].includes(key)) {
+            return null;
+        }
+        if (data[key]) {
+            return key;
+        }
+    })
+        .filter(_ => !!_);
+    return Object.assign(Object.assign({}, data), { capabilities });
+}
+exports.roleFromSnap = roleFromSnap;
 function restaurantFromSnap(doc, { fromSlug, keepSource, cleanContent, }) {
     const data = objFromSnap(doc, false, {
         doNotOverwriteId: !!fromSlug,
