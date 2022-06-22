@@ -12,13 +12,29 @@ export function can(user: IUser, action: string): boolean {
   return false;
 }
 
+export function isActionAdmin(capability: string, action: string): boolean {
+  const [target] = action.split(':');
+  const [capTarget, capAction] = capability.split(':');
+  
+  if (capAction !== 'admin') {
+    return false;
+  }
+
+  return capTarget === target;
+}
+
 export function isCapable(role: IRole, action: string): boolean {
   console.log('isCapable', role, action)
-  
+
   if (role.superadmin) {
     return true;
   }
-  return Object.keys(action).includes(action) && role[action];
+
+  return !!role
+    .capabilities
+    .find((capability) => {
+      return capability === action || isActionAdmin(capability, action)
+    });
 }
 
 export function isSuperAdminRole(role: IRole): boolean {

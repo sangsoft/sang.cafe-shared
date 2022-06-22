@@ -10,12 +10,25 @@ function can(user, action) {
     return false;
 }
 exports.can = can;
+function isActionAdmin(capability, action) {
+    const [target] = action.split(':');
+    const [capTarget, capAction] = capability.split(':');
+    if (capAction !== 'admin') {
+        return false;
+    }
+    return capTarget === target;
+}
+exports.isActionAdmin = isActionAdmin;
 function isCapable(role, action) {
     console.log('isCapable', role, action);
     if (role.superadmin) {
         return true;
     }
-    return Object.keys(action).includes(action) && role[action];
+    return !!role
+        .capabilities
+        .find((capability) => {
+        return capability === action || isActionAdmin(capability, action);
+    });
 }
 exports.isCapable = isCapable;
 function isSuperAdminRole(role) {

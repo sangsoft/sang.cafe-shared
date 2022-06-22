@@ -7,4 +7,5 @@ export interface IRole extends Model {
   'restaurants:admin': boolean;
   'task:admin': boolean;
   'user:admin': boolean;
+  capabilities: string[];
 }
