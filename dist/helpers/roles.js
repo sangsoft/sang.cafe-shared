@@ -16,4 +16,12 @@ function isCapable(role, action) {
     return Object.keys(action).includes(action) && role[action];
 }
 exports.isCapable = isCapable;
+function isSuperAdminRole(role) {
+    return role.superadmin;
+}
+exports.isSuperAdminRole = isSuperAdminRole;
+function isSuperAdmin(user) {
+    return user.admin && !!user.roles.find((role) => isSuperAdminRole(role));
+}
+exports.isSuperAdmin = isSuperAdmin;
 //# sourceMappingURL=roles.js.map

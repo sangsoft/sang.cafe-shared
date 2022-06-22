@@ -16,3 +16,11 @@ export function isCapable(role: IRole, action: string): boolean {
   }
   return Object.keys(action).includes(action) && role[action];
 }
+
+export function isSuperAdminRole(role: IRole): boolean {
+  return role.superadmin;
+}
+
+export function isSuperAdmin(user: IUser): boolean {
+  return user.admin && !!user.roles.find((role) => isSuperAdminRole(role))
+}
