@@ -201,3 +201,9 @@ export const SUPPORTED_TAGS: { [key: string]: string } = Object.keys(TAGS_PREFIX
   }, {});
   return { ...result, ...places };
 }, {});
+
+export const SUPPORTED_BRANDS: string[] = [
+  'Winmart',
+  'Bách Hóa Xanh',
+  'Coopmart'
+]
