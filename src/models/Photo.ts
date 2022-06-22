@@ -21,17 +21,3 @@ export interface Photo {
 
   cloudinary?: UploadApiResponse;
 }
-
-export function fromExifData(url: string, exif: any): Photo {
-  return { url };
-}
-
-export function toPhoto(photo: string | Photo): Photo {
-  if (typeof photo === 'string') {
-    return {
-      url: photo
-    };
-  } else {
-    return photo;
-  }
-}

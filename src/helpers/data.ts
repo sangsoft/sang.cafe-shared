@@ -1,6 +1,8 @@
 import * as admin from 'firebase-admin';
+import { Model } from '../models/Model';
 import { IProject, IRelatedMember } from '../models/Project';
 import { IRestaurant } from '../models/Restaurant';
+import type { IRole } from '../models/Role';
 import { CustomerComment, ISuggestion, StaffRemark } from '../models/Suggestion';
 import { cleanPhoneNumber } from './content';
 
@@ -57,6 +59,30 @@ export function projectFromSnap(
   return { ...data, relatedMembers };
 }
 
+export function roleFromSnap(
+  snap: admin.firestore.DocumentSnapshot
+): IRole | null {
+  const data: IRole = objFromSnap(snap);
+  if (!data) {
+    return null;
+  }
+
+  const capabilities = Object.keys(data).map((key: string) => {
+    if (['uid', 'superadmin', 'name'].includes(key)) {
+      return null;
+    }
+    if (data[key]) {
+      return key;
+    }
+  })
+    .filter(_ => !!_);
+
+  return {
+    ...data,
+    capabilities
+  }
+}
+
 export function restaurantFromSnap(
   doc: admin.firestore.DocumentSnapshot,
   {
@@ -108,4 +134,30 @@ export function divideIntoLessThan10<T>(arr: T[]): T[][] {
     result.push(arr.splice(0, 10));
   }
   return result;
+}
+
+export function toData(model: Model) {
+
+}
+
+export function toDataWithTimestamp(model: Model) {
+
+}
+
+export function prepareRestaurant(restaurant: IRestaurant): IRestaurant {
+  const obj = {
+    ...this,
+    photos: this.photos || [],
+  };
+
+  delete obj.saved;
+  // delete obj.uid;
+  delete obj.approved;
+  delete obj.doc;
+  delete obj.ad;
+  delete obj.show;
+  delete obj.imageResized;
+  delete obj.createdById;
+
+  return obj;
 }

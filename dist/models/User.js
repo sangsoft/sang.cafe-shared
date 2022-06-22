@@ -1,52 +1,87 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Model_1 = require("./Model");
-const Role_1 = require("./Role");
-class User extends Model_1.Model {
-    constructor(obj) {
-        super();
-        this.displayName = '';
-        this.email = '';
-        this.phoneNumber = '';
-        this.photoURL = '';
-        this.canPost = false;
-        this.admin = false;
-        this.createdAt = {};
-        this.updatedAt = {};
-        this.buyer = null;
-        this.seller = null;
-        Object.assign(this, obj);
-        this.roles = (obj.roles || []).map((role) => new Role_1.Role(role));
-    }
-    isSuperAdmin() {
-        return (this.roles || []).some((role) => role.superadmin);
-    }
-    can(action) {
-        for (const role of this.roles || []) {
-            if (role.can(action)) {
-                return true;
-            }
-        }
-        return false;
-    }
-    getPhotoUrl() {
-        return this.getUrl(this.photoURL);
-    }
-    onPrepareData() {
-        let obj = Object.assign({}, this);
-        delete obj.buyer;
-        delete obj.seller;
-        delete obj.canPost;
-        delete obj.admin;
-        delete obj.doc;
-        delete obj.requestPost;
-        delete obj.roles;
-        return obj;
-    }
-    flatten() {
-        const obj = super.flatten();
-        return Object.assign(Object.assign({}, obj), { roles: this.roles.map((role) => role.flatten()) });
-    }
-}
-exports.User = User;
+// export class User extends Model {
+//   uid?: string;
+//   customerCode?: string;
+//   displayName: string = '';
+//   email: string = '';
+//   phoneNumber: string = '';
+//   photoURL: string | Photo = '';
+//   canPost: boolean = false;
+//   admin: boolean = false;
+//   createdAt: any = {};
+//   updatedAt: any = {};
+//   doc?: any;
+//   buyer?: IUserStatus = null;
+//   seller?: IUserStatus = null;
+//   signInMetaData?: {
+//     phoneNumber: string;
+//     email?: string;
+//     displayName?: string;
+//     registerAsSeller?: boolean;
+//     idNumber?: string;
+//     address?: string;
+//     issueDate?: string;
+//     issueAuthority?: string;
+//     reason?: 'post' | 'view-contact';
+//     path?: string;
+//   };
+//   searches?: any[];
+//   type?: string;
+//   roles?: Role[];
+//   identity?: string;
+//   note?: string;
+//   credentials?: Photo[];
+//   idNumber?: string;
+//   issueAuthority?: string;
+//   issueDate?: string;
+//   paymentInfo?: IPaymentInfo;
+//   createdBy?: 'signup' | 'facebook' | 'chatfuel';
+//   fbPsid?: string;
+//   labels?: string[];
+//   //Organization
+//   isOrganization?: boolean;
+//   representativeName?: string;
+//   taxCode?: string;
+//   belongsToOrganization?: string;
+//   constructor(obj: IUser) {
+//     super();
+//     Object.assign(this, obj);
+//     this.roles = (obj.roles || []).map((role) => new Role(role));
+//   }
+//   isSuperAdmin(): boolean {
+//     return (this.roles || []).some((role) => role.superadmin);
+//   }
+//   can(action: string): boolean {
+//     for (const role of this.roles || []) {
+//       if (role.can(action)) {
+//         return true;
+//       }
+//     }
+//     return false;
+//   }
+//   // getPhotoUrl(): string {
+//   //   return this.getUrl(this.photoURL);
+//   // }
+//   onPrepareData() {
+//     let obj: any = {
+//       ...this,
+//     };
+//     delete obj.buyer;
+//     delete obj.seller;
+//     delete obj.canPost;
+//     delete obj.admin;
+//     delete obj.doc;
+//     delete obj.requestPost;
+//     delete obj.roles;
+//     return obj;
+//   }
+//   flatten() {
+//     const obj = super.flatten();
+//     return {
+//       ...obj,
+//       roles: this.roles.map((role) => role.flatten()),
+//     };
+//   }
+// }
 //# sourceMappingURL=User.js.map

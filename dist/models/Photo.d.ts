@@ -16,5 +16,3 @@ export interface Photo {
     externalPhoto?: Photo;
     cloudinary?: UploadApiResponse;
 }
-export declare function fromExifData(url: string, exif: any): Photo;
-export declare function toPhoto(photo: string | Photo): Photo;

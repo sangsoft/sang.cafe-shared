@@ -1,1 +1,1 @@
-{"version":3,"file":"Photo.js","sourceRoot":"","sources":["../../src/models/Photo.ts"],"names":[],"mappings":";;AAwBA,SAAgB,YAAY,CAAC,GAAW,EAAE,IAAS;IACjD,OAAO,EAAE,GAAG,EAAE,CAAC;AACjB,CAAC;AAFD,oCAEC;AAED,SAAgB,OAAO,CAAC,KAAqB;IAC3C,IAAI,OAAO,KAAK,KAAK,QAAQ,EAAE;QAC7B,OAAO;YACL,GAAG,EAAE,KAAK;SACX,CAAC;KACH;SAAM;QACL,OAAO,KAAK,CAAC;KACd;AACH,CAAC;AARD,0BAQC"}
+{"version":3,"file":"Photo.js","sourceRoot":"","sources":["../../src/models/Photo.ts"],"names":[],"mappings":""}

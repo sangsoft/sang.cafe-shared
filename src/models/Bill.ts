@@ -1,6 +1,6 @@
-import { BillItem } from "./BillItem";
-import { Model } from "./Model";
-import { SerializedTimestamp } from "../helpers/times";
+import type { IBillItem } from "./BillItem";
+import type { Model } from "./Model";
+import type { SerializedTimestamp } from "../helpers/times";
 
 export enum BillStatus {
   PENDING = 'pending',
@@ -13,8 +13,8 @@ export enum BillStatus {
   TEMPORARY_CONFIRMED = 'temprorary-confirmed'
 }
 
-export interface IBill {
-  items: BillItem[];
+export interface IBill extends Model {
+  items: IBillItem[];
   uid?: string;
   createdAt?: any;
   billExpiredAfterMinutes?: number;
@@ -31,38 +31,4 @@ export interface IBill {
   restaurantTaskIds?: string[];
   statusUpdatedBy?: string;
   statusUpdatedAt?: SerializedTimestamp | Date;
-}
-
-export class Bill extends Model {
-  public uid?: string;
-  public items: BillItem[];
-  public createdAt: any;
-  public billExpiredAfterMinutes: number = 120;
-  public status: BillStatus = BillStatus.PENDING;
-  public paid: number = 0;
-  public total: number;
-  public ownerId?: string;
-  public shortCode?: string;
-  public statusUpdatedBy?: string;
-  public statusUpdatedAt?: SerializedTimestamp | Date;
-  public restaurantId?: string;
-  public restaurantIds?: string[];
-  public restaurantTaskId?: string;
-  public restaurantTaskIds?: string[];
-
-  constructor(obj: IBill) {
-    super();
-    Object.assign(this, obj);
-  }
-
-  onPrepareData() {
-    let obj = {
-      ...this
-    }
-
-    delete obj.createdAt;
-    delete obj.uid;
-
-    return obj;
-  }
 }

@@ -1,20 +1,10 @@
-import { Model } from "./Model";
-export interface IRole {
+import type { Model } from "./Model";
+export interface IRole extends Model {
     uid?: string;
-    'bill:admin': boolean;
-    'restaurants:admin': boolean;
-    'task:admin': boolean;
-    'user:admin': boolean;
-}
-export declare class Role extends Model {
-    uid?: string;
-    capabilities: string[];
     superadmin: boolean;
     'bill:admin': boolean;
     'restaurants:admin': boolean;
     'task:admin': boolean;
     'user:admin': boolean;
-    constructor(obj: IRole);
-    can(action: string): boolean;
-    onPrepareData(): any;
+    capabilities: string[];
 }

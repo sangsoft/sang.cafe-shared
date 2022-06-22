@@ -1,5 +1,5 @@
-import { User } from './User';
-import { Restaurant } from './Restaurant';
+import type { IUser } from './User';
+import type { IRestaurant } from './Restaurant';
 declare type SaleOffApplicationFn = (ctx: SaleOffContext, plan: Plan) => Plan;
 export declare const FreeApplicationFn: () => SaleOffApplicationFn;
 export declare const PercentDiscountApplicationFn: (percent: number) => SaleOffApplicationFn;
@@ -26,8 +26,8 @@ export interface ISaleOff {
     description: string;
 }
 export interface SaleOffContext {
-    user: User;
-    restaurant: Restaurant;
+    user: IUser;
+    restaurant: IRestaurant;
 }
 export declare abstract class SaleOff implements ISaleOff {
     from: Date;

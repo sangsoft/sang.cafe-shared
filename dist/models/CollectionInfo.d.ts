@@ -1,7 +1,8 @@
-import * as admin from 'firebase-admin';
-import { SerializedTimestamp } from '../helpers/times';
-import { PavementStatus, RoadDirection, StreetLaneType, StreetType } from './Restaurant';
-import { User } from './User';
+import type * as admin from 'firebase-admin';
+import type { SerializedTimestamp } from '../helpers/times';
+import type { Model } from './Model';
+import type { PavementStatus, RoadDirection, StreetLaneType, StreetType } from './Restaurant';
+import type { IUser } from './User';
 export declare enum CollectedInfoStatus {
     PENDING = "pending",
     REJECTED = "rejected",
@@ -14,7 +15,7 @@ export declare enum CollectedInfoRejectedReason {
     PREMISE_DOES_NOT_MEET_REQUIREMENT = "premise-does-not-meet-requirement",
     PREMISE_DOES_NOT_MEET_PROJECT_REQUIREMENT = "premise-does-not-meet-project-requirement"
 }
-export interface CollectedInfoInput {
+export interface CollectedInfoInput extends Model {
     address: string;
     city: string;
     district: string;
@@ -40,7 +41,7 @@ export interface CollectedInfo extends CollectedInfoInput {
     createdBy: string;
     createdAt: admin.firestore.Timestamp | Date | SerializedTimestamp;
     rejectedReason: CollectedInfoRejectedReason;
-    user?: User;
+    user?: IUser;
     originalPhoneNumber?: string;
     phoneNumber: string;
     note?: string;

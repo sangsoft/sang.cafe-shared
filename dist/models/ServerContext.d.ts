@@ -1,5 +1,5 @@
-import { User } from "./User";
+import { IUser } from "./User";
 export interface ServerContext {
     auth?: any;
-    user?: User;
+    user?: IUser;
 }

@@ -1,10 +1,10 @@
 
-import { Model } from "./Model";
+import type { Model } from "./Model";
 import type { IUser } from "./User";
 import type { IRestaurant } from "./Restaurant";
 import type { SearchMatch } from "./SearchMatch";
 import type { SerializedTimestamp } from "../helpers/times";
-import { CollectedInfo } from './CollectionInfo';
+import type { CollectedInfo } from './CollectionInfo';
 
 export enum TaskStatus {
   PENDING = 'pending',
@@ -65,7 +65,7 @@ export enum TaskResult {
   DEAL_FAILED_SELLER_REJECT = 'deal-failed-seller-reject',
 }
 
-export interface ITask {
+export interface ITask extends Model {
   uid?: string;
   name: string;
   description: string;
@@ -122,68 +122,4 @@ export interface ITask {
   assigneeHistory?: string[];
 
   projectId?: string;
-}
-export class Task extends Model {
-  uid?: string;
-  name: string;
-  description: string;
-  
-  createdAt: any = {};
-  updatedAt: any = {};
-  props?: string[];
-  status: TaskStatus;
-  type: TaskType;
-  priority: number;
-
-  assigneeId?: string;
-  assignee?: IUser;
-
-  restaurantId?: string;
-  restaurant?: IRestaurant;
-
-  buyerId?: string;
-  buyer?: IUser;
-  buyerRequirement?: string
-
-  sellerId?: string;
-  seller?: IUser;
-  sellerRequirement?: string
-
-  agentId?: string;
-  agent?: IUser;
-
-  createdById?: String;
-  createdBy?: IUser;
-
-  result?: TaskResult;
-
-  appointment?: Date[];
-  location?: string[];
-  
-  match?: SearchMatch;
-
-  infoId?: string;
-  info?: Partial<CollectedInfo>;
-
-  hidden?: string | null;
-
-  city?: string | null;
-  district?: string | null;
-
-  projectId?: string;
-
-  constructor(obj?: ITask) {
-    super();
-    if (obj) {
-      Object.assign(this, obj);
-    }
-  }
-
-  onPrepareData(): any {
-    let obj = {
-      ...this,
-    }
-
-    return obj;
-  }
 }

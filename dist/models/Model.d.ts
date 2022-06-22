@@ -1,12 +1,8 @@
-import { Photo } from "./Photo";
-export declare abstract class Model {
-    path: string;
-    constructor();
-    abstract onPrepareData(): any;
-    toData(): any;
-    flatten(): any;
-    getUrl(photo: string | Photo): string;
-    toDataWithTimestamp(firebase: any, ownerId: string): any;
-    errorPath(error: any): any;
-    errorMessage(error: any): string;
+import type { SerializedTimestamp } from '../helpers/times';
+import type * as admin from 'firebase-admin';
+export interface Model {
+    uid?: string;
+    path?: string;
+    updatedAt?: SerializedTimestamp | admin.firestore.Timestamp | Date | string;
+    createdAt?: SerializedTimestamp | admin.firestore.Timestamp | Date | string;
 }
