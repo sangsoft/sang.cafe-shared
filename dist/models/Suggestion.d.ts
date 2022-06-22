@@ -42,4 +42,5 @@ export interface ISuggestion {
     projectId: string;
     oldSuggestionId: string | null;
     shortList: SuggestionShortList[];
+    brands?: string[];
 }
