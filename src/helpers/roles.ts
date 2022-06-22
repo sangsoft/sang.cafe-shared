@@ -1,5 +1,5 @@
 import type { IRole } from "../models/Role";
-import { IUser } from "../models/User";
+import type { IUser } from "../models/User";
 
 export function can(user: IUser, action: string): boolean {
   console.log('can', user.roles, action)
@@ -14,6 +14,7 @@ export function can(user: IUser, action: string): boolean {
 
 export function isCapable(role: IRole, action: string): boolean {
   console.log('isCapable', role, action)
+  
   if (role.superadmin) {
     return true;
   }
