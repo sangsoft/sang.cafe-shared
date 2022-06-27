@@ -323,3 +323,9 @@ export const MOMO_ERROR = {
 
 export const pL =
   'a-zA-ZÁáÀàẢảÃãẠạĂăẮắẰằẲẳẴẵẶặÂâẤấẦầẨẩẪẫẬậĐđÉéÈèẺẻẼẽẸẹÊêẾếỀềỂểỄễỆệÍíÌìỈỉĨĩỊịÓóÒòỎỏÕõỌọÔôỐốỒồỔổỖỗỘộƠơỚớỜờỞởỠỡỢợÚúÙùỦủŨũỤụƯưỨứỪừỬửỮữỰựÝýỲỳỶỷỸỹỴỵ';
+
+export const SUPPORTED_BRANDS: string[] = [
+  'Winmart',
+  'Bách Hóa Xanh',
+  'Coopmart'
+]
