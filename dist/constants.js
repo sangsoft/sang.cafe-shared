@@ -303,4 +303,9 @@ exports.MOMO_ERROR = {
     '9043': 'Tài khoản người dùng cần phải liên kết ngân hàng(theo quy định của ngân hàng nhà nước',
 };
 exports.pL = 'a-zA-ZÁáÀàẢảÃãẠạĂăẮắẰằẲẳẴẵẶặÂâẤấẦầẨẩẪẫẬậĐđÉéÈèẺẻẼẽẸẹÊêẾếỀềỂểỄễỆệÍíÌìỈỉĨĩỊịÓóÒòỎỏÕõỌọÔôỐốỒồỔổỖỗỘộƠơỚớỜờỞởỠỡỢợÚúÙùỦủŨũỤụƯưỨứỪừỬửỮữỰựÝýỲỳỶỷỸỹỴỵ';
+exports.SUPPORTED_BRANDS = [
+    'Winmart',
+    'Bách Hóa Xanh',
+    'Coopmart'
+];
 //# sourceMappingURL=constants.js.map
