@@ -3,7 +3,7 @@ let isInitialized = false;
 
 function pickCred() {
   try {
-    console.log(process.env.FIREBASE_CREDENTIAL)
+    // console.log(process.env.FIREBASE_CREDENTIAL)
     let cred = admin.credential.cert(JSON.parse(process.env.FIREBASE_CREDENTIAL));
     console.log('Use provided credential')
     return cred;
