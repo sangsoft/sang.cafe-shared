@@ -62,7 +62,7 @@ function getMainPhotoObj(restaurant) {
         if (typeof photo === 'string') {
             return false;
         }
-        return photo.main;
+        return photo === null || photo === void 0 ? void 0 : photo.main;
     });
     if (!photo) {
         photo = restaurant.photos[0];

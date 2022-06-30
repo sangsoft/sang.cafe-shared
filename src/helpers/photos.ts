@@ -72,7 +72,7 @@ export function getMainPhotoObj(restaurant: IRestaurant): string | Photo {
       return false;
     }
 
-    return photo.main;
+    return photo?.main;
   });
 
   if (!photo) {
