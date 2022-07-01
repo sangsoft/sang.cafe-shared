@@ -125,4 +125,10 @@ export interface ITask extends Model {
   projectId?: string;
 
   ownerContactedTimes?: (Date | SerializedTimestamp)[]
+  ownerContactUsers?: Partial<IUser>[]
+  ownerContactUserIds?: string[]
+
+  lastCannotContactedAt?: Date | SerializedTimestamp
+  lastCannotContactUserId?: string
+  lastCannotContactUser?: Partial<IUser>
 }
