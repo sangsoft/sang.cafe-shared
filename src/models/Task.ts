@@ -13,7 +13,8 @@ export enum TaskStatus {
   DEPOSITED = 'deposited',
   DELEGATED = 'delegated',
   OUT_OF_DATE = 'out-of-date',
-  BILL_CREATED = 'bill-created'
+  BILL_CREATED = 'bill-created',
+  CANNOT_CONTACT_OWNER = 'cannot-contact-owner'
 }
 
 export enum TaskType {
@@ -122,4 +123,6 @@ export interface ITask extends Model {
   assigneeHistory?: string[];
 
   projectId?: string;
+
+  ownerContactedTimes?: (Date | SerializedTimestamp)[]
 }

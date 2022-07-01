@@ -9,6 +9,7 @@ var TaskStatus;
     TaskStatus["DELEGATED"] = "delegated";
     TaskStatus["OUT_OF_DATE"] = "out-of-date";
     TaskStatus["BILL_CREATED"] = "bill-created";
+    TaskStatus["CANNOT_CONTACT_OWNER"] = "cannot-contact-owner";
 })(TaskStatus = exports.TaskStatus || (exports.TaskStatus = {}));
 var TaskType;
 (function (TaskType) {

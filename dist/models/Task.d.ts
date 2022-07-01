@@ -11,7 +11,8 @@ export declare enum TaskStatus {
     DEPOSITED = "deposited",
     DELEGATED = "delegated",
     OUT_OF_DATE = "out-of-date",
-    BILL_CREATED = "bill-created"
+    BILL_CREATED = "bill-created",
+    CANNOT_CONTACT_OWNER = "cannot-contact-owner"
 }
 export declare enum TaskType {
     FILL_DATA = "fill-data",
@@ -87,4 +88,5 @@ export interface ITask extends Model {
     district?: string | null;
     assigneeHistory?: string[];
     projectId?: string;
+    ownerContactedTimes?: (Date | SerializedTimestamp)[];
 }
