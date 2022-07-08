@@ -132,3 +132,21 @@ export interface ITask extends Model {
   lastCannotContactedUserId?: string
   lastCannotContactedUser?: Partial<IUser>
 }
+
+export enum CANNOT_CALL_REASON {
+  LINE_BUSY = 'line-busy',
+  DID_NOT_PICKUP = 'did-not-pickup',
+  WRONG_NUMBER = 'wrong-number',
+  PHONE_OFF = 'phone-off'
+}
+
+export enum TaskCallLogStatus {
+  CANNOT_CONTACT_OWNER = 'cannot-contact-owner'
+}
+
+export interface TaskCallLog extends Model {
+  status: TaskCallLogStatus;
+  createdBy: Partial<IUser>;
+  createdById: string;
+  calledPhoneNumbers?: string[];
+}

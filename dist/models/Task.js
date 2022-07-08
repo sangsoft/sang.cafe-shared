@@ -54,4 +54,15 @@ var TaskResult;
     TaskResult["DEAL_FAILED_BUYER_REJECT"] = "deal-failed-buyer-reject";
     TaskResult["DEAL_FAILED_SELLER_REJECT"] = "deal-failed-seller-reject";
 })(TaskResult = exports.TaskResult || (exports.TaskResult = {}));
+var CANNOT_CALL_REASON;
+(function (CANNOT_CALL_REASON) {
+    CANNOT_CALL_REASON["LINE_BUSY"] = "line-busy";
+    CANNOT_CALL_REASON["DID_NOT_PICKUP"] = "did-not-pickup";
+    CANNOT_CALL_REASON["WRONG_NUMBER"] = "wrong-number";
+    CANNOT_CALL_REASON["PHONE_OFF"] = "phone-off";
+})(CANNOT_CALL_REASON = exports.CANNOT_CALL_REASON || (exports.CANNOT_CALL_REASON = {}));
+var TaskCallLogStatus;
+(function (TaskCallLogStatus) {
+    TaskCallLogStatus["CANNOT_CONTACT_OWNER"] = "cannot-contact-owner";
+})(TaskCallLogStatus = exports.TaskCallLogStatus || (exports.TaskCallLogStatus = {}));
 //# sourceMappingURL=Task.js.map
