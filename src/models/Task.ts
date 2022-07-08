@@ -131,6 +131,8 @@ export interface ITask extends Model {
   lastCannotContactedAt?: Date | SerializedTimestamp
   lastCannotContactedUserId?: string
   lastCannotContactedUser?: Partial<IUser>
+
+  callLogs?: TaskCallLog[]
 }
 
 export enum CANNOT_CALL_REASON {
