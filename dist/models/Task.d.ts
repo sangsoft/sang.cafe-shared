@@ -108,5 +108,5 @@ export interface TaskCallLog extends Model {
     status: TaskCallLogStatus;
     createdBy: Partial<IUser>;
     createdById: string;
-    calledPhoneNumbers?: string[];
+    calledPhoneNumber?: string;
 }
