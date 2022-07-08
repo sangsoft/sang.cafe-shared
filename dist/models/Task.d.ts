@@ -103,7 +103,9 @@ export declare enum CANNOT_CALL_REASON {
     PHONE_OFF = "phone-off"
 }
 export declare enum TaskCallLogStatus {
-    CANNOT_CONTACT_OWNER = "cannot-contact-owner"
+    CANNOT_CONTACT_OWNER = "cannot-contact-owner",
+    CALL_THROUGH = "call-through",
+    CALL_THROUGH_NEED_CALL_BACK = "call-through-need-call-back"
 }
 export interface TaskCallLog extends Model {
     status: TaskCallLogStatus;

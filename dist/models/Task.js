@@ -64,5 +64,7 @@ var CANNOT_CALL_REASON;
 var TaskCallLogStatus;
 (function (TaskCallLogStatus) {
     TaskCallLogStatus["CANNOT_CONTACT_OWNER"] = "cannot-contact-owner";
+    TaskCallLogStatus["CALL_THROUGH"] = "call-through";
+    TaskCallLogStatus["CALL_THROUGH_NEED_CALL_BACK"] = "call-through-need-call-back";
 })(TaskCallLogStatus = exports.TaskCallLogStatus || (exports.TaskCallLogStatus = {}));
 //# sourceMappingURL=Task.js.map
