@@ -96,7 +96,7 @@ export interface ITask extends Model {
     lastCannotContactedUser?: Partial<IUser>;
     callLogs?: TaskCallLog[];
 }
-export declare enum CANNOT_CALL_REASON {
+export declare enum CannotCallReason {
     LINE_BUSY = "line-busy",
     DID_NOT_PICKUP = "did-not-pickup",
     WRONG_NUMBER = "wrong-number",

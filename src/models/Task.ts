@@ -135,7 +135,7 @@ export interface ITask extends Model {
   callLogs?: TaskCallLog[]
 }
 
-export enum CANNOT_CALL_REASON {
+export enum CannotCallReason {
   LINE_BUSY = 'line-busy',
   DID_NOT_PICKUP = 'did-not-pickup',
   WRONG_NUMBER = 'wrong-number',
