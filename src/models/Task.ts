@@ -153,4 +153,5 @@ export interface TaskCallLog extends Model {
   createdBy: Partial<IUser>;
   createdById: string;
   calledPhoneNumber?: string;
+  reason: CannotCallReason;
 }

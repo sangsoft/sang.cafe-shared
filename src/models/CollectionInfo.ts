@@ -41,6 +41,7 @@ export interface CollectedInfoInput extends Model {
 
   missingPhoneNumber?: boolean;
   projectId?: string;
+  extraPhoneNumbers?: string[];
 }
 
 export interface CollectedInfo extends CollectedInfoInput {
