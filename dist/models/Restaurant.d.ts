@@ -19,6 +19,7 @@ export declare enum StreetType {
     STREET_2_WAY_WITH_HARD_SEPARATION = "street-2-way-with-hard-separation"
 }
 export declare enum StreetLaneType {
+    WITH_1_LANE = "1-lane",
     WITH_2_LANE = "2-lane",
     WITH_4_LANE = "4-lane",
     WITH_6_LANE = "6-lane",

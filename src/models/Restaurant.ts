@@ -23,6 +23,7 @@ export enum StreetType {
 }
 
 export enum StreetLaneType {
+  WITH_1_LANE = '1-lane',
   WITH_2_LANE = '2-lane',
   WITH_4_LANE = '4-lane',
   WITH_6_LANE = '6-lane',

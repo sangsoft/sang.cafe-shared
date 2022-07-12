@@ -19,6 +19,7 @@ var StreetType;
 })(StreetType = exports.StreetType || (exports.StreetType = {}));
 var StreetLaneType;
 (function (StreetLaneType) {
+    StreetLaneType["WITH_1_LANE"] = "1-lane";
     StreetLaneType["WITH_2_LANE"] = "2-lane";
     StreetLaneType["WITH_4_LANE"] = "4-lane";
     StreetLaneType["WITH_6_LANE"] = "6-lane";
