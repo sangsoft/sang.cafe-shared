@@ -1,6 +1,7 @@
 import type { SerializedTimestamp } from '../helpers/times';
 import type { Model } from './Model';
 import type { PavementStatus, StreetLaneType, StreetType } from './Restaurant';
+import type { IRole } from './Role';
 import type { IUser } from './User';
 export declare enum ProjectStatus {
     PENDING = "pending",
@@ -31,6 +32,7 @@ export interface IProjectRequirements {
 export interface IRelatedMember {
     member: Partial<IUser>;
     uid: string;
+    projectRoles: IRole[];
     createPermission: boolean;
     type: RelatedMemberType;
     createdAt: SerializedTimestamp | Date | string;
