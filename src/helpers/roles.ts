@@ -11,6 +11,7 @@ export function can(user: IUser, action: string): boolean {
   return false;
 }
 export function canInProject(projectId: string, member: IRelatedMember, action: string): boolean {
+  if (!member) return false;
   const memberInProject = projectId === member.projectId;
   for (const role of member.projectRoles || []) {
     if (role.superadmin) return true;
