@@ -10,12 +10,12 @@ export function can(user: IUser, action: string): boolean {
   }
   return false;
 }
-export function canInProject(project: IProject, member: IRelatedMember, action: string): boolean {
-  const memberInProject = !!project.relatedMembers.find((projectMember) => projectMember.uid === member.uid);
+export function canInProject(projectId: string, member: IRelatedMember, action: string): boolean {
+  const memberInProject = projectId === member.projectId;
   for (const role of member.projectRoles || []) {
     if (role.superadmin) return true;
     return !!role.capabilities.find((capability) => {
-      return (memberInProject && capability === action);
+      return memberInProject && capability === action;
     });
   }
 }
