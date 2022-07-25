@@ -9,6 +9,18 @@ function can(user, action) {
     return false;
 }
 exports.can = can;
+function canInProject(member, action) {
+    if (!member)
+        return false;
+    for (const role of member.projectRoles || []) {
+        if (role.superadmin)
+            return true;
+        return !!role.capabilities.find((capability) => {
+            return capability === action;
+        });
+    }
+}
+exports.canInProject = canInProject;
 function isActionAdmin(capability, action) {
     const [target] = action.split(':');
     const [capTarget, capAction] = capability.split(':');
@@ -22,9 +34,7 @@ function isCapable(role, action) {
     if (role.superadmin) {
         return true;
     }
-    return !!role
-        .capabilities
-        .find((capability) => {
+    return !!role.capabilities.find((capability) => {
         return capability === action || isActionAdmin(capability, action);
     });
 }

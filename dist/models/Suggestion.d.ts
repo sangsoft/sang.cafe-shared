@@ -24,6 +24,12 @@ export interface CustomerComment {
     createdById: string;
     createdAt: SerializedTimestamp;
 }
+export interface RemarksDict {
+    [key: string]: Remark;
+}
+export interface CommentsDict {
+    [key: string]: string;
+}
 export interface ISuggestion {
     uid: string;
     customerCode: string;
