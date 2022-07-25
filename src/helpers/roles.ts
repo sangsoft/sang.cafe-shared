@@ -10,23 +10,15 @@ export function can(user: IUser, action: string): boolean {
   }
   return false;
 }
-export function canInProject(projectId: string, member: IRelatedMember | null, action: string): boolean {
+export function canInProject(member: IRelatedMember | null, action: string): boolean {
   if (!member) return false;
-  const memberInProject = projectId === member.projectId;
   for (const role of member.projectRoles || []) {
     if (role.superadmin) return true;
     return !!role.capabilities.find((capability) => {
-      return memberInProject && capability === action;
+      return capability === action;
     });
   }
 }
-
-// function isCapableProject(project: IProject, role: IRole, action: string): boolean {
-//   if (role.superadmin) {
-//     return true;
-//   }
-//   return !!role.capabilities.find((capability) => capability == action);
-// }
 
 export function isActionAdmin(capability: string, action: string): boolean {
   const [target] = action.split(':');

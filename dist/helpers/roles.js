@@ -9,25 +9,18 @@ function can(user, action) {
     return false;
 }
 exports.can = can;
-function canInProject(projectId, member, action) {
+function canInProject(member, action) {
     if (!member)
         return false;
-    const memberInProject = projectId === member.projectId;
     for (const role of member.projectRoles || []) {
         if (role.superadmin)
             return true;
         return !!role.capabilities.find((capability) => {
-            return memberInProject && capability === action;
+            return capability === action;
         });
     }
 }
 exports.canInProject = canInProject;
-// function isCapableProject(project: IProject, role: IRole, action: string): boolean {
-//   if (role.superadmin) {
-//     return true;
-//   }
-//   return !!role.capabilities.find((capability) => capability == action);
-// }
 function isActionAdmin(capability, action) {
     const [target] = action.split(':');
     const [capTarget, capAction] = capability.split(':');
