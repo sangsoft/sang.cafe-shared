@@ -2,6 +2,17 @@ import type { Photo } from "../models/Photo";
 import type { IRestaurant } from "../models/Restaurant";
 import { parse, stringify } from 'querystring'
 
+function booleanToNumber(b?: boolean | null): number {
+  return (b || false) ? 1 : 0;
+}
+
+export function moveMainPhotoFirst(photos: Photo[]): Photo[] {
+
+  return photos.sort((p1, p2) => {
+    return booleanToNumber(p2.main) - booleanToNumber(p1.main);
+  })
+}
+
 export function getUrl(photo: string | Photo): string {
   let url = toPhoto(photo)?.url || '';
 
@@ -18,7 +29,7 @@ export function getUrl(photo: string | Photo): string {
     urlObj.search = stringify(query);
 
     return urlObj.toString();
-  } catch(e) {
+  } catch (e) {
     console.warn(e);
     return url;
   }
