@@ -10,6 +10,8 @@ function can(user, action) {
 }
 exports.can = can;
 function canInProject(projectId, member, action) {
+    if (!member)
+        return false;
     const memberInProject = projectId === member.projectId;
     for (const role of member.projectRoles || []) {
         if (role.superadmin)
