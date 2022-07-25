@@ -1,6 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const querystring_1 = require("querystring");
+function booleanToNumber(b) {
+    return (b || false) ? 1 : 0;
+}
+function moveMainPhotoFirst(photos) {
+    return photos.sort((p1, p2) => {
+        return booleanToNumber(p2.main) - booleanToNumber(p1.main);
+    });
+}
+exports.moveMainPhotoFirst = moveMainPhotoFirst;
 function getUrl(photo) {
     var _a;
     let url = ((_a = toPhoto(photo)) === null || _a === void 0 ? void 0 : _a.url) || '';
