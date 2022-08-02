@@ -15,7 +15,7 @@
     "cloudinary": "^1.27.1",
     "date-fns": "^2.15.0",
     "fast-safe-stringify": "^2.0.7",
-    "firebase-admin": "^9.5.0",
+    "firebase-admin": "^11.0.1",
     "google-libphonenumber": "^3.2.19",
     "ip-address": "^8.1.0",
     "jest": "^26.1.0",

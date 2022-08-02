@@ -6,8 +6,7 @@ function booleanToNumber(b?: boolean | null): number {
   return (b || false) ? 1 : 0;
 }
 
-export function moveMainPhotoFirst(photos: Photo[]): Photo[] {
-
+export function moveMainPhotoFirst(photos: { main?: boolean }[]): { main?: boolean }[] {
   return photos.sort((p1, p2) => {
     return booleanToNumber(p2.main) - booleanToNumber(p1.main);
   })

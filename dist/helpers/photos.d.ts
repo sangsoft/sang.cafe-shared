@@ -1,6 +1,10 @@
 import type { Photo } from "../models/Photo";
 import type { IRestaurant } from "../models/Restaurant";
-export declare function moveMainPhotoFirst(photos: Photo[]): Photo[];
+export declare function moveMainPhotoFirst(photos: {
+    main?: boolean;
+}[]): {
+    main?: boolean;
+}[];
 export declare function getUrl(photo: string | Photo): string;
 export declare function getThumpObj(photo: string | Photo): string | Photo;
 export declare function getMedObj(photo: string | Photo): string | Photo;
