@@ -18,7 +18,7 @@ function customerCommentsFromComments(commentsDict) {
 }
 exports.customerCommentsFromComments = customerCommentsFromComments;
 function remarksFromStaffRemarks(staffRemarks) {
-    return (staffRemarks || []).reduce((result, staffComment) => {
+    return (staffRemarks || []).filter(_ => !!_).reduce((result, staffComment) => {
         return Object.assign(Object.assign({}, result), { [staffComment.shortCode]: staffComment.remark });
     }, {});
 }

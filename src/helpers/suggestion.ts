@@ -17,7 +17,7 @@ export function customerCommentsFromComments(commentsDict: CommentsDict): Custom
 }
 
 export function remarksFromStaffRemarks(staffRemarks: StaffRemark[]): RemarksDict {
-  return (staffRemarks || []).reduce((result, staffComment) => {
+  return (staffRemarks || []).filter(_ => !!_).reduce((result, staffComment) => {
     return { ...result, [staffComment.shortCode]: staffComment.remark };
   }, {});
 }
