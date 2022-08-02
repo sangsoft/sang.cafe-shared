@@ -4,6 +4,7 @@ import type { Photo } from './Photo';
 import { SearchRecord } from './SearchRecord';
 import { NearByResult } from './Geo';
 import { SerializedTimestamp } from '../helpers/times';
+import { Video } from './Video';
 
 export enum PavementStatus {
   PAVEMENT_WITH_MOTORBIKE_PARKING = 'pavement-with-motorbike-parking',
@@ -73,6 +74,7 @@ export interface IRestaurant extends Model {
 
   // Level -1
   photos: Photo[];
+  videos?: Video[];
   propertyDesignPhotos?: Photo[];
   name: string;
   title?: string;
