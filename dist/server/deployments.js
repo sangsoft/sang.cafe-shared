@@ -9,11 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getLastDeployment = void 0;
 const firebase_1 = require("./firebase");
 const data_1 = require("../helpers/data");
 function getLastDeployment() {
     return __awaiter(this, void 0, void 0, function* () {
-        return firebase_1.firestore()
+        return (0, firebase_1.firestore)()
             .collection('DEPLOYMENTS')
             .orderBy('createdAt', 'desc')
             .limit(1)
@@ -22,7 +23,7 @@ function getLastDeployment() {
             if (snap.empty) {
                 return undefined;
             }
-            return data_1.objFromSnap(snap.docs[0]);
+            return (0, data_1.objFromSnap)(snap.docs[0]);
         });
     });
 }

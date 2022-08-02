@@ -25,7 +25,7 @@ describe('utils', () => {
                     { main: false },
                 ]],
         ])('moveMainPhotoFirst(%p) should be %p', (input, expected) => {
-            expect(photos_1.moveMainPhotoFirst(input)).toEqual(expected);
+            expect((0, photos_1.moveMainPhotoFirst)(input)).toEqual(expected);
         });
     });
 });

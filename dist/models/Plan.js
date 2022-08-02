@@ -1,12 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Plan = exports.CheapRestaurantSaleOff = exports.SaleOff = exports.PercentDiscountApplicationFn = exports.FreeApplicationFn = void 0;
 const date_fns_1 = require("date-fns");
-exports.FreeApplicationFn = () => (ctx, plan) => {
+const FreeApplicationFn = () => (ctx, plan) => {
     return new Plan(Object.assign(Object.assign({}, plan), { price: 0, isSaleOff: true }));
 };
-exports.PercentDiscountApplicationFn = (percent) => (ctx, plan) => {
+exports.FreeApplicationFn = FreeApplicationFn;
+const PercentDiscountApplicationFn = (percent) => (ctx, plan) => {
     return new Plan(Object.assign(Object.assign({}, plan), { price: (100 - percent) * plan.price, isSaleOff: true }));
 };
+exports.PercentDiscountApplicationFn = PercentDiscountApplicationFn;
 class SaleOff {
     constructor(obj, applicationFn) {
         Object.assign(this, obj);
@@ -14,7 +17,7 @@ class SaleOff {
     }
     isWithinSaleOffDate(ctx) {
         const now = new Date();
-        return date_fns_1.isAfter(now, this.from) && date_fns_1.isBefore(now, this.to);
+        return (0, date_fns_1.isAfter)(now, this.from) && (0, date_fns_1.isBefore)(now, this.to);
     }
     isViableForSaleOff(ctx) {
         if (!this.isWithinSaleOffDate(ctx)) {

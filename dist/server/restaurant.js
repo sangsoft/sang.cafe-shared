@@ -1,4 +1,27 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,14 +31,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getLastestRestaurants = exports.getAllRestaurants = exports.getRestaurants = exports.getRestaurantsByCursor = exports.getRestaurantsByPage = exports.getRestaurantsInList = exports.getListing = exports.provideSavedStatus = exports.getRestaurantBySlug = exports.getRestaurant = exports.mergeWithSponsor = void 0;
 const firebase_1 = require("./firebase");
 const data_1 = require("../helpers/data");
 const view_level_1 = require("./view-level");
@@ -30,7 +47,7 @@ function mergeWithSponsor({ sponsors, restaurants, user }, ctx) {
             return restaurants;
         }
         const ownerId = user ? user.uid : null;
-        let sponsoredRestaurants = sponsors.map((sponsor) => view_level_1.removeLevelSpecificData({
+        let sponsoredRestaurants = sponsors.map((sponsor) => (0, view_level_1.removeLevelSpecificData)({
             user,
             restaurant: sponsor.restaurant
         }));
@@ -59,12 +76,12 @@ exports.mergeWithSponsor = mergeWithSponsor;
 function getRestaurant({ id }, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
         const user = null;
-        return firebase_1.firestore()
+        return (0, firebase_1.firestore)()
             .collection('RESTAURANTS')
             .doc(id)
             .get()
             .then((snap) => {
-            const restaurant = data_1.restaurantFromSnap(snap, { keepSource: false, cleanContent: true });
+            const restaurant = (0, data_1.restaurantFromSnap)(snap, { keepSource: false, cleanContent: true });
             if (!restaurant.show) {
                 if (!user) {
                     return null;
@@ -73,7 +90,7 @@ function getRestaurant({ id }, ctx) {
                     return null;
                 }
             }
-            return view_level_1.removeLevelSpecificData({ user, restaurant });
+            return (0, view_level_1.removeLevelSpecificData)({ user, restaurant });
         });
     });
 }
@@ -81,7 +98,7 @@ exports.getRestaurant = getRestaurant;
 function getRestaurantBySlug({ slug }, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
         const user = null;
-        return firebase_1.firestore()
+        return (0, firebase_1.firestore)()
             .collection('RESTAURANTS')
             .where('slug', '==', slug)
             .limit(1)
@@ -90,7 +107,7 @@ function getRestaurantBySlug({ slug }, ctx) {
             if (snap.empty) {
                 return null;
             }
-            const restaurant = data_1.restaurantFromSnap(snap.docs[0], { keepSource: false, cleanContent: true });
+            const restaurant = (0, data_1.restaurantFromSnap)(snap.docs[0], { keepSource: false, cleanContent: true });
             if (!restaurant.show) {
                 if (!user) {
                     return null;
@@ -99,7 +116,7 @@ function getRestaurantBySlug({ slug }, ctx) {
                     return null;
                 }
             }
-            return view_level_1.removeLevelSpecificData({ user, restaurant });
+            return (0, view_level_1.removeLevelSpecificData)({ user, restaurant });
         });
     });
 }
@@ -110,7 +127,7 @@ function provideSavedStatus({ ownerId, restaurants }, ctx) {
             return restaurants;
         }
         const ids = restaurants.map((restaurant) => restaurant.uid);
-        return firebase_1.firestore()
+        return (0, firebase_1.firestore)()
             .collection('USERS')
             .doc(ownerId)
             .collection('SAVED_RESTAURANTS')
@@ -129,21 +146,21 @@ exports.provideSavedStatus = provideSavedStatus;
 function getListing({ options, user }, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
         const ownerId = user ? user.uid : null;
-        let query = firebase_1.firestore()
+        let query = (0, firebase_1.firestore)()
             .collection('RESTAURANTS')
             .where('show', '==', true)
             .orderBy('createdAt', 'desc')
             .limit(constants_1.ITEM_PER_PAGE);
         if (options && options.startAfter) {
             const startAfter = options.startAfter;
-            query = query.startAfter(times_1.timestampFromObj(startAfter));
+            query = query.startAfter((0, times_1.timestampFromObj)(startAfter));
         }
         return query
             .get()
             .then((snap) => {
             return snap.docs.map(doc => {
-                const restaurant = data_1.restaurantFromSnap(doc, { keepSource: false, cleanContent: true });
-                return view_level_1.removeLevelSpecificData({ user, restaurant });
+                const restaurant = (0, data_1.restaurantFromSnap)(doc, { keepSource: false, cleanContent: true });
+                return (0, view_level_1.removeLevelSpecificData)({ user, restaurant });
             });
         })
             .then((restaurants) => ownerId ? provideSavedStatus({ ownerId, restaurants }, ctx) : restaurants);
@@ -155,14 +172,14 @@ function getRestaurantsInList({ ids }, ctx) {
         if (!ids || ids.length === 0) {
             return [];
         }
-        let results = yield Promise.all(data_1.divideIntoLessThan10(ids)
+        let results = yield Promise.all((0, data_1.divideIntoLessThan10)(ids)
             .map((part) => {
-            return firebase_1.firestore()
+            return (0, firebase_1.firestore)()
                 .collection('RESTAURANTS')
                 .where(admin.firestore.FieldPath.documentId(), 'in', part)
                 .get()
                 .then((snap) => {
-                const data = snap.docs.map(doc => data_1.restaurantFromSnap(doc, { keepSource: false, cleanContent: true }));
+                const data = snap.docs.map(doc => (0, data_1.restaurantFromSnap)(doc, { keepSource: false, cleanContent: true }));
                 return part.map(id => data.find((restaurant) => restaurant.uid === id));
             });
         }));
@@ -173,13 +190,13 @@ function getRestaurantsInList({ ids }, ctx) {
 exports.getRestaurantsInList = getRestaurantsInList;
 function getRestaurantsByPage(options, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
-        return algolia_1.searchRestaurant({ page: options.page }, ctx);
+        return (0, algolia_1.searchRestaurant)({ page: options.page }, ctx);
     });
 }
 exports.getRestaurantsByPage = getRestaurantsByPage;
 function getRestaurantsByCursor(options, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
-        let query = firebase_1.firestore()
+        let query = (0, firebase_1.firestore)()
             .collection('RESTAURANTS')
             .where('show', '==', true)
             .orderBy('createdAt', 'desc');
@@ -205,8 +222,8 @@ function getRestaurantsByCursor(options, ctx) {
             .get()
             .then((snap) => {
             return snap.docs.map(doc => {
-                const restaurant = data_1.restaurantFromSnap(doc, { keepSource: false, cleanContent: true });
-                return view_level_1.removeLevelSpecificData({ user: null, restaurant });
+                const restaurant = (0, data_1.restaurantFromSnap)(doc, { keepSource: false, cleanContent: true });
+                return (0, view_level_1.removeLevelSpecificData)({ user: null, restaurant });
             });
         });
     });
@@ -216,7 +233,7 @@ function getRestaurants(options, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
         const { user } = ctx;
         const [sponsors, restaurants] = yield Promise.all([
-            sponsor_1.getRightColSponsors(null, ctx),
+            (0, sponsor_1.getRightColSponsors)(null, ctx),
             getListing({ options, user }, ctx)
         ]);
         return mergeWithSponsor({ sponsors, restaurants, user }, ctx);
@@ -225,12 +242,12 @@ function getRestaurants(options, ctx) {
 exports.getRestaurants = getRestaurants;
 function getAllRestaurants(options, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
-        return firebase_1.firestore()
+        return (0, firebase_1.firestore)()
             .collection('RESTAURANTS')
             .get()
             .then((snap) => {
             return snap.docs.map((doc) => {
-                return data_1.restaurantFromSnap(doc, { keepSource: false, cleanContent: true });
+                return (0, data_1.restaurantFromSnap)(doc, { keepSource: false, cleanContent: true });
             });
         });
     });
@@ -238,7 +255,7 @@ function getAllRestaurants(options, ctx) {
 exports.getAllRestaurants = getAllRestaurants;
 function getLastestRestaurants({ limit }, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
-        return firebase_1.firestore()
+        return (0, firebase_1.firestore)()
             .collection('RESTAURANTS')
             .where('show', '==', true)
             .orderBy('createdAt', 'desc')
@@ -246,7 +263,7 @@ function getLastestRestaurants({ limit }, ctx) {
             .get()
             .then((snap) => {
             return snap.docs.map((doc) => {
-                return data_1.restaurantFromSnap(doc, { keepSource: false, cleanContent: true });
+                return (0, data_1.restaurantFromSnap)(doc, { keepSource: false, cleanContent: true });
             });
         });
     });

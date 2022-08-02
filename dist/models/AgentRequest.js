@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AgentRequestStatus = exports.CompensationModel = exports.IDTypeText = void 0;
 exports.IDTypeText = {
     'cccd': 'Căn cước công dân/Chứng minh nhân dân',
     'passport': 'Hộ chiếu',

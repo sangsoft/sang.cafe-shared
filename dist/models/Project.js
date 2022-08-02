@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.RelatedMemberType = exports.ProjectType = exports.ProjectStatus = void 0;
 var ProjectStatus;
 (function (ProjectStatus) {
     ProjectStatus["PENDING"] = "pending";

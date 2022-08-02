@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.firestore = exports.storage = void 0;
 const admin = require('firebase-admin');
 let isInitialized = false;
 function pickCred() {
@@ -21,6 +22,9 @@ function lazyInitialize() {
             let cred = pickCred();
             admin.initializeApp({
                 credential: cred,
+                // databaseURL: "https://restaurant-listing-89eb7.firebaseio.com",
+                // projectId: "restaurant-listing-89eb7",
+                // storageBucket: "restaurant-listing-89eb7.appspot.com",
             });
         }
         catch (e) {
@@ -30,12 +34,14 @@ function lazyInitialize() {
     }
     return admin;
 }
-exports.storage = () => {
+const storage = () => {
     const admin = lazyInitialize();
     return admin.storage();
 };
-exports.firestore = () => {
+exports.storage = storage;
+const firestore = () => {
     const admin = lazyInitialize();
     return admin.firestore();
 };
+exports.firestore = firestore;
 //# sourceMappingURL=firebase.js.map

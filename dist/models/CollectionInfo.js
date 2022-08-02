@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.CollectedInfoRejectedReason = exports.CollectedInfoStatus = void 0;
 var CollectedInfoStatus;
 (function (CollectedInfoStatus) {
     CollectedInfoStatus["PENDING"] = "pending";

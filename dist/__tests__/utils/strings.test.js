@@ -23,7 +23,7 @@ describe('utils', () => {
                     'pizza-4ps-bao-khanh'
                 ]
             ])('slug(%p) should be %p', (title, expected) => {
-                expect(strings_1.slug(title)).toEqual(expected);
+                expect((0, strings_1.slug)(title)).toEqual(expected);
             });
         });
     });

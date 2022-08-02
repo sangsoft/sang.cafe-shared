@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.RoadDirection = exports.StreetLaneType = exports.StreetType = exports.PavementStatus = void 0;
 var PavementStatus;
 (function (PavementStatus) {
     PavementStatus["PAVEMENT_WITH_MOTORBIKE_PARKING"] = "pavement-with-motorbike-parking";

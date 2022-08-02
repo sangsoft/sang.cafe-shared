@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.PredictionModelStatus = exports.PredictionModelType = void 0;
 var PredictionModelType;
 (function (PredictionModelType) {
     PredictionModelType["RENT_VALUE"] = "rent-value";

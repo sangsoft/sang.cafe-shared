@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.SUPPORTED_BRANDS = exports.pL = exports.MOMO_ERROR = exports.SUPPORTED_BANKS = exports.BANKS = exports.SUPPORTED_DISTRICTS = exports.SUPPORTED_CITIES = exports.EMPTY_VALUE = exports.REWRITE_REGION = exports.OUR_REGION = exports.BILL_SHORT_CODE_SIZE = exports.RIGHT_COL_SPONSOR_LIMIT = exports.ITEM_PER_PAGE_FULL = exports.ITEM_PER_PAGE = void 0;
 exports.ITEM_PER_PAGE = 10;
 exports.ITEM_PER_PAGE_FULL = 20;
 exports.RIGHT_COL_SPONSOR_LIMIT = 2;

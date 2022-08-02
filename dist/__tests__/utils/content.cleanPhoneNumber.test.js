@@ -311,7 +311,7 @@ Call {{phone_number}}/ {{phone_number}} ***{{phone_number}}*** +{{phone_number}}
           `
                 ],
             ])('cleanPhoneNumber(%p) should be %p', (text, expected) => {
-                expect(content_1.cleanPhoneNumber(text)).toEqual(expected);
+                expect((0, content_1.cleanPhoneNumber)(text)).toEqual(expected);
             });
         });
     });

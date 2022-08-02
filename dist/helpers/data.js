@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.prepareRestaurant = exports.toDataWithTimestamp = exports.toData = exports.divideIntoLessThan10 = exports.randomShortCode = exports.restaurantFromSnap = exports.roleFromSnap = exports.projectFromSnap = exports.suggestionFromSnap = exports.objFromSnap = void 0;
 const content_1 = require("./content");
 function objFromSnap(snap, withSnap = false, options) {
     // eslint-disable-line
@@ -63,7 +64,7 @@ function restaurantFromSnap(doc, { fromSlug, keepSource, cleanContent, }) {
         };
     }
     if (cleanContent && data.brokerage) {
-        data.description = content_1.cleanPhoneNumber(data.description || '');
+        data.description = (0, content_1.cleanPhoneNumber)(data.description || '');
     }
     if (!keepSource) {
         // eslint-disable-next-line

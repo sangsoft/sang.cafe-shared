@@ -9,24 +9,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getContractsAndBills = void 0;
 const data_1 = require("../helpers/data");
 const firebase_1 = require("./firebase");
 function getContractsAndBills({ contractId }, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
-        const contract = yield firebase_1.firestore()
+        const contract = yield (0, firebase_1.firestore)()
             .collection('CONTRACTS')
             .doc(contractId)
             .get()
-            .then(snap => data_1.objFromSnap(snap));
-        const bill = yield firebase_1.firestore()
+            .then(snap => (0, data_1.objFromSnap)(snap));
+        const bill = yield (0, firebase_1.firestore)()
             .doc(contract.billPath)
             .get()
-            .then(snap => data_1.objFromSnap(snap));
-        const restaurant = yield firebase_1.firestore()
+            .then(snap => (0, data_1.objFromSnap)(snap));
+        const restaurant = yield (0, firebase_1.firestore)()
             .collection('RESTAURANTS')
             .doc(bill.items[contract.itemId].restaurantId)
             .get()
-            .then(snap => data_1.objFromSnap(snap));
+            .then(snap => (0, data_1.objFromSnap)(snap));
         return {
             contract, bill, restaurant
         };

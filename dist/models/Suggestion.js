@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.SuggestionStatus = void 0;
 var SuggestionStatus;
 (function (SuggestionStatus) {
     SuggestionStatus["ACTIVE"] = "active";

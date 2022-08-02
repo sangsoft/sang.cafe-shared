@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.searchRestaurant = exports.indexes = exports.client = void 0;
 const restaurant_1 = require("../server/restaurant");
 const view_level_1 = require("../server/view-level");
 const sponsor_1 = require("../server/sponsor");
@@ -39,13 +40,13 @@ function searchRestaurant({ name, district, city, type, page, }, ctx) {
                 'show:true',
             ].filter(_ => !!_),
         });
-        const restaurants = yield restaurant_1.getRestaurantsInList({ ids: hits.map((hit) => hit.objectID) }, ctx)
-            .then((restaurants) => restaurants.map((restaurant) => view_level_1.removeLevelSpecificData({
+        const restaurants = yield (0, restaurant_1.getRestaurantsInList)({ ids: hits.map((hit) => hit.objectID) }, ctx)
+            .then((restaurants) => restaurants.map((restaurant) => (0, view_level_1.removeLevelSpecificData)({
             user, restaurant,
         })))
             .then((restaurants) => __awaiter(this, void 0, void 0, function* () {
-            return restaurant_1.mergeWithSponsor({
-                sponsors: yield sponsor_1.getRightColSponsors(null, ctx),
+            return (0, restaurant_1.mergeWithSponsor)({
+                sponsors: yield (0, sponsor_1.getRightColSponsors)(null, ctx),
                 restaurants,
                 user,
             }, ctx);

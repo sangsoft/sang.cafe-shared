@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.staffRemarksFromRemarks = exports.remarksFromStaffRemarks = exports.customerCommentsFromComments = exports.commentsFromCustomerComments = void 0;
 function commentsFromCustomerComments(customerComments) {
     return (customerComments || []).reduce((result, customerComment) => {
         return Object.assign(Object.assign({}, result), { [customerComment.shortCode]: customerComment.comment });

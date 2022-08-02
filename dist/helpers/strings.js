@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.converVietnameseCharsToASCII = exports.capitalize = exports.slug = void 0;
 function slug(str) {
     str = str
         .replace(/^\s+|\s+$/g, '')

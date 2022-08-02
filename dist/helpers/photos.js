@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.toPhoto = exports.fromExifData = exports.getSmallBannerPhotoUrl = exports.getBannerPhotoUrl = exports.getPhotoCloudinaryPublicId = exports.getMainThumbHeight = exports.getMainPhotoMedUrl = exports.getMedUrl = exports.getThumbUrl = exports.getMainPhotoThumbUrl = exports.getMainPhotoUrl = exports.getMainPhotoObj = exports.getMedObj = exports.getThumpObj = exports.getUrl = exports.moveMainPhotoFirst = void 0;
 const querystring_1 = require("querystring");
 function booleanToNumber(b) {
     return (b || false) ? 1 : 0;
@@ -18,11 +19,11 @@ function getUrl(photo) {
     }
     try {
         let urlObj = new URL(url);
-        const query = querystring_1.parse(urlObj.search);
+        const query = (0, querystring_1.parse)(urlObj.search);
         if (!query.alt) {
             query.alt = 'media';
         }
-        urlObj.search = querystring_1.stringify(query);
+        urlObj.search = (0, querystring_1.stringify)(query);
         return urlObj.toString();
     }
     catch (e) {

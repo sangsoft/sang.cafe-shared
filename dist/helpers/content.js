@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.cleanAddress = exports.cleanPhoneNumber = exports.matchWithPatterns = void 0;
 const constants_1 = require("../constants");
 function removeSubstitutionKey(text) {
     if (!text) {

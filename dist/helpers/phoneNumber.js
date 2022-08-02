@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.normalizePhoneNumberNationalNoThrow = exports.normalizePhoneNumberNational = exports.normalizePhoneNumberNoThrow = exports.normalizePhoneNumber = void 0;
 const google_libphonenumber_1 = require("google-libphonenumber");
 const phoneUtil = google_libphonenumber_1.PhoneNumberUtil.getInstance();
 const ACCEPTABLE_TYPES = [

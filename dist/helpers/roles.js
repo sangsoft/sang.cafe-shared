@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.isSuperAdmin = exports.isSuperAdminRole = exports.isCapable = exports.isActionAdmin = exports.canInProject = exports.can = void 0;
 function can(user, action) {
     for (const role of user.roles || []) {
         if (isCapable(role, action)) {

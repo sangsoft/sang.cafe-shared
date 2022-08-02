@@ -90,7 +90,7 @@ http://www.sanbatdongsanviet.com.vn
           `
                 ],
             ])('cleanAddress(%p) should be %p', (text, expected) => {
-                expect(content_1.cleanAddress(text)).toEqual(expected);
+                expect((0, content_1.cleanAddress)(text)).toEqual(expected);
             });
         });
     });

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.SUPPORTED_TAGS = exports.SUPPORTED_TYPES = exports.RESTAURANT_TYPES = void 0;
 exports.RESTAURANT_TYPES = {
     accounting: 'accounting',
     airport: 'airport',

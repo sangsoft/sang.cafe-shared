@@ -11,7 +11,7 @@ describe('utils', () => {
             ['0328888888', '0328888888'],
             ['032 888 8888', '0328888888'],
         ])('normalizePhoneNumberNationalNoThrow(%p) should be %p', (input, expected) => {
-            expect(phoneNumber_1.normalizePhoneNumberNationalNoThrow(input)).toEqual(expected);
+            expect((0, phoneNumber_1.normalizePhoneNumberNationalNoThrow)(input)).toEqual(expected);
         });
     });
 });

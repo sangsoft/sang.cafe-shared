@@ -33,9 +33,11 @@ describe('utils', () => {
                 ['118.68.96.0', 'Hà Nội'],
                 ['171.253.182.255', 'Hồ Chí Minh'],
                 ['171.253.182.0', 'Hồ Chí Minh'],
-                ['253.143.197.106', null],
+                ['253.143.197.106', null], // This IPv4's big int value is similar to that of a value later in the IPv6 range
+                // 4254057834 to check between (42540578165288142620979710979523739648, 42540578165289351546799325608698445823)
+                // Match first 8 number
             ])('findIpRange(%p) should be %p', (ip, expected) => __awaiter(void 0, void 0, void 0, function* () {
-                const range = yield ip_1.findIpRange(ip);
+                const range = yield (0, ip_1.findIpRange)(ip);
                 console.log(range);
                 if (expected) {
                     expect(range.city).toBe(expected);

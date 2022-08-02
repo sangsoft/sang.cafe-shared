@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.guessSearchParams = exports.extractTags = exports.getCity = exports.extractDistricts = exports.extractMonthlyRentFromLabels = exports.extractMonthlyRentFromLabel = exports.extractPriceFromLabels = exports.extractPriceFromLabel = exports.guessUserTypeFromLabels = exports.guessUserTypeFromLabel = exports.guessPhoneNumberFromLabels = exports.guessPhoneNumberFromLabel = exports.DistrictKeywords = exports.Tags = void 0;
 const phoneNumber_1 = require("../helpers/phoneNumber");
 const strings_1 = require("./strings");
 exports.Tags = [
@@ -265,7 +266,7 @@ exports.DistrictKeywords = {
     },
 };
 function guessPhoneNumberFromLabel(label) {
-    const normalizedPhoneNumber = phoneNumber_1.normalizePhoneNumberNoThrow(label.page_label_name);
+    const normalizedPhoneNumber = (0, phoneNumber_1.normalizePhoneNumberNoThrow)(label.page_label_name);
     return normalizedPhoneNumber;
 }
 exports.guessPhoneNumberFromLabel = guessPhoneNumberFromLabel;
@@ -348,7 +349,7 @@ function extractMonthlyRentFromLabels(labels) {
 exports.extractMonthlyRentFromLabels = extractMonthlyRentFromLabels;
 function extractDistricts(labels) {
     return labels.reduce((result, label) => {
-        const normalizedText = strings_1.converVietnameseCharsToASCII(label.page_label_name.trim()).toLowerCase();
+        const normalizedText = (0, strings_1.converVietnameseCharsToASCII)(label.page_label_name.trim()).toLowerCase();
         const districts = Object.keys(exports.DistrictKeywords).filter((key) => {
             const keywords = exports.DistrictKeywords[key].keywords;
             for (const word of keywords) {
