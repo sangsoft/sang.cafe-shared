@@ -8,6 +8,10 @@ export declare enum CollectedInfoStatus {
     REJECTED = "rejected",
     ACCEPTED = "accepted"
 }
+export declare enum CollectedInfoType {
+    EMPTY_PREMISE = "empty-premise",
+    RENT_DEMAND = "rent-demand"
+}
 export declare enum CollectedInfoRejectedReason {
     IMAGE_TOO_BLURRY = "image-too-blurry",
     DUPLICATED = "duplicated",
@@ -35,6 +39,7 @@ export interface CollectedInfoInput extends Model {
     missingPhoneNumber?: boolean;
     projectId?: string;
     extraPhoneNumbers?: string[];
+    type: CollectedInfoType;
 }
 export interface CollectedInfo extends CollectedInfoInput {
     uid?: string;
