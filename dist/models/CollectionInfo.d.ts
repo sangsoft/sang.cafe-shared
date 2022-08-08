@@ -25,7 +25,8 @@ export interface CollectedInfoInput extends Model {
     district: string;
     infoImage: string;
     overallImage: string;
-    phoneNumber: string;
+    phoneNumber?: string;
+    customerName?: string;
     carLaneNumber: string;
     oneWayRoad: RoadDirection;
     hardSeparation: boolean;
