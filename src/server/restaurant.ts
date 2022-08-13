@@ -101,7 +101,7 @@ export async function getRestaurantsByShortCode({ shortCodes }: { shortCodes: st
         const querySegment: IRestaurant[] = await query
           .where('shortCode', 'in', segment)
           .get()
-          .then((snap) => snap.docs.map((doc) => restaurantFromSnap(doc, { keepSource: false, cleanContent: false })));
+          .then((snap) => snap.docs.map((doc) => restaurantFromSnap(doc, { keepSource: false, cleanContent: true })));
         return [...(await result), ...querySegment];
       },
       Promise.resolve([]) as Promise<IRestaurant[]>,

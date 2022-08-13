@@ -129,7 +129,7 @@ function getRestaurantsByShortCode({ shortCodes }, ctx) {
             const querySegment = yield query
                 .where('shortCode', 'in', segment)
                 .get()
-                .then((snap) => snap.docs.map((doc) => (0, data_1.restaurantFromSnap)(doc, { keepSource: false, cleanContent: false })));
+                .then((snap) => snap.docs.map((doc) => (0, data_1.restaurantFromSnap)(doc, { keepSource: false, cleanContent: true })));
             return [...(yield result), ...querySegment];
         }), Promise.resolve([])));
         return queriedRestaurants;
