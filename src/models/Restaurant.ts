@@ -127,6 +127,7 @@ export interface IRestaurant extends Model {
   }[];
 
   // Level 999
+  missingPrivateContactInfo?: boolean;
   privateAddress?: string;
   privateContact?: string;
   privateContactPerson?: string;
