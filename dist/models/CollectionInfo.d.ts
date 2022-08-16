@@ -40,6 +40,7 @@ export interface CollectedInfoInput extends Model {
     missingPhoneNumber?: boolean;
     projectId?: string;
     extraPhoneNumbers?: string[];
+    demandRequirements?: string;
     type: CollectedInfoType;
 }
 export interface CollectedInfo extends CollectedInfoInput {

@@ -7,7 +7,7 @@ import type { IUser } from './User';
 export enum CollectedInfoStatus {
   PENDING = 'pending',
   REJECTED = 'rejected',
-  ACCEPTED = 'accepted'
+  ACCEPTED = 'accepted',
 }
 
 export enum CollectedInfoType {
@@ -48,6 +48,7 @@ export interface CollectedInfoInput extends Model {
   missingPhoneNumber?: boolean;
   projectId?: string;
   extraPhoneNumbers?: string[];
+  demandRequirements?: string;
 
   type: CollectedInfoType;
 }
@@ -65,4 +66,3 @@ export interface CollectedInfo extends CollectedInfoInput {
   acceptedBy?: string;
   rejectedBy?: string;
 }
-
