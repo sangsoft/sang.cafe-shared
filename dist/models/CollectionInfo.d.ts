@@ -41,6 +41,8 @@ export interface CollectedInfoInput extends Model {
     projectId?: string;
     extraPhoneNumbers?: string[];
     demandRequirements?: string;
+    budget?: number;
+    referralEmail?: string;
     type: CollectedInfoType;
 }
 export interface CollectedInfo extends CollectedInfoInput {
