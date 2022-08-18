@@ -25,8 +25,8 @@ export interface IProjectRequirements {
     levels: number[];
     numberOfFronts: number;
     pavementStatus: PavementStatus;
-    streetType: StreetType;
-    streetLaneType: StreetLaneType;
+    streetType: StreetType[];
+    streetLaneType: StreetLaneType[];
     tags: string[];
 }
 export interface IRelatedMember {
