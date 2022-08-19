@@ -24,26 +24,26 @@ export enum CollectedInfoRejectedReason {
 }
 
 export interface CollectedInfoInput extends Model {
-  address: string;
+  address?: string;
   city: string;
-  district: string;
-  infoImage: string;
-  overallImage: string;
+  district?: string;
+  infoImage?: string;
+  overallImage?: string;
   phoneNumber?: string;
   customerName?: string;
 
-  carLaneNumber: string;
-  oneWayRoad: RoadDirection;
-  hardSeparation: boolean;
+  carLaneNumber?: string;
+  oneWayRoad?: RoadDirection;
+  hardSeparation?: boolean;
 
-  numberOfFronts: number;
-  pavementStatus: PavementStatus;
-  levels: number;
-  totalLevels: number;
-  canParkCar: boolean;
+  numberOfFronts?: number;
+  pavementStatus?: PavementStatus;
+  levels?: number;
+  totalLevels?: number;
+  canParkCar?: boolean;
 
-  streetType: StreetType;
-  streetLaneType: StreetLaneType;
+  streetType?: StreetType;
+  streetLaneType?: StreetLaneType;
 
   missingPhoneNumber?: boolean;
   projectId?: string;

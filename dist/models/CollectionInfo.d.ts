@@ -20,23 +20,23 @@ export declare enum CollectedInfoRejectedReason {
     PREMISE_DOES_NOT_MEET_PROJECT_REQUIREMENT = "premise-does-not-meet-project-requirement"
 }
 export interface CollectedInfoInput extends Model {
-    address: string;
+    address?: string;
     city: string;
-    district: string;
-    infoImage: string;
-    overallImage: string;
+    district?: string;
+    infoImage?: string;
+    overallImage?: string;
     phoneNumber?: string;
     customerName?: string;
-    carLaneNumber: string;
-    oneWayRoad: RoadDirection;
-    hardSeparation: boolean;
-    numberOfFronts: number;
-    pavementStatus: PavementStatus;
-    levels: number;
-    totalLevels: number;
-    canParkCar: boolean;
-    streetType: StreetType;
-    streetLaneType: StreetLaneType;
+    carLaneNumber?: string;
+    oneWayRoad?: RoadDirection;
+    hardSeparation?: boolean;
+    numberOfFronts?: number;
+    pavementStatus?: PavementStatus;
+    levels?: number;
+    totalLevels?: number;
+    canParkCar?: boolean;
+    streetType?: StreetType;
+    streetLaneType?: StreetLaneType;
     missingPhoneNumber?: boolean;
     projectId?: string;
     extraPhoneNumbers?: string[];
