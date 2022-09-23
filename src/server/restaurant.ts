@@ -7,21 +7,27 @@ import * as admin from 'firebase-admin';
 import { ServerContext } from '../models/ServerContext';
 import { getRightColSponsors } from './sponsor';
 import { searchRestaurant } from '../helpers/algolia';
+import type { IRestaurant } from '../models/Restaurant';
 
 export async function mergeWithSponsor({ sponsors, restaurants, user }: any, ctx: ServerContext) {
   if (!restaurants || restaurants.length === 0) {
     return restaurants;
   }
   const ownerId = user ? user.uid : null;
-  let sponsoredRestaurants = sponsors.map((sponsor: any) => removeLevelSpecificData({
-    user,
-    restaurant: sponsor.restaurant
-  }));
+  let sponsoredRestaurants = sponsors.map((sponsor: any) =>
+    removeLevelSpecificData({
+      user,
+      restaurant: sponsor.restaurant,
+    }),
+  );
   if (ownerId) {
-    sponsoredRestaurants = await provideSavedStatus({
-      ownerId,
-      restaurants: sponsoredRestaurants
-    }, ctx);
+    sponsoredRestaurants = await provideSavedStatus(
+      {
+        ownerId,
+        restaurants: sponsoredRestaurants,
+      },
+      ctx,
+    );
   }
 
   const newRestaurants = restaurants
@@ -32,7 +38,7 @@ export async function mergeWithSponsor({ sponsors, restaurants, user }: any, ctx
         if (sponsoredRestaurant) {
           c.push({
             ...sponsoredRestaurant,
-            ad: true
+            ad: true,
           });
         }
       }
@@ -42,7 +48,7 @@ export async function mergeWithSponsor({ sponsors, restaurants, user }: any, ctx
   return newRestaurants;
 }
 
-export async function getRestaurant({ id }: { id: string, cleanContent?: boolean }, ctx: ServerContext) {
+export async function getRestaurant({ id }: { id: string; cleanContent?: boolean }, ctx: ServerContext) {
   const user = null;
   return firestore()
     .collection('RESTAURANTS')
@@ -85,6 +91,24 @@ export async function getRestaurantBySlug({ slug }, ctx: ServerContext) {
     });
 }
 
+export async function getRestaurantsByShortCode({ shortCodes }: { shortCodes: string[] }, ctx: ServerContext) {
+  const query = firestore().collection('RESTAURANTS').orderBy('createdAt', 'desc');
+
+  const shortCodesSegment = divideIntoLessThan10(shortCodes);
+  const queriedRestaurants = Promise.all(
+    await shortCodesSegment.reduce(
+      async (result: Promise<IRestaurant[]>, segment: string[]): Promise<IRestaurant[]> => {
+        const querySegment: IRestaurant[] = await query
+          .where('shortCode', 'in', segment)
+          .get()
+          .then((snap) => snap.docs.map((doc) => restaurantFromSnap(doc, { keepSource: false, cleanContent: true })));
+        return [...(await result), ...querySegment];
+      },
+      Promise.resolve([]) as Promise<IRestaurant[]>,
+    ),
+  );
+  return queriedRestaurants;
+}
 
 export async function provideSavedStatus({ ownerId, restaurants }: any, ctx: ServerContext) {
   if (!restaurants || restaurants.length == 0) {
@@ -100,11 +124,11 @@ export async function provideSavedStatus({ ownerId, restaurants }: any, ctx: Ser
     .where('status', '==', true)
     .get()
     .then((snap: admin.firestore.QuerySnapshot) => {
-      const saved: any[] = snap.docs.map(doc => doc.data().restaurantId);
+      const saved: any[] = snap.docs.map((doc) => doc.data().restaurantId);
       return restaurants.map((restaurant: any) => {
         return {
           ...restaurant,
-          saved: saved.includes(restaurant.uid)
+          saved: saved.includes(restaurant.uid),
         };
       });
     });
@@ -126,12 +150,12 @@ export async function getListing({ options, user }: any, ctx: ServerContext) {
   return query
     .get()
     .then((snap: admin.firestore.QuerySnapshot) => {
-      return snap.docs.map(doc => {
+      return snap.docs.map((doc) => {
         const restaurant = restaurantFromSnap(doc, { keepSource: false, cleanContent: true });
         return removeLevelSpecificData({ user, restaurant });
       });
     })
-    .then((restaurants: any) => ownerId ? provideSavedStatus({ ownerId, restaurants }, ctx) : restaurants);
+    .then((restaurants: any) => (ownerId ? provideSavedStatus({ ownerId, restaurants }, ctx) : restaurants));
 }
 
 export async function getRestaurantsInList({ ids }, ctx: ServerContext) {
@@ -140,42 +164,35 @@ export async function getRestaurantsInList({ ids }, ctx: ServerContext) {
   }
 
   let results = await Promise.all(
-    divideIntoLessThan10<string>(ids)
-      .map((part: string[]) => {
-        return firestore()
-          .collection('RESTAURANTS')
-          .where(admin.firestore.FieldPath.documentId(), 'in', part)
-          .get()
-          .then((snap: admin.firestore.QuerySnapshot) => {
-            const data = snap.docs.map(doc => restaurantFromSnap(doc, { keepSource: false, cleanContent: true }));
-            return part.map(id => data.find((restaurant) => restaurant.uid === id));
-          });
-      })
+    divideIntoLessThan10<string>(ids).map((part: string[]) => {
+      return firestore()
+        .collection('RESTAURANTS')
+        .where(admin.firestore.FieldPath.documentId(), 'in', part)
+        .get()
+        .then((snap: admin.firestore.QuerySnapshot) => {
+          const data = snap.docs.map((doc) => restaurantFromSnap(doc, { keepSource: false, cleanContent: true }));
+          return part.map((id) => data.find((restaurant) => restaurant.uid === id));
+        });
+    }),
   );
 
-  return results
-    .reduce((result, part) => result.concat(part), []);
+  return results.reduce((result, part) => result.concat(part), []);
 }
 
 export async function getRestaurantsByPage(options: any, ctx: any) {
   return searchRestaurant({ page: options.page }, ctx);
 }
 
-export async function getRestaurantsByCursor(options: { after: number, before: number }, ctx: any) {
-  let query = firestore()
-    .collection('RESTAURANTS')
-    .where('show', '==', true)
-    .orderBy('createdAt', 'desc');
+export async function getRestaurantsByCursor(options: { after: number; before: number }, ctx: any) {
+  let query = firestore().collection('RESTAURANTS').where('show', '==', true).orderBy('createdAt', 'desc');
 
   if (!options) {
     query = query.limit(ITEM_PER_PAGE_FULL);
   } else if (options.after) {
-    console.log('Getting restaurants after', new Date(options.after))
-    query = query
-      .startAfter(admin.firestore.Timestamp.fromDate(new Date(options.after)))
-      .limit(ITEM_PER_PAGE_FULL);
+    console.log('Getting restaurants after', new Date(options.after));
+    query = query.startAfter(admin.firestore.Timestamp.fromDate(new Date(options.after))).limit(ITEM_PER_PAGE_FULL);
   } else if (options.before) {
-    console.log('Getting restaurants before', new Date(options.before))
+    console.log('Getting restaurants before', new Date(options.before));
     query = query
       .endBefore(admin.firestore.Timestamp.fromDate(new Date(options.before)))
       .limitToLast(ITEM_PER_PAGE_FULL);
@@ -183,21 +200,19 @@ export async function getRestaurantsByCursor(options: { after: number, before: n
     query = query.limit(ITEM_PER_PAGE_FULL);
   }
 
-  return query
-    .get()
-    .then((snap: admin.firestore.QuerySnapshot) => {
-      return snap.docs.map(doc => {
-        const restaurant = restaurantFromSnap(doc, { keepSource: false, cleanContent: true });
-        return removeLevelSpecificData({ user: null, restaurant });
-      });
+  return query.get().then((snap: admin.firestore.QuerySnapshot) => {
+    return snap.docs.map((doc) => {
+      const restaurant = restaurantFromSnap(doc, { keepSource: false, cleanContent: true });
+      return removeLevelSpecificData({ user: null, restaurant });
     });
+  });
 }
 
 export async function getRestaurants(options: any, ctx: any) {
   const { user } = ctx;
   const [sponsors, restaurants] = await Promise.all([
     getRightColSponsors(null, ctx),
-    getListing({ options, user }, ctx)
+    getListing({ options, user }, ctx),
   ]);
 
   return mergeWithSponsor({ sponsors, restaurants, user }, ctx);
@@ -210,7 +225,7 @@ export async function getAllRestaurants(options: any, ctx: ServerContext) {
     .then((snap: admin.firestore.QuerySnapshot) => {
       return snap.docs.map((doc: admin.firestore.DocumentSnapshot) => {
         return restaurantFromSnap(doc, { keepSource: false, cleanContent: true });
-      })
+      });
     });
 }
 
@@ -224,6 +239,6 @@ export async function getLastestRestaurants({ limit }: { limit: number }, ctx: S
     .then((snap: admin.firestore.QuerySnapshot) => {
       return snap.docs.map((doc: admin.firestore.DocumentSnapshot) => {
         return restaurantFromSnap(doc, { keepSource: false, cleanContent: true });
-      })
+      });
     });
 }

@@ -7,7 +7,12 @@ import type { IUser } from './User';
 export enum CollectedInfoStatus {
   PENDING = 'pending',
   REJECTED = 'rejected',
-  ACCEPTED = 'accepted'
+  ACCEPTED = 'accepted',
+}
+
+export enum CollectedInfoType {
+  EMPTY_PREMISE = 'empty-premise',
+  RENT_DEMAND = 'rent-demand',
 }
 
 export enum CollectedInfoRejectedReason {
@@ -19,29 +24,35 @@ export enum CollectedInfoRejectedReason {
 }
 
 export interface CollectedInfoInput extends Model {
-  address: string;
+  address?: string;
   city: string;
-  district: string;
-  infoImage: string;
-  overallImage: string;
-  phoneNumber: string;
+  district?: string;
+  infoImage?: string;
+  overallImage?: string;
+  phoneNumber?: string;
+  customerName?: string;
 
-  carLaneNumber: string;
-  oneWayRoad: RoadDirection;
-  hardSeparation: boolean;
+  carLaneNumber?: string;
+  oneWayRoad?: RoadDirection;
+  hardSeparation?: boolean;
 
-  numberOfFronts: number;
-  pavementStatus: PavementStatus;
-  levels: number;
-  totalLevels: number;
-  canParkCar: boolean;
+  numberOfFronts?: number;
+  pavementStatus?: PavementStatus;
+  levels?: number;
+  totalLevels?: number;
+  canParkCar?: boolean;
 
-  streetType: StreetType;
-  streetLaneType: StreetLaneType;
+  streetType?: StreetType;
+  streetLaneType?: StreetLaneType;
 
   missingPhoneNumber?: boolean;
   projectId?: string;
   extraPhoneNumbers?: string[];
+  demandRequirements?: string;
+  budget?: number;
+  referralEmail?: string;
+
+  type: CollectedInfoType;
 }
 
 export interface CollectedInfo extends CollectedInfoInput {
@@ -57,4 +68,3 @@ export interface CollectedInfo extends CollectedInfoInput {
   acceptedBy?: string;
   rejectedBy?: string;
 }
-

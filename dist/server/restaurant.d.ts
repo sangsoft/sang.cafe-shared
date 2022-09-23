@@ -1,4 +1,5 @@
 import { ServerContext } from '../models/ServerContext';
+import type { IRestaurant } from '../models/Restaurant';
 export declare function mergeWithSponsor({ sponsors, restaurants, user }: any, ctx: ServerContext): Promise<any>;
 export declare function getRestaurant({ id }: {
     id: string;
@@ -7,6 +8,9 @@ export declare function getRestaurant({ id }: {
 export declare function getRestaurantBySlug({ slug }: {
     slug: any;
 }, ctx: ServerContext): Promise<any>;
+export declare function getRestaurantsByShortCode({ shortCodes }: {
+    shortCodes: string[];
+}, ctx: ServerContext): Promise<IRestaurant[]>;
 export declare function provideSavedStatus({ ownerId, restaurants }: any, ctx: ServerContext): Promise<any>;
 export declare function getListing({ options, user }: any, ctx: ServerContext): Promise<any>;
 export declare function getRestaurantsInList({ ids }: {

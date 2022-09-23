@@ -32,7 +32,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getLastestRestaurants = exports.getAllRestaurants = exports.getRestaurants = exports.getRestaurantsByCursor = exports.getRestaurantsByPage = exports.getRestaurantsInList = exports.getListing = exports.provideSavedStatus = exports.getRestaurantBySlug = exports.getRestaurant = exports.mergeWithSponsor = void 0;
+exports.getLastestRestaurants = exports.getAllRestaurants = exports.getRestaurants = exports.getRestaurantsByCursor = exports.getRestaurantsByPage = exports.getRestaurantsInList = exports.getListing = exports.provideSavedStatus = exports.getRestaurantsByShortCode = exports.getRestaurantBySlug = exports.getRestaurant = exports.mergeWithSponsor = void 0;
 const firebase_1 = require("./firebase");
 const data_1 = require("../helpers/data");
 const view_level_1 = require("./view-level");
@@ -49,12 +49,12 @@ function mergeWithSponsor({ sponsors, restaurants, user }, ctx) {
         const ownerId = user ? user.uid : null;
         let sponsoredRestaurants = sponsors.map((sponsor) => (0, view_level_1.removeLevelSpecificData)({
             user,
-            restaurant: sponsor.restaurant
+            restaurant: sponsor.restaurant,
         }));
         if (ownerId) {
             sponsoredRestaurants = yield provideSavedStatus({
                 ownerId,
-                restaurants: sponsoredRestaurants
+                restaurants: sponsoredRestaurants,
             }, ctx);
         }
         const newRestaurants = restaurants
@@ -121,6 +121,21 @@ function getRestaurantBySlug({ slug }, ctx) {
     });
 }
 exports.getRestaurantBySlug = getRestaurantBySlug;
+function getRestaurantsByShortCode({ shortCodes }, ctx) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const query = (0, firebase_1.firestore)().collection('RESTAURANTS').orderBy('createdAt', 'desc');
+        const shortCodesSegment = (0, data_1.divideIntoLessThan10)(shortCodes);
+        const queriedRestaurants = Promise.all(yield shortCodesSegment.reduce((result, segment) => __awaiter(this, void 0, void 0, function* () {
+            const querySegment = yield query
+                .where('shortCode', 'in', segment)
+                .get()
+                .then((snap) => snap.docs.map((doc) => (0, data_1.restaurantFromSnap)(doc, { keepSource: false, cleanContent: true })));
+            return [...(yield result), ...querySegment];
+        }), Promise.resolve([])));
+        return queriedRestaurants;
+    });
+}
+exports.getRestaurantsByShortCode = getRestaurantsByShortCode;
 function provideSavedStatus({ ownerId, restaurants }, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
         if (!restaurants || restaurants.length == 0) {
@@ -135,7 +150,7 @@ function provideSavedStatus({ ownerId, restaurants }, ctx) {
             .where('status', '==', true)
             .get()
             .then((snap) => {
-            const saved = snap.docs.map(doc => doc.data().restaurantId);
+            const saved = snap.docs.map((doc) => doc.data().restaurantId);
             return restaurants.map((restaurant) => {
                 return Object.assign(Object.assign({}, restaurant), { saved: saved.includes(restaurant.uid) });
             });
@@ -158,12 +173,12 @@ function getListing({ options, user }, ctx) {
         return query
             .get()
             .then((snap) => {
-            return snap.docs.map(doc => {
+            return snap.docs.map((doc) => {
                 const restaurant = (0, data_1.restaurantFromSnap)(doc, { keepSource: false, cleanContent: true });
                 return (0, view_level_1.removeLevelSpecificData)({ user, restaurant });
             });
         })
-            .then((restaurants) => ownerId ? provideSavedStatus({ ownerId, restaurants }, ctx) : restaurants);
+            .then((restaurants) => (ownerId ? provideSavedStatus({ ownerId, restaurants }, ctx) : restaurants));
     });
 }
 exports.getListing = getListing;
@@ -172,19 +187,17 @@ function getRestaurantsInList({ ids }, ctx) {
         if (!ids || ids.length === 0) {
             return [];
         }
-        let results = yield Promise.all((0, data_1.divideIntoLessThan10)(ids)
-            .map((part) => {
+        let results = yield Promise.all((0, data_1.divideIntoLessThan10)(ids).map((part) => {
             return (0, firebase_1.firestore)()
                 .collection('RESTAURANTS')
                 .where(admin.firestore.FieldPath.documentId(), 'in', part)
                 .get()
                 .then((snap) => {
-                const data = snap.docs.map(doc => (0, data_1.restaurantFromSnap)(doc, { keepSource: false, cleanContent: true }));
-                return part.map(id => data.find((restaurant) => restaurant.uid === id));
+                const data = snap.docs.map((doc) => (0, data_1.restaurantFromSnap)(doc, { keepSource: false, cleanContent: true }));
+                return part.map((id) => data.find((restaurant) => restaurant.uid === id));
             });
         }));
-        return results
-            .reduce((result, part) => result.concat(part), []);
+        return results.reduce((result, part) => result.concat(part), []);
     });
 }
 exports.getRestaurantsInList = getRestaurantsInList;
@@ -196,18 +209,13 @@ function getRestaurantsByPage(options, ctx) {
 exports.getRestaurantsByPage = getRestaurantsByPage;
 function getRestaurantsByCursor(options, ctx) {
     return __awaiter(this, void 0, void 0, function* () {
-        let query = (0, firebase_1.firestore)()
-            .collection('RESTAURANTS')
-            .where('show', '==', true)
-            .orderBy('createdAt', 'desc');
+        let query = (0, firebase_1.firestore)().collection('RESTAURANTS').where('show', '==', true).orderBy('createdAt', 'desc');
         if (!options) {
             query = query.limit(constants_1.ITEM_PER_PAGE_FULL);
         }
         else if (options.after) {
             console.log('Getting restaurants after', new Date(options.after));
-            query = query
-                .startAfter(admin.firestore.Timestamp.fromDate(new Date(options.after)))
-                .limit(constants_1.ITEM_PER_PAGE_FULL);
+            query = query.startAfter(admin.firestore.Timestamp.fromDate(new Date(options.after))).limit(constants_1.ITEM_PER_PAGE_FULL);
         }
         else if (options.before) {
             console.log('Getting restaurants before', new Date(options.before));
@@ -218,10 +226,8 @@ function getRestaurantsByCursor(options, ctx) {
         else {
             query = query.limit(constants_1.ITEM_PER_PAGE_FULL);
         }
-        return query
-            .get()
-            .then((snap) => {
-            return snap.docs.map(doc => {
+        return query.get().then((snap) => {
+            return snap.docs.map((doc) => {
                 const restaurant = (0, data_1.restaurantFromSnap)(doc, { keepSource: false, cleanContent: true });
                 return (0, view_level_1.removeLevelSpecificData)({ user: null, restaurant });
             });
@@ -234,7 +240,7 @@ function getRestaurants(options, ctx) {
         const { user } = ctx;
         const [sponsors, restaurants] = yield Promise.all([
             (0, sponsor_1.getRightColSponsors)(null, ctx),
-            getListing({ options, user }, ctx)
+            getListing({ options, user }, ctx),
         ]);
         return mergeWithSponsor({ sponsors, restaurants, user }, ctx);
     });

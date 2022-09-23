@@ -23,7 +23,8 @@ export declare enum TaskType {
     CRAWLED_DATA = "crawled-data",
     POST_EXTENSION = "post-extension",
     HANDLE_COLLECTED_INFO = "handle-collected-info",
-    HANDLE_COLLECTED_INFO_MISSING_PHONE = "handle-collected-info-missing-phone"
+    HANDLE_COLLECTED_INFO_MISSING_PHONE = "handle-collected-info-missing-phone",
+    HANDLE_COLLECTED_INFO_RENT_DEMAND = "handle-collected-info-rent-demand"
 }
 export declare enum TaskResult {
     DONE = "done",

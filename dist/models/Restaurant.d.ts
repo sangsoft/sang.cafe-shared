@@ -112,6 +112,7 @@ export interface IRestaurant extends Model {
         fields: string[];
         search: SearchRecord;
     }[];
+    missingPrivateContactInfo?: boolean;
     privateAddress?: string;
     privateContact?: string;
     privateContactPerson?: string;

@@ -8,6 +8,10 @@ export declare enum CollectedInfoStatus {
     REJECTED = "rejected",
     ACCEPTED = "accepted"
 }
+export declare enum CollectedInfoType {
+    EMPTY_PREMISE = "empty-premise",
+    RENT_DEMAND = "rent-demand"
+}
 export declare enum CollectedInfoRejectedReason {
     IMAGE_TOO_BLURRY = "image-too-blurry",
     DUPLICATED = "duplicated",
@@ -16,25 +20,30 @@ export declare enum CollectedInfoRejectedReason {
     PREMISE_DOES_NOT_MEET_PROJECT_REQUIREMENT = "premise-does-not-meet-project-requirement"
 }
 export interface CollectedInfoInput extends Model {
-    address: string;
+    address?: string;
     city: string;
-    district: string;
-    infoImage: string;
-    overallImage: string;
-    phoneNumber: string;
-    carLaneNumber: string;
-    oneWayRoad: RoadDirection;
-    hardSeparation: boolean;
-    numberOfFronts: number;
-    pavementStatus: PavementStatus;
-    levels: number;
-    totalLevels: number;
-    canParkCar: boolean;
-    streetType: StreetType;
-    streetLaneType: StreetLaneType;
+    district?: string;
+    infoImage?: string;
+    overallImage?: string;
+    phoneNumber?: string;
+    customerName?: string;
+    carLaneNumber?: string;
+    oneWayRoad?: RoadDirection;
+    hardSeparation?: boolean;
+    numberOfFronts?: number;
+    pavementStatus?: PavementStatus;
+    levels?: number;
+    totalLevels?: number;
+    canParkCar?: boolean;
+    streetType?: StreetType;
+    streetLaneType?: StreetLaneType;
     missingPhoneNumber?: boolean;
     projectId?: string;
     extraPhoneNumbers?: string[];
+    demandRequirements?: string;
+    budget?: number;
+    referralEmail?: string;
+    type: CollectedInfoType;
 }
 export interface CollectedInfo extends CollectedInfoInput {
     uid?: string;
