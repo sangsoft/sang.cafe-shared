@@ -8,7 +8,7 @@ function pickCred() {
     console.log('Use provided credential')
     return cred;
   } catch (e) {
-    console.warn(e);
+    // console.warn(e);
     console.log('Using default credential')
     return admin.credential.applicationDefault();
   }

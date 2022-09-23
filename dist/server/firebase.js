@@ -11,7 +11,7 @@ function pickCred() {
         return cred;
     }
     catch (e) {
-        console.warn(e);
+        // console.warn(e);
         console.log('Using default credential');
         return admin.credential.applicationDefault();
     }
