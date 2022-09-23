@@ -30,7 +30,6 @@ export function getYoutubeVideoId(url?: string): string | null {
 export function getEmbededUrl(url: string): string | null {
   const defaultYoutubeEmbedHost = 'https://www.youtube.com/embed/';
   const videoId = getYoutubeVideoId(url);
-  console.log('Found video ID:', videoId);
 
   if (!videoId) {
     return null;
