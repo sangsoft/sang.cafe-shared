@@ -105,12 +105,10 @@ function getRestaurantBySlug({ slug }, ctx) {
             .get()
             .then((snap) => {
             if (snap.empty) {
-                console.log('snap is empty');
                 return null;
             }
             const restaurant = (0, data_1.restaurantFromSnap)(snap.docs[0], { keepSource: false, cleanContent: true });
             if (!restaurant.show) {
-                console.log('private restaurant');
                 if (!user) {
                     return null;
                 }
