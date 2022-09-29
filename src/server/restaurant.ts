@@ -76,10 +76,12 @@ export async function getRestaurantBySlug({ slug }, ctx: ServerContext) {
     .get()
     .then((snap) => {
       if (snap.empty) {
+        console.log('snap is empty')
         return null;
       }
       const restaurant = restaurantFromSnap(snap.docs[0], { keepSource: false, cleanContent: true });
       if (!restaurant.show) {
+        console.log('private restaurant')
         if (!user) {
           return null;
         }
