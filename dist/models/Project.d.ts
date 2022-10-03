@@ -20,9 +20,15 @@ export interface IProjectRequirements {
     area: number[];
     totalArea: number[];
     priceRange: number[];
-    priceRanges: number[][];
+    priceRanges: {
+        index: number;
+        range: number[];
+    }[];
     monthlyRentalRange: number[];
-    monthlyRentalRanges: number[][];
+    monthlyRentalRanges: {
+        index: number;
+        range: number[];
+    }[];
     frontWidth: number[];
     levels: number[];
     numberOfFronts: number;
