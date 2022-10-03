@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SUPPORTED_BRANDS = exports.pL = exports.MOMO_ERROR = exports.SUPPORTED_BANKS = exports.BANKS = exports.SUPPORTED_DISTRICTS = exports.SUPPORTED_CITIES = exports.EMPTY_VALUE = exports.REWRITE_REGION = exports.OUR_REGION = exports.BILL_SHORT_CODE_SIZE = exports.RIGHT_COL_SPONSOR_LIMIT = exports.ITEM_PER_PAGE_FULL = exports.ITEM_PER_PAGE = void 0;
+exports.SUPPORTED_TAGS = exports.SUPPORTED_BRANDS = exports.pL = exports.MOMO_ERROR = exports.SUPPORTED_BANKS = exports.BANKS = exports.SUPPORTED_DISTRICTS = exports.SUPPORTED_CITIES = exports.EMPTY_VALUE = exports.REWRITE_REGION = exports.OUR_REGION = exports.BILL_SHORT_CODE_SIZE = exports.RIGHT_COL_SPONSOR_LIMIT = exports.ITEM_PER_PAGE_FULL = exports.ITEM_PER_PAGE = void 0;
 exports.ITEM_PER_PAGE = 10;
 exports.ITEM_PER_PAGE_FULL = 20;
 exports.RIGHT_COL_SPONSOR_LIMIT = 2;
@@ -309,4 +309,37 @@ exports.SUPPORTED_BRANDS = [
     'Bách Hóa Xanh',
     'Coopmart'
 ];
+const TAGS_PREFIX = [
+    'near',
+    'next2',
+];
+const TAGS_PLACES = [
+    'university',
+    'hospital',
+    'office a',
+    'office b',
+    'mall',
+    'cinema',
+    'highschool',
+    'residential',
+    'metrostn',
+    'busstn',
+    'coachstn',
+    'walkstreet',
+    'pubstreet',
+    'market',
+    'supermarket',
+    'megamarket',
+    'cvs',
+    'grocery',
+    'park',
+    'government building',
+    'museum',
+];
+exports.SUPPORTED_TAGS = TAGS_PREFIX.reduce((result, prefix) => {
+    const places = TAGS_PLACES.reduce((output, place) => {
+        return [...output, [prefix, place].join(':')];
+    }, []);
+    return [...result, ...places];
+}, []);
 //# sourceMappingURL=constants.js.map

@@ -329,3 +329,40 @@ export const SUPPORTED_BRANDS: string[] = [
   'Bách Hóa Xanh',
   'Coopmart'
 ]
+
+const TAGS_PREFIX = [
+  'near',
+  'next2',
+];
+
+const TAGS_PLACES = [
+  'university',
+  'hospital',
+  'office a',
+  'office b',
+  'mall',
+  'cinema',
+  'highschool',
+  'residential',
+  'metrostn',
+  'busstn',
+  'coachstn',
+  'walkstreet',
+  'pubstreet',
+  'market',
+  'supermarket',
+  'megamarket',
+  'cvs',
+  'grocery',
+  'park',
+  'government building',
+  'museum',
+];
+
+export const SUPPORTED_TAGS: string[] = TAGS_PREFIX.reduce((result, prefix) => {
+  const places = TAGS_PLACES.reduce((output, place) => {
+    return [...output, [prefix, place].join(':')];
+  }, []);
+  return [...result, ...places];
+}, []);
+
