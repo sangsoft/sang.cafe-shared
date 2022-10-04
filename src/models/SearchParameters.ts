@@ -20,5 +20,9 @@ export interface SearchParameters {
   identity: string;
   tags?: string[];
 
+  monthlyRentalFroms?: number[];
+  monthlyRentalTos?: number[];
+  monthlyRentalRanges?: number[];
+
   createdBy?: string;
 }
