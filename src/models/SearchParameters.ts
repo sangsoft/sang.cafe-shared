@@ -22,6 +22,7 @@ export interface SearchParameters {
 
   monthlyRentalFroms?: number[];
   monthlyRentalTos?: number[];
+  monthlyRentalFromTos?: { from: number, to: number }[];
   monthlyRentalRanges?: number[];
 
   createdBy?: string;
