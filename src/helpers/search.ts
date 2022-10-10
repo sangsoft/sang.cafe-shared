@@ -6,6 +6,9 @@ export function getPriceRangeTranslationOption({
 }: {
   range: number[]
 }): { min: number, max: number, context: PriceRangeContext } {
+  if (!range) {
+    return { min: undefined, max: undefined, context: 'none' }
+  }
   let context: PriceRangeContext = undefined;
   const min = range[0];
   const max = range[1];

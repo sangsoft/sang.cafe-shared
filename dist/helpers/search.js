@@ -2,6 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getPriceRangeTranslationOptions = exports.getPriceRangeTranslationOption = void 0;
 function getPriceRangeTranslationOption({ range, }) {
+    if (!range) {
+        return { min: undefined, max: undefined, context: 'none' };
+    }
     let context = undefined;
     const min = range[0];
     const max = range[1];
