@@ -84,6 +84,7 @@ export interface IRestaurant extends Model {
     contractTimeLeft?: number;
     levels?: number;
     totalLevels?: number;
+    totalBasements?: number;
     availableLevels?: number[];
     contractEnd?: {
         month: number;
