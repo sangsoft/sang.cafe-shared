@@ -55,5 +55,5 @@ export interface ISuggestion {
     oldSuggestionId: string | null;
     shortList: SuggestionShortList[];
     brands?: string[];
-    suggestions: SuggestionRecord[];
+    records?: SuggestionRecord[];
 }

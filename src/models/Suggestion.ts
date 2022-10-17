@@ -64,5 +64,5 @@ export interface ISuggestion {
   shortList: SuggestionShortList[];
   brands?: string[];
 
-  records: SuggestionRecord[];
+  records?: SuggestionRecord[];
 }
