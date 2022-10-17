@@ -38,12 +38,18 @@ export interface CommentsDict {
   [key: string]: string;
 }
 
+export interface SuggestionRecord {
+  id?: string;
+  shortCode?: string;
+  suggestedAt: SerializedTimestamp;
+}
 export interface ISuggestion {
   uid: string;
   customerCode: string;
   code: string;
   createdAt: SerializedTimestamp;
   shortCodes: string[];
+  oldShortCodes?: string[];
   customerName: string;
   status: SuggestionStatus;
   createdById: string;
@@ -57,4 +63,6 @@ export interface ISuggestion {
   oldSuggestionId: string | null;
   shortList: SuggestionShortList[];
   brands?: string[];
+
+  records: SuggestionRecord[];
 }
