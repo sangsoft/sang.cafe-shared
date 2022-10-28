@@ -122,7 +122,7 @@ exports.SUPPORTED_TYPES = {
         topPage: true,
     },
     ['for_sale']: {
-        text: 'Mặt bằng sang nhượng',
+        text: 'Bán bất động sản',
         value: 'for_sale',
         topPage: false,
     },
