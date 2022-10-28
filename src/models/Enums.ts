@@ -115,9 +115,14 @@ export const SUPPORTED_TYPES: { [key: string]: { text: string; value: string; to
     topPage: false,
   },
   ['for_rent']: {
-    text: 'Mặt bằng',
+    text: 'Mặt bằng cho thuê',
     value: 'for_rent',
     topPage: true,
+  },
+  ['for_sale']: {
+    text: 'Mặt bằng sang nhượng',
+    value: 'for_sale',
+    topPage: false,
   },
   ['bar_pub']: {
     text: 'Quán bar/Beer club',
@@ -166,7 +171,7 @@ export const SUPPORTED_TYPES: { [key: string]: { text: string; value: string; to
   },
 };
 //prettier-ignore
-const TAGS_PREFIX = {'near': 'Gần', 'next2': 'Liền kề'};
+const TAGS_PREFIX = { 'near': 'Gần', 'next2': 'Liền kề' };
 
 //prettier-ignore
 const TAGS_PLACES = {
