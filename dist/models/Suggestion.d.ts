@@ -56,4 +56,6 @@ export interface ISuggestion {
     shortList: SuggestionShortList[];
     brands?: string[];
     records?: SuggestionRecord[];
+    projectName?: string;
+    correctProjectId?: string;
 }

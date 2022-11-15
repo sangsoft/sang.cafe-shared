@@ -65,4 +65,7 @@ export interface ISuggestion {
   brands?: string[];
 
   records?: SuggestionRecord[];
+
+  projectName?: string;
+  correctProjectId?: string;
 }
