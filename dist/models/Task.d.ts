@@ -1,6 +1,6 @@
 import type { Model } from "./Model";
 import type { IUser } from "./User";
-import type { IRestaurant } from "./Restaurant";
+import type { IInfoRequest, IRestaurant } from "./Restaurant";
 import type { SearchMatch } from "./SearchMatch";
 import type { SerializedTimestamp } from "../helpers/times";
 import type { CollectedInfo } from './CollectionInfo';
@@ -24,7 +24,8 @@ export declare enum TaskType {
     POST_EXTENSION = "post-extension",
     HANDLE_COLLECTED_INFO = "handle-collected-info",
     HANDLE_COLLECTED_INFO_MISSING_PHONE = "handle-collected-info-missing-phone",
-    HANDLE_COLLECTED_INFO_RENT_DEMAND = "handle-collected-info-rent-demand"
+    HANDLE_COLLECTED_INFO_RENT_DEMAND = "handle-collected-info-rent-demand",
+    CONTACT_INFORMATION_REQUEST = "contact-information-request"
 }
 export declare enum TaskResult {
     DONE = "done",
@@ -84,6 +85,8 @@ export interface ITask extends Model {
     match?: SearchMatch;
     infoId?: string;
     info?: Partial<CollectedInfo>;
+    infoRequestId?: string;
+    infoRequest?: Partial<IInfoRequest>;
     hidden?: string;
     city?: string | null;
     district?: string | null;
