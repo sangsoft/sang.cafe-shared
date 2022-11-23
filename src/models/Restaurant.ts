@@ -173,3 +173,10 @@ export interface IRestaurant extends Model {
 
   collectedInfoNote?: string;
 }
+
+export interface IInfoRequest extends Model {
+  restaurantId: string;
+  name: string;
+  phoneNumber: string;
+  message: string;
+}
