@@ -28,23 +28,24 @@ export interface IPredictionModel extends Model {
     activatedAt: string;
     city?: string;
 }
+export interface IPrediction {
+    model: {
+        feature_config_path: string;
+        model_path: string;
+        transformer_path: string;
+    };
+    results: ({
+        prediction: {
+            value: number;
+            confident_range: number[];
+        };
+    } | {
+        error: string;
+    })[];
+}
 export interface IPredictionResult {
     modelId: string;
-    prediction: {
-        model: {
-            feature_config_path: string;
-            model_path: string;
-            transformer_path: string;
-        };
-        results: ({
-            prediction: {
-                value: number;
-                confident_range: number[];
-            };
-        } | {
-            error: string;
-        })[];
-    };
+    prediction: string | IPrediction;
 }
 export interface IPredictionLog {
     uid: string;
