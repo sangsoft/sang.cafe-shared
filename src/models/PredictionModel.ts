@@ -33,6 +33,9 @@ export interface IPredictionModel extends Model {
 }
 
 export interface IPrediction {
+  pipeline_bundle_path: string;
+  timestamp: string;
+  commit_hash: string;
   model: {
     feature_config_path: string;
     model_path: string;
@@ -41,7 +44,7 @@ export interface IPrediction {
   results: ({
     prediction: {
       value: number;
-      confident_range: number[];
+      confidence_range: number[];
     }
   } | {
     error: string
