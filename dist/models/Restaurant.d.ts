@@ -54,6 +54,7 @@ export interface IPost {
 export interface IRestaurant extends Model {
     uid?: string;
     place?: any;
+    rawGeoCodedData?: any;
     saved?: boolean;
     ownerId: string;
     createdAt?: any;
