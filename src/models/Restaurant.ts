@@ -64,6 +64,7 @@ export interface IRestaurant extends Model {
   uid?: string;
   place?: any;
   rawGeoCodedData?: any;
+  skipServerSideGeocode?: boolean;
   saved?: boolean;
   ownerId: string;
   createdAt?: any;
