@@ -174,6 +174,9 @@ export interface IRestaurant extends Model {
   lastPostId?: string;
 
   collectedInfoNote?: string;
+
+  confirmedBillId?: string;
+  confirmedBillShortCode?: string;
 }
 
 export interface IInfoRequest extends Model {
