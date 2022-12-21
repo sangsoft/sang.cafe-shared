@@ -151,6 +151,8 @@ export interface IRestaurant extends Model {
     lastPostPath?: string;
     lastPostId?: string;
     collectedInfoNote?: string;
+    confirmedBillId?: string;
+    confirmedBillShortCode?: string;
 }
 export interface IInfoRequest extends Model {
     restaurantId: string;
