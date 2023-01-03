@@ -48,7 +48,17 @@ const charMaps = {
     'ư', 'ứ', 'ừ', 'ử', 'ữ', 'ự',
   ],
 };
-
+const extractThuDucDistrictMaps = {
+  'Quận 2': [
+    'Quận 2','Q 2','Q.2','Quan 2','QuAn 2','quan 2'
+  ],
+  'Quận 9': [
+    'Quận 9','Q 9','Q.9','Quan 9','QuAn 9','quan 9'
+  ],
+  'Thủ Đức': [
+    'Quận Thủ Đức','Quận thủ đức','quận thủ đức','quận Thủ Đức','Q.Thủ Đức','Q.thủ đức','q.Thủ Đức','q.thủ đức','Thủ Đức','thu duc',''
+  ]
+}
 export function converVietnameseCharsToASCII(str: string): string {
   return str.split('').map((c) => {
     return (Object.keys(charMaps).find((key) => {
@@ -59,6 +69,13 @@ export function converVietnameseCharsToASCII(str: string): string {
   }).join('');
 }
 
-export function extractThuDucDistrict(address: string): 'Thủ Đức' | 'Quận 9' | 'Quận 2' {
-  return 'Thủ Đức';
+export function extractThuDucDistrict(address: string) {
+  const splits = address.split(',');
+  const results = (splits[splits.length - 2] || '').trim();
+  return Object.keys(extractThuDucDistrictMaps).find((key) => {
+    if (extractThuDucDistrictMaps[key].includes(results)) {
+      return key
+    }
+  })
+  // return 'Thủ Đức'; : 'Thủ Đức' | 'Quận 9' | 'Quận 2'
 }
