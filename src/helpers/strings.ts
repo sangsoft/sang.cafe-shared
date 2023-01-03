@@ -58,3 +58,7 @@ export function converVietnameseCharsToASCII(str: string): string {
     }) || c).toUpperCase();
   }).join('');
 }
+
+export function extractThuDucDistrict(address: string): 'Thủ Đức' | 'Quận 9' | 'Quận 2' {
+  return 'Thủ Đức';
+}
