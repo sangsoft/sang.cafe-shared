@@ -48,6 +48,16 @@ const charMaps = {
     'ư', 'ứ', 'ừ', 'ử', 'ữ', 'ự',
   ],
 };
+
+export function converVietnameseCharsToASCII(str: string): string {
+  return str.split('').map((c) => {
+    return (Object.keys(charMaps).find((key) => {
+      if (charMaps[key].includes(c)) {
+        return true;
+      }
+    }) || c).toUpperCase();
+  }).join('');
+}
 const extractThuDucDistrictMaps = {
   'Quận 2': [
     'Quận 2','Q 2','Q.2','Quan 2','QuAn 2','quan 2'
@@ -59,23 +69,23 @@ const extractThuDucDistrictMaps = {
     'Quận Thủ Đức','Quận thủ đức','quận thủ đức','quận Thủ Đức','Q.Thủ Đức','Q.thủ đức','q.Thủ Đức','q.thủ đức','Thủ Đức','thu duc',''
   ]
 }
-export function converVietnameseCharsToASCII(str: string): string {
-  return str.split('').map((c) => {
-    return (Object.keys(charMaps).find((key) => {
-      if (charMaps[key].includes(c)) {
-        return true;
-      }
-    }) || c).toUpperCase();
-  }).join('');
-}
-
-export function extractThuDucDistrict(address: string) {
+// : 'Thủ Đức' | 'Quận 9' | 'Quận 2'
+export function extractThuDucDistrict(address: string):string {
   const splits = address.split(',');
-  const results = (splits[splits.length - 2] || '').trim();
-  return Object.keys(extractThuDucDistrictMaps).find((key) => {
-    if (extractThuDucDistrictMaps[key].includes(results)) {
+  const district = (splits[splits.length - 2] || '').trim();
+  const result =  Object.keys(extractThuDucDistrictMaps).find((key) => {
+    if (extractThuDucDistrictMaps[key].includes(district)) {  
       return key
     }
   })
-  // return 'Thủ Đức'; : 'Thủ Đức' | 'Quận 9' | 'Quận 2'
+  if (result === undefined) {
+    // console.log('district',district)
+    return district
+  }
+  else {
+    // console.log('result',result);
+    return result
+  }
+  // console.log(result)
+  // return result; 
 }
