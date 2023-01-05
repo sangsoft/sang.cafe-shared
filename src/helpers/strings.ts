@@ -60,22 +60,36 @@ export function converVietnameseCharsToASCII(str: string): string {
 }
 const extractThuDucDistrictMaps = {
   'Quận 2': [
-    'Quận 2','Q 2','Q.2','Quan 2','QuAn 2','quan 2'
+    'quận 2','q 2','q.2','quan 2'
   ],
   'Quận 9': [
-    'Quận 9','Q 9','Q.9','Quan 9','QuAn 9','quan 9'
+    'quận 9','q 9','q.9','quan 9'
   ],
   'Thủ Đức': [
-    'Quận Thủ Đức','Quận thủ đức','quận thủ đức','quận Thủ Đức','Q.Thủ Đức','Q.thủ đức','q.Thủ Đức','q.thủ đức','Thủ Đức','thu duc',''
+    // 'Quận Thủ Đức', 'Quận thủ đức', 'quận thủ đức', 'quận Thủ Đức', 'Q.Thủ Đức', 'Q.thủ đức', 'q.Thủ Đức', 'q.thủ đức', 'Thủ Đức', 'thu duc',
+    'thu duc','thủ đức','quận thủ đức','quan thu duc','q thủ đức','q.thủ đức'
   ]
 }
-// : 'Thủ Đức' | 'Quận 9' | 'Quận 2'
 export function extractThuDucDistrict(address: string):string {
   const splits = address.split(',');
   const district = (splits[splits.length - 2] || '').trim();
-  const result =  Object.keys(extractThuDucDistrictMaps).find((key) => {
-    if (extractThuDucDistrictMaps[key].includes(district)) {  
-      return key
+  // const result = Object.keys(extractThuDucDistrictMaps).find((key) => {  
+  //   if (extractThuDucDistrictMaps[key].includes(district.toLowerCase())) {  
+  //     return key
+  //   }
+  // })
+   const result =  Object.keys(extractThuDucDistrictMaps).find((key) => { 
+    var regexFromMyArray = new RegExp(extractThuDucDistrictMaps[key].join('|'), 'gi');
+    var matches = address.match(regexFromMyArray) || [];
+    if (matches.length) {
+      for (var i = 0, l = matches.length; i < l; i++) {
+        if (extractThuDucDistrictMaps[key].includes(matches[i].toLowerCase())) {  
+          if (key === 'Quận 2' || key === "Quận 9") {
+            return key
+          }
+        else{ return 'Thủ Đức'}
+         }
+      }
     }
   })
   if (result === undefined) {
@@ -86,6 +100,4 @@ export function extractThuDucDistrict(address: string):string {
     // console.log('result',result);
     return result
   }
-  // console.log(result)
-  // return result; 
 }

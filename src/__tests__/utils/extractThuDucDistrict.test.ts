@@ -31,6 +31,7 @@ describe('utils', () => {
       ['21 Võ Văn Ngân, Linh Chiểu, q.thủ đức, Hồ Chí Minh', 'Thủ Đức'],
       ['21 Võ Văn Ngân, Linh Chiểu, Thủ Đức, Hồ Chí Minh', 'Thủ Đức'],
       ['21 Võ Văn Ngân, Linh Chiểu, thu duc, Hồ Chí Minh', 'Thủ Đức'],
+      
     ])('normalizePhoneNumberNationalNoThrow(%p) should be %p', (input: string, expected: 'Thủ Đức' | 'Quận 9' | 'Quận 2') => {
       expect(extractThuDucDistrict(input)).toEqual(expected);
     });
