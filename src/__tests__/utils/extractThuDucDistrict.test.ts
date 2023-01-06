@@ -4,6 +4,7 @@ import { extractThuDucDistrict } from '../../helpers/strings';
 describe('utils', () => {
   describe('extractThuDucDistrict', () => {
     it.each([
+      ['2b Đường Lê Văn Miến, Thảo Điền, Quận 3, Hồ Chí Minh', 'Quận 3'],
       ['2b Đường Lê Văn Miến, Thảo Điền, Quận 2, Hồ Chí Minh', 'Quận 2'],
       ['2b Đường Lê Văn Miến, Thảo Điền, Q 2, Hồ Chí Minh', 'Quận 2'],
       ['2b Đường Lê Văn Miến, Thảo Điền, Q.2, Hồ Chí Minh', 'Quận 2'],

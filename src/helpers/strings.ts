@@ -70,17 +70,11 @@ const extractThuDucDistrictMaps = {
     'thu duc','thủ đức','quận thủ đức','quan thu duc','q thủ đức','q.thủ đức'
   ]
 }
-export function extractThuDucDistrict(address: string):string {
-  const splits = address.split(',');
-  const district = (splits[splits.length - 2] || '').trim();
-  // const result = Object.keys(extractThuDucDistrictMaps).find((key) => {  
-  //   if (extractThuDucDistrictMaps[key].includes(district.toLowerCase())) {  
-  //     return key
-  //   }
-  // })
-   const result =  Object.keys(extractThuDucDistrictMaps).find((key) => { 
-    var regexFromMyArray = new RegExp(extractThuDucDistrictMaps[key].join('|'), 'gi');
-    var matches = address.match(regexFromMyArray) || [];
+export function extractThuDucDistrict(address: string):'Thủ Đức' | 'Quận 9' | 'Quận 2' | undefined {
+  const arr = Object.values(extractThuDucDistrictMaps)
+  var regexFromMyArray = new RegExp(([].concat(...arr)).join('|'), 'gi');
+  var matches = address.match(regexFromMyArray) || [];   
+  const result = Object.keys(extractThuDucDistrictMaps).find((key) => {     
     if (matches.length) {
       for (var i = 0, l = matches.length; i < l; i++) {
         if (extractThuDucDistrictMaps[key].includes(matches[i].toLowerCase())) {  
@@ -92,12 +86,13 @@ export function extractThuDucDistrict(address: string):string {
       }
     }
   })
-  if (result === undefined) {
-    // console.log('district',district)
-    return district
-  }
-  else {
-    // console.log('result',result);
+  if (result === 'Quận 2' || result === "Quận 9" || result === 'Thủ Đức') {
+    //  console.log('result',result);   
     return result
   }
+  else {
+    // console.log('district',district)
+    return undefined
+  }
+
 }
