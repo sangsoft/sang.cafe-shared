@@ -53,9 +53,20 @@ export function converVietnameseCharsToASCII(str: string): string {
 export type ThuDicDistricts = 'Thủ Đức' | 'Quận 9' | 'Quận 2';
 
 const ThuDucDistrictsTyposMaps = {
-  'Quận 2': ['quận 2', 'q 2', 'q.2', 'quan 2'],
-  'Quận 9': ['quận 9', 'q 9', 'q.9', 'quan 9'],
-  'Thủ Đức': ['thu duc', 'thủ đức', 'quận thủ đức', 'quan thu duc', 'q thủ đức', 'q.thủ đức'],
+  'Quận 2': ['quận 2', 'q 2', 'q.2', 'quan 2', 'q. 2'],
+  'Quận 9': ['quận 9', 'q 9', 'q.9', 'quan 9', 'q. 9'],
+  'Thủ Đức': [
+    'thu duc',
+    'thủ đức',
+    'quận thủ đức',
+    'quan thu duc',
+    'q thủ đức',
+    'q.thủ đức',
+    'q. thủ đức',
+    'q thu duc',
+    'q.thu duc',
+    'q. thu duc',
+  ],
 };
 
 export function extractThuDucDistrict(address: string): ThuDicDistricts | undefined {
