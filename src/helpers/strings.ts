@@ -1,16 +1,17 @@
 export function slug(str: string): string {
-  str = str
-    .replace(/^\s+|\s+$/g, '')
-    .toLowerCase();
+  str = str.replace(/^\s+|\s+$/g, '').toLowerCase();
 
   // remove accents, swap ñ for n, etc
-  var from = "àÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬđĐèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆìÌỉỈĩĨíÍịỊòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰỳỲỷỶỹỸýÝỵỴÁÄÂÀÃÅČÇĆĎÉĚËÈÊẼĔȆĞÍÌÎÏİŇÑÓÖÒÔÕØŘŔŠŞŤÚŮÜÙÛÝŸŽáäâàãåčçćďéěëèêẽĕȇğíìîïıňñóöòôõøðřŕšşťúůüùûýÿžþÞĐđßÆa·/_,:;";
-  var to = "aAaAaAaAaAaAaAaAaAaAaAaAaAaAaAaAaAdDeEeEeEeEeEeEeEeEeEeEeEiIiIiIiIiIoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOuUuUuUuUuUuUuUuUuUuUuUyYyYyYyYyYAAAAAACCCDEEEEEEEEGIIIIINNOOOOOORRSSTUUUUUYYZaaaaaacccdeeeeeeeegiiiiinnooooooorrsstuuuuuyyzbBDdBAa------";
+  var from =
+    'àÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬđĐèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆìÌỉỈĩĨíÍịỊòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰỳỲỷỶỹỸýÝỵỴÁÄÂÀÃÅČÇĆĎÉĚËÈÊẼĔȆĞÍÌÎÏİŇÑÓÖÒÔÕØŘŔŠŞŤÚŮÜÙÛÝŸŽáäâàãåčçćďéěëèêẽĕȇğíìîïıňñóöòôõøðřŕšşťúůüùûýÿžþÞĐđßÆa·/_,:;';
+  var to =
+    'aAaAaAaAaAaAaAaAaAaAaAaAaAaAaAaAaAdDeEeEeEeEeEeEeEeEeEeEeEiIiIiIiIiIoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOuUuUuUuUuUuUuUuUuUuUuUyYyYyYyYyYAAAAAACCCDEEEEEEEEGIIIIINNOOOOOORRSSTUUUUUYYZaaaaaacccdeeeeeeeegiiiiinnooooooorrsstuuuuuyyzbBDdBAa------';
   for (let i = 0, l = from.length; i < l; i++) {
     str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
   }
 
-  str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+  str = str
+    .replace(/[^a-z0-9 -]/g, '') // remove invalid chars
     .replace(/\s+/g, '-') // collapse whitespace and replace by -
     .replace(/-+/g, '-'); // collapse dashes
 
@@ -26,73 +27,59 @@ export function capitalize(str?: string): string | undefined {
 }
 
 const charMaps = {
-  'a': [
-    'a', 'á', 'à', 'ả', 'ã', 'ạ',
-    'ă', 'ắ', 'ằ', 'ẳ', 'ẵ', 'ặ',
-    'â', 'ấ', 'ầ', 'ẩ', 'ẫ', 'ậ',
-  ],
-  'd': ['d', 'đ'],
-  'e': [
-    'e', 'é', 'è', 'ẻ', 'ẽ', 'ẹ',
-    'ê', 'ế', 'ề', 'ể', 'ễ', 'ệ',
-  ],
-  'i': [
-    'i', 'í', 'ì', 'ỉ', 'ĩ', 'ị',
-  ],
-  'o': [
-    'o', 'ó', 'ò', 'ỏ', 'õ', 'ọ',
-    'ô', 'ố', 'ồ', 'ổ', 'ỗ', 'ộ',
-  ],
-  'u': [
-    'u', 'ú', 'ù', 'ủ', 'ũ', 'ụ',
-    'ư', 'ứ', 'ừ', 'ử', 'ữ', 'ự',
-  ],
+  a: ['a', 'á', 'à', 'ả', 'ã', 'ạ', 'ă', 'ắ', 'ằ', 'ẳ', 'ẵ', 'ặ', 'â', 'ấ', 'ầ', 'ẩ', 'ẫ', 'ậ'],
+  d: ['d', 'đ'],
+  e: ['e', 'é', 'è', 'ẻ', 'ẽ', 'ẹ', 'ê', 'ế', 'ề', 'ể', 'ễ', 'ệ'],
+  i: ['i', 'í', 'ì', 'ỉ', 'ĩ', 'ị'],
+  o: ['o', 'ó', 'ò', 'ỏ', 'õ', 'ọ', 'ô', 'ố', 'ồ', 'ổ', 'ỗ', 'ộ'],
+  u: ['u', 'ú', 'ù', 'ủ', 'ũ', 'ụ', 'ư', 'ứ', 'ừ', 'ử', 'ữ', 'ự'],
 };
 
 export function converVietnameseCharsToASCII(str: string): string {
-  return str.split('').map((c) => {
-    return (Object.keys(charMaps).find((key) => {
-      if (charMaps[key].includes(c)) {
-        return true;
-      }
-    }) || c).toUpperCase();
-  }).join('');
-}
-const extractThuDucDistrictMaps = {
-  'Quận 2': [
-    'quận 2','q 2','q.2','quan 2'
-  ],
-  'Quận 9': [
-    'quận 9','q 9','q.9','quan 9'
-  ],
-  'Thủ Đức': [
-    // 'Quận Thủ Đức', 'Quận thủ đức', 'quận thủ đức', 'quận Thủ Đức', 'Q.Thủ Đức', 'Q.thủ đức', 'q.Thủ Đức', 'q.thủ đức', 'Thủ Đức', 'thu duc',
-    'thu duc','thủ đức','quận thủ đức','quan thu duc','q thủ đức','q.thủ đức'
-  ]
-}
-export function extractThuDucDistrict(address: string):'Thủ Đức' | 'Quận 9' | 'Quận 2' | undefined {
-  const arr = Object.values(extractThuDucDistrictMaps)
-  var regexFromMyArray = new RegExp(([].concat(...arr)).join('|'), 'gi');
-  var matches = address.match(regexFromMyArray) || [];   
-  const result = Object.keys(extractThuDucDistrictMaps).find((key) => {     
-    if (matches.length) {
-      for (var i = 0, l = matches.length; i < l; i++) {
-        if (extractThuDucDistrictMaps[key].includes(matches[i].toLowerCase())) {  
-          if (key === 'Quận 2' || key === "Quận 9") {
-            return key
+  return str
+    .split('')
+    .map((c) => {
+      return (
+        Object.keys(charMaps).find((key) => {
+          if (charMaps[key].includes(c)) {
+            return true;
           }
-        else{ return 'Thủ Đức'}
-         }
-      }
-    }
-  })
-  if (result === 'Quận 2' || result === "Quận 9" || result === 'Thủ Đức') {
-    //  console.log('result',result);   
-    return result
-  }
-  else {
-    // console.log('district',district)
-    return undefined
+        }) || c
+      ).toUpperCase();
+    })
+    .join('');
+}
+
+export type ThuDicDistricts = 'Thủ Đức' | 'Quận 9' | 'Quận 2';
+
+const ThuDucDistrictsTyposMaps = {
+  'Quận 2': ['quận 2', 'q 2', 'q.2', 'quan 2'],
+  'Quận 9': ['quận 9', 'q 9', 'q.9', 'quan 9'],
+  'Thủ Đức': ['thu duc', 'thủ đức', 'quận thủ đức', 'quan thu duc', 'q thủ đức', 'q.thủ đức'],
+};
+
+export function extractThuDucDistrict(address: string): ThuDicDistricts | undefined {
+  const arr = Object.values(ThuDucDistrictsTyposMaps);
+  var regexFromMyArray = new RegExp([].concat(...arr).join('|'), 'gi');
+  var matches = address.match(regexFromMyArray) || [];
+
+  if (matches.length === 0) {
+    return undefined;
   }
 
+  const result = Object.keys(ThuDucDistrictsTyposMaps).find((key): boolean => {
+    for (const match of matches) {
+      if (ThuDucDistrictsTyposMaps[key].includes(match.toLowerCase())) {
+        return true;
+      }
+    }
+
+    return false;
+  });
+
+  if (Object.keys(ThuDucDistrictsTyposMaps).includes(result)) {
+    return result as ThuDicDistricts;
+  }
+
+  return undefined;
 }

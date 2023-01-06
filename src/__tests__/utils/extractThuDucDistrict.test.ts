@@ -1,10 +1,11 @@
 import 'jest';
-import { extractThuDucDistrict } from '../../helpers/strings';
+import { extractThuDucDistrict, ThuDicDistricts } from '../../helpers/strings';
 
 describe('utils', () => {
   describe('extractThuDucDistrict', () => {
     it.each([
-      ['2b Đường Lê Văn Miến, Thảo Điền, Quận 3, Hồ Chí Minh', 'Quận 3'],
+      ['2b Đường Lê Văn Miến, Thảo Điền, Quận 3, Hồ Chí Minh', undefined],
+
       ['2b Đường Lê Văn Miến, Thảo Điền, Quận 2, Hồ Chí Minh', 'Quận 2'],
       ['2b Đường Lê Văn Miến, Thảo Điền, Q 2, Hồ Chí Minh', 'Quận 2'],
       ['2b Đường Lê Văn Miến, Thảo Điền, Q.2, Hồ Chí Minh', 'Quận 2'],
@@ -32,9 +33,11 @@ describe('utils', () => {
       ['21 Võ Văn Ngân, Linh Chiểu, q.thủ đức, Hồ Chí Minh', 'Thủ Đức'],
       ['21 Võ Văn Ngân, Linh Chiểu, Thủ Đức, Hồ Chí Minh', 'Thủ Đức'],
       ['21 Võ Văn Ngân, Linh Chiểu, thu duc, Hồ Chí Minh', 'Thủ Đức'],
-      
-    ])('normalizePhoneNumberNationalNoThrow(%p) should be %p', (input: string, expected: 'Thủ Đức' | 'Quận 9' | 'Quận 2') => {
-      expect(extractThuDucDistrict(input)).toEqual(expected);
-    });
+    ])(
+      'normalizePhoneNumberNationalNoThrow(%p) should be %p',
+      (input: string, expected: ThuDicDistricts | undefined) => {
+        expect(extractThuDucDistrict(input)).toEqual(expected);
+      },
+    );
   });
 });
