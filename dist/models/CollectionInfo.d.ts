@@ -1,5 +1,6 @@
 import type * as admin from 'firebase-admin';
 import type { SerializedTimestamp } from '../helpers/times';
+import { Coordinate } from './Geo';
 import type { Model } from './Model';
 import type { PavementStatus, RoadDirection, StreetLaneType, StreetType } from './Restaurant';
 import type { IUser } from './User';
@@ -44,6 +45,7 @@ export interface CollectedInfoInput extends Model {
     budget?: number;
     referralEmail?: string;
     type: CollectedInfoType;
+    currentLocation?: Coordinate;
 }
 export interface CollectedInfo extends CollectedInfoInput {
     uid?: string;
