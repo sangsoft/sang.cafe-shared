@@ -56,6 +56,7 @@ export interface CollectedInfoInput extends Model {
   type: CollectedInfoType;
 
   currentLocation?: Coordinate;
+  rawGeoCodedData?: any;
 }
 
 export interface CollectedInfo extends CollectedInfoInput {

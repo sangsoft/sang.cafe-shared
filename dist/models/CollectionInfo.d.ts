@@ -46,6 +46,7 @@ export interface CollectedInfoInput extends Model {
     referralEmail?: string;
     type: CollectedInfoType;
     currentLocation?: Coordinate;
+    rawGeoCodedData?: any;
 }
 export interface CollectedInfo extends CollectedInfoInput {
     uid?: string;
