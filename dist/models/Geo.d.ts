@@ -17,3 +17,16 @@ export interface NearByResult {
     distance: number;
     distanceManhattan: number;
 }
+export interface PlaceInfo {
+    place_id: string;
+    geometry: {
+        location: Coordinate;
+    };
+    address: string;
+    formatted_address: string;
+    compound: {
+        commune: string;
+        district: string;
+        province: string;
+    };
+}
