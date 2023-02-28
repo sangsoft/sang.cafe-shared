@@ -64,6 +64,8 @@ export interface IUser extends Model {
 
   phoneNumbers?: string[];
   phoneNumberRetrieved?: boolean;
+  phoneNumberRetrievePartnerError?: boolean;
+  phoneNumberRetrievePartnerErrorMessage?: string;
   phoneNumberRequestedBy?: string;
   phoneNumberRequestedAt?: any;
   phoneNumberRetrievedFailed?: boolean;

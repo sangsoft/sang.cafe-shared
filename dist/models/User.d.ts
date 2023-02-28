@@ -54,6 +54,8 @@ export interface IUser extends Model {
     belongsToOrganization?: string;
     phoneNumbers?: string[];
     phoneNumberRetrieved?: boolean;
+    phoneNumberRetrievePartnerError?: boolean;
+    phoneNumberRetrievePartnerErrorMessage?: string;
     phoneNumberRequestedBy?: string;
     phoneNumberRequestedAt?: any;
     phoneNumberRetrievedFailed?: boolean;
