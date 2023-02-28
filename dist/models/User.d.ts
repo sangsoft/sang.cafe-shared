@@ -52,9 +52,9 @@ export interface IUser extends Model {
     representativeName?: string;
     taxCode?: string;
     belongsToOrganization?: string;
-    phoneNumbers: string[];
-    phoneNumberRetrieved: boolean;
-    phoneNumberRequestedBy: string;
-    phoneNumberRequestedAt: any;
-    phoneNumberRetrievedFailed: boolean;
+    phoneNumbers?: string[];
+    phoneNumberRetrieved?: boolean;
+    phoneNumberRequestedBy?: string;
+    phoneNumberRequestedAt?: any;
+    phoneNumberRetrievedFailed?: boolean;
 }

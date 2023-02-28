@@ -62,11 +62,11 @@ export interface IUser extends Model {
   taxCode?: string;
   belongsToOrganization?: string;
 
-  phoneNumbers: string[];
-  phoneNumberRetrieved: boolean;
-  phoneNumberRequestedBy: string;
-  phoneNumberRequestedAt: any;
-  phoneNumberRetrievedFailed: boolean;
+  phoneNumbers?: string[];
+  phoneNumberRetrieved?: boolean;
+  phoneNumberRequestedBy?: string;
+  phoneNumberRequestedAt?: any;
+  phoneNumberRetrievedFailed?: boolean;
 }
 
 // export class User extends Model {
