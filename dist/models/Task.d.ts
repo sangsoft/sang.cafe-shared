@@ -1,8 +1,8 @@
-import type { Model } from "./Model";
-import type { IUser } from "./User";
-import type { IInfoRequest, IRestaurant } from "./Restaurant";
-import type { SearchMatch } from "./SearchMatch";
-import type { SerializedTimestamp } from "../helpers/times";
+import type { Model } from './Model';
+import type { IUser } from './User';
+import type { IInfoRequest, IRestaurant } from './Restaurant';
+import type { SearchMatch } from './SearchMatch';
+import type { SerializedTimestamp } from '../helpers/times';
 import type { CollectedInfo } from './CollectionInfo';
 export declare enum TaskStatus {
     PENDING = "pending",
@@ -12,7 +12,9 @@ export declare enum TaskStatus {
     DELEGATED = "delegated",
     OUT_OF_DATE = "out-of-date",
     BILL_CREATED = "bill-created",
-    CANNOT_CONTACT_OWNER = "cannot-contact-owner"
+    CANNOT_CONTACT_OWNER = "cannot-contact-owner",
+    NEED_ID_NUMBER = "need-id-number",
+    ID_NUMBER_PROVIDED = "id-number-provided"
 }
 export declare enum TaskType {
     FILL_DATA = "fill-data",
@@ -99,6 +101,12 @@ export interface ITask extends Model {
     lastCannotContactedUserId?: string;
     lastCannotContactedUser?: Partial<IUser>;
     callLogs?: TaskCallLog[];
+    idNumberDetail?: string;
+    hasDetail?: boolean;
+    idNumberProviderId?: string;
+    needIdNumber?: boolean;
+    markedNeededIdNumberBy?: string;
+    markedNeededIdNumberAt?: (Date | SerializedTimestamp)[];
 }
 export declare enum CannotCallReason {
     LINE_BUSY = "line-busy",

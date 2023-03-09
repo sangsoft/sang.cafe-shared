@@ -1,9 +1,8 @@
-
-import type { Model } from "./Model";
-import type { IUser } from "./User";
-import type { IInfoRequest, IRestaurant } from "./Restaurant";
-import type { SearchMatch } from "./SearchMatch";
-import type { SerializedTimestamp } from "../helpers/times";
+import type { Model } from './Model';
+import type { IUser } from './User';
+import type { IInfoRequest, IRestaurant } from './Restaurant';
+import type { SearchMatch } from './SearchMatch';
+import type { SerializedTimestamp } from '../helpers/times';
 import type { CollectedInfo } from './CollectionInfo';
 
 export enum TaskStatus {
@@ -14,7 +13,9 @@ export enum TaskStatus {
   DELEGATED = 'delegated',
   OUT_OF_DATE = 'out-of-date',
   BILL_CREATED = 'bill-created',
-  CANNOT_CONTACT_OWNER = 'cannot-contact-owner'
+  CANNOT_CONTACT_OWNER = 'cannot-contact-owner',
+  NEED_ID_NUMBER = 'need-id-number',
+  ID_NUMBER_PROVIDED = 'id-number-provided',
 }
 
 export enum TaskType {
@@ -28,7 +29,7 @@ export enum TaskType {
   HANDLE_COLLECTED_INFO = 'handle-collected-info',
   HANDLE_COLLECTED_INFO_MISSING_PHONE = 'handle-collected-info-missing-phone',
   HANDLE_COLLECTED_INFO_RENT_DEMAND = 'handle-collected-info-rent-demand',
-  CONTACT_INFORMATION_REQUEST = 'contact-information-request'
+  CONTACT_INFORMATION_REQUEST = 'contact-information-request',
 }
 
 export enum TaskResult {
@@ -92,11 +93,11 @@ export interface ITask extends Model {
 
   buyerId?: string;
   buyer?: IUser;
-  buyerRequirement?: string
+  buyerRequirement?: string;
 
   sellerId?: string;
   seller?: IUser;
-  sellerRequirement?: string
+  sellerRequirement?: string;
 
   agentId?: string;
   agent?: IUser;
@@ -129,22 +130,29 @@ export interface ITask extends Model {
 
   projectId?: string;
 
-  ownerContactedTimes?: (Date | SerializedTimestamp)[]
-  ownerContactedUsers?: Partial<IUser>[]
-  ownerContactedUserIds?: string[]
+  ownerContactedTimes?: (Date | SerializedTimestamp)[];
+  ownerContactedUsers?: Partial<IUser>[];
+  ownerContactedUserIds?: string[];
 
-  lastCannotContactedAt?: Date | SerializedTimestamp
-  lastCannotContactedUserId?: string
-  lastCannotContactedUser?: Partial<IUser>
+  lastCannotContactedAt?: Date | SerializedTimestamp;
+  lastCannotContactedUserId?: string;
+  lastCannotContactedUser?: Partial<IUser>;
 
-  callLogs?: TaskCallLog[]
+  callLogs?: TaskCallLog[];
+
+  idNumberDetail?: string;
+  hasDetail?: boolean;
+  idNumberProviderId?: string;
+  needIdNumber?: boolean;
+  markedNeededIdNumberBy?: string;
+  markedNeededIdNumberAt?: (Date | SerializedTimestamp)[];
 }
 
 export enum CannotCallReason {
   LINE_BUSY = 'line-busy',
   DID_NOT_PICKUP = 'did-not-pickup',
   WRONG_NUMBER = 'wrong-number',
-  PHONE_OFF = 'phone-off'
+  PHONE_OFF = 'phone-off',
 }
 
 export enum TaskCallLogStatus {
