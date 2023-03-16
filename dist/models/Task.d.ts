@@ -14,7 +14,8 @@ export declare enum TaskStatus {
     BILL_CREATED = "bill-created",
     CANNOT_CONTACT_OWNER = "cannot-contact-owner",
     NEED_ID_NUMBER = "need-id-number",
-    ID_NUMBER_PROVIDED = "id-number-provided"
+    ID_NUMBER_PROVIDED = "id-number-provided",
+    OWNER_FOUND = "owner-found"
 }
 export declare enum TaskType {
     FILL_DATA = "fill-data",

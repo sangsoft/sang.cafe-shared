@@ -13,6 +13,7 @@ var TaskStatus;
     TaskStatus["CANNOT_CONTACT_OWNER"] = "cannot-contact-owner";
     TaskStatus["NEED_ID_NUMBER"] = "need-id-number";
     TaskStatus["ID_NUMBER_PROVIDED"] = "id-number-provided";
+    TaskStatus["OWNER_FOUND"] = "owner-found";
 })(TaskStatus = exports.TaskStatus || (exports.TaskStatus = {}));
 var TaskType;
 (function (TaskType) {
