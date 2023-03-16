@@ -110,9 +110,9 @@ export interface ITask extends Model {
     markedNeededIdNumberBy?: string;
     markedNeededIdNumberAt?: Date | SerializedTimestamp;
     foundOwnerId?: string;
-    foundOwnerPhoneNumber: string;
+    foundOwnerPhoneNumber?: string;
     ownerFoundBy?: string;
-    ownerFoundAt: Date | SerializedTimestamp;
+    ownerFoundAt?: Date | SerializedTimestamp;
 }
 export declare enum CannotCallReason {
     LINE_BUSY = "line-busy",

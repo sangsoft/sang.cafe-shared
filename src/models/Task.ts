@@ -150,9 +150,9 @@ export interface ITask extends Model {
   markedNeededIdNumberAt?: Date | SerializedTimestamp;
 
   foundOwnerId?: string;
-  foundOwnerPhoneNumber: string;
+  foundOwnerPhoneNumber?: string;
   ownerFoundBy?: string;
-  ownerFoundAt: Date | SerializedTimestamp;
+  ownerFoundAt?: Date | SerializedTimestamp;
 }
 
 export enum CannotCallReason {
