@@ -27,6 +27,7 @@ var TaskType;
     TaskType["HANDLE_COLLECTED_INFO_MISSING_PHONE"] = "handle-collected-info-missing-phone";
     TaskType["HANDLE_COLLECTED_INFO_RENT_DEMAND"] = "handle-collected-info-rent-demand";
     TaskType["CONTACT_INFORMATION_REQUEST"] = "contact-information-request";
+    TaskType["FIND_PREMISE_OWNER"] = "find-premise-owner";
 })(TaskType = exports.TaskType || (exports.TaskType = {}));
 var TaskResult;
 (function (TaskResult) {

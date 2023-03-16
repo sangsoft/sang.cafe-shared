@@ -27,7 +27,8 @@ export declare enum TaskType {
     HANDLE_COLLECTED_INFO = "handle-collected-info",
     HANDLE_COLLECTED_INFO_MISSING_PHONE = "handle-collected-info-missing-phone",
     HANDLE_COLLECTED_INFO_RENT_DEMAND = "handle-collected-info-rent-demand",
-    CONTACT_INFORMATION_REQUEST = "contact-information-request"
+    CONTACT_INFORMATION_REQUEST = "contact-information-request",
+    FIND_PREMISE_OWNER = "find-premise-owner"
 }
 export declare enum TaskResult {
     DONE = "done",
@@ -107,6 +108,7 @@ export interface ITask extends Model {
     needIdNumber?: boolean;
     markedNeededIdNumberBy?: string;
     markedNeededIdNumberAt?: (Date | SerializedTimestamp)[];
+    foundOwnerId?: string;
 }
 export declare enum CannotCallReason {
     LINE_BUSY = "line-busy",
