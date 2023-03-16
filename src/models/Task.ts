@@ -16,6 +16,7 @@ export enum TaskStatus {
   CANNOT_CONTACT_OWNER = 'cannot-contact-owner',
   NEED_ID_NUMBER = 'need-id-number',
   ID_NUMBER_PROVIDED = 'id-number-provided',
+  OWNER_FOUND = 'owner-found',
 }
 
 export enum TaskType {
