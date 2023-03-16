@@ -69,6 +69,8 @@ export interface IUser extends Model {
   phoneNumberRequestedBy?: string;
   phoneNumberRequestedAt?: any;
   phoneNumberRetrievedFailed?: boolean;
+
+  internal?: boolean;
 }
 
 // export class User extends Model {
