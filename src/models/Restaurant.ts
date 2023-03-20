@@ -36,6 +36,22 @@ export enum RoadDirection {
   TWO_WAY_ROAD = 'two-way-road',
 }
 
+export enum PremiseType {
+  VILLA = 'villa',
+  SEMI_DETACHED = 'semi-detached',
+  EMPTY_LAND = 'empty-land',
+  OFFICE_BUILDING = 'office-building',
+  SHOP_HOUSE = 'shop-house',
+  COMMERCIAL_FLOOR = 'commercial-floor',
+  HOTEL = 'hotel',
+}
+
+export enum BasementType {
+  MOTORBIKE_ONLY = 'motobike-only',
+  CAR_ONLY = 'car-only',
+  MIXED = 'mixed',
+}
+
 export interface CrawledSeed {
   city?: string;
   mix?: boolean;
@@ -74,6 +90,8 @@ export interface IRestaurant extends Model {
   ad?: boolean;
   slug?: string;
 
+  premiseType?: PremiseType;
+
   // Level -1
   photos: Photo[];
   videos?: Video[];
@@ -101,6 +119,7 @@ export interface IRestaurant extends Model {
   totalLevels?: number;
   totalBasements?: number;
   availableLevels?: number[];
+  basementType?: BasementType;
 
   contractEnd?: { month: number; year: number };
   minimalContractTime?: number;

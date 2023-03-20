@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RoadDirection = exports.StreetLaneType = exports.StreetType = exports.PavementStatus = void 0;
+exports.BasementType = exports.PremiseType = exports.RoadDirection = exports.StreetLaneType = exports.StreetType = exports.PavementStatus = void 0;
 var PavementStatus;
 (function (PavementStatus) {
     PavementStatus["PAVEMENT_WITH_MOTORBIKE_PARKING"] = "pavement-with-motorbike-parking";
@@ -31,4 +31,20 @@ var RoadDirection;
     RoadDirection["ONE_WAY_ROAD"] = "one-way-road";
     RoadDirection["TWO_WAY_ROAD"] = "two-way-road";
 })(RoadDirection = exports.RoadDirection || (exports.RoadDirection = {}));
+var PremiseType;
+(function (PremiseType) {
+    PremiseType["VILLA"] = "villa";
+    PremiseType["SEMI_DETACHED"] = "semi-detached";
+    PremiseType["EMPTY_LAND"] = "empty-land";
+    PremiseType["OFFICE_BUILDING"] = "office-building";
+    PremiseType["SHOP_HOUSE"] = "shop-house";
+    PremiseType["COMMERCIAL_FLOOR"] = "commercial-floor";
+    PremiseType["HOTEL"] = "hotel";
+})(PremiseType = exports.PremiseType || (exports.PremiseType = {}));
+var BasementType;
+(function (BasementType) {
+    BasementType["MOTORBIKE_ONLY"] = "motobike-only";
+    BasementType["CAR_ONLY"] = "car-only";
+    BasementType["MIXED"] = "mixed";
+})(BasementType = exports.BasementType || (exports.BasementType = {}));
 //# sourceMappingURL=Restaurant.js.map
