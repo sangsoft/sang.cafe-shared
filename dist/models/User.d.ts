@@ -49,6 +49,7 @@ export interface IUser extends Model {
     fbPsid?: string;
     labels?: string[];
     isOrganization?: boolean;
+    organizationContactPointIds?: string[];
     representativeName?: string;
     taxCode?: string;
     belongsToOrganization?: string;

@@ -58,6 +58,7 @@ export interface IUser extends Model {
 
   //Organization
   isOrganization?: boolean;
+  organizationContactPointIds?: string[];
   representativeName?: string;
   taxCode?: string;
   belongsToOrganization?: string;
