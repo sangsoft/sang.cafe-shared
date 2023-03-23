@@ -148,6 +148,9 @@ export interface IRestaurant extends Model {
     search: SearchRecord;
   }[];
 
+  isOrganization?: boolean;
+  organizationContactPointIds?: string[];
+
   // Level 999
   missingPrivateContactInfo?: boolean;
   privateAddress?: string;
