@@ -5,6 +5,11 @@ import type { SearchMatch } from './SearchMatch';
 import type { SerializedTimestamp } from '../helpers/times';
 import type { CollectedInfo } from './CollectionInfo';
 
+export enum IdProvidedIncorrectReason {
+  WRONG_ADDRESS = 'wrong-address',
+  MISSING_INFORMATION = 'missing-information',
+}
+
 export enum TaskStatus {
   PENDING = 'pending',
   ONGOING = 'ongoing',
@@ -153,6 +158,12 @@ export interface ITask extends Model {
   foundOwnerPhoneNumber?: string;
   ownerFoundBy?: string;
   ownerFoundAt?: Date | SerializedTimestamp;
+
+  idProvidedIncorrect?: boolean;
+  idProvidedIncorrectBy?: string;
+  idProvidedIncorrectAt?: Date | SerializedTimestamp;
+  idProvidedIncorrectReason?: IdProvidedIncorrectReason;
+  idProvidedIncorrectDetail?: string | null;
 }
 
 export enum CannotCallReason {

@@ -1,6 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaskCallLogStatus = exports.CannotCallReason = exports.TaskResult = exports.TaskType = exports.TaskStatus = void 0;
+exports.TaskCallLogStatus = exports.CannotCallReason = exports.TaskResult = exports.TaskType = exports.TaskStatus = exports.IdProvidedIncorrectReason = void 0;
+var IdProvidedIncorrectReason;
+(function (IdProvidedIncorrectReason) {
+    IdProvidedIncorrectReason["WRONG_ADDRESS"] = "wrong-address";
+    IdProvidedIncorrectReason["MISSING_INFORMATION"] = "missing-information";
+})(IdProvidedIncorrectReason = exports.IdProvidedIncorrectReason || (exports.IdProvidedIncorrectReason = {}));
 var TaskStatus;
 (function (TaskStatus) {
     TaskStatus["PENDING"] = "pending";

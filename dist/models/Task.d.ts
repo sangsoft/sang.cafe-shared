@@ -4,6 +4,10 @@ import type { IInfoRequest, IRestaurant } from './Restaurant';
 import type { SearchMatch } from './SearchMatch';
 import type { SerializedTimestamp } from '../helpers/times';
 import type { CollectedInfo } from './CollectionInfo';
+export declare enum IdProvidedIncorrectReason {
+    WRONG_ADDRESS = "wrong-address",
+    MISSING_INFORMATION = "missing-information"
+}
 export declare enum TaskStatus {
     PENDING = "pending",
     ONGOING = "ongoing",
@@ -113,6 +117,11 @@ export interface ITask extends Model {
     foundOwnerPhoneNumber?: string;
     ownerFoundBy?: string;
     ownerFoundAt?: Date | SerializedTimestamp;
+    idProvidedIncorrect?: boolean;
+    idProvidedIncorrectBy?: string;
+    idProvidedIncorrectAt?: Date | SerializedTimestamp;
+    idProvidedIncorrectReason?: IdProvidedIncorrectReason;
+    idProvidedIncorrectDetail?: string | null;
 }
 export declare enum CannotCallReason {
     LINE_BUSY = "line-busy",
