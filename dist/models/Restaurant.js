@@ -40,6 +40,7 @@ var PremiseType;
     PremiseType["SHOP_HOUSE"] = "shop-house";
     PremiseType["COMMERCIAL_FLOOR"] = "commercial-floor";
     PremiseType["HOTEL"] = "hotel";
+    PremiseType["ROW_HOUSE"] = "row_house";
 })(PremiseType = exports.PremiseType || (exports.PremiseType = {}));
 var BasementType;
 (function (BasementType) {

@@ -37,7 +37,8 @@ export declare enum PremiseType {
     OFFICE_BUILDING = "office-building",
     SHOP_HOUSE = "shop-house",
     COMMERCIAL_FLOOR = "commercial-floor",
-    HOTEL = "hotel"
+    HOTEL = "hotel",
+    ROW_HOUSE = "row_house"
 }
 export declare enum BasementType {
     MOTORBIKE_ONLY = "motobike-only",

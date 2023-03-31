@@ -1,4 +1,3 @@
-import { SUPPORTED_TYPES } from './Enums';
 import { Model } from './Model';
 import type { Photo } from './Photo';
 import { SearchRecord } from './SearchRecord';
@@ -44,6 +43,7 @@ export enum PremiseType {
   SHOP_HOUSE = 'shop-house',
   COMMERCIAL_FLOOR = 'commercial-floor',
   HOTEL = 'hotel',
+  ROW_HOUSE = 'row_house',
 }
 
 export enum BasementType {
