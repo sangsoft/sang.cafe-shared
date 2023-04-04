@@ -70,16 +70,22 @@ export function cleanAddress(text: string, patterns = streetPatterns): string {
 //   - Ben:Bên ủy quyền; Vai tro:Bên ủy quyền (Bên A); Đoàn Thị Kim Chi, So CMT,HC:079155000278, Ngay sinh:00/00/1955
 //   - Ben:Bên nhận ủy quyền; Vai tro:Bên nhận ủy quyền (Bên B); Đinh Thị Thu Thủy, So CMT,HC:023845562, Ngay sinh:00/00/1984
 // output: [{displayName: "NGUYỄN CÔNG MINH", idNumber: "079055000834"}, {displayName: "Đoàn Thị Kim Chi", idNumber: "079155000278"}, {displayName: "Đinh Thị Thu Thủy", idNumber: "023845562"}]
-export function extractPremiseDetail(text: string): { displayName: string; idNumber: string }[] {
+export interface PremiseParsedDetail {
+  address: string;
+  users: { displayName: string; idNumber: string }[];
+}
+
+export function extractPremiseDetail(text: string): PremiseParsedDetail[] {
   const lines = text.split('  - ');
-  const result = [];
+  const users = [];
+  const address = '';
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     if (line.includes('So CMT,HC')) {
       const displayName = line.split(',')[0].split(':')[1];
       const idNumber = line.split(',')[1].split(':')[1];
-      result.push({ displayName, idNumber });
+      users.push({ displayName, idNumber });
     }
   }
-  return result;
+  return [{ address, users }];
 }
