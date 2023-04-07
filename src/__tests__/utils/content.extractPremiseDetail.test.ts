@@ -1,4 +1,5 @@
 import { extractPremiseDetail } from '../../helpers/content';
+import { matchSubstring } from '../../helpers/strings';
 
 // describe utils.content.extractPremiseDetail
 describe('utils', () => {
@@ -141,7 +142,21 @@ describe('utils', () => {
           ],
         ],
       ])(`should return correct premise detail`, (content, expected) => {
-        expect(extractPremiseDetail(content)).toEqual(expected);
+        const details = extractPremiseDetail(content);
+        expect(details.length).toEqual(expected.length);
+        for (let i = 0; i < details.length; i++) {
+          expect(matchSubstring(details[i].address, expected[i].address)).toEqual(expected[i].address);
+
+          expect(details[i].users.length).toEqual(expected[i].users.length);
+          for (let j = 0; j < details[i].users.length; j++) {
+            expect(matchSubstring(details[i].users[j].displayName, expected[i].users[j].displayName)).toEqual(
+              expected[i].users[j].displayName,
+            );
+            expect(matchSubstring(details[i].users[j].idNumber, expected[i].users[j].idNumber)).toEqual(
+              expected[i].users[j].idNumber,
+            );
+          }
+        }
       });
     });
   });

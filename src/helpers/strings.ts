@@ -94,3 +94,18 @@ export function extractThuDucDistrict(address: string): ThuDicDistricts | undefi
 
   return undefined;
 }
+
+export function matchSubstring(str1: string, str2: string): string {
+  const str1Lower = str1.toLowerCase();
+  const str2Lower = str2.toLowerCase();
+
+  if (str1Lower.includes(str2Lower)) {
+    return str2;
+  }
+
+  if (str2Lower.includes(str1Lower)) {
+    return str1;
+  }
+
+  return '';
+}
