@@ -78,14 +78,69 @@ export interface PremiseParsedDetail {
 export function extractPremiseDetail(text: string): PremiseParsedDetail[] {
   const lines = text.split('  - ');
   const users = [];
-  const address = '';
+  let address = '';
+  const uniqueAddress = (address) => {
+    var newAddress = [];
+    newAddress = address.filter(function (item) {
+      return newAddress.includes(item) ? '' : newAddress.push(item);
+    });
+    return newAddress;
+  };
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
+    // if (line.includes('Loai')) {
+    //   if (line.includes('Dia chi')) {
+    //     const addresss = line.split('Dia chi:')[1].split('  ')[0];
+    //     address = addresss;
+    //   }
+    //   if (line.includes('So nha')) {
+    //     const addresss = line.split('So nha:')[1].split('  ')[0];
+    //     address = addresss;
+    //   }
+    // }
+    // if (line.includes('So nha') && !line.includes('Loai')) {
+    //   const addresss = line.split('So nha:')[1].split('  ')[0];
+    //   address = addresss;
+    // }
     if (line.includes('So CMT,HC')) {
-      const displayName = line.split(',')[0].split(':')[1];
-      const idNumber = line.split(',')[1].split(':')[1];
+      if (line.split(':')[3].includes(',')) {
+        const idNumber = line.split(':')[3].split(',')[0];
+        const displayName = line.split(';')[2].split(',')[0];
+        users.push({ displayName, idNumber });
+      }
+      if (line.split(':')[3].includes(';')) {
+        const displayName = line.split(';')[2].split(',')[0];
+        const idNumber = line.split(':')[3].split(';')[0];
+        users.push({ displayName, idNumber });
+      }
+    }
+
+    if (line.includes('Đương sự:')) {
+      if (line.includes('Dia chi')) {
+        const addresss = line.split('Dia chi:')[1].split('   ')[0];
+        address = addresss;
+      }
+      if (line.includes('So nha')) {
+        const addresss = line.split('So nha:')[1].split('  ')[0];
+        address = addresss;
+      }
+    }
+    if (
+      line.toLowerCase().includes('công ty') ||
+      line.toLowerCase().includes('cty') ||
+      line.toLowerCase().includes('tnhh') ||
+      line.toLowerCase().includes('tmcp')
+    ) {
+      const displayName = line.split(';')[2].split(',')[0];
+      const idNumber = line.split(':')[3] ? line.split(':')[3].split(';')[0] : '';
       users.push({ displayName, idNumber });
     }
+    // if (line.includes('Tài sản')) {
+    //   console.log(line);
+    // }
+    console.log(users);
+    // console.log(address);
   }
+
   return [{ address, users }];
 }
