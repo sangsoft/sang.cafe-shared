@@ -88,20 +88,6 @@ export function extractPremiseDetail(text: string): PremiseParsedDetail[] {
   };
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    // if (line.includes('Loai')) {
-    //   if (line.includes('Dia chi')) {
-    //     const addresss = line.split('Dia chi:')[1].split('  ')[0];
-    //     address = addresss;
-    //   }
-    //   if (line.includes('So nha')) {
-    //     const addresss = line.split('So nha:')[1].split('  ')[0];
-    //     address = addresss;
-    //   }
-    // }
-    // if (line.includes('So nha') && !line.includes('Loai')) {
-    //   const addresss = line.split('So nha:')[1].split('  ')[0];
-    //   address = addresss;
-    // }
     if (line.includes('So CMT,HC')) {
       if (line.split(':')[3].includes(',')) {
         const idNumber = line.split(':')[3].split(',')[0];
@@ -135,10 +121,8 @@ export function extractPremiseDetail(text: string): PremiseParsedDetail[] {
       const idNumber = line.split(':')[3] ? line.split(':')[3].split(';')[0] : '';
       users.push({ displayName, idNumber });
     }
-    // if (line.includes('Tài sản')) {
-    //   console.log(line);
-    // }
-    console.log(users);
+
+    // console.log(users);
     // console.log(address);
   }
 
