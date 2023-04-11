@@ -78,53 +78,99 @@ export interface PremiseParsedDetail {
 export function extractPremiseDetail(text: string): PremiseParsedDetail[] {
   const lines = text.split('  - ');
   const users = [];
-  let address = '';
-  const uniqueAddress = (address) => {
-    var newAddress = [];
-    newAddress = address.filter(function (item) {
-      return newAddress.includes(item) ? '' : newAddress.push(item);
-    });
-    return newAddress;
-  };
+  let address = [];
+  let markTaxCodeROrBusinessLicense = false;
+  let markTaxCodeRAndBusinessLicense = false;
+  const premiseRe = /(\(\*\) Tài sản:\s*(- Loai:.*))\s*((\(\*\) Đương sự:)\s*(- Ben:.*\s*)+)/gm;
+
+  const addressRe = /(So nha|Dia chi):(.+)/gm;
+
+  const TaxCodeRe = /Ben:(.+); Vai tro:(.+?); (.+?)(Ma thue:)(\d+)/gm;
+  const isNullTaxCodeRe = /Ben:(.+); Vai tro:(.+?); (.+?)(Ma thue:)/gm;
+
+  const BusinessLicenseRe = /Ben:(.+); Vai tro:(.+?); (.+?)(Giay phep KD:)(\d+)/gm;
+  const isNullBusinessLicenseRe = /Ben:(.+); Vai tro:(.+?); (.+?)(Giay phep KD:)/gm;
+
+  const userRes = /Ben:(.+); Vai tro:(.+?); (.+?)(So CMT,HC:)(\d+)/gm;
+  const isNullIdNumberUserRe = /Ben:(.+); Vai tro:(.+?); (.+?)(So CMT,HC:)/gm;
+
   for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    if (line.includes('So CMT,HC')) {
-      if (line.split(':')[3].includes(',')) {
-        const idNumber = line.split(':')[3].split(',')[0];
-        const displayName = line.split(';')[2].split(',')[0];
-        users.push({ displayName, idNumber });
+    const lineResults = lines[i].split(premiseRe);
+    for (let i = 0; i < lineResults.length; i++) {
+      const lineResult = lineResults[i];
+      if (lineResult.includes('So nha') || (lineResult.includes('Dia chi') && !lineResult.includes('Ben'))) {
+        const newAddress = lineResult.split(addressRe)[2];
+        address.push(newAddress);
       }
-      if (line.split(':')[3].includes(';')) {
-        const displayName = line.split(';')[2].split(',')[0];
-        const idNumber = line.split(':')[3].split(';')[0];
-        users.push({ displayName, idNumber });
-      }
-    }
+      console.log(lineResult);
+      if (lineResult.includes('Ben:')) {
+        if (lineResult.includes('So CMT,HC')) {
+          const displayName = lineResult.split(userRes)[3]
+            ? lineResult.split(userRes)[3].split(',')[0]
+            : lineResult.split(isNullIdNumberUserRe)[3].split(',')[0];
+          const idNumber = lineResult.split(userRes)[5] ? lineResult.split(userRes)[5] : '';
+          users.push({ displayName, idNumber });
+        }
+        if (
+          (lineResult.toLowerCase().includes('ma so thue') ||
+            lineResult.toLowerCase().includes('ma thue') ||
+            lineResult.toLowerCase().includes('mst')) &&
+          (lineResult.toLowerCase().includes('giay phep kinh doanh') ||
+            lineResult.toLowerCase().includes('giay phep kd') ||
+            lineResult.toLowerCase().includes('gpkd'))
+        ) {
+          const displayName = lineResult.split(TaxCodeRe)[3]
+            ? lineResult.split(TaxCodeRe)[3].split(',')[0]
+            : lineResult.split(isNullTaxCodeRe)[3].split(',')[0];
+          const idNumber = lineResult.split(TaxCodeRe)[5]
+            ? lineResult.split(TaxCodeRe)[5]
+            : lineResult.split(BusinessLicenseRe)[5];
+          users.push({ displayName, idNumber });
+          markTaxCodeROrBusinessLicense = true;
+        }
 
-    if (line.includes('Đương sự:')) {
-      if (line.includes('Dia chi')) {
-        const addresss = line.split('Dia chi:')[1].split('   ')[0];
-        address = addresss;
-      }
-      if (line.includes('So nha')) {
-        const addresss = line.split('So nha:')[1].split('  ')[0];
-        address = addresss;
-      }
-    }
-    if (
-      line.toLowerCase().includes('công ty') ||
-      line.toLowerCase().includes('cty') ||
-      line.toLowerCase().includes('tnhh') ||
-      line.toLowerCase().includes('tmcp')
-    ) {
-      const displayName = line.split(';')[2].split(',')[0];
-      const idNumber = line.split(':')[3] ? line.split(':')[3].split(';')[0] : '';
-      users.push({ displayName, idNumber });
-    }
+        if (
+          (lineResult.toLowerCase().includes('ma so thue') || lineResult.toLowerCase().includes('ma thue')) &&
+          !markTaxCodeROrBusinessLicense
+        ) {
+          const displayName = lineResult.split(TaxCodeRe)[3]
+            ? lineResult.split(TaxCodeRe)[3]
+            : lineResult.split(isNullTaxCodeRe)[3];
+          const idNumber = lineResult.split(TaxCodeRe)[5] ? lineResult.split(TaxCodeRe)[5] : '';
+          users.push({ displayName, idNumber });
+          markTaxCodeRAndBusinessLicense = true;
+        }
 
-    // console.log(users);
-    // console.log(address);
+        if (
+          (lineResult.toLowerCase().includes('giay phep kinh doanh') ||
+            lineResult.toLowerCase().includes('giay phep kd') ||
+            lineResult.toLowerCase().includes('gpkd')) &&
+          !markTaxCodeROrBusinessLicense
+        ) {
+          const displayName = lineResult.split(BusinessLicenseRe)[3]
+            ? lineResult.split(BusinessLicenseRe)[3]
+            : lineResult.split(isNullBusinessLicenseRe)[3];
+          const idNumber = lineResult.split(BusinessLicenseRe)[5] ? lineResult.split(BusinessLicenseRe)[5] : '';
+          users.push({ displayName, idNumber });
+          markTaxCodeRAndBusinessLicense = true;
+        }
+        if (
+          (lineResult.toLowerCase().includes('công ty') ||
+            lineResult.toLowerCase().includes('cty') ||
+            lineResult.toLowerCase().includes('tnhh') ||
+            lineResult.toLowerCase().includes('tmcp')) &&
+          !markTaxCodeRAndBusinessLicense &&
+          !markTaxCodeROrBusinessLicense
+        ) {
+          const displayName = lineResult.split(';')[2].split(';')[0];
+          const idNumber = lineResult.split(':')[3] ? lineResult.split(':')[3].split(';')[0] : '';
+          users.push({ displayName, idNumber });
+        }
+      }
+    }
   }
+  // console.log(address);
+  // console.log(users);
 
-  return [{ address, users }];
+  return [{ address: address[0], users }];
 }
