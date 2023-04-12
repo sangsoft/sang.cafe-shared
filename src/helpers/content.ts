@@ -76,101 +76,90 @@ export interface PremiseParsedDetail {
 }
 
 export function extractPremiseDetail(text: string): PremiseParsedDetail[] {
-  const lines = text.split('  - ');
-  const users = [];
-  let address = [];
-  let markTaxCodeROrBusinessLicense = false;
-  let markTaxCodeRAndBusinessLicense = false;
-  const premiseRe = /(\(\*\) Tài sản:\s*(- Loai:.*))\s*((\(\*\) Đương sự:)\s*(- Ben:.*\s*)+)/gm;
-
+  let address = '';
+  const premiseRe = /(\(\*\) Tài sản:\s*(- .*))\s*((\(\*\) Đương sự:)\s*(- Ben:.*\s*)+)/gm;
   const addressRe = /(So nha|Dia chi):(.+)/gm;
-
-  const TaxCodeRe = /Ben:(.+); Vai tro:(.+?); (.+?)(Ma thue:)(\d+)/gm;
+  const taxCodeRe = /Ben:(.+); Vai tro:(.+?); (.+?)(Ma thue:)(\d+)/gm;
   const isNullTaxCodeRe = /Ben:(.+); Vai tro:(.+?); (.+?)(Ma thue:)/gm;
-
-  const BusinessLicenseRe = /Ben:(.+); Vai tro:(.+?); (.+?)(Giay phep KD:)(\d+)/gm;
-  const isNullBusinessLicenseRe = /Ben:(.+); Vai tro:(.+?); (.+?)(Giay phep KD:)/gm;
-
-  const userRes = /Ben:(.+); Vai tro:(.+?); (.+?)(So CMT,HC:)(\d+)/gm;
+  const businessLicenseRe = /Ben:(.+); Vai tro:(.+?); (.+?)(Giay phep KD:)(\d+)/gm;
+  const idNumberuserRe = /Ben:(.+); Vai tro:(.+?); (.+?)(So CMT,HC:)(\d+)/gm;
   const isNullIdNumberUserRe = /Ben:(.+); Vai tro:(.+?); (.+?)(So CMT,HC:)/gm;
 
-  for (let i = 0; i < lines.length; i++) {
-    const lineResults = lines[i].split(premiseRe);
-    for (let i = 0; i < lineResults.length; i++) {
-      const lineResult = lineResults[i];
-      if (lineResult.includes('So nha') || (lineResult.includes('Dia chi') && !lineResult.includes('Ben'))) {
-        const newAddress = lineResult.split(addressRe)[2];
-        address.push(newAddress);
+  const chunkArray = (myArray, chunk_size) => {
+    var index = 0;
+    var arrayLength = myArray.length;
+    var tempArray = [];
+    for (index = 0; index < arrayLength; index += chunk_size) {
+      const myChunk = myArray.slice(index, index + chunk_size);
+      tempArray.push(myChunk);
+    }
+    return tempArray;
+  };
+  const isMatching = (text: string, regExp: RegExp, matches: any[]) => {
+    let array;
+    while ((array = regExp.exec(text)) !== null) {
+      if (array.index === regExp.lastIndex) {
+        regExp.lastIndex++;
       }
-      console.log(lineResult);
-      if (lineResult.includes('Ben:')) {
-        if (lineResult.includes('So CMT,HC')) {
-          const displayName = lineResult.split(userRes)[3]
-            ? lineResult.split(userRes)[3].split(',')[0]
-            : lineResult.split(isNullIdNumberUserRe)[3].split(',')[0];
-          const idNumber = lineResult.split(userRes)[5] ? lineResult.split(userRes)[5] : '';
-          users.push({ displayName, idNumber });
+      array.forEach((match, groupIndex) => {
+        // console.log(` ${groupIndex} -> ${match}`);
+        matches.push(match.trim());
+      });
+    }
+  };
+  const matches = [];
+  isMatching(text, premiseRe, matches);
+  const usersRe = /((\(\*\) Đương sự:)\s*( )+)/gm;
+  const groupByAddress = chunkArray(matches, 6);
+  const premiseParsedDetail = groupByAddress.map((premise) => {
+    const newAddresss = premise[2];
+    const newUsers = premise[3].split(usersRe);
+    const userMatches = [];
+    const addressMatches = [];
+    addressMatches.push(newAddresss.split(addressRe)[2]);
+    address = addressMatches.toString();
+    for (let i = 0; i < newUsers.length; i++) {
+      const newUser = newUsers[i];
+      if (newUser.includes('Ben')) {
+        const premiseUsers = newUser.split('  - ').toString();
+        if (newUser.includes('So CMT,HC')) {
+          if (newUser.split(idNumberuserRe)[3]) {
+            isMatching(premiseUsers, idNumberuserRe, userMatches);
+          } else {
+            isMatching(premiseUsers, isNullIdNumberUserRe, userMatches);
+          }
         }
         if (
-          (lineResult.toLowerCase().includes('ma so thue') ||
-            lineResult.toLowerCase().includes('ma thue') ||
-            lineResult.toLowerCase().includes('mst')) &&
-          (lineResult.toLowerCase().includes('giay phep kinh doanh') ||
-            lineResult.toLowerCase().includes('giay phep kd') ||
-            lineResult.toLowerCase().includes('gpkd'))
+          newUser.toLowerCase().includes('ma so thue') ||
+          newUser.toLowerCase().includes('ma thue') ||
+          newUser.toLowerCase().includes('mst') ||
+          newUser.toLowerCase().includes('giay phep kinh doanh') ||
+          newUser.toLowerCase().includes('giay phep kd') ||
+          newUser.toLowerCase().includes('gpkd')
         ) {
-          const displayName = lineResult.split(TaxCodeRe)[3]
-            ? lineResult.split(TaxCodeRe)[3].split(',')[0]
-            : lineResult.split(isNullTaxCodeRe)[3].split(',')[0];
-          const idNumber = lineResult.split(TaxCodeRe)[5]
-            ? lineResult.split(TaxCodeRe)[5]
-            : lineResult.split(BusinessLicenseRe)[5];
-          users.push({ displayName, idNumber });
-          markTaxCodeROrBusinessLicense = true;
-        }
-
-        if (
-          (lineResult.toLowerCase().includes('ma so thue') || lineResult.toLowerCase().includes('ma thue')) &&
-          !markTaxCodeROrBusinessLicense
-        ) {
-          const displayName = lineResult.split(TaxCodeRe)[3]
-            ? lineResult.split(TaxCodeRe)[3]
-            : lineResult.split(isNullTaxCodeRe)[3];
-          const idNumber = lineResult.split(TaxCodeRe)[5] ? lineResult.split(TaxCodeRe)[5] : '';
-          users.push({ displayName, idNumber });
-          markTaxCodeRAndBusinessLicense = true;
-        }
-
-        if (
-          (lineResult.toLowerCase().includes('giay phep kinh doanh') ||
-            lineResult.toLowerCase().includes('giay phep kd') ||
-            lineResult.toLowerCase().includes('gpkd')) &&
-          !markTaxCodeROrBusinessLicense
-        ) {
-          const displayName = lineResult.split(BusinessLicenseRe)[3]
-            ? lineResult.split(BusinessLicenseRe)[3]
-            : lineResult.split(isNullBusinessLicenseRe)[3];
-          const idNumber = lineResult.split(BusinessLicenseRe)[5] ? lineResult.split(BusinessLicenseRe)[5] : '';
-          users.push({ displayName, idNumber });
-          markTaxCodeRAndBusinessLicense = true;
-        }
-        if (
-          (lineResult.toLowerCase().includes('công ty') ||
-            lineResult.toLowerCase().includes('cty') ||
-            lineResult.toLowerCase().includes('tnhh') ||
-            lineResult.toLowerCase().includes('tmcp')) &&
-          !markTaxCodeRAndBusinessLicense &&
-          !markTaxCodeROrBusinessLicense
-        ) {
-          const displayName = lineResult.split(';')[2].split(';')[0];
-          const idNumber = lineResult.split(':')[3] ? lineResult.split(':')[3].split(';')[0] : '';
-          users.push({ displayName, idNumber });
+          if (newUser.split(taxCodeRe)[3] && newUser.split(businessLicenseRe)[3]) {
+            isMatching(premiseUsers, taxCodeRe, userMatches);
+          }
+          if (!newUser.split(taxCodeRe)[3] && !newUser.split(businessLicenseRe)[3]) {
+            isMatching(premiseUsers, isNullTaxCodeRe, userMatches);
+          }
+          if (!newUser.split(taxCodeRe)[3] && newUser.split(businessLicenseRe)[3]) {
+            isMatching(premiseUsers, businessLicenseRe, userMatches);
+          }
+          if (newUser.split(taxCodeRe)[3] && !newUser.split(businessLicenseRe)[3]) {
+            isMatching(premiseUsers, taxCodeRe, userMatches);
+          }
         }
       }
     }
-  }
-  // console.log(address);
-  // console.log(users);
+    const groupByUser = chunkArray(userMatches, 6);
+    const userNeed = [];
+    groupByUser.map((premise) => {
+      userNeed.push({ displayName: premise[3], idNumber: premise[5] ? premise[5] : '' });
+    });
 
-  return [{ address: address[0], users }];
+    return { address, users: userNeed };
+  });
+  // console.log(premiseParsedDetail[0]);
+  return premiseParsedDetail;
 }
