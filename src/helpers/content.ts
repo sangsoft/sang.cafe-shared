@@ -82,8 +82,8 @@ function extractAddressFromDocument(text: string): string {
 }
 
 function extractUserInfoFromDocument(text: string): { displayName: string; idNumber: string }[] {
-  const addressRe = /- Ben:(.+); Vai tro:(.+?); (.+?)((So CMT,HC|Ma thue|Giay phep KD):)(\d+)/gm;
-  const matches = [...text.matchAll(addressRe)];
+  const userInfoRe = /- Ben:(.+); Vai tro:(.+?); (.+?)((So CMT,HC|Ma thue|Giay phep KD):)(\d+)/gm;
+  const matches = [...text.matchAll(userInfoRe)];
   return matches.map((match) => {
     return {
       displayName: match[3],
