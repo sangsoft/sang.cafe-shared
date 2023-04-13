@@ -76,6 +76,7 @@ export interface PremiseParsedDetail {
 }
 
 function extractAddressFromDocument(text: string): string {
+  // https://regex101.com/r/3BFsJf/1
   const addressRe = /(So nha|Dia chi):(.+)/gm;
   const match = [...text.matchAll(addressRe)];
   return match[0][2];
@@ -85,6 +86,7 @@ function extractUserInfoFromDocument(text: string): { displayName: string; idNum
   // const userInfoRe = /- Ben:(.+); Vai tro:(.+?); (.+?)((So CMT,HC|Ma thue|Giay phep KD):)(\d+)/gm;
   const userInfoRe =
     /- Ben:(.+); Vai tro:(.+?); ((.+?)((So CMT,HC|Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W)((.+?)((Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W)|)|(.+))/gm;
+  // https://regex101.com/r/p8s3X8/2
   const matches = [...text.matchAll(userInfoRe)];
   return matches.map((match) => {
     return {
@@ -94,6 +96,7 @@ function extractUserInfoFromDocument(text: string): { displayName: string; idNum
   });
 }
 export function extractPremiseDetail(text: string): PremiseParsedDetail[] {
+  // https://regex101.com/r/pqPsL1/3
   const premiseRe = /(\(\*\) Tài sản:\s*(- .*))\s*((\(\*\) Đương sự:)\s*(- Ben:.*\s*)+)/gm;
   const addressMatches = [...text.matchAll(premiseRe)];
   return addressMatches.map((match) => {
