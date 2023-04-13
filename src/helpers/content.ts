@@ -82,113 +82,25 @@ function extractAddressFromDocument(text: string): string {
 }
 
 function extractUserInfoFromDocument(text: string): { displayName: string; idNumber: string }[] {
-  const userInfoRe = /- Ben:(.+); Vai tro:(.+?); (.+?)((So CMT,HC|Ma thue|Giay phep KD):)(\d+)/gm;
+  // const userInfoRe = /- Ben:(.+); Vai tro:(.+?); (.+?)((So CMT,HC|Ma thue|Giay phep KD):)(\d+)/gm;
+  const userInfoRe =
+    /- Ben:(.+); Vai tro:(.+?); ((.+?)((So CMT,HC|Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W)((.+?)((Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W)|)|(.+))/gm;
   const matches = [...text.matchAll(userInfoRe)];
   return matches.map((match) => {
     return {
-      displayName: match[3],
-      idNumber: match[6],
+      displayName: match[4] ? match[4] : match[3],
+      idNumber: match[7]?.length > 1 ? match[7] : !match[12] ? match[12] : '',
     };
   });
 }
-
 export function extractPremiseDetail(text: string): PremiseParsedDetail[] {
   const premiseRe = /(\(\*\) Tài sản:\s*(- .*))\s*((\(\*\) Đương sự:)\s*(- Ben:.*\s*)+)/gm;
   const addressMatches = [...text.matchAll(premiseRe)];
-
   return addressMatches.map((match) => {
+    console.log(extractUserInfoFromDocument(match[3]));
     return {
       address: extractAddressFromDocument(match[2]),
       users: extractUserInfoFromDocument(match[3]),
     };
   });
 }
-
-// export function extractPremiseDetail(text: string): PremiseParsedDetail[] {
-//   let address = '';
-//   const premiseRe = /(\(\*\) Tài sản:\s*(- .*))\s*((\(\*\) Đương sự:)\s*(- Ben:.*\s*)+)/gm;
-//   const addressRe = /(So nha|Dia chi):(.+)/gm;
-//   const taxCodeRe = /Ben:(.+); Vai tro:(.+?); (.+?)(Ma thue:)(\d+)/gm;
-//   const isNullTaxCodeRe = /Ben:(.+); Vai tro:(.+?); (.+?)(Ma thue:)/gm;
-//   const businessLicenseRe = /Ben:(.+); Vai tro:(.+?); (.+?)(Giay phep KD:)(\d+)/gm;
-//   const idNumberuserRe = /Ben:(.+); Vai tro:(.+?); (.+?)(So CMT,HC:)(\d+)/gm;
-//   const isNullIdNumberUserRe = /Ben:(.+); Vai tro:(.+?); (.+?)(So CMT,HC:)/gm;
-
-//   const chunkArray = (myArray, chunk_size) => {
-//     var index = 0;
-//     var arrayLength = myArray.length;
-//     var tempArray = [];
-//     for (index = 0; index < arrayLength; index += chunk_size) {
-//       const myChunk = myArray.slice(index, index + chunk_size);
-//       tempArray.push(myChunk);
-//     }
-//     return tempArray;
-//   };
-//   const isMatching = (text: string, regExp: RegExp, matches: any[]) => {
-//     let array;
-//     while ((array = regExp.exec(text)) !== null) {
-//       if (array.index === regExp.lastIndex) {
-//         regExp.lastIndex++;
-//       }
-//       array.forEach((match, groupIndex) => {
-//         // console.log(` ${groupIndex} -> ${match}`);
-//         matches.push(match.trim());
-//       });
-//     }
-//   };
-//   const matches = [];
-//   isMatching(text, premiseRe, matches);
-//   const usersRe = /((\(\*\) Đương sự:)\s*( )+)/gm;
-//   const groupByAddress = chunkArray(matches, 6);
-//   const premiseParsedDetail = groupByAddress.map((premise) => {
-//     const newAddresss = premise[2];
-//     const newUsers = premise[3].split(usersRe);
-//     const userMatches = [];
-//     const addressMatches = [];
-//     addressMatches.push(newAddresss.split(addressRe)[2]);
-//     address = addressMatches.toString();
-//     for (let i = 0; i < newUsers.length; i++) {
-//       const newUser = newUsers[i];
-//       if (newUser.includes('Ben')) {
-//         const premiseUsers = newUser.split('  - ').toString();
-//         if (newUser.includes('So CMT,HC')) {
-//           if (newUser.split(idNumberuserRe)[3]) {
-//             isMatching(premiseUsers, idNumberuserRe, userMatches);
-//           } else {
-//             isMatching(premiseUsers, isNullIdNumberUserRe, userMatches);
-//           }
-//         }
-//         if (
-//           newUser.toLowerCase().includes('ma so thue') ||
-//           newUser.toLowerCase().includes('ma thue') ||
-//           newUser.toLowerCase().includes('mst') ||
-//           newUser.toLowerCase().includes('giay phep kinh doanh') ||
-//           newUser.toLowerCase().includes('giay phep kd') ||
-//           newUser.toLowerCase().includes('gpkd')
-//         ) {
-//           if (newUser.split(taxCodeRe)[3] && newUser.split(businessLicenseRe)[3]) {
-//             isMatching(premiseUsers, taxCodeRe, userMatches);
-//           }
-//           if (!newUser.split(taxCodeRe)[3] && !newUser.split(businessLicenseRe)[3]) {
-//             isMatching(premiseUsers, isNullTaxCodeRe, userMatches);
-//           }
-//           if (!newUser.split(taxCodeRe)[3] && newUser.split(businessLicenseRe)[3]) {
-//             isMatching(premiseUsers, businessLicenseRe, userMatches);
-//           }
-//           if (newUser.split(taxCodeRe)[3] && !newUser.split(businessLicenseRe)[3]) {
-//             isMatching(premiseUsers, taxCodeRe, userMatches);
-//           }
-//         }
-//       }
-//     }
-//     const groupByUser = chunkArray(userMatches, 6);
-//     const userNeed = [];
-//     groupByUser.map((premise) => {
-//       userNeed.push({ displayName: premise[3], idNumber: premise[5] ? premise[5] : '' });
-//     });
-
-//     return { address, users: userNeed };
-//   });
-//   // console.log(premiseParsedDetail[0]);
-//   return premiseParsedDetail;
-// }

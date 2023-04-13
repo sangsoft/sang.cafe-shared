@@ -238,6 +238,115 @@ describe('utils', () => {
             },
           ],
         ],
+        [
+          `(*) Nhóm HS:
+            - * Nhom HS:Thế chấp vay bổ sung; So CC:022134; Phong CC: Vpcc Sài Gòn; CC vien:Trần Khánh Chi; Ngay cap so: 09/10/2017
+          (*) Tài sản:
+            - Loai:Nhà ở So cn:CS00679 Dia chi:73-75 Thủ Khoa Huân,Phường Bến Thành,Quận 1,TP. Hồ Chí Minh
+          (*) Đương sự:
+            - Ben:Bên thế chấp; Vai tro:Bên thế chấp (Bên A); Nguyễn Thị Lan, So CMT,HC:023822496, Ngay sinh:00/00/1958
+            - Ben:Bên thế chấp; Vai tro:Bên thế chấp (Bên A); Trần Văn Bằng, So CMT,HC:022763595, Ngay sinh:00/00/1955
+            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Ngân Hàng TMCP Á Châu, Ma thue:12342, QD T.lap:, Giay phep KD:, Phường 05,Quận 3,TP. Hồ Chí Minh
+            - Ben:Bên nhận thế chấp; Vai tro:Đại diện; Nguyễn Tiến Dũng, So CMT,HC:183389204, Ngay sinh:00/00/1984
+          (*) Giải chấp:
+            -
+            * Ngay GC:19/12/2017; So GC:160; CC vien:Giải chấp; Phong CC:Văn phòng công chứng Sài Gòn`,
+          [
+            {
+              address: '73-75 Thủ Khoa Huân,Phường Bến Thành,Quận 1,TP. Hồ Chí Minh',
+              users: [
+                { displayName: 'Nguyễn Thị Lan', idNumber: '023822496' },
+                { displayName: 'Trần Văn Bằng', idNumber: '022763595' },
+                {
+                  displayName: 'Ngân Hàng TMCP Á Châu',
+                  idNumber: '12342',
+                },
+                { displayName: 'Nguyễn Tiến Dũng', idNumber: '183389204' },
+              ],
+            },
+          ],
+        ],
+        [
+          `(*) Nhóm HS:
+           - * Nhom HS:Thế chấp; So CC:4423; Phong CC: Phòng Công Chứng số 4; CC vien:Hồ Xuân Hương; Ngay cap so: 30/01/2018
+         (*) Tài sản:
+           - Loai:Nhà ở So cn:416/GCN-2004 So thua:31 So to:11 Dia chi:95B Trần Quang Diệu (nối dài),Phường 13,Quận 3,TP. Hồ Chí Minh
+         (*) Đương sự:
+           - Ben:Bên thế chấp; Vai tro:Bên thế chấp (Bên A); Trần Thị Ngọc Dung, So CMT,HC:079175002012, Ngay sinh:00/00/1975
+           - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Ngân Hàng TMCP Á Châu, Ma thue:, QD T.lap:, Giay phep KD:12442, Phường 05,Quận 3,TP. Hồ Chí Minh
+         (*) Giải chấp:
+           -
+        * Ngay GC:03/03/2021; So GC:1384; CC vien:Giải chấp công chứng 4; Phong CC:Phòng Công Chứng số 4
+
+         (*) Nhóm HS:
+           - * Nhom HS:Sửa đổi, bổ sung HĐ thế chấp; So CC:4424; Phong CC: Phòng Công Chứng số 4; CC vien:Hồ Xuân Hương; Ngay cap so: 30/01/2018
+         (*) Tài sản:
+           - Loai:Nhà ở So cn:2173/2007/GCN Dia chi:97-99 Trần Quang Diệu,Phường 13,Quận 3,TP. Hồ Chí Minh
+         (*) Đương sự:
+           - Ben:Bên thế chấp; Vai tro:Bên thế chấp (Bên A); Trần Thị Ngọc Dung, So CMT,HC:079175002012, Ngay sinh:00/00/1975
+           - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Ngân Hàng TMCP Á Châu, Ma thue:, QD T.lap:, Giay phep KD:12442, Phường 05,Quận 3,TP. Hồ Chí Minh
+         (*) Giải chấp:
+           -
+        * Ngay GC:03/03/2021; So GC:1394; CC vien:Giải chấp công chứng 4; Phong CC:Phòng Công Chứng số 4`,
+          [
+            {
+              address: '95B Trần Quang Diệu (nối dài),Phường 13,Quận 3,TP. Hồ Chí Minh',
+              users: [
+                { displayName: 'Trần Thị Ngọc Dung', idNumber: '079175002012' },
+                { displayName: 'Ngân Hàng TMCP Á Châu', idNumber: '12442' },
+              ],
+            },
+            {
+              address: '97-99 Trần Quang Diệu,Phường 13,Quận 3,TP. Hồ Chí Minh',
+              users: [
+                { displayName: 'Trần Thị Ngọc Dung', idNumber: '079175002012' },
+                { displayName: 'Ngân Hàng TMCP Á Châu', idNumber: '12442' },
+              ],
+            },
+          ],
+        ],
+        [
+          `(*) Nhóm HS:
+            - * Nhom HS:Thế chấp vay bổ sung; So CC:022134; Phong CC: Vpcc Sài Gòn; CC vien:Trần Khánh Chi; Ngay cap so: 09/10/2017
+          (*) Tài sản:
+            - Loai:Nhà ở So cn:CS00679 Dia chi:73-75 Thủ Khoa Huân,Phường Bến Thành,Quận 1,TP. Hồ Chí Minh
+          (*) Đương sự:
+
+            - Ben:Bên thế chấp; Vai tro:Bên thế chấp (Bên A); Nguyễn Thị Linh
+
+            - Ben:Bên thế chấp; Vai tro:Bên thế chấp (Bên A); Nguyễn Thị Lan, So CMT,HC:023822496, Ngay sinh:00/00/1958
+            - Ben:Bên thế chấp; Vai tro:Bên thế chấp (Bên A); Trần Văn Bằng, So CMT,HC:, Ngay sinh:00/00/1955
+
+
+            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Công ty TNHH Một thành viên Bột dinh dưỡng Thăng Long        
+            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Công ty Cổ phần Tập Đoàn Đầu tư Địa Ốc No Va, Ma thue:0312112125, Phường 05,Quận 3,TP. Hồ Chí Minh            
+            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B);  CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ PHÁT TRIỂN XÂY DỰNG, Giay phep KD:0312283473, Phường 05,Quận 3,TP. Hồ Chí Minh  
+
+            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); CÔNG TY TNHH CÔNG NGHIỆP, Ma thue:0312283473, QD T.lap:, Giay phep KD:, Phường 05,Quận 3,TP. Hồ Chí Minh            
+            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Công ty TNHH Cửa Hàng Tiện Lợi Gia Đình Việt Nam, Ma thue:, QD T.lap:, Giay phep KD:YHFTR56, Phường 05,Quận 3,TP. Hồ Chí Minh  
+
+            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Ngân Hàng TMCP Á Châu, Ma thue:0312112125, QD T.lap:, Giay phep KD:YHFTR56, Phường 05,Quận 3,TP. Hồ Chí Minh            
+            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Công Ty Cổ Phần Dự Kim, Ma thue:, QD T.lap:, Giay phep KD:, Phường 05,Quận 3,TP. Hồ Chí Minh`,
+
+          [
+            {
+              address: '73-75 Thủ Khoa Huân,Phường Bến Thành,Quận 1,TP. Hồ Chí Minh',
+              users: [
+                { displayName: 'Nguyễn Thị Linh', idNumber: '' },
+                { displayName: 'Nguyễn Thị Lan', idNumber: '023822496' },
+                { displayName: 'Trần Văn Bằng', idNumber: '' },
+
+                { displayName: 'Công ty TNHH Một thành viên Bột dinh dưỡng Thăng Long ', idNumber: '' },
+                { displayName: 'Công ty Cổ phần Tập Đoàn Đầu tư Địa Ốc No Va', idNumber: '0312112125' },
+                { displayName: 'CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ PHÁT TRIỂN XÂY DỰNG', idNumber: '0312283473' },
+                { displayName: 'CÔNG TY TNHH CÔNG NGHIỆP', idNumber: '0312283473' },
+                { displayName: 'Công ty TNHH Cửa Hàng Tiện Lợi Gia Đình Việt Nam', idNumber: 'YHFTR56' },
+                { displayName: 'Ngân Hàng TMCP Á Châu', idNumber: '0312112125' },
+                { displayName: 'Công Ty Cổ Phần Dự Kim', idNumber: '' },
+              ],
+            },
+          ],
+        ],
       ])(`should return correct premise detail`, (content, expected) => {
         const details = extractPremiseDetail(content);
         expect(details.length).toEqual(expected.length);
