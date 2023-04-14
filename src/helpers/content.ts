@@ -87,11 +87,12 @@ function extractUserInfoFromDocument(text: string): { displayName: string; idNum
   const userInfoRe =
     /- Ben:(.+); Vai tro:(.+?); ((.+?)((So CMT,HC|Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W)((.+?)((Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W)|)|(.+))/gm;
   // https://regex101.com/r/p8s3X8/2
+  // https://regex101.com/r/ERX0WQ/1
   const matches = [...text.matchAll(userInfoRe)];
   return matches.map((match) => {
     return {
       displayName: match[4] ? match[4] : match[3],
-      idNumber: match[7]?.length > 1 ? match[7] : !match[12] ? match[12] : '',
+      idNumber: match[7]?.length > 1 ? match[7] : match[12] ? match[12] : '',
     };
   });
 }
