@@ -1,3 +1,4 @@
+import type { OwnerType } from './User';
 export interface SearchParameters {
     name?: string;
     district?: string | string[];
@@ -19,6 +20,7 @@ export interface SearchParameters {
     monthlyRentalRange?: number;
     identity: string;
     tags?: string[];
+    ownerType?: OwnerType;
     monthlyRentalFroms?: number[];
     monthlyRentalTos?: number[];
     monthlyRentalFromTos?: {
@@ -27,4 +29,5 @@ export interface SearchParameters {
     }[];
     monthlyRentalRanges?: number[];
     createdBy?: string;
+    shownOnly?: boolean;
 }
