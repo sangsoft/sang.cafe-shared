@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.extractThuDucDistrict = exports.converVietnameseCharsToASCII = exports.capitalize = exports.slug = void 0;
+exports.matchSubstring = exports.extractThuDucDistrict = exports.converVietnameseCharsToASCII = exports.capitalize = exports.slug = void 0;
 function slug(str) {
     str = str.replace(/^\s+|\s+$/g, '').toLowerCase();
     // remove accents, swap ñ for n, etc
@@ -81,4 +81,16 @@ function extractThuDucDistrict(address) {
     return undefined;
 }
 exports.extractThuDucDistrict = extractThuDucDistrict;
+function matchSubstring(str1, str2) {
+    const str1Lower = str1.toLowerCase();
+    const str2Lower = str2.toLowerCase();
+    if (str1Lower.includes(str2Lower)) {
+        return str2;
+    }
+    if (str2Lower.includes(str1Lower)) {
+        return str1;
+    }
+    return '';
+}
+exports.matchSubstring = matchSubstring;
 //# sourceMappingURL=strings.js.map

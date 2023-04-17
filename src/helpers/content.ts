@@ -75,17 +75,35 @@ export interface PremiseParsedDetail {
   users: { displayName: string; idNumber: string }[];
 }
 
+function extractAddressFromDocument(text: string): string {
+  // https://regex101.com/r/3BFsJf/1
+  const addressRe = /(So nha|Dia chi):(.+)/gm;
+  const match = [...text.matchAll(addressRe)];
+  return match[0][2];
+}
+
+function extractUserInfoFromDocument(text: string): { displayName: string; idNumber: string }[] {
+  // const userInfoRe = /- Ben:(.+); Vai tro:(.+?); (.+?)((So CMT,HC|Ma thue|Giay phep KD):)(\d+)/gm;
+  const userInfoRe =
+    /- Ben:(.+); Vai tro:(.+?); ((.+?)((So CMT,HC|Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W)((.+?)((Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W)|)|(.+))/gm;
+  // https://regex101.com/r/p8s3X8/2
+  // https://regex101.com/r/ERX0WQ/1
+  const matches = [...text.matchAll(userInfoRe)];
+  return matches.map((match) => {
+    return {
+      displayName: match[4] ? match[4] : match[3],
+      idNumber: match[7]?.length > 1 ? match[7] : match[12] ? match[12] : '',
+    };
+  });
+}
 export function extractPremiseDetail(text: string): PremiseParsedDetail[] {
-  const lines = text.split('  - ');
-  const users = [];
-  const address = '';
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    if (line.includes('So CMT,HC')) {
-      const displayName = line.split(',')[0].split(':')[1];
-      const idNumber = line.split(',')[1].split(':')[1];
-      users.push({ displayName, idNumber });
-    }
-  }
-  return [{ address, users }];
+  // https://regex101.com/r/pqPsL1/3
+  const premiseRe = /(\(\*\) Tài sản:\s*(- .*))\s*((\(\*\) Đương sự:)\s*(- Ben:.*\s*)+)/gm;
+  const addressMatches = [...text.matchAll(premiseRe)];
+  return addressMatches.map((match) => {
+    return {
+      address: extractAddressFromDocument(match[2]),
+      users: extractUserInfoFromDocument(match[3]),
+    };
+  });
 }
