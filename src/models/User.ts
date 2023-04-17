@@ -6,6 +6,11 @@ import type { IRole } from './Role';
 export interface IUserStatus {
   level: number;
 }
+export interface OwnerType {
+  GOVERNMENT: 'government';
+  ORGANIZATION: 'organization';
+  INDIVIDUAL: 'individual';
+}
 
 export interface IPaymentInfo {
   bank: string;
@@ -26,6 +31,7 @@ export interface IUser extends Model {
   buyer?: IUserStatus;
   seller?: IUserStatus;
   createdFromTaskId?: string;
+  ownerType?: OwnerType;
   signInMetaData?: {
     phoneNumber: string;
     email?: string;
