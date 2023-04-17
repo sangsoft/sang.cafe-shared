@@ -101,7 +101,6 @@ export function extractPremiseDetail(text: string): PremiseParsedDetail[] {
   const premiseRe = /(\(\*\) Tài sản:\s*(- .*))\s*((\(\*\) Đương sự:)\s*(- Ben:.*\s*)+)/gm;
   const addressMatches = [...text.matchAll(premiseRe)];
   return addressMatches.map((match) => {
-    console.log(extractUserInfoFromDocument(match[3]));
     return {
       address: extractAddressFromDocument(match[2]),
       users: extractUserInfoFromDocument(match[3]),
