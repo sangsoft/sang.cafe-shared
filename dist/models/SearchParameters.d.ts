@@ -1,4 +1,4 @@
-import type { OwnerType } from './User';
+import type { PremiseType, OwnerType } from './Restaurant';
 export interface SearchParameters {
     name?: string;
     district?: string | string[];
@@ -20,6 +20,7 @@ export interface SearchParameters {
     monthlyRentalRange?: number;
     identity: string;
     tags?: string[];
+    premiseType?: PremiseType;
     ownerType?: OwnerType;
     monthlyRentalFroms?: number[];
     monthlyRentalTos?: number[];
