@@ -4,10 +4,10 @@ import { SearchRecord } from './SearchRecord';
 import { NearByResult } from './Geo';
 import { SerializedTimestamp } from '../helpers/times';
 import { Video } from './Video';
-export interface OwnerType {
-  GOVERNMENT: 'government';
-  ORGANIZATION: 'organization';
-  INDIVIDUAL: 'individual';
+export enum OwnerType {
+  GOVERNMENT = 'government',
+  ORGANIZATION = 'organization',
+  INDIVIDUAL = 'individual',
 }
 
 export enum PavementStatus {

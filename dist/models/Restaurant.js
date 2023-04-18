@@ -1,6 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BasementType = exports.PremiseType = exports.RoadDirection = exports.StreetLaneType = exports.StreetType = exports.PavementStatus = void 0;
+exports.BasementType = exports.PremiseType = exports.RoadDirection = exports.StreetLaneType = exports.StreetType = exports.PavementStatus = exports.OwnerType = void 0;
+var OwnerType;
+(function (OwnerType) {
+    OwnerType["GOVERNMENT"] = "government";
+    OwnerType["ORGANIZATION"] = "organization";
+    OwnerType["INDIVIDUAL"] = "individual";
+})(OwnerType = exports.OwnerType || (exports.OwnerType = {}));
 var PavementStatus;
 (function (PavementStatus) {
     PavementStatus["PAVEMENT_WITH_MOTORBIKE_PARKING"] = "pavement-with-motorbike-parking";
