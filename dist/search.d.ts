@@ -7,3 +7,6 @@ export declare const PRICES_RANGE: {
 export declare const AREAS_RANGE: {
     [key: number]: number[];
 };
+export declare const FRONT_WIDTH_RANGE: {
+    [key: number]: number[];
+};

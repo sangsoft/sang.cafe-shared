@@ -24,3 +24,11 @@ export const AREAS_RANGE: { [key: number]: number[] } = {
   2: [250, 500],
   3: [500, undefined],
 };
+export const FRONT_WIDTH_RANGE: { [key: number]: number[] } = {
+  [-1]: [undefined, undefined],
+  0: [undefined, 3],
+  1: [3, 7.5],
+  2: [7.5, 15],
+  3: [15, 25],
+  4: [25, undefined],
+};
