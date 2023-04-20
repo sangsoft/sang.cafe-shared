@@ -26,8 +26,8 @@ export const AREAS_RANGE: { [key: number]: number[] } = {
 };
 export const FRONT_WIDTH_RANGE: { [key: number]: number[] } = {
   [-1]: [undefined, undefined],
-  0: [undefined, 3],
-  1: [3, 7.5],
+  0: [undefined, 5],
+  1: [5, 7.5],
   2: [7.5, 15],
   3: [15, 25],
   4: [25, undefined],
