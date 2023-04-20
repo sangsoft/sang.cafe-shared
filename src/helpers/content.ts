@@ -96,10 +96,14 @@ function extractUserInfoFromDocument(text: string): { displayName: string; idNum
     };
   });
 }
+function replaceAllFromDocument(str, find, replace) {
+  return str.replace(new RegExp(find, 'g'), replace);
+}
 export function extractPremiseDetail(text: string): PremiseParsedDetail[] {
   // https://regex101.com/r/pqPsL1/3
+  const replaceSpecialchar = replaceAllFromDocument(text, '', '');
   const premiseRe = /(\(\*\) Tài sản:\s*(- .*))\s*((\(\*\) Đương sự:)\s*(- Ben:.*\s*)+)/gm;
-  const addressMatches = [...text.matchAll(premiseRe)];
+  const addressMatches = [...replaceSpecialchar.matchAll(premiseRe)];
   return addressMatches.map((match) => {
     return {
       address: extractAddressFromDocument(match[2]),
