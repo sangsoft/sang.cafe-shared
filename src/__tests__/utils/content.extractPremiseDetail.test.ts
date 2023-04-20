@@ -7,15 +7,16 @@ describe('utils', () => {
     describe('extractPremiseDetail', () => {
       it.each([
         [
-          `(*) Nhóm HS:
-          - * Nhom HS:Ủy quyền; So CC:005881; Phong CC: VPCC Văn Thị Mỹ Đức; CC vien:Cao Hoàng Lân; Ngay cap so: 29/06/2021
+          `
+        (*) Nhóm HS:
+         - * Nhom HS:Ủy quyền; So CC:005881; Phong CC: VPCC Văn Thị Mỹ Đức; CC vien:Cao Hoàng Lân; Ngay cap so: 29/06/2021
         - Ghi chú: xin phép xây dựng sửa chữa
-        (*) Tài sản:
-          - Loai:Nhà ở So seri:0 So vao so:2154/2007/UB-GCN Dia chi:A65(Phải) Nguyễn Trãi,Phường Nguyễn Cư Trinh,Quận 1,TP. Hồ Chí Minh
-        (*) Đương sự:
-          - Ben:Bên ủy quyền; Vai tro:Bên ủy quyền (Bên A); NGUYỄN CÔNG MINH, So CMT,HC:079055000834, Ngay sinh:00/00/1955
-          - Ben:Bên ủy quyền; Vai tro:Bên ủy quyền (Bên A); Đoàn Thị Kim Chi, So CMT,HC:079155000278, Ngay sinh:00/00/1955
-          - Ben:Bên nhận ủy quyền; Vai tro:Bên nhận ủy quyền (Bên B); Đinh Thị Thu Thủy, So CMT,HC:023845562, Ngay sinh:00/00/1984`,
+         (*) Tài sản:
+         - Loai:Nhà ở So seri:0 So vao so:2154/2007/UB-GCN Dia chi:A65(Phải) Nguyễn Trãi,Phường Nguyễn Cư Trinh,Quận 1,TP. Hồ Chí Minh
+        (*) Đương sự:
+          - Ben:Bên ủy quyền; Vai tro:Bên ủy quyền (Bên A); NGUYỄN CÔNG MINH, So CMT,HC:079055000834, Ngay sinh:00/00/1955
+          - Ben:Bên ủy quyền; Vai tro:Bên ủy quyền (Bên A); Đoàn Thị Kim Chi, So CMT,HC:079155000278, Ngay sinh:00/00/1955
+          - Ben:Bên nhận ủy quyền; Vai tro:Bên nhận ủy quyền (Bên B); Đinh Thị Thu Thủy, So CMT,HC:023845562, Ngay sinh:00/00/1984`,
           [
             {
               address: 'A65(Phải) Nguyễn Trãi,Phường Nguyễn Cư Trinh,Quận 1,TP. Hồ Chí Minh',
@@ -314,12 +315,12 @@ describe('utils', () => {
             - Ben:Bên thế chấp; Vai tro:Bên thế chấp (Bên A); Nguyễn Thị Linh
             - Ben:Bên thế chấp; Vai tro:Bên thế chấp (Bên A); Nguyễn Thị Lan, So CMT,HC:023822496, Ngay sinh:00/00/1958
             - Ben:Bên thế chấp; Vai tro:Bên thế chấp (Bên A); Trần Văn Bằng, So CMT,HC:, Ngay sinh:00/00/1955
-            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Công ty TNHH Một thành viên Bột dinh dưỡng Thăng Long        
-            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Công ty Cổ phần Tập Đoàn Đầu tư Địa Ốc No Va, Ma thue:0312112125, Phường 05,Quận 3,TP. Hồ Chí Minh            
-            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B);  CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ PHÁT TRIỂN XÂY DỰNG, Giay phep KD:0312283473, Phường 05,Quận 3,TP. Hồ Chí Minh  
-            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); CÔNG TY TNHH CÔNG NGHIỆP, Ma thue:0312283473, QD T.lap:, Giay phep KD:, Phường 05,Quận 3,TP. Hồ Chí Minh            
-            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Công ty TNHH Cửa Hàng Tiện Lợi Gia Đình Việt Nam, Ma thue:, QD T.lap:, Giay phep KD:YHFTR56, Phường 05,Quận 3,TP. Hồ Chí Minh  
-            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Ngân Hàng TMCP Á Châu, Ma thue:0312112125, QD T.lap:, Giay phep KD:YHFTR56, Phường 05,Quận 3,TP. Hồ Chí Minh            
+            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Công ty TNHH Một thành viên Bột dinh dưỡng Thăng Long
+            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Công ty Cổ phần Tập Đoàn Đầu tư Địa Ốc No Va, Ma thue:0312112125, Phường 05,Quận 3,TP. Hồ Chí Minh
+            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B);  CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ PHÁT TRIỂN XÂY DỰNG, Giay phep KD:0312283473, Phường 05,Quận 3,TP. Hồ Chí Minh
+            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); CÔNG TY TNHH CÔNG NGHIỆP, Ma thue:0312283473, QD T.lap:, Giay phep KD:, Phường 05,Quận 3,TP. Hồ Chí Minh
+            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Công ty TNHH Cửa Hàng Tiện Lợi Gia Đình Việt Nam, Ma thue:, QD T.lap:, Giay phep KD:YHFTR56, Phường 05,Quận 3,TP. Hồ Chí Minh
+            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Ngân Hàng TMCP Á Châu, Ma thue:0312112125, QD T.lap:, Giay phep KD:YHFTR56, Phường 05,Quận 3,TP. Hồ Chí Minh
             - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Công Ty Cổ Phần Dự Kim, Ma thue:, QD T.lap:, Giay phep KD:, Phường 05,Quận 3,TP. Hồ Chí Minh`,
           [
             {
