@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.extractPremiseDetail = exports.cleanAddress = exports.cleanPhoneNumber = exports.matchWithPatterns = void 0;
+exports.extractPremiseDetail = exports.cleanContent = exports.cleanAddress = exports.cleanPhoneNumber = exports.matchWithPatterns = void 0;
 const constants_1 = require("../constants");
 function removeSubstitutionKey(text) {
     if (!text) {
@@ -53,11 +53,21 @@ function cleanAddress(text, patterns = streetPatterns) {
     return matchWithPatternsAndReplace(text, patterns, '{{address}}');
 }
 exports.cleanAddress = cleanAddress;
+function cleanContent(text) {
+    if (!text) {
+        return '';
+    }
+    return text.trim().replace(/[,;]/g, '');
+}
+exports.cleanContent = cleanContent;
 function extractAddressFromDocument(text) {
     // https://regex101.com/r/3BFsJf/1
     const addressRe = /(So nha|Dia chi):(.+)/gm;
     const match = [...text.matchAll(addressRe)];
-    return match[0][2];
+    return (match[0][2] || '').trim();
+}
+function replaceAllFromDocument(str, find, replace) {
+    return str.replace(new RegExp(find, 'g'), replace);
 }
 function extractUserInfoFromDocument(text) {
     // const userInfoRe = /- Ben:(.+); Vai tro:(.+?); (.+?)((So CMT,HC|Ma thue|Giay phep KD):)(\d+)/gm;
@@ -68,22 +78,21 @@ function extractUserInfoFromDocument(text) {
     return matches.map((match) => {
         var _a;
         return {
-            displayName: match[4] ? match[4] : match[3],
-            idNumber: ((_a = match[7]) === null || _a === void 0 ? void 0 : _a.length) > 1 ? match[7] : match[12] ? match[12] : '',
+            displayName: cleanContent(match[4] ? match[4] : match[3]),
+            idNumber: cleanContent(((_a = match[7]) === null || _a === void 0 ? void 0 : _a.length) > 1 ? match[7] : match[12] ? match[12] : ''),
+            raw: match[0],
         };
     });
 }
-function replaceAllFromDocument(str, find, replace) {
-    return str.replace(new RegExp(find, 'g'), replace);
-}
 function extractPremiseDetail(text) {
     // https://regex101.com/r/pqPsL1/3
-    const replaceSpecialchar = replaceAllFromDocument(text, '', '');
+    const cleanedText = replaceAllFromDocument(text, '', '');
     const premiseRe = /(\(\*\) Tài sản:\s*(- .*))\s*((\(\*\) Đương sự:)\s*(- Ben:.*\s*)+)/gm;
-    const addressMatches = [...replaceSpecialchar.matchAll(premiseRe)];
+    const addressMatches = [...cleanedText.matchAll(premiseRe)];
     return addressMatches.map((match) => {
         return {
             address: extractAddressFromDocument(match[2]),
+            raw: match[2],
             users: extractUserInfoFromDocument(match[3]),
         };
     });

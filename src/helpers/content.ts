@@ -72,17 +72,38 @@ export function cleanAddress(text: string, patterns = streetPatterns): string {
 // output: [{displayName: "NGUYỄN CÔNG MINH", idNumber: "079055000834"}, {displayName: "Đoàn Thị Kim Chi", idNumber: "079155000278"}, {displayName: "Đinh Thị Thu Thủy", idNumber: "023845562"}]
 export interface PremiseParsedDetail {
   address: string;
-  users: { displayName: string; idNumber: string }[];
+  users: {
+    displayName: string;
+    idNumber: string;
+    raw: string;
+  }[];
+  raw: string;
+}
+
+export function cleanContent(text?: string): string {
+  if (!text) {
+    return '';
+  }
+
+  return text.trim().replace(/[,;]/g, '');
 }
 
 function extractAddressFromDocument(text: string): string {
   // https://regex101.com/r/3BFsJf/1
   const addressRe = /(So nha|Dia chi):(.+)/gm;
   const match = [...text.matchAll(addressRe)];
-  return match[0][2];
+  return (match[0][2] || '').trim();
 }
 
-function extractUserInfoFromDocument(text: string): { displayName: string; idNumber: string }[] {
+function replaceAllFromDocument(str, find, replace) {
+  return str.replace(new RegExp(find, 'g'), replace);
+}
+
+function extractUserInfoFromDocument(text: string): {
+  displayName: string;
+  idNumber: string;
+  raw: string;
+}[] {
   // const userInfoRe = /- Ben:(.+); Vai tro:(.+?); (.+?)((So CMT,HC|Ma thue|Giay phep KD):)(\d+)/gm;
   const userInfoRe =
     /- Ben:(.+); Vai tro:(.+?); ((.+?)((So CMT,HC|Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W)((.+?)((Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W)|)|(.+))/gm;
@@ -91,22 +112,21 @@ function extractUserInfoFromDocument(text: string): { displayName: string; idNum
   const matches = [...text.matchAll(userInfoRe)];
   return matches.map((match) => {
     return {
-      displayName: match[4] ? match[4] : match[3],
-      idNumber: match[7]?.length > 1 ? match[7] : match[12] ? match[12] : '',
+      displayName: cleanContent(match[4] ? match[4] : match[3]),
+      idNumber: cleanContent(match[7]?.length > 1 ? match[7] : match[12] ? match[12] : ''),
+      raw: match[0],
     };
   });
 }
-function replaceAllFromDocument(str, find, replace) {
-  return str.replace(new RegExp(find, 'g'), replace);
-}
 export function extractPremiseDetail(text: string): PremiseParsedDetail[] {
   // https://regex101.com/r/pqPsL1/3
-  const replaceSpecialchar = replaceAllFromDocument(text, '', '');
+  const cleanedText = replaceAllFromDocument(text, '', '');
   const premiseRe = /(\(\*\) Tài sản:\s*(- .*))\s*((\(\*\) Đương sự:)\s*(- Ben:.*\s*)+)/gm;
-  const addressMatches = [...replaceSpecialchar.matchAll(premiseRe)];
+  const addressMatches = [...cleanedText.matchAll(premiseRe)];
   return addressMatches.map((match) => {
     return {
       address: extractAddressFromDocument(match[2]),
+      raw: match[2],
       users: extractUserInfoFromDocument(match[3]),
     };
   });

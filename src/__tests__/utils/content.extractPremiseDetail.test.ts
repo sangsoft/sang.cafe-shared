@@ -329,7 +329,7 @@ describe('utils', () => {
                 { displayName: 'Nguyễn Thị Linh', idNumber: '' },
                 { displayName: 'Nguyễn Thị Lan', idNumber: '023822496' },
                 { displayName: 'Trần Văn Bằng', idNumber: '' },
-                { displayName: 'Công ty TNHH Một thành viên Bột dinh dưỡng Thăng Long ', idNumber: '' },
+                { displayName: 'Công ty TNHH Một thành viên Bột dinh dưỡng Thăng Long', idNumber: '' },
                 { displayName: 'Công ty Cổ phần Tập Đoàn Đầu tư Địa Ốc No Va', idNumber: '0312112125' },
                 { displayName: 'CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ PHÁT TRIỂN XÂY DỰNG', idNumber: '0312283473' },
                 { displayName: 'CÔNG TY TNHH CÔNG NGHIỆP', idNumber: '0312283473' },
@@ -342,10 +342,11 @@ describe('utils', () => {
         ],
       ])(`should return correct premise detail`, (content, expected) => {
         const details = extractPremiseDetail(content);
+
         expect(details.length).toEqual(expected.length);
         for (let i = 0; i < details.length; i++) {
           expect(matchSubstring(details[i].address, expected[i].address)).toEqual(expected[i].address);
-
+          console.log(details[i].users);
           expect(details[i].users.length).toEqual(expected[i].users.length);
           for (let j = 0; j < details[i].users.length; j++) {
             expect(matchSubstring(details[i].users[j].displayName, expected[i].users[j].displayName)).toEqual(
