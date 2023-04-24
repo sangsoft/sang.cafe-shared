@@ -58,6 +58,7 @@ var RestaurantStatus;
 (function (RestaurantStatus) {
     RestaurantStatus["FULL_INFO"] = "done";
     RestaurantStatus["IMAGES_AND_ADDRESS_ONLY"] = "images-and-address-only";
+    RestaurantStatus["MISSING_INFO"] = "missing-info";
     RestaurantStatus["HAS_LAND_USE_CERTIFICATE"] = "has-land-use-cert";
     RestaurantStatus["ARCHIVED"] = "archived";
 })(RestaurantStatus = exports.RestaurantStatus || (exports.RestaurantStatus = {}));

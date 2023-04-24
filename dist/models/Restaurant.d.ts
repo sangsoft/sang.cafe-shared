@@ -74,6 +74,7 @@ export interface IPost {
 export declare enum RestaurantStatus {
     FULL_INFO = "done",
     IMAGES_AND_ADDRESS_ONLY = "images-and-address-only",
+    MISSING_INFO = "missing-info",
     HAS_LAND_USE_CERTIFICATE = "has-land-use-cert",
     ARCHIVED = "archived"
 }
