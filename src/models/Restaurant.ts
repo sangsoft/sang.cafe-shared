@@ -81,6 +81,13 @@ export interface IPost {
   levels: number;
 }
 
+export enum RestaurantStatus {
+  FULL_INFO = 'done',
+  IMAGES_AND_ADDRESS_ONLY = 'images-and-address-only',
+  HAS_LAND_USE_CERTIFICATE = 'has-land-use-cert',
+  ARCHIVED = 'archived',
+}
+
 export interface IRestaurant extends Model {
   uid?: string;
   place?: any;
@@ -175,7 +182,7 @@ export interface IRestaurant extends Model {
   temporaryBillId?: string;
   temporaryBillShortcode?: string;
 
-  status: string;
+  status: RestaurantStatus;
 
   tags?: string[];
   tagsDetail?: { [keys: string]: NearByResult[] };

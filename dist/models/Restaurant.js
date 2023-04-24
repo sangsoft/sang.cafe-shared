@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BasementType = exports.PremiseType = exports.RoadDirection = exports.StreetLaneType = exports.StreetType = exports.PavementStatus = exports.OwnerType = void 0;
+exports.RestaurantStatus = exports.BasementType = exports.PremiseType = exports.RoadDirection = exports.StreetLaneType = exports.StreetType = exports.PavementStatus = exports.OwnerType = void 0;
 var OwnerType;
 (function (OwnerType) {
     OwnerType["GOVERNMENT"] = "government";
@@ -54,4 +54,11 @@ var BasementType;
     BasementType["CAR_ONLY"] = "car-only";
     BasementType["MIXED"] = "mixed";
 })(BasementType = exports.BasementType || (exports.BasementType = {}));
+var RestaurantStatus;
+(function (RestaurantStatus) {
+    RestaurantStatus["FULL_INFO"] = "done";
+    RestaurantStatus["IMAGES_AND_ADDRESS_ONLY"] = "images-and-address-only";
+    RestaurantStatus["HAS_LAND_USE_CERTIFICATE"] = "has-land-use-cert";
+    RestaurantStatus["ARCHIVED"] = "archived";
+})(RestaurantStatus = exports.RestaurantStatus || (exports.RestaurantStatus = {}));
 //# sourceMappingURL=Restaurant.js.map
