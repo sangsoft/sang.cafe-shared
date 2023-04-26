@@ -411,6 +411,12 @@ describe('utils', () => {
         expect(details.length).toEqual(expected.length);
         for (let i = 0; i < details.length; i++) {
           expect(details[i].addresses.length).toEqual(expected[i].addresses.length);
+          for (let j = 0; j < details[i].addresses.length; j++) {
+            const resultAddress = details[i].addresses[j];
+            expect(matchSubstring(resultAddress, expected[i].users[j].displayName)).toEqual(
+              expected[i].users[j].displayName,
+            );
+          }
 
           // expect(matchSubstring(details[i].address, expected[i].address)).toEqual(expected[i].address);
           expect(details[i].users.length).toEqual(expected[i].users.length);
