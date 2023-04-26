@@ -411,6 +411,7 @@ describe('utils', () => {
         expect(details.length).toEqual(expected.length);
         for (let i = 0; i < details.length; i++) {
           expect(details[i].addresses.length).toEqual(expected[i].addresses.length);
+          expect(matchSubstring(details[i].address, expected[i].addresses[0])).toEqual(expected[i].addresses[0]);
           for (let j = 0; j < details[i].addresses.length; j++) {
             const resultAddress = details[i].addresses[j];
             expect(matchSubstring(resultAddress, expected[i].addresses[j])).toEqual(expected[i].addresses[j]);
