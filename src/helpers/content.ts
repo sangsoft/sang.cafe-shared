@@ -71,6 +71,7 @@ export function cleanAddress(text: string, patterns = streetPatterns): string {
 //   - Ben:Bên nhận ủy quyền; Vai tro:Bên nhận ủy quyền (Bên B); Đinh Thị Thu Thủy, So CMT,HC:023845562, Ngay sinh:00/00/1984
 // output: [{displayName: "NGUYỄN CÔNG MINH", idNumber: "079055000834"}, {displayName: "Đoàn Thị Kim Chi", idNumber: "079155000278"}, {displayName: "Đinh Thị Thu Thủy", idNumber: "023845562"}]
 export interface PremiseParsedDetail {
+  addresses: string[];
   address: string;
   users: {
     displayName: string;
@@ -123,9 +124,13 @@ export function extractPremiseDetail(text: string): PremiseParsedDetail[] {
   const cleanedText = replaceAllFromDocument(text, '', '');
   const premiseRe = /(\(\*\) Tài sản:\s*(- .*))\s*((\(\*\) Đương sự:)\s*(- Ben:.*\s*)+)/gm;
   const addressMatches = [...cleanedText.matchAll(premiseRe)];
+
   return addressMatches.map((match) => {
+    const address = extractAddressFromDocument(match[2]);
+
     return {
-      address: extractAddressFromDocument(match[2]),
+      addresses: [address],
+      address: address,
       raw: match[2],
       users: extractUserInfoFromDocument(match[3]),
     };
