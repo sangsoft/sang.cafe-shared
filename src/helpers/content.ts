@@ -122,7 +122,7 @@ function extractUserInfoFromDocument(text: string): {
     return {
       displayName: cleanContent(match[4] ? match[4] : match[3]),
       idNumber: cleanContent(match[7]?.length >= 1 ? match[7] : match[12] ? match[12] : ''),
-      birthday: cleanContent(match[17] ? match[17] : ''),
+      dateOfBirth: cleanContent(match[17] ? match[17] : ''),
       raw: match[0],
     };
   });

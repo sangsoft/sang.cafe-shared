@@ -440,9 +440,9 @@ describe('utils', () => {
             {
               addresses: ['A65(Phải) Nguyễn Trãi,Phường Nguyễn Cư Trinh,Quận 1,TP. Hồ Chí Minh'],
               users: [
-                { displayName: 'NGUYỄN CÔNG MINH', idNumber: '079055000834', birthday: '00/00/1955' },
-                { displayName: 'Đoàn Thị Kim Chi', idNumber: '079155000278', birthday: '00/00/1955' },
-                { displayName: 'Đinh Thị Thu Thủy', idNumber: '023845562', birthday: '00/00/1984' },
+                { displayName: 'NGUYỄN CÔNG MINH', idNumber: '079055000834', dateOfBirth: '00/00/1955' },
+                { displayName: 'Đoàn Thị Kim Chi', idNumber: '079155000278', dateOfBirth: '00/00/1955' },
+                { displayName: 'Đinh Thị Thu Thủy', idNumber: '023845562', dateOfBirth: '00/00/1984' },
               ],
             },
           ],
