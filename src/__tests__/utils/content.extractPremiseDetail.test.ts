@@ -425,6 +425,28 @@ describe('utils', () => {
             },
           ],
         ],
+        [
+          `
+        (*) Nhóm HS:
+         - * Nhom HS:Ủy quyền; So CC:005881; Phong CC: VPCC Văn Thị Mỹ Đức; CC vien:Cao Hoàng Lân; Ngay cap so: 29/06/2021
+        - Ghi chú: xin phép xây dựng sửa chữa
+         (*) Tài sản:
+         - Loai:Nhà ở So seri:0 So vao so:2154/2007/UB-GCN Dia chi:A65(Phải) Nguyễn Trãi,Phường Nguyễn Cư Trinh,Quận 1,TP. Hồ Chí Minh
+        (*) Đương sự:
+          - Ben:Bên ủy quyền; Vai tro:Bên ủy quyền (Bên A); NGUYỄN CÔNG MINH, So CMT,HC:079055000834, Ngay sinh:00/00/1955
+          - Ben:Bên ủy quyền; Vai tro:Bên ủy quyền (Bên A); Đoàn Thị Kim Chi, So CMT,HC:079155000278, Ngay sinh:00/00/1955
+          - Ben:Bên nhận ủy quyền; Vai tro:Bên nhận ủy quyền (Bên B); Đinh Thị Thu Thủy, So CMT,HC:023845562, Ngay sinh:00/00/1984`,
+          [
+            {
+              addresses: ['A65(Phải) Nguyễn Trãi,Phường Nguyễn Cư Trinh,Quận 1,TP. Hồ Chí Minh'],
+              users: [
+                { displayName: 'NGUYỄN CÔNG MINH', idNumber: '079055000834', birthday: '00/00/1955' },
+                { displayName: 'Đoàn Thị Kim Chi', idNumber: '079155000278', birthday: '00/00/1955' },
+                { displayName: 'Đinh Thị Thu Thủy', idNumber: '023845562', birthday: '00/00/1984' },
+              ],
+            },
+          ],
+        ],
       ])(`should return correct premise detail`, (content, expected) => {
         const details = extractPremiseDetail(content);
 
