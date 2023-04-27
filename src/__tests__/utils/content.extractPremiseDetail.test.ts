@@ -21,9 +21,9 @@ describe('utils', () => {
             {
               addresses: ['A65(Phải) Nguyễn Trãi,Phường Nguyễn Cư Trinh,Quận 1,TP. Hồ Chí Minh'],
               users: [
-                { displayName: 'NGUYỄN CÔNG MINH', idNumber: '079055000834' },
-                { displayName: 'Đoàn Thị Kim Chi', idNumber: '079155000278' },
-                { displayName: 'Đinh Thị Thu Thủy', idNumber: '023845562' },
+                { displayName: 'NGUYỄN CÔNG MINH', idNumber: '079055000834', dateOfBirth: '00/00/1955' },
+                { displayName: 'Đoàn Thị Kim Chi', idNumber: '079155000278', dateOfBirth: '00/00/1955' },
+                { displayName: 'Đinh Thị Thu Thủy', idNumber: '023845562', dateOfBirth: '00/00/1984' },
               ],
             },
           ],
@@ -43,11 +43,15 @@ describe('utils', () => {
             {
               addresses: ['195/10E Điện Biên Phủ (So cu:242/3A ),Phường 15, Quận Bình Thạnh, TP. Hồ Chí Minh'],
               users: [
-                { displayName: 'nguyễn văn hậu', idNumber: '025176077' },
-                { displayName: 'Công ty TNHH xây dựng thương mại Hoàng Long Phát', idNumber: '0309809847' },
-                { displayName: 'Nguyễn Văn Tuấn', idNumber: '270099747' },
-                { displayName: 'nh tmcp phương đông - cn tân thuận', idNumber: '000' },
-                { displayName: 'nguyễn quốc khánh', idNumber: '000' },
+                { displayName: 'nguyễn văn hậu', idNumber: '025176077', dateOfBirth: '01/01/3000' },
+                {
+                  displayName: 'Công ty TNHH xây dựng thương mại Hoàng Long Phát',
+                  idNumber: '0309809847',
+                  dateOfBirth: '',
+                },
+                { displayName: 'Nguyễn Văn Tuấn', idNumber: '270099747', dateOfBirth: '00/00/1972' },
+                { displayName: 'nh tmcp phương đông - cn tân thuận', idNumber: '000', dateOfBirth: '' },
+                { displayName: 'nguyễn quốc khánh', idNumber: '000', dateOfBirth: '00/00/1900' },
               ],
             },
           ],
@@ -64,8 +68,8 @@ describe('utils', () => {
             {
               addresses: ['66 Hồ Biểu Chánh, 11, Phú Nhuận, Tp. Hồ Chí Minh'],
               users: [
-                { displayName: 'Trần Quang Duy', idNumber: '212092828' },
-                { displayName: 'Huỳnh Vĩ Nam', idNumber: '022235964' },
+                { displayName: 'Trần Quang Duy', idNumber: '212092828', dateOfBirth: '00/00/1981' },
+                { displayName: 'Huỳnh Vĩ Nam', idNumber: '022235964', dateOfBirth: '00/00/1967' },
               ],
             },
           ],
@@ -85,9 +89,9 @@ describe('utils', () => {
                 '112 Lô số 4, Lô số 5, Khu biệt thự Kim Sơn, Nguyễn Văn Hưởng,Phường Thảo Điền,Quận 2,TP. Hồ Chí Minh',
               ],
               users: [
-                { displayName: 'Đào Mạnh Kháng', idNumber: '012073456' },
-                { displayName: 'Vũ Thị Hương', idNumber: '012073511' },
-                { displayName: 'Phan Linh Giang', idNumber: '022442290' },
+                { displayName: 'Đào Mạnh Kháng', idNumber: '012073456', dateOfBirth: '//1969' },
+                { displayName: 'Vũ Thị Hương', idNumber: '012073511', dateOfBirth: '//1972' },
+                { displayName: 'Phan Linh Giang', idNumber: '022442290', dateOfBirth: '//1972' },
               ],
             },
           ],
@@ -107,11 +111,11 @@ describe('utils', () => {
             {
               addresses: ['235A ,Phường Võ Thị Sáu,Quận 3,TP. Hồ Chí Minh'],
               users: [
-                { displayName: 'BÙI THỊ XUÂN', idNumber: '079157006713' },
-                { displayName: 'Bùi Thị Phương', idNumber: '031146001009' },
-                { displayName: 'BÙI VIẾT NAM', idNumber: '079054003841' },
-                { displayName: 'BÙI THỊ THẢO', idNumber: '079151012634' },
-                { displayName: 'PHẠM HOÀNG HIẾU', idNumber: '066095015534' },
+                { displayName: 'BÙI THỊ XUÂN', idNumber: '079157006713', dateOfBirth: '//1957' },
+                { displayName: 'Bùi Thị Phương', idNumber: '031146001009', dateOfBirth: '00/00/1946' },
+                { displayName: 'BÙI VIẾT NAM', idNumber: '079054003841', dateOfBirth: '//1954' },
+                { displayName: 'BÙI THỊ THẢO', idNumber: '079151012634', dateOfBirth: '//1951' },
+                { displayName: 'PHẠM HOÀNG HIẾU', idNumber: '066095015534', dateOfBirth: '00/00/1995' },
               ],
             },
           ],
@@ -144,25 +148,25 @@ describe('utils', () => {
             {
               addresses: ['802 Xô viết nghệ tĩnh,Phường 25,Quận Bình Thạnh,TP. Hồ Chí Minh'],
               users: [
-                { displayName: 'NGUYỄN THỊ HẰNG', idNumber: '079133000225' },
-                { displayName: 'Trần Thị Thanh Phượng', idNumber: '022269178' },
-                { displayName: 'Trần Thị Thanh Hồng', idNumber: '022269177' },
-                { displayName: 'Nguyễn Thị Dung', idNumber: '079161003847' },
+                { displayName: 'NGUYỄN THỊ HẰNG', idNumber: '079133000225', dateOfBirth: '00/00/1933' },
+                { displayName: 'Trần Thị Thanh Phượng', idNumber: '022269178', dateOfBirth: '00/00/1965' },
+                { displayName: 'Trần Thị Thanh Hồng', idNumber: '022269177', dateOfBirth: '00/00/1967' },
+                { displayName: 'Nguyễn Thị Dung', idNumber: '079161003847', dateOfBirth: '00/00/1961' },
               ],
             },
             {
               addresses: ['38 Trần Cao Vân,Phường 06,Quận 3,TP. Hồ Chí Minh'],
               users: [
-                { displayName: 'nguyễn kiều hạnh', idNumber: '001168006101' },
-                { displayName: 'nguyễn khôi nguyên', idNumber: '001099000907' },
+                { displayName: 'nguyễn kiều hạnh', idNumber: '001168006101', dateOfBirth: '//0' },
+                { displayName: 'nguyễn khôi nguyên', idNumber: '001099000907', dateOfBirth: '//0' },
               ],
             },
             {
               addresses: ['19 Phan Đăng Lưu,Phường 03,Quận Bình Thạnh,TP. Hồ Chí Minh'],
               users: [
-                { displayName: 'Vũ Thành Công', idNumber: '023032455' },
-                { displayName: 'Nguyễn Thị Loan', idNumber: '023038351' },
-                { displayName: 'thiều quang cường', idNumber: '025727667' },
+                { displayName: 'Vũ Thành Công', idNumber: '023032455', dateOfBirth: '00/00/1959' },
+                { displayName: 'Nguyễn Thị Loan', idNumber: '023038351', dateOfBirth: '00/00/1972' },
+                { displayName: 'thiều quang cường', idNumber: '025727667', dateOfBirth: '00/00/1979' },
               ],
             },
           ],
@@ -182,10 +186,10 @@ describe('utils', () => {
             {
               addresses: ['206 VÕ THỊ SÁU,Phường 07,Quận 3,TP. Hồ Chí Minh'],
               users: [
-                { displayName: 'CTY CP XNK VĨNH LONG', idNumber: '1500171478' },
-                { displayName: 'TRẦN VĨNH PHONG', idNumber: '079062005094' },
-                { displayName: 'Trương Quang Khải', idNumber: '049029000024' },
-                { displayName: 'TRƯƠNG QUANG LONG TRIỀU', idNumber: '079069024048' },
+                { displayName: 'CTY CP XNK VĨNH LONG', idNumber: '1500171478', dateOfBirth: '' },
+                { displayName: 'TRẦN VĨNH PHONG', idNumber: '079062005094', dateOfBirth: '00/00/1962' },
+                { displayName: 'Trương Quang Khải', idNumber: '049029000024', dateOfBirth: '00/00/1929' },
+                { displayName: 'TRƯƠNG QUANG LONG TRIỀU', idNumber: '079069024048', dateOfBirth: '//1969' },
               ],
             },
           ],
@@ -205,10 +209,11 @@ describe('utils', () => {
             {
               addresses: ['22 yên Thế,Phường 02,Quận Tân Bình,TP. Hồ Chí Minh'],
               users: [
-                { displayName: 'Ninh Tiến Đạt', idNumber: '079072007930' },
+                { displayName: 'Ninh Tiến Đạt', idNumber: '079072007930', dateOfBirth: '00/00/1972' },
                 {
                   displayName: 'Ngân hàng TMCP Ngoại Thương Việt Nam-CN Thủ Đức-PGD Tam Bình',
                   idNumber: '079072007930',
+                  dateOfBirth: '',
                 },
               ],
             },
@@ -229,13 +234,14 @@ describe('utils', () => {
             {
               addresses: ['18A Kỳ Đồng (Dia chi cu:20/6B (tầng 1)  ),Phường 09,Quận 3,TP. Hồ Chí Minh'],
               users: [
-                { displayName: 'lê thị hồng', idNumber: '051157000106' },
-                { displayName: 'lê văn thuyên', idNumber: '051055000244' },
+                { displayName: 'lê thị hồng', idNumber: '051157000106', dateOfBirth: '//0' },
+                { displayName: 'lê văn thuyên', idNumber: '051055000244', dateOfBirth: '//0' },
                 {
                   displayName: 'CTY CP HƯNG THỊNH LAND (TÊN CŨ: Công ty Cổ phần Sàn giao dịch Bất động sản Hưng Thịnh)',
                   idNumber: '0302588518',
+                  dateOfBirth: '',
                 },
-                { displayName: 'ĐẶNG VIỆT TÚ UYÊN', idNumber: '023166113' },
+                { displayName: 'ĐẶNG VIỆT TÚ UYÊN', idNumber: '023166113', dateOfBirth: '00/00/1978' },
               ],
             },
           ],
@@ -257,13 +263,14 @@ describe('utils', () => {
             {
               addresses: ['73-75 Thủ Khoa Huân,Phường Bến Thành,Quận 1,TP. Hồ Chí Minh'],
               users: [
-                { displayName: 'Nguyễn Thị Lan', idNumber: '023822496' },
-                { displayName: 'Trần Văn Bằng', idNumber: '022763595' },
+                { displayName: 'Nguyễn Thị Lan', idNumber: '023822496', dateOfBirth: '00/00/1958' },
+                { displayName: 'Trần Văn Bằng', idNumber: '022763595', dateOfBirth: '00/00/1955' },
                 {
                   displayName: 'Ngân Hàng TMCP Á Châu',
                   idNumber: '12342',
+                  dateOfBirth: '',
                 },
-                { displayName: 'Nguyễn Tiến Dũng', idNumber: '183389204' },
+                { displayName: 'Nguyễn Tiến Dũng', idNumber: '183389204', dateOfBirth: '00/00/1984' },
               ],
             },
           ],
@@ -293,15 +300,15 @@ describe('utils', () => {
             {
               addresses: ['95B Trần Quang Diệu (nối dài),Phường 13,Quận 3,TP. Hồ Chí Minh'],
               users: [
-                { displayName: 'Trần Thị Ngọc Dung', idNumber: '079175002012' },
-                { displayName: 'Ngân Hàng TMCP Á Châu', idNumber: '12442' },
+                { displayName: 'Trần Thị Ngọc Dung', idNumber: '079175002012', dateOfBirth: '00/00/1975' },
+                { displayName: 'Ngân Hàng TMCP Á Châu', idNumber: '12442', dateOfBirth: '' },
               ],
             },
             {
               addresses: ['97-99 Trần Quang Diệu,Phường 13,Quận 3,TP. Hồ Chí Minh'],
               users: [
-                { displayName: 'Trần Thị Ngọc Dung', idNumber: '079175002012' },
-                { displayName: 'Ngân Hàng TMCP Á Châu', idNumber: '12442' },
+                { displayName: 'Trần Thị Ngọc Dung', idNumber: '079175002012', dateOfBirth: '00/00/1975' },
+                { displayName: 'Ngân Hàng TMCP Á Châu', idNumber: '12442', dateOfBirth: '' },
               ],
             },
           ],
@@ -312,30 +319,50 @@ describe('utils', () => {
           (*) Tài sản:
             - Loai:Nhà ở So cn:CS00679 Dia chi:73-75 Thủ Khoa Huân,Phường Bến Thành,Quận 1,TP. Hồ Chí Minh
           (*) Đương sự:
-            - Ben:Bên thế chấp; Vai tro:Bên thế chấp (Bên A); Nguyễn Thị Linh
+            - Ben:Bên thế chấp; Vai tro:Bên thế chấp (Bên A); Nguyễn Thị Linh, So CMT,HC:, Ngay sinh:00/00/1955
             - Ben:Bên thế chấp; Vai tro:Bên thế chấp (Bên A); Nguyễn Thị Lan, So CMT,HC:023822496, Ngay sinh:00/00/1958
             - Ben:Bên thế chấp; Vai tro:Bên thế chấp (Bên A); Trần Văn Bằng, So CMT,HC:, Ngay sinh:00/00/1955
             - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Công ty TNHH Một thành viên Bột dinh dưỡng Thăng Long
             - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Công ty Cổ phần Tập Đoàn Đầu tư Địa Ốc No Va, Ma thue:0312112125, Phường 05,Quận 3,TP. Hồ Chí Minh
             - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B);  CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ PHÁT TRIỂN XÂY DỰNG, Giay phep KD:0312283473, Phường 05,Quận 3,TP. Hồ Chí Minh
             - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); CÔNG TY TNHH CÔNG NGHIỆP, Ma thue:0312283473, QD T.lap:, Giay phep KD:, Phường 05,Quận 3,TP. Hồ Chí Minh
-            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Công ty TNHH Cửa Hàng Tiện Lợi Gia Đình Việt Nam, Ma thue:, QD T.lap:, Giay phep KD:YHFTR56, Phường 05,Quận 3,TP. Hồ Chí Minh
+            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Công ty TNHH Cửa Hàng Tiện Lợi Gia Đình Việt Nam, Ma thue:, QD T.lap:, Giay phep KD:YHFTR28, Phường 05,Quận 3,TP. Hồ Chí Minh
             - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Ngân Hàng TMCP Á Châu, Ma thue:0312112125, QD T.lap:, Giay phep KD:YHFTR56, Phường 05,Quận 3,TP. Hồ Chí Minh
             - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Công Ty Cổ Phần Dự Kim, Ma thue:, QD T.lap:, Giay phep KD:, Phường 05,Quận 3,TP. Hồ Chí Minh`,
           [
             {
               addresses: ['73-75 Thủ Khoa Huân,Phường Bến Thành,Quận 1,TP. Hồ Chí Minh'],
               users: [
-                { displayName: 'Nguyễn Thị Linh', idNumber: '' },
-                { displayName: 'Nguyễn Thị Lan', idNumber: '023822496' },
-                { displayName: 'Trần Văn Bằng', idNumber: '' },
-                { displayName: 'Công ty TNHH Một thành viên Bột dinh dưỡng Thăng Long', idNumber: '' },
-                { displayName: 'Công ty Cổ phần Tập Đoàn Đầu tư Địa Ốc No Va', idNumber: '0312112125' },
-                { displayName: 'CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ PHÁT TRIỂN XÂY DỰNG', idNumber: '0312283473' },
-                { displayName: 'CÔNG TY TNHH CÔNG NGHIỆP', idNumber: '0312283473' },
-                { displayName: 'Công ty TNHH Cửa Hàng Tiện Lợi Gia Đình Việt Nam', idNumber: 'YHFTR56' },
-                { displayName: 'Ngân Hàng TMCP Á Châu', idNumber: '0312112125' },
-                { displayName: 'Công Ty Cổ Phần Dự Kim', idNumber: '' },
+                {
+                  displayName: 'Nguyễn Thị Linh',
+                  idNumber: '',
+                  dateOfBirth: '00/00/1955',
+                },
+                { displayName: 'Nguyễn Thị Lan', idNumber: '023822496', dateOfBirth: '00/00/1958' },
+                { displayName: 'Trần Văn Bằng', idNumber: '', dateOfBirth: '00/00/1955' },
+                {
+                  displayName: 'Công ty TNHH Một thành viên Bột dinh dưỡng Thăng Long',
+                  idNumber: '',
+                  dateOfBirth: '',
+                },
+                {
+                  displayName: 'Công ty Cổ phần Tập Đoàn Đầu tư Địa Ốc No Va',
+                  idNumber: '0312112125',
+                  dateOfBirth: '',
+                },
+                {
+                  displayName: 'CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ PHÁT TRIỂN XÂY DỰNG',
+                  idNumber: '0312283473',
+                  dateOfBirth: '',
+                },
+                { displayName: 'CÔNG TY TNHH CÔNG NGHIỆP', idNumber: '0312283473', dateOfBirth: '' },
+                {
+                  displayName: 'Công ty TNHH Cửa Hàng Tiện Lợi Gia Đình Việt Nam',
+                  idNumber: 'YHFTR28',
+                  dateOfBirth: '',
+                },
+                { displayName: 'Ngân Hàng TMCP Á Châu', idNumber: '0312112125', dateOfBirth: '' },
+                { displayName: 'Công Ty Cổ Phần Dự Kim', idNumber: '', dateOfBirth: '' },
               ],
             },
           ],
@@ -368,14 +395,17 @@ describe('utils', () => {
                 {
                   displayName: 'LỤC MINH TRANG',
                   idNumber: '024042351',
+                  dateOfBirth: '00/00/1987',
                 },
                 {
                   displayName: 'NGUYỄN HỒNG HẢI',
                   idNumber: '001161010062',
+                  dateOfBirth: '00/00/1961',
                 },
                 {
                   displayName: 'NGUYỄN THỊ HƯƠNG',
                   idNumber: '272586094',
+                  dateOfBirth: '00/00/1995',
                 },
               ],
             },
@@ -408,18 +438,22 @@ describe('utils', () => {
                 {
                   displayName: 'Đỗ Đức Hồng',
                   idNumber: '001052006570',
+                  dateOfBirth: '00/00/1952',
                 },
                 {
                   displayName: 'Trần Bích Phương',
                   idNumber: '020155000022',
+                  dateOfBirth: '00/00/1955',
                 },
                 {
                   displayName: 'Ngân hàng TMCP Ngoại Thương Việt Nam - Chi nhánh Vũng Tàu',
-                  idNumber: 'k',
+                  idNumber: '',
+                  dateOfBirth: '',
                 },
                 {
                   displayName: 'Đoàn Văn Tuyến',
                   idNumber: '036066005011',
+                  dateOfBirth: '00/00/1966',
                 },
               ],
             },
@@ -440,9 +474,21 @@ describe('utils', () => {
             {
               addresses: ['A65(Phải) Nguyễn Trãi,Phường Nguyễn Cư Trinh,Quận 1,TP. Hồ Chí Minh'],
               users: [
-                { displayName: 'NGUYỄN CÔNG MINH', idNumber: '079055000834', dateOfBirth: '00/00/1955' },
-                { displayName: 'Đoàn Thị Kim Chi', idNumber: '079155000278', dateOfBirth: '00/00/1955' },
-                { displayName: 'Đinh Thị Thu Thủy', idNumber: '023845562', dateOfBirth: '00/00/1984' },
+                {
+                  displayName: 'NGUYỄN CÔNG MINH',
+                  idNumber: '079055000834',
+                  dateOfBirth: '00/00/1955',
+                },
+                {
+                  displayName: 'Đoàn Thị Kim Chi',
+                  idNumber: '079155000278',
+                  dateOfBirth: '00/00/1955',
+                },
+                {
+                  displayName: 'Đinh Thị Thu Thủy',
+                  idNumber: '023845562',
+                  dateOfBirth: '00/00/1984',
+                },
               ],
             },
           ],
@@ -466,6 +512,9 @@ describe('utils', () => {
             );
             expect(matchSubstring(details[i].users[j].idNumber, expected[i].users[j].idNumber)).toEqual(
               expected[i].users[j].idNumber,
+            );
+            expect(matchSubstring(details[i].users[j].dateOfBirth, expected[i].users[j].dateOfBirth)).toEqual(
+              expected[i].users[j].dateOfBirth,
             );
           }
         }

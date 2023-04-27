@@ -76,6 +76,7 @@ export interface PremiseParsedDetail {
   users: {
     displayName: string;
     idNumber: string;
+    dateOfBirth: string;
     raw: string;
   }[];
   raw: string;
@@ -106,22 +107,22 @@ function replaceAllFromDocument(str, find, replace) {
 function extractUserInfoFromDocument(text: string): {
   displayName: string;
   idNumber: string;
+  dateOfBirth: string;
   raw: string;
 }[] {
   // const userInfoRe = /- Ben:(.+); Vai tro:(.+?); (.+?)((So CMT,HC|Ma thue|Giay phep KD):)(\d+)/gm;
   // https://regex101.com/r/p8s3X8/2
   const userInfoRe =
-    /- Ben:(.+); Vai tro:(.+?); ((.+?)((So CMT,HC|Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)([a-zA-Z0-9]+)((.+?)((Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)([a-zA-Z0-9]+)|)|(.+))((.+?)(Ngay sinh:(\d+\S\d+\S\d+))|)/gm;
-  // /- Ben:(.+); Vai tro:(.+?); ((.+?)((So CMT,HC|Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W|\w+)((.+?)((Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W|\w+)|)|(.+))((.+?)(Ngay sinh:(\d+\S\d+\S\d+))|)/gm; // /- Ben:(.+); Vai tro:(.+?); ((.+?)((So CMT,HC|Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W|\w+)((.+?)((Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W|\w+)|)|(.+))/gm;
+    /- Ben:(.+); Vai tro:(.+?); ((.+?)((So CMT,HC|Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W|\w+)((.+?)((Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W|\w+)|)|(.+))((.+?)(Ngay sinh:(\d+\S\d+\S\d+|\S+))|)/gm;
   // https://regex101.com/r/ERX0WQ/1
   // const userInfoRe =  /- Ben:(.+); Vai tro:(.+?); ((.+?)((So CMT,HC|Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W|\w+)((.+?)((Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W|\w+)|)|(.+))/gm
   // https://regex101.com/r/Z5bw44/1
   const matches = [...text.matchAll(userInfoRe)];
   return matches.map((match) => {
-    // console.log(match[17]);
+    // console.log(match[4]);
     return {
       displayName: cleanContent(match[4] ? match[4] : match[3]),
-      idNumber: cleanContent(match[7]?.length >= 1 ? match[7] : match[12] ? match[12] : ''),
+      idNumber: cleanContent(match[7]?.length > 1 ? match[7] : match[12] ? match[12] : ''),
       dateOfBirth: cleanContent(match[17] ? match[17] : ''),
       raw: match[0],
     };
