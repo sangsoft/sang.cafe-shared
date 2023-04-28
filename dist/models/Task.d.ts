@@ -123,7 +123,7 @@ export interface ITask extends Model {
     idProvidedIncorrectAt?: Date | SerializedTimestamp;
     idProvidedIncorrectReason?: IdProvidedIncorrectReason;
     idProvidedIncorrectDetail?: string | null;
-    extractedData?: PremiseParsedDetail[];
+    extractedPremiseDetail?: PremiseParsedDetail[];
 }
 export declare enum CannotCallReason {
     LINE_BUSY = "line-busy",

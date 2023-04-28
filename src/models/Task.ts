@@ -166,7 +166,7 @@ export interface ITask extends Model {
   idProvidedIncorrectReason?: IdProvidedIncorrectReason;
   idProvidedIncorrectDetail?: string | null;
 
-  extractedData?: PremiseParsedDetail[];
+  extractedPremiseDetail?: PremiseParsedDetail[];
 }
 
 export enum CannotCallReason {
