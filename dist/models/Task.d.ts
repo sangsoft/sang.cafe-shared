@@ -4,6 +4,7 @@ import type { IInfoRequest, IRestaurant } from './Restaurant';
 import type { SearchMatch } from './SearchMatch';
 import type { SerializedTimestamp } from '../helpers/times';
 import type { CollectedInfo } from './CollectionInfo';
+import { PremiseParsedDetail } from '../helpers/content';
 export declare enum IdProvidedIncorrectReason {
     WRONG_ADDRESS = "wrong-address",
     MISSING_INFORMATION = "missing-information"
@@ -122,6 +123,7 @@ export interface ITask extends Model {
     idProvidedIncorrectAt?: Date | SerializedTimestamp;
     idProvidedIncorrectReason?: IdProvidedIncorrectReason;
     idProvidedIncorrectDetail?: string | null;
+    extractedData?: PremiseParsedDetail[];
 }
 export declare enum CannotCallReason {
     LINE_BUSY = "line-busy",
