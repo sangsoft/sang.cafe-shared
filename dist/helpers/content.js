@@ -63,37 +63,50 @@ exports.cleanContent = cleanContent;
 function extractAddressFromDocument(text) {
     // https://regex101.com/r/3BFsJf/1
     const addressRe = /(So nha|Dia chi):(.+)/gm;
-    const match = [...text.matchAll(addressRe)];
-    return (match[0][2] || '').trim();
+    const matches = [...text.matchAll(addressRe)];
+    // return (match[0][2] || '').trim();
+    return matches.map((match) => {
+        return (match[2] || '').trim();
+    });
 }
 function replaceAllFromDocument(str, find, replace) {
     return str.replace(new RegExp(find, 'g'), replace);
 }
 function extractUserInfoFromDocument(text) {
     // const userInfoRe = /- Ben:(.+); Vai tro:(.+?); (.+?)((So CMT,HC|Ma thue|Giay phep KD):)(\d+)/gm;
-    const userInfoRe = /- Ben:(.+); Vai tro:(.+?); ((.+?)((So CMT,HC|Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W)((.+?)((Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W)|)|(.+))/gm;
     // https://regex101.com/r/p8s3X8/2
+    const userInfoRe = /- Ben:(.+); Vai tro:(.+?); ((.+?)((So CMT,HC|Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W|\w+)((.+?)((Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W|\w+)|)|(.+))((.+?)(Ngay sinh:(\d+\S\d+\S\d+|\S+))|)/gm;
     // https://regex101.com/r/ERX0WQ/1
+    // const userInfoRe =  /- Ben:(.+); Vai tro:(.+?); ((.+?)((So CMT,HC|Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W|\w+)((.+?)((Ma thue|Ma so thue|MST|Giay phep KD|Giay phep kinh doanh|GPKD):)(\d+|\S\w+|\W|\w+)|)|(.+))/gm
+    // https://regex101.com/r/Z5bw44/1
     const matches = [...text.matchAll(userInfoRe)];
     return matches.map((match) => {
         var _a;
+        // console.log(match[4]);
         return {
             displayName: cleanContent(match[4] ? match[4] : match[3]),
             idNumber: cleanContent(((_a = match[7]) === null || _a === void 0 ? void 0 : _a.length) > 1 ? match[7] : match[12] ? match[12] : ''),
+            dateOfBirth: cleanContent(match[17] ? match[17] : ''),
             raw: match[0],
         };
     });
 }
 function extractPremiseDetail(text) {
-    // https://regex101.com/r/pqPsL1/3
     const cleanedText = replaceAllFromDocument(text, '', '');
-    const premiseRe = /(\(\*\) Tài sản:\s*(- .*))\s*((\(\*\) Đương sự:)\s*(- Ben:.*\s*)+)/gm;
+    // const premiseRe = /(\(\*\) Tài sản:\s*(- .*))\s*((\(\*\) Đương sự:)\s*(- Ben:.*\s*)+)/gm;
+    // https://regex101.com/r/pqPsL1/3
+    const premiseRe = /((\(\*\) Tài sản:)\s*(- .*\s*)+)\s*((\(\*\) Đương sự:)\s*(- Ben:.*\s*)+)/gm;
+    //https://regex101.com/r/BCnDD4/1
     const addressMatches = [...cleanedText.matchAll(premiseRe)];
     return addressMatches.map((match) => {
+        const addresses = extractAddressFromDocument(match[1]);
+        // console.log(extractUserInfoFromDocument(match[4]));
+        console.log(match[2]);
         return {
-            address: extractAddressFromDocument(match[2]),
+            addresses,
+            address: addresses[0],
             raw: match[2],
-            users: extractUserInfoFromDocument(match[3]),
+            users: extractUserInfoFromDocument(match[4]),
         };
     });
 }

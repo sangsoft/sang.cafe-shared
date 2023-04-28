@@ -20,11 +20,11 @@ describe('utils', () => {
           - Ben:Bên nhận ủy quyền; Vai tro:Bên nhận ủy quyền (Bên B); Đinh Thị Thu Thủy, So CMT,HC:023845562, Ngay sinh:00/00/1984`,
                     [
                         {
-                            address: 'A65(Phải) Nguyễn Trãi,Phường Nguyễn Cư Trinh,Quận 1,TP. Hồ Chí Minh',
+                            addresses: ['A65(Phải) Nguyễn Trãi,Phường Nguyễn Cư Trinh,Quận 1,TP. Hồ Chí Minh'],
                             users: [
-                                { displayName: 'NGUYỄN CÔNG MINH', idNumber: '079055000834' },
-                                { displayName: 'Đoàn Thị Kim Chi', idNumber: '079155000278' },
-                                { displayName: 'Đinh Thị Thu Thủy', idNumber: '023845562' },
+                                { displayName: 'NGUYỄN CÔNG MINH', idNumber: '079055000834', dateOfBirth: '00/00/1955' },
+                                { displayName: 'Đoàn Thị Kim Chi', idNumber: '079155000278', dateOfBirth: '00/00/1955' },
+                                { displayName: 'Đinh Thị Thu Thủy', idNumber: '023845562', dateOfBirth: '00/00/1984' },
                             ],
                         },
                     ],
@@ -42,13 +42,17 @@ describe('utils', () => {
           - Ben:Bên nhận thế chấp; Vai tro:Đại diện; nguyễn quốc khánh; So CMT,HC:000; Ngay sinh:00/00/1900; Dia chi:  ,`,
                     [
                         {
-                            address: '195/10E Điện Biên Phủ (So cu:242/3A ),Phường 15, Quận Bình Thạnh, TP. Hồ Chí Minh',
+                            addresses: ['195/10E Điện Biên Phủ (So cu:242/3A ),Phường 15, Quận Bình Thạnh, TP. Hồ Chí Minh'],
                             users: [
-                                { displayName: 'nguyễn văn hậu', idNumber: '025176077' },
-                                { displayName: 'Công ty TNHH xây dựng thương mại Hoàng Long Phát', idNumber: '0309809847' },
-                                { displayName: 'Nguyễn Văn Tuấn', idNumber: '270099747' },
-                                { displayName: 'nh tmcp phương đông - cn tân thuận', idNumber: '000' },
-                                { displayName: 'nguyễn quốc khánh', idNumber: '000' },
+                                { displayName: 'nguyễn văn hậu', idNumber: '025176077', dateOfBirth: '01/01/3000' },
+                                {
+                                    displayName: 'Công ty TNHH xây dựng thương mại Hoàng Long Phát',
+                                    idNumber: '0309809847',
+                                    dateOfBirth: '',
+                                },
+                                { displayName: 'Nguyễn Văn Tuấn', idNumber: '270099747', dateOfBirth: '00/00/1972' },
+                                { displayName: 'nh tmcp phương đông - cn tân thuận', idNumber: '000', dateOfBirth: '' },
+                                { displayName: 'nguyễn quốc khánh', idNumber: '000', dateOfBirth: '00/00/1900' },
                             ],
                         },
                     ],
@@ -63,10 +67,10 @@ describe('utils', () => {
           - Ben:Bên ủy quyền; Vai tro:Bên ủy quyền (Bên A); Huỳnh Vĩ Nam; So CMT,HC:022235964; Ngay sinh:00/00/1967; Dia chi:  633/18/4M Lê Hồng Phong, phường 10, quận 10, Tp. HCM,`,
                     [
                         {
-                            address: '66 Hồ Biểu Chánh, 11, Phú Nhuận, Tp. Hồ Chí Minh',
+                            addresses: ['66 Hồ Biểu Chánh, 11, Phú Nhuận, Tp. Hồ Chí Minh'],
                             users: [
-                                { displayName: 'Trần Quang Duy', idNumber: '212092828' },
-                                { displayName: 'Huỳnh Vĩ Nam', idNumber: '022235964' },
+                                { displayName: 'Trần Quang Duy', idNumber: '212092828', dateOfBirth: '00/00/1981' },
+                                { displayName: 'Huỳnh Vĩ Nam', idNumber: '022235964', dateOfBirth: '00/00/1967' },
                             ],
                         },
                     ],
@@ -82,11 +86,13 @@ describe('utils', () => {
           - Ben:Bên thuê/ mượn; Vai tro:Bên thuê/mượn (Bên B); Phan Linh Giang; So CMT,HC:022442290; Ngay sinh://1972`,
                     [
                         {
-                            address: '112 Lô số 4, Lô số 5, Khu biệt thự Kim Sơn, Nguyễn Văn Hưởng,Phường Thảo Điền,Quận 2,TP. Hồ Chí Minh',
+                            addresses: [
+                                '112 Lô số 4, Lô số 5, Khu biệt thự Kim Sơn, Nguyễn Văn Hưởng,Phường Thảo Điền,Quận 2,TP. Hồ Chí Minh',
+                            ],
                             users: [
-                                { displayName: 'Đào Mạnh Kháng', idNumber: '012073456' },
-                                { displayName: 'Vũ Thị Hương', idNumber: '012073511' },
-                                { displayName: 'Phan Linh Giang', idNumber: '022442290' },
+                                { displayName: 'Đào Mạnh Kháng', idNumber: '012073456', dateOfBirth: '//1969' },
+                                { displayName: 'Vũ Thị Hương', idNumber: '012073511', dateOfBirth: '//1972' },
+                                { displayName: 'Phan Linh Giang', idNumber: '022442290', dateOfBirth: '//1972' },
                             ],
                         },
                     ],
@@ -104,13 +110,13 @@ describe('utils', () => {
           - Ben:Người có liên quan; Vai tro:Người làm chứng; PHẠM HOÀNG HIẾU, So CMT,HC:066095015534, Ngay sinh:00/00/1995 Phường Trà Bá,Thành phố Pleiku,Tỉnh Gia Lai`,
                     [
                         {
-                            address: '235A ,Phường Võ Thị Sáu,Quận 3,TP. Hồ Chí Minh',
+                            addresses: ['235A ,Phường Võ Thị Sáu,Quận 3,TP. Hồ Chí Minh'],
                             users: [
-                                { displayName: 'BÙI THỊ XUÂN', idNumber: '079157006713' },
-                                { displayName: 'Bùi Thị Phương', idNumber: '031146001009' },
-                                { displayName: 'BÙI VIẾT NAM', idNumber: '079054003841' },
-                                { displayName: 'BÙI THỊ THẢO', idNumber: '079151012634' },
-                                { displayName: 'PHẠM HOÀNG HIẾU', idNumber: '066095015534' },
+                                { displayName: 'BÙI THỊ XUÂN', idNumber: '079157006713', dateOfBirth: '//1957' },
+                                { displayName: 'Bùi Thị Phương', idNumber: '031146001009', dateOfBirth: '00/00/1946' },
+                                { displayName: 'BÙI VIẾT NAM', idNumber: '079054003841', dateOfBirth: '//1954' },
+                                { displayName: 'BÙI THỊ THẢO', idNumber: '079151012634', dateOfBirth: '//1951' },
+                                { displayName: 'PHẠM HOÀNG HIẾU', idNumber: '066095015534', dateOfBirth: '00/00/1995' },
                             ],
                         },
                     ],
@@ -141,27 +147,27 @@ describe('utils', () => {
                   - Ben:Bên thuê/ mượn; Vai tro:Bên thuê/mượn (Bên B); thiều quang cường, So CMT,HC:025727667, Ngay sinh:00/00/1979 Thị trấn Tân Túc,Huyện Bình Chánh,TP. Hồ Chí Minh`,
                     [
                         {
-                            address: '802 Xô viết nghệ tĩnh,Phường 25,Quận Bình Thạnh,TP. Hồ Chí Minh',
+                            addresses: ['802 Xô viết nghệ tĩnh,Phường 25,Quận Bình Thạnh,TP. Hồ Chí Minh'],
                             users: [
-                                { displayName: 'NGUYỄN THỊ HẰNG', idNumber: '079133000225' },
-                                { displayName: 'Trần Thị Thanh Phượng', idNumber: '022269178' },
-                                { displayName: 'Trần Thị Thanh Hồng', idNumber: '022269177' },
-                                { displayName: 'Nguyễn Thị Dung', idNumber: '079161003847' },
+                                { displayName: 'NGUYỄN THỊ HẰNG', idNumber: '079133000225', dateOfBirth: '00/00/1933' },
+                                { displayName: 'Trần Thị Thanh Phượng', idNumber: '022269178', dateOfBirth: '00/00/1965' },
+                                { displayName: 'Trần Thị Thanh Hồng', idNumber: '022269177', dateOfBirth: '00/00/1967' },
+                                { displayName: 'Nguyễn Thị Dung', idNumber: '079161003847', dateOfBirth: '00/00/1961' },
                             ],
                         },
                         {
-                            address: '38 Trần Cao Vân,Phường 06,Quận 3,TP. Hồ Chí Minh',
+                            addresses: ['38 Trần Cao Vân,Phường 06,Quận 3,TP. Hồ Chí Minh'],
                             users: [
-                                { displayName: 'nguyễn kiều hạnh', idNumber: '001168006101' },
-                                { displayName: 'nguyễn khôi nguyên', idNumber: '001099000907' },
+                                { displayName: 'nguyễn kiều hạnh', idNumber: '001168006101', dateOfBirth: '//0' },
+                                { displayName: 'nguyễn khôi nguyên', idNumber: '001099000907', dateOfBirth: '//0' },
                             ],
                         },
                         {
-                            address: '19 Phan Đăng Lưu,Phường 03,Quận Bình Thạnh,TP. Hồ Chí Minh',
+                            addresses: ['19 Phan Đăng Lưu,Phường 03,Quận Bình Thạnh,TP. Hồ Chí Minh'],
                             users: [
-                                { displayName: 'Vũ Thành Công', idNumber: '023032455' },
-                                { displayName: 'Nguyễn Thị Loan', idNumber: '023038351' },
-                                { displayName: 'thiều quang cường', idNumber: '025727667' },
+                                { displayName: 'Vũ Thành Công', idNumber: '023032455', dateOfBirth: '00/00/1959' },
+                                { displayName: 'Nguyễn Thị Loan', idNumber: '023038351', dateOfBirth: '00/00/1972' },
+                                { displayName: 'thiều quang cường', idNumber: '025727667', dateOfBirth: '00/00/1979' },
                             ],
                         },
                     ],
@@ -179,12 +185,12 @@ describe('utils', () => {
           - Ben:Bên nhận ủy quyền; Vai tro:Bên nhận ủy quyền (Bên B); TRƯƠNG QUANG LONG TRIỀU, So CMT,HC:079069024048, Ngay sinh://1969, Dia chi: 2/1 Cao Thắng Phường 05 Quận 3 TP. Hồ Chí Minh`,
                     [
                         {
-                            address: '206 VÕ THỊ SÁU,Phường 07,Quận 3,TP. Hồ Chí Minh',
+                            addresses: ['206 VÕ THỊ SÁU,Phường 07,Quận 3,TP. Hồ Chí Minh'],
                             users: [
-                                { displayName: 'CTY CP XNK VĨNH LONG', idNumber: '1500171478' },
-                                { displayName: 'TRẦN VĨNH PHONG', idNumber: '079062005094' },
-                                { displayName: 'Trương Quang Khải', idNumber: '049029000024' },
-                                { displayName: 'TRƯƠNG QUANG LONG TRIỀU', idNumber: '079069024048' },
+                                { displayName: 'CTY CP XNK VĨNH LONG', idNumber: '1500171478', dateOfBirth: '' },
+                                { displayName: 'TRẦN VĨNH PHONG', idNumber: '079062005094', dateOfBirth: '00/00/1962' },
+                                { displayName: 'Trương Quang Khải', idNumber: '049029000024', dateOfBirth: '00/00/1929' },
+                                { displayName: 'TRƯƠNG QUANG LONG TRIỀU', idNumber: '079069024048', dateOfBirth: '//1969' },
                             ],
                         },
                     ],
@@ -202,12 +208,13 @@ describe('utils', () => {
         * Ngay GC:23/07/2019; So GC:09/TB-TĐU-KH; CC vien:Giải chấp; Phong CC:Văn phòng công chứng Mai Việt Cường`,
                     [
                         {
-                            address: '22 yên Thế,Phường 02,Quận Tân Bình,TP. Hồ Chí Minh',
+                            addresses: ['22 yên Thế,Phường 02,Quận Tân Bình,TP. Hồ Chí Minh'],
                             users: [
-                                { displayName: 'Ninh Tiến Đạt', idNumber: '079072007930' },
+                                { displayName: 'Ninh Tiến Đạt', idNumber: '079072007930', dateOfBirth: '00/00/1972' },
                                 {
                                     displayName: 'Ngân hàng TMCP Ngoại Thương Việt Nam-CN Thủ Đức-PGD Tam Bình',
                                     idNumber: '079072007930',
+                                    dateOfBirth: '',
                                 },
                             ],
                         },
@@ -226,15 +233,16 @@ describe('utils', () => {
           - Ben:Bên thuê/ mượn; Vai tro:Đại diện; ĐẶNG VIỆT TÚ UYÊN; So CMT,HC:023166113; Ngay sinh:00/00/1978`,
                     [
                         {
-                            address: '18A Kỳ Đồng (Dia chi cu:20/6B (tầng 1)  ),Phường 09,Quận 3,TP. Hồ Chí Minh',
+                            addresses: ['18A Kỳ Đồng (Dia chi cu:20/6B (tầng 1)  ),Phường 09,Quận 3,TP. Hồ Chí Minh'],
                             users: [
-                                { displayName: 'lê thị hồng', idNumber: '051157000106' },
-                                { displayName: 'lê văn thuyên', idNumber: '051055000244' },
+                                { displayName: 'lê thị hồng', idNumber: '051157000106', dateOfBirth: '//0' },
+                                { displayName: 'lê văn thuyên', idNumber: '051055000244', dateOfBirth: '//0' },
                                 {
                                     displayName: 'CTY CP HƯNG THỊNH LAND (TÊN CŨ: Công ty Cổ phần Sàn giao dịch Bất động sản Hưng Thịnh)',
                                     idNumber: '0302588518',
+                                    dateOfBirth: '',
                                 },
-                                { displayName: 'ĐẶNG VIỆT TÚ UYÊN', idNumber: '023166113' },
+                                { displayName: 'ĐẶNG VIỆT TÚ UYÊN', idNumber: '023166113', dateOfBirth: '00/00/1978' },
                             ],
                         },
                     ],
@@ -254,15 +262,16 @@ describe('utils', () => {
             * Ngay GC:19/12/2017; So GC:160; CC vien:Giải chấp; Phong CC:Văn phòng công chứng Sài Gòn`,
                     [
                         {
-                            address: '73-75 Thủ Khoa Huân,Phường Bến Thành,Quận 1,TP. Hồ Chí Minh',
+                            addresses: ['73-75 Thủ Khoa Huân,Phường Bến Thành,Quận 1,TP. Hồ Chí Minh'],
                             users: [
-                                { displayName: 'Nguyễn Thị Lan', idNumber: '023822496' },
-                                { displayName: 'Trần Văn Bằng', idNumber: '022763595' },
+                                { displayName: 'Nguyễn Thị Lan', idNumber: '023822496', dateOfBirth: '00/00/1958' },
+                                { displayName: 'Trần Văn Bằng', idNumber: '022763595', dateOfBirth: '00/00/1955' },
                                 {
                                     displayName: 'Ngân Hàng TMCP Á Châu',
                                     idNumber: '12342',
+                                    dateOfBirth: '',
                                 },
-                                { displayName: 'Nguyễn Tiến Dũng', idNumber: '183389204' },
+                                { displayName: 'Nguyễn Tiến Dũng', idNumber: '183389204', dateOfBirth: '00/00/1984' },
                             ],
                         },
                     ],
@@ -278,7 +287,6 @@ describe('utils', () => {
          (*) Giải chấp:
            -
         * Ngay GC:03/03/2021; So GC:1384; CC vien:Giải chấp công chứng 4; Phong CC:Phòng Công Chứng số 4
-
          (*) Nhóm HS:
            - * Nhom HS:Sửa đổi, bổ sung HĐ thế chấp; So CC:4424; Phong CC: Phòng Công Chứng số 4; CC vien:Hồ Xuân Hương; Ngay cap so: 30/01/2018
          (*) Tài sản:
@@ -291,17 +299,17 @@ describe('utils', () => {
         * Ngay GC:03/03/2021; So GC:1394; CC vien:Giải chấp công chứng 4; Phong CC:Phòng Công Chứng số 4`,
                     [
                         {
-                            address: '95B Trần Quang Diệu (nối dài),Phường 13,Quận 3,TP. Hồ Chí Minh',
+                            addresses: ['95B Trần Quang Diệu (nối dài),Phường 13,Quận 3,TP. Hồ Chí Minh'],
                             users: [
-                                { displayName: 'Trần Thị Ngọc Dung', idNumber: '079175002012' },
-                                { displayName: 'Ngân Hàng TMCP Á Châu', idNumber: '12442' },
+                                { displayName: 'Trần Thị Ngọc Dung', idNumber: '079175002012', dateOfBirth: '00/00/1975' },
+                                { displayName: 'Ngân Hàng TMCP Á Châu', idNumber: '12442', dateOfBirth: '' },
                             ],
                         },
                         {
-                            address: '97-99 Trần Quang Diệu,Phường 13,Quận 3,TP. Hồ Chí Minh',
+                            addresses: ['97-99 Trần Quang Diệu,Phường 13,Quận 3,TP. Hồ Chí Minh'],
                             users: [
-                                { displayName: 'Trần Thị Ngọc Dung', idNumber: '079175002012' },
-                                { displayName: 'Ngân Hàng TMCP Á Châu', idNumber: '12442' },
+                                { displayName: 'Trần Thị Ngọc Dung', idNumber: '079175002012', dateOfBirth: '00/00/1975' },
+                                { displayName: 'Ngân Hàng TMCP Á Châu', idNumber: '12442', dateOfBirth: '' },
                             ],
                         },
                     ],
@@ -312,30 +320,176 @@ describe('utils', () => {
           (*) Tài sản:
             - Loai:Nhà ở So cn:CS00679 Dia chi:73-75 Thủ Khoa Huân,Phường Bến Thành,Quận 1,TP. Hồ Chí Minh
           (*) Đương sự:
-            - Ben:Bên thế chấp; Vai tro:Bên thế chấp (Bên A); Nguyễn Thị Linh
+            - Ben:Bên thế chấp; Vai tro:Bên thế chấp (Bên A); Nguyễn Thị Linh, So CMT,HC:, Ngay sinh:00/00/1955
             - Ben:Bên thế chấp; Vai tro:Bên thế chấp (Bên A); Nguyễn Thị Lan, So CMT,HC:023822496, Ngay sinh:00/00/1958
             - Ben:Bên thế chấp; Vai tro:Bên thế chấp (Bên A); Trần Văn Bằng, So CMT,HC:, Ngay sinh:00/00/1955
             - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Công ty TNHH Một thành viên Bột dinh dưỡng Thăng Long
             - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Công ty Cổ phần Tập Đoàn Đầu tư Địa Ốc No Va, Ma thue:0312112125, Phường 05,Quận 3,TP. Hồ Chí Minh
             - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B);  CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ PHÁT TRIỂN XÂY DỰNG, Giay phep KD:0312283473, Phường 05,Quận 3,TP. Hồ Chí Minh
             - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); CÔNG TY TNHH CÔNG NGHIỆP, Ma thue:0312283473, QD T.lap:, Giay phep KD:, Phường 05,Quận 3,TP. Hồ Chí Minh
-            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Công ty TNHH Cửa Hàng Tiện Lợi Gia Đình Việt Nam, Ma thue:, QD T.lap:, Giay phep KD:YHFTR56, Phường 05,Quận 3,TP. Hồ Chí Minh
+            - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Công ty TNHH Cửa Hàng Tiện Lợi Gia Đình Việt Nam, Ma thue:, QD T.lap:, Giay phep KD:YHFTR28, Phường 05,Quận 3,TP. Hồ Chí Minh
             - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Ngân Hàng TMCP Á Châu, Ma thue:0312112125, QD T.lap:, Giay phep KD:YHFTR56, Phường 05,Quận 3,TP. Hồ Chí Minh
             - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Công Ty Cổ Phần Dự Kim, Ma thue:, QD T.lap:, Giay phep KD:, Phường 05,Quận 3,TP. Hồ Chí Minh`,
                     [
                         {
-                            address: '73-75 Thủ Khoa Huân,Phường Bến Thành,Quận 1,TP. Hồ Chí Minh',
+                            addresses: ['73-75 Thủ Khoa Huân,Phường Bến Thành,Quận 1,TP. Hồ Chí Minh'],
                             users: [
-                                { displayName: 'Nguyễn Thị Linh', idNumber: '' },
-                                { displayName: 'Nguyễn Thị Lan', idNumber: '023822496' },
-                                { displayName: 'Trần Văn Bằng', idNumber: '' },
-                                { displayName: 'Công ty TNHH Một thành viên Bột dinh dưỡng Thăng Long', idNumber: '' },
-                                { displayName: 'Công ty Cổ phần Tập Đoàn Đầu tư Địa Ốc No Va', idNumber: '0312112125' },
-                                { displayName: 'CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ PHÁT TRIỂN XÂY DỰNG', idNumber: '0312283473' },
-                                { displayName: 'CÔNG TY TNHH CÔNG NGHIỆP', idNumber: '0312283473' },
-                                { displayName: 'Công ty TNHH Cửa Hàng Tiện Lợi Gia Đình Việt Nam', idNumber: 'YHFTR56' },
-                                { displayName: 'Ngân Hàng TMCP Á Châu', idNumber: '0312112125' },
-                                { displayName: 'Công Ty Cổ Phần Dự Kim', idNumber: '' },
+                                {
+                                    displayName: 'Nguyễn Thị Linh',
+                                    idNumber: '',
+                                    dateOfBirth: '00/00/1955',
+                                },
+                                { displayName: 'Nguyễn Thị Lan', idNumber: '023822496', dateOfBirth: '00/00/1958' },
+                                { displayName: 'Trần Văn Bằng', idNumber: '', dateOfBirth: '00/00/1955' },
+                                {
+                                    displayName: 'Công ty TNHH Một thành viên Bột dinh dưỡng Thăng Long',
+                                    idNumber: '',
+                                    dateOfBirth: '',
+                                },
+                                {
+                                    displayName: 'Công ty Cổ phần Tập Đoàn Đầu tư Địa Ốc No Va',
+                                    idNumber: '0312112125',
+                                    dateOfBirth: '',
+                                },
+                                {
+                                    displayName: 'CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ PHÁT TRIỂN XÂY DỰNG',
+                                    idNumber: '0312283473',
+                                    dateOfBirth: '',
+                                },
+                                { displayName: 'CÔNG TY TNHH CÔNG NGHIỆP', idNumber: '0312283473', dateOfBirth: '' },
+                                {
+                                    displayName: 'Công ty TNHH Cửa Hàng Tiện Lợi Gia Đình Việt Nam',
+                                    idNumber: 'YHFTR28',
+                                    dateOfBirth: '',
+                                },
+                                { displayName: 'Ngân Hàng TMCP Á Châu', idNumber: '0312112125', dateOfBirth: '' },
+                                { displayName: 'Công Ty Cổ Phần Dự Kim', idNumber: '', dateOfBirth: '' },
+                            ],
+                        },
+                    ],
+                ],
+                [
+                    `(*) Nhóm HS:
+          - * Nhom HS:Thanh lý HĐ thuê mượn; So CC:009946; Phong CC: VPCC Phú Mỹ Hưng; CC vien:Trịnh Thị Thanh Hương; Ngay cap so: 23/11/2019
+        (*) Tài sản:
+          - Loai:Đất có tài sản So cn:CS11464 So thua:517 So to:20 Dia chi:120 Đường số 2, Khu phố Hưng Gia V, phường Tân Phong, Quận 7, thành phố Hồ Chí Minh,Phường Tân Phong,Quận 7,TP. Hồ Chí Minh
+          - Loai:Đất có tài sản So cn:CS11463 So thua:517 So to:20 Dia chi:120 Đường số 2, Khu phố Hưng Gia V, phường Tân Phong, Quận 7, thành phố Hồ Chí Minh,Phường Tân Phong,Quận 7,TP. Hồ Chí Minh
+          - Loai:Đất có tài sản So cn:CS11462 So thua:520 So to:20 Dia chi:122 Đường số 2, Khu phố Hưng Gia V, phường Tân Phong, Quận 7, thành phố Hồ Chí Minh,Phường Tân Phong,Quận 7,TP. Hồ Chí Minh
+          - Loai:Đất có tài sản So cn:CS11461 So thua:520 So to:20 Dia chi:122,Phường Tân Phong,Quận 7,TP. Hồ Chí Minh
+          - Loai:Đất có tài sản So cn:CS11466 So thua:1048 So to:20 Dia chi:124 Đường số 2, Khu phố Hưng Gia V, phường Tân Phong, Quận 7, thành phố Hồ Chí Minh,Phường Tân Phong,Quận 7,TP. Hồ Chí Minh
+          - Loai:Đất có tài sản So cn:CS11465 So thua:1048 So to:20 Dia chi:124 Đường số 2, Khu phố Hưng Gia V, phường Tân Phong, Quận 7, thành phố Hồ Chí Minh,Phường Tân Phong,Quận 7,TP. Hồ Chí Minh
+        (*) Đương sự:
+          - Ben:Bên cho thuê/ mượn; Vai tro:Bên cho thuê/ mượn (Bên A); LỤC MINH TRANG, So CMT,HC:024042351, Ngay sinh:00/00/1987
+          - Ben:Bên cho thuê/ mượn; Vai tro:Bên cho thuê/ mượn (Bên A); NGUYỄN HỒNG HẢI, So CMT,HC:001161010062, Ngay sinh:00/00/1961
+          - Ben:Bên thuê/ mượn; Vai tro:Bên thuê/mượn (Bên B); NGUYỄN THỊ HƯƠNG, So CMT,HC:272586094, Ngay sinh:00/00/1995 Thị trấn Tân Túc,Huyện Bình Chánh,TP. Hồ Chí Minh`,
+                    [
+                        {
+                            addresses: [
+                                '120 Đường số 2, Khu phố Hưng Gia V, phường Tân Phong, Quận 7, thành phố Hồ Chí Minh,Phường Tân Phong,Quận 7,TP. Hồ Chí Minh',
+                                '120 Đường số 2, Khu phố Hưng Gia V, phường Tân Phong, Quận 7, thành phố Hồ Chí Minh,Phường Tân Phong,Quận 7,TP. Hồ Chí Minh',
+                                '122 Đường số 2, Khu phố Hưng Gia V, phường Tân Phong, Quận 7, thành phố Hồ Chí Minh,Phường Tân Phong,Quận 7,TP. Hồ Chí Minh',
+                                '122,Phường Tân Phong,Quận 7,TP. Hồ Chí Minh',
+                                '124 Đường số 2, Khu phố Hưng Gia V, phường Tân Phong, Quận 7, thành phố Hồ Chí Minh,Phường Tân Phong,Quận 7,TP. Hồ Chí Minh',
+                                '124 Đường số 2, Khu phố Hưng Gia V, phường Tân Phong, Quận 7, thành phố Hồ Chí Minh,Phường Tân Phong,Quận 7,TP. Hồ Chí Minh',
+                            ],
+                            users: [
+                                {
+                                    displayName: 'LỤC MINH TRANG',
+                                    idNumber: '024042351',
+                                    dateOfBirth: '00/00/1987',
+                                },
+                                {
+                                    displayName: 'NGUYỄN HỒNG HẢI',
+                                    idNumber: '001161010062',
+                                    dateOfBirth: '00/00/1961',
+                                },
+                                {
+                                    displayName: 'NGUYỄN THỊ HƯƠNG',
+                                    idNumber: '272586094',
+                                    dateOfBirth: '00/00/1995',
+                                },
+                            ],
+                        },
+                    ],
+                ],
+                [
+                    `(*) Nhóm HS:
+          - * Nhom HS:Thế chấp; So CC:017321; Phong CC: VPCC Hoàng Xuân Ngụ (Tên cũ: Hoàng Xuân); CC vien:Nguyễn Thị Thúy Ân; Ngay cap so: 30/05/2022
+        (*) Tài sản:
+          - Loai:Đất có tài sản So vao so:CS11056 So thua:53 So to:20 Dia chi:47 Lê Văn Thiêm, Hưng Phước III (Dia chi cu:lô R4-03 ),Phường Tân Phong,Quận 7,TP. Hồ Chí Minh
+          - Loai:Đất có tài sản So seri:AP044806 So vao so:00216QSDĐ So thua:1415-20 So to:06 xã Tân Quy ĐÔng - H.Nhà Bè Dia chi:51 Lê Văn Thiêm, Hưng Phước III,Phường Tân Phong,Quận 7,TP. Hồ Chí Minh
+          - Loai:Đất có tài sản So seri:AP044905 So vao so:00140QSDĐ So thua:1415-21 So to:06 xã Tân Quy Đông - H.Nhà Bè Dia chi:49 Lê Văn Thiêm, Hưng Phước III,Phường Tân Phong,Quận 7,TP. Hồ Chí Minh
+          - Loai:Đất không có tài sản, So cn:CH05909 So thua:462 So to:20 ,Dia chi:Phường Tân Phong,Quận 7,TP. Hồ Chí Minh
+          - Loai:Đất không có tài sản So seri:BC591443 So vao so:CH05909 So thua:462 So to:20,Dia chi:Phường Tân Phong,Quận 7,TP. Hồ Chí Minh
+        (*) Đương sự:
+          - Ben:Bên thế chấp; Vai tro:Bên thế chấp (Bên A); Đỗ Đức Hồng, So CMT,HC:001052006570, Ngay sinh:00/00/1952, Dia chi: 220 Lô H7, Khu phố Mỹ Hưng, Khu A Phường Tân Phong,Quận 7,TP. Hồ Chí Minh
+          - Ben:Bên thế chấp; Vai tro:Bên thế chấp (Bên A); Trần Bích Phương, So CMT,HC:020155000022, Ngay sinh:00/00/1955, Dia chi: 220 Lô H7, khu phố Mỹ Hưng, Khu A Phường Tân Phong,Quận 7,TP. Hồ Chí Minh
+          - Ben:Bên nhận thế chấp; Vai tro:Bên nhận thế chấp (Bên B); Ngân hàng TMCP Ngoại Thương Việt Nam - Chi nhánh Vũng Tàu; Ma thue:k; Dia chi:27 Trần Hưng Đạo,Phường 1,Thành phố Vũng Tàu,Tỉnh Bà Rịa - Vũng Tàu
+          - Ben:Bên nhận thế chấp; Vai tro:Đại diện; Đoàn Văn Tuyến, So CMT,HC:036066005011, Ngay sinh:00/00/1966`,
+                    [
+                        {
+                            addresses: [
+                                '47 Lê Văn Thiêm, Hưng Phước III (Dia chi cu:lô R4-03 ),Phường Tân Phong,Quận 7,TP. Hồ Chí Minh',
+                                '51 Lê Văn Thiêm, Hưng Phước III,Phường Tân Phong,Quận 7,TP. Hồ Chí Minh',
+                                '49 Lê Văn Thiêm, Hưng Phước III,Phường Tân Phong,Quận 7,TP. Hồ Chí Minh',
+                                'Phường Tân Phong,Quận 7,TP. Hồ Chí Minh',
+                                'Phường Tân Phong,Quận 7,TP. Hồ Chí Minh',
+                            ],
+                            users: [
+                                {
+                                    displayName: 'Đỗ Đức Hồng',
+                                    idNumber: '001052006570',
+                                    dateOfBirth: '00/00/1952',
+                                },
+                                {
+                                    displayName: 'Trần Bích Phương',
+                                    idNumber: '020155000022',
+                                    dateOfBirth: '00/00/1955',
+                                },
+                                {
+                                    displayName: 'Ngân hàng TMCP Ngoại Thương Việt Nam - Chi nhánh Vũng Tàu',
+                                    idNumber: '',
+                                    dateOfBirth: '',
+                                },
+                                {
+                                    displayName: 'Đoàn Văn Tuyến',
+                                    idNumber: '036066005011',
+                                    dateOfBirth: '00/00/1966',
+                                },
+                            ],
+                        },
+                    ],
+                ],
+                [
+                    `
+        (*) Nhóm HS:
+         - * Nhom HS:Ủy quyền; So CC:005881; Phong CC: VPCC Văn Thị Mỹ Đức; CC vien:Cao Hoàng Lân; Ngay cap so: 29/06/2021
+        - Ghi chú: xin phép xây dựng sửa chữa
+         (*) Tài sản:
+         - Loai:Nhà ở So seri:0 So vao so:2154/2007/UB-GCN Dia chi:A65(Phải) Nguyễn Trãi,Phường Nguyễn Cư Trinh,Quận 1,TP. Hồ Chí Minh
+        (*) Đương sự:
+          - Ben:Bên ủy quyền; Vai tro:Bên ủy quyền (Bên A); NGUYỄN CÔNG MINH, So CMT,HC:079055000834, Ngay sinh:00/00/1955
+          - Ben:Bên ủy quyền; Vai tro:Bên ủy quyền (Bên A); Đoàn Thị Kim Chi, So CMT,HC:079155000278, Ngay sinh:00/00/1955
+          - Ben:Bên nhận ủy quyền; Vai tro:Bên nhận ủy quyền (Bên B); Đinh Thị Thu Thủy, So CMT,HC:023845562, Ngay sinh:00/00/1984`,
+                    [
+                        {
+                            addresses: ['A65(Phải) Nguyễn Trãi,Phường Nguyễn Cư Trinh,Quận 1,TP. Hồ Chí Minh'],
+                            users: [
+                                {
+                                    displayName: 'NGUYỄN CÔNG MINH',
+                                    idNumber: '079055000834',
+                                    dateOfBirth: '00/00/1955',
+                                },
+                                {
+                                    displayName: 'Đoàn Thị Kim Chi',
+                                    idNumber: '079155000278',
+                                    dateOfBirth: '00/00/1955',
+                                },
+                                {
+                                    displayName: 'Đinh Thị Thu Thủy',
+                                    idNumber: '023845562',
+                                    dateOfBirth: '00/00/1984',
+                                },
                             ],
                         },
                     ],
@@ -344,12 +498,18 @@ describe('utils', () => {
                 const details = (0, content_1.extractPremiseDetail)(content);
                 expect(details.length).toEqual(expected.length);
                 for (let i = 0; i < details.length; i++) {
-                    expect((0, strings_1.matchSubstring)(details[i].address, expected[i].address)).toEqual(expected[i].address);
-                    console.log(details[i].users);
+                    expect(details[i].addresses.length).toEqual(expected[i].addresses.length);
+                    expect((0, strings_1.matchSubstring)(details[i].address, expected[i].addresses[0])).toEqual(expected[i].addresses[0]);
+                    for (let j = 0; j < details[i].addresses.length; j++) {
+                        const resultAddress = details[i].addresses[j];
+                        expect((0, strings_1.matchSubstring)(resultAddress, expected[i].addresses[j])).toEqual(expected[i].addresses[j]);
+                    }
+                    // expect(matchSubstring(details[i].address, expected[i].address)).toEqual(expected[i].address);
                     expect(details[i].users.length).toEqual(expected[i].users.length);
                     for (let j = 0; j < details[i].users.length; j++) {
                         expect((0, strings_1.matchSubstring)(details[i].users[j].displayName, expected[i].users[j].displayName)).toEqual(expected[i].users[j].displayName);
                         expect((0, strings_1.matchSubstring)(details[i].users[j].idNumber, expected[i].users[j].idNumber)).toEqual(expected[i].users[j].idNumber);
+                        expect((0, strings_1.matchSubstring)(details[i].users[j].dateOfBirth, expected[i].users[j].dateOfBirth)).toEqual(expected[i].users[j].dateOfBirth);
                     }
                 }
             });
