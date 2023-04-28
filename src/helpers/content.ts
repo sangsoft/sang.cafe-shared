@@ -130,7 +130,6 @@ function extractUserInfoFromDocument(text: string): {
 }
 export function extractPremiseDetail(text: string): PremiseParsedDetail[] {
   const cleanedText = replaceAllFromDocument(text, '', '');
-  // const premiseRe = /(\(\*\) Tài sản:\s*(- .*))\s*((\(\*\) Đương sự:)\s*(- Ben:.*\s*)+)/gm;
   // https://regex101.com/r/pqPsL1/3
   const premiseRe = /((\(\*\) Tài sản:)\s*(- .*\s*)+)\s*((\(\*\) Đương sự:)\s*(- Ben:.*\s*)+)/gm;
   //https://regex101.com/r/BCnDD4/1
@@ -138,11 +137,11 @@ export function extractPremiseDetail(text: string): PremiseParsedDetail[] {
   return addressMatches.map((match) => {
     const addresses = extractAddressFromDocument(match[1]);
     // console.log(extractUserInfoFromDocument(match[4]));
-    console.log(match[2]);
+    // console.log(match[1]);
     return {
       addresses,
       address: addresses[0],
-      raw: match[2],
+      raw: match[1],
       users: extractUserInfoFromDocument(match[4]),
     };
   });
