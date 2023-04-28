@@ -136,12 +136,12 @@ export function extractPremiseDetail(text: string): PremiseParsedDetail[] {
   //https://regex101.com/r/BCnDD4/1
   const addressMatches = [...cleanedText.matchAll(premiseRe)];
   return addressMatches.map((match) => {
-    const address = extractAddressFromDocument(match[1]);
-    console.log(extractUserInfoFromDocument(match[4]));
-    // console.log(address);
+    const addresses = extractAddressFromDocument(match[1]);
+    // console.log(extractUserInfoFromDocument(match[4]));
+    console.log(match[2]);
     return {
-      addresses: address,
-      address: address[0],
+      addresses,
+      address: addresses[0],
       raw: match[2],
       users: extractUserInfoFromDocument(match[4]),
     };

@@ -2,10 +2,12 @@ export declare function matchWithPatterns(text: string, patterns: RegExp[]): str
 export declare function cleanPhoneNumber(text: string, patterns?: RegExp[]): string;
 export declare function cleanAddress(text: string, patterns?: RegExp[]): string;
 export interface PremiseParsedDetail {
+    addresses: string[];
     address: string;
     users: {
         displayName: string;
         idNumber: string;
+        dateOfBirth: string;
         raw: string;
     }[];
     raw: string;
