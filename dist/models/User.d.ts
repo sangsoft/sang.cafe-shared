@@ -23,6 +23,7 @@ export interface IUser extends Model {
     buyer?: IUserStatus;
     seller?: IUserStatus;
     createdFromTaskId?: string;
+    dateOfBirthStr?: string;
     signInMetaData?: {
         phoneNumber: string;
         email?: string;
