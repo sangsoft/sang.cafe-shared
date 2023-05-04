@@ -23,6 +23,9 @@ export interface SearchParameters {
   tags?: string[];
   premiseType?: PremiseType;
 
+  numberOfFrontsFrom?: number;
+  numberOfFrontsTo?: number;
+
   ownerType?: OwnerType;
 
   monthlyRentalFroms?: number[];

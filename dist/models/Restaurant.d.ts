@@ -185,6 +185,8 @@ export interface IRestaurant extends Model {
     collectedInfoNote?: string;
     confirmedBillId?: string;
     confirmedBillShortCode?: string;
+    buildingPermissionPhotos?: Photo[];
+    landUseCertificatePhotos?: Photo[];
 }
 export interface IInfoRequest extends Model {
     restaurantId: string;

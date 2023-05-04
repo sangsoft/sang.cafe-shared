@@ -213,6 +213,9 @@ export interface IRestaurant extends Model {
 
   confirmedBillId?: string;
   confirmedBillShortCode?: string;
+
+  buildPermitPhotos?: Photo[];
+  landUseCertificatePhotos?: Photo[];
 }
 
 export interface IInfoRequest extends Model {
